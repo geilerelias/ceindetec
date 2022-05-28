@@ -28,7 +28,7 @@
                         : 'width: 260px; max-width: 260px'
                 "
             >
-                <img :src="logo" alt="" width="200px" class="float-right" />
+                <img :src="logo" alt="" width="200px" class="float-right"/>
             </v-col>
             <div
                 class="triangle-shapes"
@@ -74,23 +74,27 @@
                     >
                         <div class="align-self-center d-md-flex">
                             <p
-                                class="text-white text-right align-self-center mb-1 mt-1"
+                                class="text--white white--text text-right align-self-center mb-1 mt-1"
                                 style="font-size: 16px;"
                             >
-                                <span class="d-none d-lg-inline">
-                                    <v-icon size="17" dark>
+                                <span class="d-none d-lg-inline ">
+                                    <v-icon size="17" dark class="mt-n1">
                                         mdi-clock-outline
                                     </v-icon>
                                     8:00am - 6:00pm |
                                 </span>
-                                <v-icon size="17" dark>
-                                    mdi-phone-outline
-                                </v-icon>
-                                3138161 129- 3504944938 |
-                                <v-icon size="17" dark>
-                                    mdi-email-outline
-                                </v-icon>
-                                informacion@ceindetec.org.co
+                                <span class="ma-0 pa-0">
+                                    <v-icon size="17" dark class="mt-n1">
+                                        mdi-phone-outline
+                                    </v-icon>
+                                    3138161 129- 3504944938 |
+                                </span>
+                                <span class="ma-0 pa-0">
+                                    <v-icon size="18" dark class="mt-n1">
+                                        mdi-email-outline
+                                    </v-icon>
+                                    informacion@ceindetec.org.co
+                                </span>
                             </p>
                         </div>
                     </v-container>
@@ -121,7 +125,9 @@
                     </inertia-link>
 
                     <inertia-link :href="route('dashboard')">
-                        <v-btn icon><v-icon>mdi-view-dashboard</v-icon></v-btn>
+                        <v-btn icon>
+                            <v-icon>mdi-view-dashboard</v-icon>
+                        </v-btn>
                     </inertia-link>
                 </v-toolbar>
             </v-col>
@@ -130,7 +136,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import {mapMutations, mapState} from 'vuex';
 import logo from '../../images/logo-ceindetec.png';
 
 export default {

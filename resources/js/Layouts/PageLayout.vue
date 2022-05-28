@@ -2,7 +2,9 @@
     <v-app>
         <drawer-component></drawer-component>
         <header-component></header-component>
-        <v-main class="min-h-screen"><slot></slot></v-main>
+        <v-main class="min-h-screen">
+            <slot></slot>
+        </v-main>
         <footer-component></footer-component>
     </v-app>
 </template>
@@ -24,5 +26,14 @@ export default {
 <style>
 .v-btn {
     outline: none !important;
+}
+
+.v-application {
+    font-family: "Roboto", sans-serif !important;
+}
+
+.v-application [class*="text-"] {
+    color: #36405a;
+    font-family: "Roboto", sans-serif !important;
 }
 </style>

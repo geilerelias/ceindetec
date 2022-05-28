@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/dist/vuetify.css'
 
 Vue.use(Vuetify)
 
 const opts = {
+    customVariables: ['./assets/variables.scss'],
     icons: {
         iconfont: 'mdi', // default - only for display purposes
     },

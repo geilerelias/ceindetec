@@ -4,7 +4,9 @@
         <drawer-component></drawer-component>
 
         <v-main class="bg-gray-100">
-            <div class="min-h-screen"><slot></slot></div>
+            <div class="min-h-screen">
+                <slot></slot>
+            </div>
             <footer-component></footer-component>
         </v-main>
     </v-app>
@@ -30,9 +32,9 @@ export default {
         return {
             showingNavigationDropdown: false,
             items: [
-                { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-                { title: 'Photos', icon: 'mdi-image' },
-                { title: 'About', icon: 'mdi-help-box' }
+                {title: 'Dashboard', icon: 'mdi-view-dashboard'},
+                {title: 'Photos', icon: 'mdi-image'},
+                {title: 'About', icon: 'mdi-help-box'}
             ],
             right: null
         };
@@ -63,5 +65,14 @@ export default {
 <style>
 .v-btn {
     outline: none !important;
+}
+
+.v-application {
+    font-family: "Roboto", sans-serif !important;
+}
+
+.v-application [class*="text-"] {
+    color: #36405a;
+    font-family: "Roboto", sans-serif !important;
 }
 </style>

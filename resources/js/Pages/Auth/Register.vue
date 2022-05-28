@@ -12,7 +12,7 @@
                                     <v-col class="col-xl-5 col-8">
                                         <div>
                                             <h2 class="display-1 white--text font-weight-medium">
-<!--                                                iRepairSoft-->
+                                                <!--                                                iRepairSoft-->
                                                 <v-img src="https://ceindetec.org.co/img/web/logofinal.png">
                                                 </v-img>
                                             </h2>

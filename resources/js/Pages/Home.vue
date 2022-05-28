@@ -6,7 +6,7 @@
             :aspect-ratio="16 / 9"
             style="height: 65vh"
             cover
-            gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+            gradient="to top,rgb(5 11 31 / 48%), rgb(0 28 71 / 35%)"
         >
             <v-row class="fill-height ma-0" align="center" justify="center">
                 <v-responsive
@@ -14,13 +14,13 @@
                     style="height: 100%; width: 100%;"
                 >
                     <h1
-                        class="text-center text-white font-weight-bold text-h4"
+                        class="text-center text--white  white--text font-weight-bold text-h3"
                         id="frase1"
                     >
                         Bienvenido a
                     </h1>
                     <h1
-                        class="text-center secondary--text font-weight-black text-h3 animate__animated animate__slideInLeft"
+                        class="text-center secondary--text font-weight-black text-h2 animate__animated animate__slideInLeft"
                         id="frase2"
                     >
                         Ceindetec Llanos
@@ -142,8 +142,8 @@ export default {
             return this.$vuetify.breakpoint.mdAndUp
                 ? 136
                 : this.$vuetify.breakpoint.xsOnly
-                ? 88
-                : 176;
+                    ? 88
+                    : 176;
         }
     }
 };
