@@ -48,11 +48,12 @@ const store = new Vuex.Store({
             },
         ],
 
-        linksWithAuth: [{
-            route: "dashboard",
-            icon: 'mdi-view-dashboard',
-            title: "Dashboard"
-        },
+        linksWithAuth: [
+            {
+                route: "dashboard",
+                icon: 'mdi-view-dashboard',
+                title: "Dashboard"
+            },
             {
                 title: "Agenda",
                 icon: 'mdi-calendar-month',
@@ -72,25 +73,29 @@ const store = new Vuex.Store({
             },
             {
                 title: "User",
-                icon: 'mdi-account-tie',
+                icon: 'mdi-account-circle',
                 route: "user.index",
                 //can: 'view user',
                 array: null
             },
-            {
-                title: "Roles",
-                icon: 'mdi-shield-account',
-                route: "role.index",
-                //can: 'view rol',
-                array: null
-            },
-            {
-                title: "Permisos",
-                icon: 'mdi-badge-account-outline',
-                route: "permission.index",
-                //can: 'view permission',
-                array: null
-            },
+
+            [
+                {title: "Permisos", icon: 'mdi-shield-account'},
+                {
+                    title: "Roles",
+                    icon: 'mdi-account-supervisor-circle',
+                    route: "role.index",
+                    //can: 'view rol',
+                    array: null
+                },
+                {
+                    title: "Permisos",
+                    icon: 'mdi-badge-account-outline',
+                    route: "permission.index",
+                    //can: 'view permission',
+                    array: null
+                },
+            ]
 
         ]
     },

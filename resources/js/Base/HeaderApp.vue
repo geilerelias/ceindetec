@@ -110,34 +110,38 @@
                                         </v-list-item-content>
                                     </v-list-item>
                                 </inertia-link>
-                                <v-subheader>Manage Team</v-subheader>
-                                <inertia-link :href="route('teams.show', $page.user.current_team)">
-                                    <v-list-item
-                                        :dark="route().current('teams.show')"
-                                        :class="route().current('teams.show')?'active primary  white--text':''"
-                                    >
-                                        <v-list-item-icon>
-                                            <v-icon>mdi-account-group</v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-content>
-                                            <v-list-item-title> Team Settings</v-list-item-title>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </inertia-link>
+                                <template v-if="$page.jetstream.hasTeamFeatures">
 
-                                <inertia-link :href="route('teams.create')">
-                                    <v-list-item
-                                        :dark="route().current('teams.create')"
-                                        :class="route().current('teams.create')?'active primary  white--text':''"
-                                    >
-                                        <v-list-item-icon>
-                                            <v-icon>mdi-account-multiple-plus</v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-content>
-                                            <v-list-item-title>Create New Team</v-list-item-title>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </inertia-link>
+
+                                    <v-subheader>Manage Team</v-subheader>
+                                    <inertia-link :href="route('teams.show', $page.user.current_team)">
+                                        <v-list-item
+                                            :dark="route().current('teams.show')"
+                                            :class="route().current('teams.show')?'active primary  white--text':''"
+                                        >
+                                            <v-list-item-icon>
+                                                <v-icon>mdi-account-group</v-icon>
+                                            </v-list-item-icon>
+                                            <v-list-item-content>
+                                                <v-list-item-title> Team Settings</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </inertia-link>
+
+                                    <inertia-link :href="route('teams.create')">
+                                        <v-list-item
+                                            :dark="route().current('teams.create')"
+                                            :class="route().current('teams.create')?'active primary  white--text':''"
+                                        >
+                                            <v-list-item-icon>
+                                                <v-icon>mdi-account-multiple-plus</v-icon>
+                                            </v-list-item-icon>
+                                            <v-list-item-content>
+                                                <v-list-item-title>Create New Team</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </inertia-link>
+                                </template>
                             </v-list-item-group>
                         </v-list>
 

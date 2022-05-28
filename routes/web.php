@@ -53,8 +53,9 @@ Route::get('/contact-us', function () {
 })->name('contact-us');
 
 
-Route::middleware(['auth:sanctum', 'verified',])->group(function () {
-    Route::middleware(['can:view dashboard'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified','can:view dashboard'])->group(function () {
+    //middleware(['can:view dashboard'])->
+    Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
 
@@ -72,33 +73,30 @@ Route::middleware(['auth:sanctum', 'verified',])->group(function () {
 
     Route::resource('/dashboard/establishment', EstablishmentController::class);
 
+    //spatie Permission laravel
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/role/all', [RoleController::class, 'all']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->post('/role/assign/permissions', [RoleController::class, 'assignPermissions']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/role/{role}/permissions', [RoleController::class, 'getPermissions']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->resource('role', RoleController::class);
+
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/permission/all', [PermissionController::class, 'all']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->resource('permission', PermissionController::class);
+
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->post('/user/assign/roles', [UserController::class, 'assignRole']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->post('/user/remove/roles', [UserController::class, 'removeRole']);
+    Route::middleware(['auth:sanctum', 'verified'])
+        ->get('/user/{user}/roles', [UserController::class, 'getRoleNames']);
+
+    Route::middleware(['auth:sanctum', 'verified'])->resource('user', UserController::class);
 });
-
-
-//spatie Permission laravel
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/role/all', [RoleController::class, 'all']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->post('/role/assign/permissions', [RoleController::class, 'assignPermissions']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/role/{role}/permissions', [RoleController::class, 'getPermissions']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->resource('role', RoleController::class);
-
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/permission/all', [PermissionController::class, 'all']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->resource('permission', PermissionController::class);
-
-Route::middleware(['auth:sanctum', 'verified'])
-    ->post('/user/assign/roles', [UserController::class, 'assignRole']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->post('/user/remove/roles', [UserController::class, 'removeRole']);
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/user/{user}/roles', [UserController::class, 'getRoleNames']);
-
-Route::middleware(['auth:sanctum', 'verified'])->resource('user', UserController::class);
-
 Route::get('/example', function (Request $request) {
     $role = Role::find('admin');
     dd($role);

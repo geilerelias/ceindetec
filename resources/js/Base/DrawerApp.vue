@@ -45,24 +45,9 @@
         </v-img>
         <v-divider></v-divider>
 
-        <v-list>
-            <v-subheader class="secondary--text">Municipios</v-subheader>
-            <v-list-group v-for="(item, k) in 3" :key="item.id">
-
-                <template v-slot:activator>
-                    <v-list-item-title>{{ k }}</v-list-item-title>
-                </template>
-                <v-list-item v-for="(est, n) in 3" :key="`id${n}${k}`" link>
-                    <v-list-item-icon>
-                        <v-icon>mdi-home</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title v-text="'est.sede'"></v-list-item-title>
-                </v-list-item>
-            </v-list-group>
-        </v-list>
-        
         <v-list dense shaped>
             <v-list-item-group v-model="group" color="primary">
+
                 <template v-if="$page.user == null">
                     <v-divider></v-divider>
                     <v-subheader>Authentication</v-subheader>
@@ -87,30 +72,59 @@
 
                 <!-- Responsive Settings Options -->
                 <template v-if="$page.user !== null" dense>
-                    <inertia-link
-                        v-for="item in linksWithAuth"
-                        :key="item.id"
-                        :href="route(item.route)"
-                    >
-                        <v-list-item
-                            :dark="route().current(item.route)"
-                            :class="
+
+                    <template v-for="item in linksWithAuth">
+                        <inertia-link
+                            :key="item.id"
+                            :href="route(item.route)"
+                            v-if="!Array.isArray(item)"
+                        >
+                            <v-list-item
+                                :dark="isActive(item.route)"
+                                :class="
                                 route().current(item.route)
                                     ? 'active primary  white--text'
                                     : ''
                             "
-                        >
-                            <v-list-item-icon>
-                                <v-icon v-text="item.icon"></v-icon>
-                            </v-list-item-icon>
+                            >
+                                <v-list-item-icon>
+                                    <v-icon v-text="item.icon"></v-icon>
+                                </v-list-item-icon>
 
-                            <v-list-item-content>
-                                <v-list-item-title
-                                    v-text="item.title"
-                                ></v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </inertia-link>
+                                <v-list-item-content>
+                                    <v-list-item-title
+                                        v-text="item.title"
+                                    ></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </inertia-link>
+
+                        <v-list-group :prepend-icon="item[0].icon" no-action v-else>
+
+                            <template v-slot:activator>
+                                <v-list-item-content>
+                                    <v-list-item-title> {{ item[0].title }}</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+
+                            <v-list-item v-for="(i, n) in item.slice(1,item.length)" :key="`id${n}${i}`"
+                                         :dark="isActive(i.route)"
+                                         :class=" isActive(i.route)? 'active primary  white--text': ''"
+                            >
+
+
+                                <v-list-item-content>
+                                    <v-list-item-title
+                                        v-text="i.title"
+                                    ></v-list-item-title>
+                                </v-list-item-content>
+
+                                <v-list-item-icon>
+                                    <v-icon v-text="i.icon"></v-icon>
+                                </v-list-item-icon>
+                            </v-list-item>
+                        </v-list-group>
+                    </template>
 
                     <v-divider></v-divider>
                     <v-subheader>Settings Options</v-subheader>
@@ -125,7 +139,7 @@
                             "
                         >
                             <v-list-item-icon>
-                                <v-icon>mdi-account-circle</v-icon>
+                                <v-icon>mdi-card-account-details-outline</v-icon>
                             </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title>Perfil</v-list-item-title>
@@ -165,49 +179,49 @@
                             <v-list-item-title>Logout</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-
-                    <v-subheader>Manage Team</v-subheader>
-                    <inertia-link
-                        :href="route('teams.show', $page.user.current_team)"
-                    >
-                        <v-list-item
-                            :dark="route().current('teams.show')"
-                            :class="
+                    <template v-if="$page.jetstream.hasTeamFeatures">
+                        <v-subheader>Manage Team</v-subheader>
+                        <inertia-link
+                            :href="route('teams.show', $page.user.current_team)"
+                        >
+                            <v-list-item
+                                :dark="route().current('teams.show')"
+                                :class="
                                 route().current('teams.show')
                                     ? 'active primary  white--text'
                                     : ''
                             "
-                        >
-                            <v-list-item-icon>
-                                <v-icon>mdi-account-group</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    Team Settings
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </inertia-link>
-
-                    <inertia-link :href="route('teams.create')">
-                        <v-list-item
-                            :dark="route().current('teams.create')"
-                            :class="
+                            >
+                                <v-list-item-icon>
+                                    <v-icon>mdi-account-group</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        Team Settings
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </inertia-link>
+                        <inertia-link :href="route('teams.create')">
+                            <v-list-item
+                                :dark="route().current('teams.create')"
+                                :class="
                                 route().current('teams.create')
                                     ? 'active primary  white--text'
                                     : ''
                             "
-                        >
-                            <v-list-item-icon>
-                                <v-icon>mdi-account-multiple-plus</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    Create New Team
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </inertia-link>
+                            >
+                                <v-list-item-icon>
+                                    <v-icon>mdi-account-multiple-plus</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        Create New Team
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </inertia-link>
+                    </template>
                 </template>
             </v-list-item-group>
         </v-list>
@@ -337,6 +351,12 @@ export default {
                     preserveState: false
                 }
             );
+        },
+        isActive(route) {
+            if (this.route().current(route)) {
+                return true;
+            }
+            return false;
         },
 
         logout() {
