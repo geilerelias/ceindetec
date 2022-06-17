@@ -15,31 +15,29 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = [
-            [1, 'view dashboard', 'sanctum', '2022-01-04 13:32:03', '2022-01-04 13:32:03'],
-            [2, 'create rol', 'sanctum', '2022-01-04 13:32:12', '2022-01-04 13:32:12'],
+        $permisos = [
+            [1, 'ver dashboard', 'sanctum', '2022-01-04 13:32:03', '2022-01-04 13:32:03'],
+            [2, 'crear rol', 'sanctum', '2022-01-04 13:32:12', '2022-01-04 13:32:12'],
             [3, 'edit rol', 'sanctum', '2022-01-04 13:32:21', '2022-01-04 15:03:40'],
-            [4, 'view user', 'sanctum', '2022-01-04 13:33:01', '2022-01-04 13:33:01'],
-            [5, 'view person', 'sanctum', '2022-01-04 13:33:12', '2022-01-04 13:33:12'],
-            [6, 'view rol', 'sanctum', '2022-01-04 13:33:22', '2022-01-04 15:03:47'],
-            [7, 'view permission', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
-            [8, 'edit person', 'sanctum', '2022-01-04 13:33:45', '2022-01-04 13:33:45'],
-            [9, 'destroy person', 'sanctum', '2022-01-04 13:33:58', '2022-01-04 13:33:58'],
-            [10, 'create person', 'sanctum', '2022-01-04 13:34:07', '2022-01-04 13:34:07'],
-            [11, 'assign permissions', 'sanctum', '2022-01-04 15:02:26', '2022-01-04 15:02:26'],
-            [12, 'get permissions', 'sanctum', '2022-01-04 15:02:49', '2022-01-04 15:02:49'],
-            [13, 'destroy rol', 'sanctum', '2022-01-04 15:04:15', '2022-01-04 15:04:15'],
-            [14, 'assign roles', 'sanctum', '2022-01-05 02:25:27', '2022-01-05 02:25:27'],
-            [15, 'remove roles', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59']
+            [4, 'ver user', 'sanctum', '2022-01-04 13:33:01', '2022-01-04 13:33:01'],
+            [5, 'ver persona', 'sanctum', '2022-01-04 13:33:12', '2022-01-04 13:33:12'],
+            [6, 'ver rol', 'sanctum', '2022-01-04 13:33:22', '2022-01-04 15:03:47'],
+            [7, 'ver permisos', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
+            [8, 'edit persona', 'sanctum', '2022-01-04 13:33:45', '2022-01-04 13:33:45'],
+            [9, 'eliminar persona', 'sanctum', '2022-01-04 13:33:58', '2022-01-04 13:33:58'],
+            [10, 'crear persona', 'sanctum', '2022-01-04 13:34:07', '2022-01-04 13:34:07'],
+            [11, 'asignar permisos', 'sanctum', '2022-01-04 15:02:26', '2022-01-04 15:02:26'],
+            [12, 'get permisos', 'sanctum', '2022-01-04 15:02:49', '2022-01-04 15:02:49'],
+            [13, 'eliminar rol', 'sanctum', '2022-01-04 15:04:15', '2022-01-04 15:04:15'],
+            [14, 'asignar roles', 'sanctum', '2022-01-05 02:25:27', '2022-01-05 02:25:27'],
+            [15, 'quitar roles', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59']
         ];
 
-        foreach ($permissions as $permission) {
+        foreach ($permisos as $permisos) {
             Permission::create([
-                'id' => $permission[0],
-                'name' => $permission[1],
-                'guard_name' => $permission[2],
-                'created_at' => $permission[3],
-                'updated_at' => $permission[4],
+                'id' => $permisos[0],
+                'name' => $permisos[1],
+                'guard_name' => $permisos[2],
             ]);
         }
     }

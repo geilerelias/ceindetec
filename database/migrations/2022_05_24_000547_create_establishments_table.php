@@ -16,13 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('nit')->nullable();
-            $table->string('dane_code')->nullable();
-            $table->string('icfes_code')->nullable();
-            $table->string('address')->nullable();
             $table->string('municipality')->nullable();
-            $table->string('department')->unique();
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('department')->nullable();
             $table->timestamps();
         });
     }

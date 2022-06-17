@@ -1,119 +1,133 @@
 <template>
     <app-layout>
         <bread-crumbs name="Posts" :items="items"></bread-crumbs>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
-                         role="alert" v-if="$page.flash.message">
-                        <div class="flex">
-                            <div>
-                                <p class="text-sm">{{ $page.flash.message }}</p>
-                            </div>
-                        </div>
+        <v-container class="py-12">
+            <v-row class="ma-0">
+                <v-col>
+                    <v-card style="width: 100%;">
+                        <v-card-text class="">
+                            <v-row class=" no-gutters">
+                                <div class="d-flex justify-space-between justify-md-start col-md-6 col-12">
+                                    <v-btn
+                                        @click="isOpen = !isOpen"
+                                        class="mr-3 success">
+                                        <v-icon class="notranslate mr-2">
+                                            mdi-plus
+                                        </v-icon>
+                                        Add
+                                    </v-btn>
+
+                                    <v-btn outlined
+                                           class="button-shadow primary--text">
+                                        <v-icon aria-hidden="true"
+                                                class="notranslate mr-2">
+                                            mdi-filter-variant
+                                        </v-icon>
+                                        Filters
+                                    </v-btn>
+                                </div>
+                                <v-spacer></v-spacer>
+
+                                <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
+                                    <v-text-field hide-details dense enclosed outlined
+                                                  append-icon="mdi-magnify"
+                                                  placeholder="search"
+                                                  v-model="search"
+                                    ></v-text-field>
+                                </div>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row class="ma-0">
+                <v-col>
+                    <v-card style="width: 100%;">
+
+                        <v-data-table
+                            :headers="headers"
+                            :items="data"
+                            sort-by="calories"
+                            :search="search"
+                            class="elevation-1"
+                        >
+                            <template v-slot:item.actions="{ item }">
+                                <v-icon
+                                    small
+                                    class="mr-2"
+                                    @click="edit(item)"
+                                >
+                                    mdi-pencil-outline
+                                </v-icon>
+                                <v-icon
+                                    small
+                                    @click="deleteRow(item)"
+                                >
+                                    mdi-delete-outline
+                                </v-icon>
+                            </template>
+                            <template v-slot:no-data>
+                                <v-btn
+                                    color="primary"
+                                    @click="initialize"
+                                >
+                                    Reset
+                                </v-btn>
+                            </template>
+                        </v-data-table>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+
+        <v-dialog
+            v-model="isOpen"
+            max-width="800"
+        >
+            <v-card class="pa-6">
+                <v-card-text>
+                    <v-text-field
+                        v-model="form.title"
+                        :counter="10"
+                        label="Title"
+                        required
+                    ></v-text-field>
+                    <div v-if="$page.errors.title" class="text-red-500">{{
+                            $page.errors.title[0]
+                        }}
                     </div>
-                    <button @click="openModal()"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Create New
-                        Post
-                    </button>
-                    <table class="table-fixed w-full">
-                        <thead>
-                        <tr class="bg-gray-100">
-                            <th class="px-4 py-2 w-20">No.</th>
-                            <th class="px-4 py-2">Title</th>
-                            <th class="px-4 py-2">Body</th>
-                            <th class="px-4 py-2">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="row in data">
-                            <td class="border px-4 py-2">{{ row.id }}</td>
-                            <td class="border px-4 py-2">{{ row.title }}</td>
-                            <td class="border px-4 py-2">{{ row.body }}</td>
-                            <td class="border px-4 py-2">
-                                <button @click="edit(row)"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Edit
-                                </button>
-                                <button @click="deleteRow(row)"
-                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400" v-if="isOpen">
-                        <div
-                            class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
-                            <div class="fixed inset-0 transition-opacity">
-                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                            </div>
-                            <!-- This element is to trick the browser into centering the modal contents. -->
-                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>​
-                            <div
-                                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                                role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                                <form>
-                                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                        <div class="">
-                                            <div class="mb-4">
-                                                <label for="exampleFormControlInput1"
-                                                       class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
-                                                <input type="text"
-                                                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                       id="exampleFormControlInput1" placeholder="Enter Title"
-                                                       v-model="form.title">
-                                                <div v-if="$page.errors.title" class="text-red-500">{{
-                                                    $page.errors.title[0]
-                                                    }}
-                                                </div>
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="exampleFormControlInput2"
-                                                       class="block text-gray-700 text-sm font-bold mb-2">Body:</label>
-                                                <textarea
-                                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                    id="exampleFormControlInput2" v-model="form.body"
-                                                    placeholder="Enter Body"></textarea>
-                                                <div v-if="$page.errors.body" class="text-red-500">{{
-                                                    $page.errors.body[0] }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                              <button wire:click.prevent="store()" type="button"
-                                      class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                      v-show="!editMode" @click="save(form)">
-                                Save
-                              </button>
-                            </span>
-                                        <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                              <button wire:click.prevent="store()" type="button"
-                                      class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                      v-show="editMode" @click="update(form)">
-                                Update
-                              </button>
-                            </span>
-                                        <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                    <v-textarea
+                        v-model="form.body"
+                        label="Body"
+                        required
+                    ></v-textarea>
 
-                              <button @click="closeModal()" type="button"
-                                      class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                                Cancel
-                              </button>
-                            </span>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
+                    <div v-if="$page.errors.body" class="text-red-500">{{
+                            $page.errors.body[0]
+                        }}
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="d-flex justify-end">
+                        <v-btn wire:click.prevent="store()" type="button"
+                               v-show="!editMode" @click="save(form)"
+                               class="primary mx-1" dark>
+                            Save
+                        </v-btn>
+
+                        <v-btn wire:click.prevent="store()" type="button"
+                               v-show="editMode" @click="update(form)"
+                               class="primary x-1" dark>
+                            Update
+                        </v-btn>
+
+                        <v-btn @click="closeModal()" type="button"
+                               class="secondary mx-1" dark>
+                            Cancel
+                        </v-btn>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </app-layout>
 </template>
 <script>
@@ -130,9 +144,28 @@ export default {
         return {
             editMode: false,
             isOpen: false,
+            search: '',
             form: {
                 title: null,
                 body: null,
+            },
+            headers: [
+                {
+                    text: 'Id',
+                    align: 'start',
+                    sortable: false,
+                    value: 'id',
+                },
+                {text: 'Title', value: 'title',},
+                {text: 'Body', value: 'body'},
+                {text: 'Actions', value: 'actions', sortable: false},
+            ],
+            editedIndex: -1,
+            editedItem: {
+                name: '',
+            },
+            defaultItem: {
+                name: '',
             },
             items: [
                 {
@@ -169,10 +202,29 @@ export default {
             }
         },
         save: function (data) {
-            this.$inertia.post('/posts', data)
-            this.reset();
-            this.closeModal();
-            this.editMode = false;
+            this.$inertia.post('/posts', data, {
+                onSuccess: page => {
+                    this.$swal(
+                        'Good job!',
+                        this.$page.flash.message,
+                        'success'
+                    )
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+                onError: errors => {
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+                onFinish: visit => {
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+            })
+
         },
         edit: function (data) {
             this.form = Object.assign({}, data);
@@ -181,16 +233,53 @@ export default {
         },
         update: function (data) {
             data._method = 'PUT';
-            this.$inertia.post('/posts/' + data.id, data)
-            this.reset();
-            this.closeModal();
+            this.$inertia.post('/posts/' + data.id, data, {
+                onSuccess: page => {
+                    this.$swal(
+                        'Good job!',
+                        'updated post successfully!',
+                        'success'
+                    )
+                    this.reset();
+                    this.closeModal();
+                },
+                onError: errors => {
+                    this.reset();
+                    this.closeModal();
+                },
+                onFinish: visit => {
+                    this.reset();
+                    this.closeModal();
+                },
+            })
         },
         deleteRow: function (data) {
-            if (!confirm('Are you sure want to remove?')) return;
-            data._method = 'DELETE';
-            this.$inertia.post('/posts/' + data.id, data)
-            this.reset();
-            this.closeModal();
+
+            this.$swal({
+                title: 'Are you sure?',
+                text: "this option cannot be reversed.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+
+                if (result.isConfirmed) {
+                    data._method = 'DELETE';
+                    this.$inertia.post('/posts/' + data.id, data)
+                    this.reset();
+                    this.closeModal();
+
+                    this.$swal(
+                        'Deleted!',
+                        'Your post has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
         }
     }
 }

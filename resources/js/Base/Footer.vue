@@ -2,10 +2,10 @@
     <div>
         <v-img :src="bg" class="my-0 py-0">
             <v-footer
-                class="px-0 my-0 py-0"
+                class="px-0 my-0 py-0 fill-height"
                 style="background-color: rgba(8, 0, 56, 0.77);"
             >
-                <v-container class="fill-height py-5">
+                <v-container class="py-5">
                     <v-row
                         class="py-4 d-flex justify-between"
                         :style="
@@ -140,7 +140,7 @@
                     style=" background-color: rgba(0, 0, 0, 0.3);width: 100% "
                 >
                     <v-container>
-                        <p class="text-white float-right d-sm-inline">
+                        <p class="text-white float-right d-sm-inline white--text">
                             <a
                                 class="base-body text-body-1 mx-auto grey--text text--darken-1 text-left mb-0"
                                 @click="
@@ -162,7 +162,7 @@
                             <span v-if="$vuetify.breakpoint.smAndUp">
                                 | &nbsp;
                             </span>
-                            <br v-else />
+                            <br v-else/>
 
                             Diseñado por
                             <span class="secondary--text">
@@ -252,7 +252,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import {mapMutations, mapState} from 'vuex';
 
 import logo from '../../images/logo-ceindetec.png';
 import bg from '@/../images/computer3.jpg';
@@ -265,11 +265,11 @@ export default {
             dialogPrivacyPolicies: false,
             dialogTermCondition: false,
             socialMedia: [
-                { icon: 'mdi-facebook', link: '' },
-                { icon: ' mdi-twitter', link: '' },
-                { icon: 'mdi-linkedin', link: '' },
-                { icon: 'mdi-google-plus', link: '' },
-                { icon: 'mdi-whatsapp', link: '' }
+                {icon: 'mdi-facebook', link: ''},
+                {icon: ' mdi-twitter', link: ''},
+                {icon: 'mdi-linkedin', link: ''},
+                {icon: 'mdi-google-plus', link: ''},
+                {icon: 'mdi-whatsapp', link: ''}
             ]
         };
     },

@@ -15,7 +15,7 @@
                     <div class="text-h6 mt-3 mb-6">
                         {{ description }}
                     </div>
-                    <v-btn href="/" class="secondary mb-14">
+                    <v-btn @click="redirect" class="secondary mb-14">
                         <v-icon left>
                             mdi-arrow-left
                         </v-icon>
@@ -83,6 +83,11 @@ export default {
             }[this.status]
         },
     },
+    methods: {
+        redirect() {
+            window.history.back();
+        }
+    }
 }
 </script>
 

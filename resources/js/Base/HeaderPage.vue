@@ -124,7 +124,8 @@
                         </v-btn>
                     </inertia-link>
 
-                    <inertia-link :href="route('dashboard')">
+                    <settings-dropdown v-if="$page.user!==null"></settings-dropdown>
+                    <inertia-link v-else :href="route('dashboard')">
                         <v-btn icon>
                             <v-icon>mdi-view-dashboard</v-icon>
                         </v-btn>
@@ -138,8 +139,12 @@
 <script>
 import {mapMutations, mapState} from 'vuex';
 import logo from '../../images/logo-ceindetec.png';
+import SettingsDropdown from '@/Components/SettingsDropdown'
 
 export default {
+    components: {
+        SettingsDropdown
+    },
     data: () => ({
         logo
     }),

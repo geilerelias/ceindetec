@@ -45,7 +45,7 @@
         </v-img>
         <v-divider></v-divider>
 
-        <v-list dense shaped>
+        <v-list nav dense shaped>
             <v-list-item-group v-model="group" color="primary">
 
                 <template v-if="$page.user == null">
@@ -81,11 +81,10 @@
                         >
                             <v-list-item
                                 :dark="isActive(item.route)"
-                                :class="
-                                route().current(item.route)
+                                :class="isActive(item.route)
                                     ? 'active primary  white--text'
-                                    : ''
-                            "
+                                    : '' "
+                                :value="isActive(item.route)?true:false"
                             >
                                 <v-list-item-icon>
                                     <v-icon v-text="item.icon"></v-icon>
@@ -107,22 +106,24 @@
                                 </v-list-item-content>
                             </template>
 
-                            <v-list-item v-for="(i, n) in item.slice(1,item.length)" :key="`id${n}${i}`"
-                                         :dark="isActive(i.route)"
-                                         :class=" isActive(i.route)? 'active primary  white--text': ''"
+                            <v-list-item
+                                v-for="(i, n) in item.slice(1,item.length)"
+                                :key="`id${n}${i}`"
+                                :dark="isActive(i.route)"
+                                :class=" isActive(i.route)? 'active primary  white--text': ''"
+                                @click="redirect(i.route)"
                             >
-
+                                <v-list-item-icon>
+                                    <v-icon v-text="i.icon"></v-icon>
+                                </v-list-item-icon>
 
                                 <v-list-item-content>
                                     <v-list-item-title
                                         v-text="i.title"
                                     ></v-list-item-title>
                                 </v-list-item-content>
-
-                                <v-list-item-icon>
-                                    <v-icon v-text="i.icon"></v-icon>
-                                </v-list-item-icon>
                             </v-list-item>
+
                         </v-list-group>
                     </template>
 
@@ -340,7 +341,9 @@ export default {
             'setFlat',
             'setPagePrincipal'
         ]),
-
+        redirect(route) {
+            this.$inertia.get(this.route(route))
+        },
         switchToTeam(team) {
             this.$inertia.put(
                 route('current-team.update'),

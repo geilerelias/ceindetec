@@ -86,9 +86,10 @@
                                 </h6>
 
                                 <v-form
-                                    @submit.prevent="submit"
                                     ref="form"
                                     v-model="valid"
+                                    novalidate="novalidate"
+                                    @submit.prevent="login"
                                 >
                                     <v-alert
                                         v-if="$page.errors.email"
@@ -101,18 +102,15 @@
                                         {{ $page.errors.email[0] }}
                                     </v-alert>
                                     <v-text-field
-                                        type="email"
                                         dense
                                         v-model="form.email"
+                                        label="E-mail"
+                                        clearable
+                                        outlined
                                         :rules="[
                                             emailRules.required,
                                             emailRules.valid
                                         ]"
-                                        label="E-mail"
-                                        outlined
-                                        name="email"
-                                        required
-                                        aria-autocomplete="true"
                                     ></v-text-field>
 
                                     <v-text-field
@@ -171,11 +169,7 @@
             </v-col>
         </v-row>
 
-        <div class="text-center">
-            <v-overlay :value="overlay" :opacity="0.9" color="primary">
-                <spinner-component></spinner-component>
-            </v-overlay>
-        </div>
+        <spinner-component :value="overlay" color="primary" :opacity="0.9"></spinner-component>
     </v-app>
 </template>
 

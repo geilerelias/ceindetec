@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Work;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
+
+class WorkController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = $this::all();
+        return Inertia::render('Dashboard/Tracing/Work', ['data' => $data]);
+
+    }
+
+    protected function all()
+    {
+        return Work::all();
+    }
+
+    protected function groupBy($group)
+    {
+        return Work::all()->groupBy($group);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        Validator::make($request->all(), [
+            'work_type' => ['required'],
+            'coordinates' => ['required'],
+            'establishments_id' => ['required'],
+            'headquarters_id' => ['required'],
+        ])->validate();
+
+        Work::create($request->all());
+
+        return redirect()->back()
+            ->with('message', 'Obra creada correctamente.');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function update(Request $request)
+    {
+        Validator::make($request->all(), [
+            'work_type' => ['required'],
+            'coordinates' => ['required'],
+            'establishments_id' => ['required'],
+            'headquarters_id' => ['required'],
+        ])->validate();
+
+        if ($request->has('id')) {
+            Work::find($request->input('id'))->update($request->all());
+            return redirect()->back()
+                ->with('message', 'Obra actualizada correctamente.');
+        }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function destroy(Request $request)
+    {
+        if ($request->has('id')) {
+            Work::find($request->input('id'))->delete();
+            return redirect()->back()->with('message', 'Obra eliminada correctamente.');;
+        }
+    }
+}

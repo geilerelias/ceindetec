@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Establishment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use mysql_xdevapi\Result;
+use PhpParser\Node\Expr\Array_;
 
 class EstablishmentController extends Controller
 {
@@ -37,6 +41,11 @@ class EstablishmentController extends Controller
         return Establishment::all();
     }
 
+    public function getHeadquarters($id)
+    {
+        return Establishment::find($id)->headquarters;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -54,39 +63,33 @@ class EstablishmentController extends Controller
      */
     public function store(Request $request)
     {
+
         Validator::make($request->all(), [
             'name' => ['required'],
+            'municipality' => ['required'],
+            'department' => ['required'],
         ])->validate();
 
+        /* $establishment = new Establishment();
+         foreach ($request->all() as $clave => $valor) {
+             $establishment[$clave] = $valor;
+         }
+
+         $establishment->save();*/
+
         Establishment::create($request->all());
-
-        return Redirect::route('establishment.index')
-            ->with('message', 'Establishment Created Successfully.', 'data', 'el espacio de este lugar es para investigacion');
+        return redirect()->route('establishment.index')
+            ->with(['message' => 'Establishment Created Successfully.', 'data' => 'el espacio de este lugar es para investigacion']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function assignPermissions(Request $request)
+    public function show(Establishment $establishment)
     {
-        $Establishment = Establishment::find($request->Establishment);
-        //return $request->permission;
-        $Establishment->syncPermissions($request->permission);
-
-        return redirect()->back()
-            ->with('message', 'Permissions successfully set.');
+        return Inertia::render('Dashboard/Establishment/Show', ['data' => $establishment]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function getPermissions(Establishment $Establishment)
+    public function edit(Establishment $establishment)
     {
-        return $Establishment->permissions;
+        return Inertia::render('Dashboard/Establishment/Edit', ['data' => $establishment]);
     }
 
 
@@ -101,13 +104,10 @@ class EstablishmentController extends Controller
             'name' => ['required'],
         ])->validate();
 
-
         if ($request->has('id')) {
-            $Establishment = Establishment::find($request->input('id'));
-            $Establishment->name = $request->name;
-            $Establishment->save();
+            Establishment::find($request->input('id'))->update($request->all());
             return redirect()->back()
-                ->with('message', 'Establishment Updated Successfully.');
+                ->with('message', 'Establecimiento actualizado correctamente.');
         }
     }
 
@@ -116,11 +116,9 @@ class EstablishmentController extends Controller
      *
      * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, Establishment $establishment)
     {
-        if ($request->has('id')) {
-            Establishment::find($request->input('id'))->delete();
-            return redirect()->back();
-        }
+        $establishment->delete();
+        return redirect()->back();
     }
 }

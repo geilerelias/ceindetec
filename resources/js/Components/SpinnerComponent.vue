@@ -1,21 +1,45 @@
 <template>
-    <div class="d-flex justify-center flex-column mb-6 text-center">
-        <div class="spinner mx-auto mb-4">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>
-        <p>
-            Un momento por favor, estamos procesando su solicitud
-        </p>
+    <div class="text-center">
+        <v-overlay :value="value" :opacity="opacity" :color="color">
+            <div class="d-flex justify-center flex-column mb-6 text-center">
+                <div class="spinner mx-auto mb-4">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+                <p class="white--text">
+                    {{ text }}
+                </p>
+            </div>
+        </v-overlay>
     </div>
 </template>
 
 <script>
 export default {
-    name: "SpinnerComponent"
+    name: "SpinnerComponent",
+    props: {
+        value: {
+            type: Boolean,
+            default: false,
+            required: true
+        },
+        opacity: {
+            type: Number,
+            default: 0.9
+        },
+        color: {
+            type: String,
+            default: 'primary'
+        },
+        text: {
+            type: String,
+            default: 'Un momento por favor, estamos procesando su solicitud'
+        }
+
+    }
 }
 </script>
 

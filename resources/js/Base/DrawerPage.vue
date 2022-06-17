@@ -6,6 +6,7 @@
         style="box-shadow: rgb(0 0 0 / 20%) -20px 1px 17px 8px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px"
     >
         <v-system-bar></v-system-bar>
+
         <v-list>
             <v-list-item>
                 <v-list-item-avatar>
@@ -99,27 +100,30 @@
 <script>
 import logo from '@/../images/logo-ceindetec.png';
 
-import { mapMutations, mapState } from 'vuex';
+import {mapMutations, mapState} from 'vuex';
+
 export default {
     data: () => ({
         logo,
         group: null,
         selectedItem: 0,
         items: [
-            { text: 'My Files', icon: 'mdi-folder' },
-            { text: 'Shared with me', icon: 'mdi-account-multiple' },
-            { text: 'Starred', icon: 'mdi-star' },
-            { text: 'Recent', icon: 'mdi-history' },
-            { text: 'Offline', icon: 'mdi-check-circle' },
-            { text: 'Uploads', icon: 'mdi-upload' },
-            { text: 'Backups', icon: 'mdi-cloud-upload' }
+            {text: 'My Files', icon: 'mdi-folder'},
+            {text: 'Shared with me', icon: 'mdi-account-multiple'},
+            {text: 'Starred', icon: 'mdi-star'},
+            {text: 'Recent', icon: 'mdi-history'},
+            {text: 'Offline', icon: 'mdi-check-circle'},
+            {text: 'Uploads', icon: 'mdi-upload'},
+            {text: 'Backups', icon: 'mdi-cloud-upload'}
         ]
     }),
+
     watch: {
         group() {
             this.drawer ? this.setDrawer(false) : this.setDrawer(true);
         }
     },
+
     computed: {
         ...mapState(['drawer', 'links']),
         localDrawer: {
@@ -131,6 +135,7 @@ export default {
             }
         }
     },
+    
     methods: {
         ...mapMutations([
             'setDrawer',

@@ -148,11 +148,8 @@
                 </v-container>
             </v-col>
         </v-row>
-        <div class="text-center">
-            <v-overlay :value="overlay" :opacity="0.9" color="primary">
-                <spinner-component></spinner-component>
-            </v-overlay>
-        </div>
+        
+        <spinner-component :value="overlay" color="primary" :opacity="0.9"></spinner-component>
     </v-app>
 </template>
 
