@@ -144,21 +144,21 @@ const store = new Vuex.Store({
                 {
                     title: "Docentes",
                     icon: 'mdi-human-male-board',
-                    route: "headquarters.index",
+                    route: "person.create.teacher",
                     //can: 'view permission',
                     array: null
                 },
                 {
                     title: "Estudiantes",
                     icon: 'mdi-account-school',
-                    route: "headquarters.index",
+                    route: "person.create.student",
                     //can: 'view permission',
                     array: null
                 },
                 {
                     title: "Acudiente",
                     icon: 'mdi-account-circle',
-                    route: "headquarters.index",
+                    route: "person.create.attendant",
                     //can: 'view permission',
                     array: null
                 },
@@ -233,9 +233,23 @@ const store = new Vuex.Store({
                     array: null
                 },
                 {
-                    title: "Obras",
+                    title: "Todas las Obras",
                     icon: 'mdi-file-document-multiple',
                     route: "follow",
+                    //can: 'view permission',
+                    array: null
+                },
+                {
+                    title: "Construcción",
+                    icon: 'mdi-account-hard-hat',
+                    route: "work.building",
+                    //can: 'view permission',
+                    array: null
+                },
+                {
+                    title: "Adecuación",
+                    icon: 'mdi-account-wrench',
+                    route: "work.adequacy",
                     //can: 'view permission',
                     array: null
                 },

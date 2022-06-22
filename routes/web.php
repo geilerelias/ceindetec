@@ -82,8 +82,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
         return Inertia\Inertia::render('Dashboard/Reports/Index');
     })->name('reports');
 
+
     Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
-    Route::get('/dashboard/work/group-by/{id}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
+    Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
+    Route::get('/dashboard/work/building', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
+    Route::get('/dashboard/work/adequacy', [\App\Http\Controllers\WorkController::class, 'adequacy'])->name('work.adequacy');
     Route::resource('/dashboard/work', \App\Http\Controllers\WorkController::class);
     Route::resource('/dashboard/tracing', \App\Http\Controllers\TracingController::class);
     Route::get('/dashboard/follow', function () {
@@ -106,10 +109,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
     Route::resource('/dashboard/headquarters', HeadquartersController::class);
 
     //personas
-    Route::get('/dashboard/person', [PersonController::class, 'createStudent']);
-    Route::get('/dashboard/person', [PersonController::class, 'createTeacher']);
-    Route::get('/dashboard/person', [PersonController::class, 'createAttendant']);
-    Route::get('/dashboard/person', [PersonController::class, 'createStudent']);
+    Route::get('/dashboard/person/student', [PersonController::class, 'createStudent'])->name('person.create.student');
+    Route::get('/dashboard/person/teacher', [PersonController::class, 'createTeacher'])->name('person.create.teacher');
+    Route::get('/dashboard/person/attendant', [PersonController::class, 'createAttendant'])->name('person.create.attendant');
     Route::resource('/dashboard/person', PersonController::class);
 
 
@@ -176,6 +178,7 @@ Route::get('before-during-after/adequacy', function () {
     return Inertia\Inertia::render('BeforeDuringAfter/Adequacy');
 })->name('before_during_after.adequacy');
 
+
 Route::get('/find/{page}/{folder?}/{sub?}', function ($page, $folder, $sub) {
     $directory = base_path() . '/resources/images/' . $page . '/' . $folder . '/' . $sub;
     $dirint = dir($directory);
@@ -211,3 +214,45 @@ Route::get('/src/{page}/{folder?}/{sub?}/{filename}', function ($page, $folder =
         return $th->getMessage();
     }
 });
+
+Route::get('/get/tracing/{type}/{municipality}/{headquarters}/{establishments}', function ($type, $municipality, $establishments, $headquarters) {
+    $directory = base_path() . '/resources/images/tracing/' . $type . '/' . $municipality . '/' . trim($headquarters, " ") . '/' . trim($establishments, " ");
+    try {
+        if (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+        }
+        $images = array();
+        array_push($images, listar_directorios_ruta($directory));
+        return json_encode($images);
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ', $e->getMessage(), "\n";
+    }
+    return $directory;
+});
+
+
+function listar_directorios_ruta($ruta)
+{
+    $folder = array();
+    // abrir un directorio y listarlo recursivo
+    if (is_dir($ruta)) {
+        if ($dh = opendir($ruta)) {
+            while (($file = readdir($dh)) !== false) {
+                //esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+                //mostraría tanto archivos como directorios
+                //echo "<br>Nombre de archivo: $file : Es un: " . filetype($ruta . $file);
+                if (is_dir($ruta . $file) && $file != "." && $file != "..") {
+                    //solo si el archivo es un directorio, distinto que "." y ".."
+                    echo "<br>Directorio: $ruta$file";
+                    array_push($folder, "<br>Directorio: $ruta$file");
+                    listar_directorios_ruta($ruta . $file . "/");
+                }
+            }
+            closedir($dh);
+        }
+        return $folder;
+    } else
+        echo "<br>No es ruta valida";
+
+    return $folder;
+}

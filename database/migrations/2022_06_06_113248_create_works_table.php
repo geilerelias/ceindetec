@@ -16,8 +16,15 @@ return new class extends Migration {
             $table->id();
             $table->string('work_type');
             $table->text('coordinates')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('distance')->nullable();
+            $table->string('travel_time')->nullable();
+            $table->string('has_electricity')->nullable();
+
             $table->string('municipality');
             $table->string('department');
+
             $table->foreignId('establishments_id')->constrained('establishments');
             $table->foreignId('headquarters_id')->constrained('headquarters');
             $table->timestamps();

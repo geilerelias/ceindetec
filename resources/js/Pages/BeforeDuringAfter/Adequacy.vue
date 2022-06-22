@@ -61,6 +61,8 @@
                         </v-col>
                     </v-row>
                 </v-container>
+
+
                 <v-footer padless color="transparent">
 
                     <v-col
@@ -84,9 +86,13 @@
 
 <script>
 import logo from '@/../images/logo-ceindetec.png';
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 export default {
     name: "Index",
+    components: {
+        VueGoogleMaps
+    },
     data: () => ({
         logo,
         allSedes: [

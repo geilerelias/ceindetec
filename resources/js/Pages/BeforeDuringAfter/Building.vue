@@ -84,9 +84,6 @@
 
 <script>
 import logo from '@/../images/logo-ceindetec.png';
-import pptxgen from "pptxgenjs";
-
-let pptx = new pptxgen();
 
 export default {
     name: "Index",
@@ -236,11 +233,6 @@ export default {
         ]
     }),
     created() {
-        let slide = pptx.addSlide();
-        slide.addText("React Demo!", {x: 1, y: 1, w: 10, fontSize: 36, fill: {color: "F1F1F1"}, align: "center"});
-
-        pptx.writeFile({fileName: "react-demo.pptx"});
-
         var lista = [];
         for (let s = 0; s < this.allSedes.length; s++) {
             let folder = this.allSedes[s].name;
@@ -252,7 +244,6 @@ export default {
                     lista = response.data;
                     console.log('esta es la lista => ', lista)
                     let images = [];
-                    let firtImage = ``;
                     for (let i = 0; i < lista.length; i++) {
                         images.push(`/src/construccion/${folder}/antes/${lista[i]}`);
                         console.log(`/src/construccion/${folder}/antes/${lista[i]}`)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PersonController extends Controller
 {
@@ -34,7 +35,7 @@ class PersonController extends Controller
      */
     public function createStudent()
     {
-        //
+        return Inertia::render('Dashboard/Person/Student/Index');
     }
 
     /**
@@ -44,7 +45,7 @@ class PersonController extends Controller
      */
     public function createTeacher()
     {
-        //
+        return Inertia::render('Dashboard/Person/Teacher/Index');
     }
 
     /**
@@ -54,10 +55,10 @@ class PersonController extends Controller
      */
     public function createAttendant()
     {
-        //
+        return Inertia::render('Dashboard/Person/Attendant/Index');
     }
 
-   
+
     /**
      * Store a newly created resource in storage.
      *

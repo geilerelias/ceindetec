@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Work;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
@@ -29,6 +30,21 @@ class WorkController extends Controller
     protected function groupBy($group)
     {
         return Work::all()->groupBy($group);
+    }
+
+    protected function adequacy()
+    {
+        //DB::table('works')->where('votes', 100)->get();
+        $data = Work::where('work_type', 'Adecuación')->get();
+        return Inertia::render('Dashboard/Tracing/Adequacy', ['data' => $data]);
+
+    }
+
+
+    protected function building()
+    {
+        $data = Work::where('work_type', 'Construcción')->get();
+        return Inertia::render('Dashboard/Tracing/Building', ['data' => $data]);
     }
 
     /**

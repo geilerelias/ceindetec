@@ -46,6 +46,16 @@ import VueGates from 'vue-gates'
 
 Vue.use(VueGates)
 
+//Vue GoogleMaps
+import * as VueGoogleMaps from "vue2-google-maps";
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: "AIzaSyBPCugFwbeVgbxal0aJ1dHzzHAwfttNurI",
+        libraries: "places" //necessary for places input
+    }
+});
+
 
 const app = document.getElementById('app');
 
