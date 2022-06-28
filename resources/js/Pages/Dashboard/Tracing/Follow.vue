@@ -408,7 +408,7 @@ export default {
                     }), '_blank');
 
                 } else {
-                    window.open(route('work.adequacy', {
+                    window.open(route('work.building', {
                         municipality,
                         establishments,
                         headquarters

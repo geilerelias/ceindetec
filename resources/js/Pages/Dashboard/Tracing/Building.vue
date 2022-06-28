@@ -66,11 +66,11 @@
                                 <v-divider></v-divider>
                                 <v-row class="my-0 py-0">
                                     <v-col class="col-6 my-1 py-0  font-weight-bold">
-                                        INFORME DIARIO DE AVANCE DE OBRA
+                                        INFORME DIARIO PARA LA CONSTRUCCION DE NUEVAS AULAS
                                     </v-col>
                                     <v-divider vertical></v-divider>
                                     <v-col class="col-6 my-1 py-0">
-                                        CONSECUTIVO 002
+                                        CONSECUTIVO ###
                                     </v-col>
                                 </v-row>
                                 <v-divider></v-divider>
@@ -175,7 +175,7 @@
                                 <div v-if="existFile(item.sub)" class="mt-3">
 
                                     <show-data-file
-                                        :link="`/get/src/seguimiento/adequacy/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/actividades.txt`"
+                                        :link="`/get/src/seguimiento/Construcción/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/actividades.txt`"
                                     ></show-data-file>
                                 </div>
 
@@ -213,7 +213,7 @@
                                     >
                                         <v-img
                                             v-if="src!=='actividades.txt'"
-                                            :src="`/get/src/seguimiento/adequacy/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
+                                            :src="`/get/src/seguimiento/Construcción/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
                                             :aspect-ratio="16/9"
                                             :elevation="5"
                                             class="grey lighten-2 rounded "
@@ -398,7 +398,7 @@ export default {
         //console.log('this is data => ', this.data)
 
         axios
-            .get(`/get/route/seguimiento/adequacy/${this.data.municipality}/${this.data.establishments}/${this.data.headquarters}`)
+            .get(`/get/route/seguimiento/Construcción/${this.data.municipality}/${this.data.establishments}/${this.data.headquarters}`)
             .then(response => {
                 this.records = response.data
             });
