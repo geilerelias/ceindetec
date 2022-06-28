@@ -139,57 +139,85 @@
                         <div v-for="(info, n) in getData">
                             <v-list two-line>
                                 <v-subheader>
-                            <span v-if="group==null">
-                                Todos
-                            </span>
-                                    <span class="text-uppercase font-weight-bold"
-                                          v-else-if="group=='establishments_id'">
-                                {{ getEstablishment(n) }}
-                            </span>
-                                    <span class="text-uppercase font-weight-bold" v-else>
-                                {{ n }}
-                            </span>
+                                    <div v-if="group==null">
+                                        Todos
+                                    </div>
+                                    <div class="text-uppercase font-weight-bold"
+                                         v-else-if="group=='establishments_id'">
+                                        {{ getEstablishment(n) }}
+                                    </div>
+                                    <div class="text-uppercase font-weight-bold" v-else>
+                                        {{ n }}
+                                    </div>
                                     <v-spacer></v-spacer>
                                     cantidad: {{ info.length }}
                                 </v-subheader>
 
                                 <v-divider></v-divider>
-                                <v-list-item-group class="pt-6" active-class="`primary--text" dense>
-                                    <v-row>
-                                        <v-col cols="12" sm="6" md="4" v-for="(item, j) in info" :key="item.id">
-                                            <v-card>
-                                                <v-list-item @click="openDialog(item)">
-                                                    <template v-slot:default="{ active }">
-                                                        <v-list-item-avatar color="grey lighten-2">
-                                                            <v-icon class="text--white" color='orange'
-                                                                    v-if="item.work_type=='Construcción'"
-                                                                    v-text="'mdi-account-hard-hat'">
-                                                            </v-icon>
-                                                            <v-icon v-else color='green'
-                                                                    v-text="'mdi-account-wrench'">
-                                                            </v-icon>
 
-                                                        </v-list-item-avatar>
-                                                        <v-list-item-content>
-                                                            <v-list-item-title
-                                                                v-text="getHeadquarters(item.headquarters_id)">
+                                <v-row class="mt-2">
+                                    <v-col cols="12" sm="6" md="4" v-for="(item, j) in info" :key="item.id">
 
-                                                            </v-list-item-title>
+                                        <v-card>
 
-                                                            <v-list-item-subtitle class="text--primary"
-                                                                                  v-text="getEstablishment(item.establishments_id)">
-                                                            </v-list-item-subtitle>
+                                            <v-list-item>
+                                                <template v-slot:default="{ active }">
+                                                    <v-list-item-avatar color="grey lighten-2">
+                                                        <v-icon class="text--white" color='orange'
+                                                                v-if="item.work_type=='Construcción'"
+                                                                v-text="'mdi-account-hard-hat'">
+                                                        </v-icon>
+                                                        <v-icon v-else color='green'
+                                                                v-text="'mdi-account-wrench'">
+                                                        </v-icon>
 
-                                                            <v-list-item-subtitle v-text="item.municipality">
-                                                            </v-list-item-subtitle>
-                                                        </v-list-item-content>
+                                                    </v-list-item-avatar>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title
+                                                            v-text="getHeadquarters(item.headquarters_id)">
 
-                                                    </template>
-                                                </v-list-item>
-                                            </v-card>
-                                        </v-col>
-                                    </v-row>
-                                </v-list-item-group>
+                                                        </v-list-item-title>
+
+                                                        <v-list-item-subtitle class="text--primary"
+                                                                              v-text="getEstablishment(item.establishments_id)">
+                                                        </v-list-item-subtitle>
+
+                                                        <v-list-item-subtitle v-text="item.municipality">
+                                                        </v-list-item-subtitle>
+                                                    </v-list-item-content>
+                                                    <v-list-item-action>
+
+
+                                                        <v-tooltip top>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn icon @click="openDialog(item)"
+                                                                       v-bind="attrs"
+                                                                       v-on="on">
+                                                                    <v-icon color="grey lighten-1">
+                                                                        mdi-map-marker-path
+                                                                    </v-icon>
+                                                                </v-btn>
+                                                            </template>
+                                                            <span>Ruta desde el centro de soporte</span>
+                                                        </v-tooltip>
+                                                        <v-tooltip bottom>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn icon @click="dailyRecords(item)"
+                                                                       v-bind="attrs"
+                                                                       v-on="on">
+                                                                    <v-icon color="grey lighten-1" class="mr-1">
+                                                                        mdi-chart-timeline
+                                                                    </v-icon>
+                                                                </v-btn>
+                                                            </template>
+                                                            <span>Seguimiento de actividades</span>
+                                                        </v-tooltip>
+                                                    </v-list-item-action>
+                                                </template>
+                                            </v-list-item>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
                             </v-list>
 
                         </div>
@@ -279,6 +307,7 @@ export default {
         isWorkType: false,
         isEstablishments: false,
         group: null,
+        element: null,
     }),
     created() {
         axios.get('/dashboard/establishment/all')
@@ -312,51 +341,88 @@ export default {
     },
     computed: {
         getData() {
-            let search = this.search.toLowerCase()
-            // console.log('this is information => ', this.information, ' type => ', typeof this.information)
+            try {
+                let search = this.search.toLowerCase()
+                // console.log('this is information => ', this.information, ' type => ', typeof this.information)
 
-            let data = new Array();
+                let data = new Array();
 
-            for (const key in this.information) {
-                // console.log(this.information[key])
-                let values = this.information[key].filter(item => {
-                    // console.log(item)
-                    const municipio = item.municipality.toLowerCase()
-                    const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
-                    const sede = this.getHeadquarters(item.headquarters_id).toLowerCase()
-                    const tipo = item.work_type.toLowerCase()
-                    if (this.isMunicipality && !this.isWorkType && !this.isEstablishments) {
-                        return municipio.indexOf(search) > -1
-                    } else if (this.isMunicipality && this.isWorkType && !this.isEstablishments) {
-                        return municipio.indexOf(search) > -1 || tipo.indexOf(search) > -1
-                    } else if (this.isMunicipality && !this.isWorkType && this.isEstablishments) {
-                        return municipio.indexOf(search) > -1 || establecimiento.indexOf(search) > -1
-                    } else if (!this.isMunicipality && this.isWorkType && !this.isEstablishments) {
-                        return tipo.indexOf(search) > -1
-                    } else if (!this.isMunicipality && this.isWorkType && !this.isEstablishments) {
-                        return tipo.indexOf(search) > -1
-                    } else if (!this.isMunicipality && !this.isWorkType && this.isEstablishments) {
-                        return establecimiento.indexOf(search) > -1
-                    } else {
-                        return municipio.indexOf(search) > -1 ||
-                            establecimiento.indexOf(search) > -1 ||
-                            sede.indexOf(search) > -1 ||
-                            tipo.indexOf(search) > -1
-                    }
+                for (const key in this.information) {
+                    // console.log(this.information[key])
+                    let values = this.information[key].filter(item => {
+                        // console.log(item)
+                        const municipio = item.municipality.toLowerCase()
+                        const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
+                        const sede = this.getHeadquarters(item.headquarters_id).toLowerCase()
+                        const tipo = item.work_type.toLowerCase()
+                        if (this.isMunicipality && !this.isWorkType && !this.isEstablishments) {
+                            return municipio.indexOf(search) > -1
+                        } else if (this.isMunicipality && this.isWorkType && !this.isEstablishments) {
+                            return municipio.indexOf(search) > -1 || tipo.indexOf(search) > -1
+                        } else if (this.isMunicipality && !this.isWorkType && this.isEstablishments) {
+                            return municipio.indexOf(search) > -1 || establecimiento.indexOf(search) > -1
+                        } else if (!this.isMunicipality && this.isWorkType && !this.isEstablishments) {
+                            return tipo.indexOf(search) > -1
+                        } else if (!this.isMunicipality && this.isWorkType && !this.isEstablishments) {
+                            return tipo.indexOf(search) > -1
+                        } else if (!this.isMunicipality && !this.isWorkType && this.isEstablishments) {
+                            return establecimiento.indexOf(search) > -1
+                        } else {
+                            return municipio.indexOf(search) > -1 ||
+                                establecimiento.indexOf(search) > -1 ||
+                                sede.indexOf(search) > -1 ||
+                                tipo.indexOf(search) > -1
+                        }
 
-                })
-                // console.log('this is key => ', key);
-                data[key] = values;
-                // console.log('this is values  => ', values);
+                    })
+                    // console.log('this is key => ', key);
+                    data[key] = values;
+                    // console.log('this is values  => ', values);
+                }
+                // console.log('this is data => ', data)
+                return Object.assign({}, data);
+            } catch (e) {
+                console.log()
             }
-            // console.log('this is data => ', data)
-            return Object.assign({}, data);
-
         }
     },
     methods: {
+        async dailyRecords(item) {
+            try {
+                console.log('daily Records', item)
+                let municipality = item.municipality
+                let establishments = await this.getEstablishment(item.establishments_id)
+                let headquarters = await this.getHeadquarters(item.headquarters_id)
+                let work_type = item.work_type
+
+                if (work_type === "Adecuación") {
+                    /* this.$inertia.get(route('work.adequacy', {
+                         municipality,
+                         establishments,
+                         headquarters
+                     }));*/
+                    window.open(route('work.adequacy', {
+                        municipality,
+                        establishments,
+                        headquarters
+                    }), '_blank');
+
+                } else {
+                    window.open(route('work.adequacy', {
+                        municipality,
+                        establishments,
+                        headquarters
+                    }), '_blank');
+                }
+
+            } catch (e) {
+
+            }
+
+        },
         openDialog(item) {
             console.log(item)
+            this.element = item
             this.sede = this.getHeadquarters(item.headquarters_id);
             this.ruta = item.coordinates;
             this.dialog = true;

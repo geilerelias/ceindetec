@@ -85,10 +85,11 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
 
     Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
     Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
-    Route::get('/dashboard/work/building', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
-    Route::get('/dashboard/work/adequacy', [\App\Http\Controllers\WorkController::class, 'adequacy'])->name('work.adequacy');
+    /*    Route::post('/dashboard/work/building', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');*/
+    Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarters}', [\App\Http\Controllers\WorkController::class, 'adequacy'])->name('work.adequacy');
+    Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
     Route::resource('/dashboard/work', \App\Http\Controllers\WorkController::class);
-    Route::resource('/dashboard/tracing', \App\Http\Controllers\TracingController::class);
+    Route::resource('/dashboard/seguimiento', \App\Http\Controllers\TracingController::class);
     Route::get('/dashboard/follow', function () {
         return Inertia\Inertia::render('Dashboard/Tracing/Follow');
     })->name('follow');
@@ -215,44 +216,83 @@ Route::get('/src/{page}/{folder?}/{sub?}/{filename}', function ($page, $folder =
     }
 });
 
-Route::get('/get/tracing/{type}/{municipality}/{headquarters}/{establishments}', function ($type, $municipality, $establishments, $headquarters) {
-    $directory = base_path() . '/resources/images/tracing/' . $type . '/' . $municipality . '/' . trim($headquarters, " ") . '/' . trim($establishments, " ");
+Route::get('/get/route/seguimiento/{type}/{municipality}/{establishments}/{headquarters}', function ($type, $municipality, $establishments, $headquarters) {
+    $directory = base_path() . '/resources/images/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
+
     try {
         if (!file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
-        $images = array();
-        array_push($images, listar_directorios_ruta($directory));
-        return json_encode($images);
+        // array_push($images, listar_directorios_ruta($directory));
+
+        return json_encode(listadoDirectorio($directory));
     } catch (Exception $e) {
         echo 'Excepción capturada: ', $e->getMessage(), "\n";
     }
     return $directory;
 });
 
+Route::get('/get/src/seguimiento/{type}/{municipality}/{establishments}/{headquarters}/{folder}/{file}', function ($type, $municipality, $establishments, $headquarters, $folder, $file) {
+    $directory = base_path() . '/resources/images/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/EVIDENCIAS FOTOGRAFICAS/' . trim($folder, " ") . '/' . trim($file, " ");
+    try {
 
-function listar_directorios_ruta($ruta)
+        $file = File::get($directory);
+        $type = File::mimeType($directory);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ', $e->getMessage(), "\n";
+    }
+    return $directory;
+});
+
+Route::get('/get/file/{path}', function ($path) {
+
+    $fp = fopen($path, "r");
+
+    while (!feof($fp)) {
+        $linea = fgets($fp);
+        echo $linea;
+    }
+
+    fclose($fp);
+
+});
+
+function listadoDirectorio($directorio)
 {
     $folder = array();
-    // abrir un directorio y listarlo recursivo
-    if (is_dir($ruta)) {
-        if ($dh = opendir($ruta)) {
-            while (($file = readdir($dh)) !== false) {
-                //esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
-                //mostraría tanto archivos como directorios
-                //echo "<br>Nombre de archivo: $file : Es un: " . filetype($ruta . $file);
-                if (is_dir($ruta . $file) && $file != "." && $file != "..") {
-                    //solo si el archivo es un directorio, distinto que "." y ".."
-                    echo "<br>Directorio: $ruta$file";
-                    array_push($folder, "<br>Directorio: $ruta$file");
-                    listar_directorios_ruta($ruta . $file . "/");
-                }
-            }
-            closedir($dh);
+    $listado = scandir($directorio);
+    unset($listado[array_search('.', $listado, true)]);
+    unset($listado[array_search('..', $listado, true)]);
+    if (count($listado) < 1) {
+        array_push($folder, 'directorio vacío');
+    }
+    foreach ($listado as $elemento) {
+
+
+        if (is_dir($directorio . '/' . $elemento)) {
+
+            //echo '<li class="open-dropdown">+ ' . $elemento . '</li>';
+            //echo '<ul class="dropdown d-none">';
+            //echo '</ul>';
+
+            $array = array(
+                'folder' => $elemento,
+                'sub' => listadoDirectorio($directorio . '/' . $elemento),
+            );
+
+            array_push($folder, $array);
         }
-        return $folder;
-    } else
-        echo "<br>No es ruta valida";
+
+        if (!is_dir($directorio . '/' . $elemento)) {
+            //echo "<li>- <a href='$directorio/$elemento'>$elemento</a></li>";
+            array_push($folder, $elemento);
+        }
+    }
 
     return $folder;
 }

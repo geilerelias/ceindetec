@@ -32,19 +32,31 @@ class WorkController extends Controller
         return Work::all()->groupBy($group);
     }
 
-    protected function adequacy()
+    protected function adequacy($municipality, $establishments, $headquarters)
     {
         //DB::table('works')->where('votes', 100)->get();
-        $data = Work::where('work_type', 'Adecuación')->get();
-        return Inertia::render('Dashboard/Tracing/Adequacy', ['data' => $data]);
-
+        // $data = Work::where('work_type', 'Adecuación')->get();
+        return Inertia::render('Dashboard/Tracing/Adequacy', ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]);
     }
 
 
-    protected function building()
+    protected function building($municipality, $establishments, $headquarters)
     {
-        $data = Work::where('work_type', 'Construcción')->get();
-        return Inertia::render('Dashboard/Tracing/Building', ['data' => $data]);
+        /* $data = Work::where('work_type', 'Construcción')->get();
+         return Inertia::render('Dashboard/Tracing/Building', ['data' => $data]);*/
+        return Inertia::render('Dashboard/Tracing/Building', ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]);
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Area $area
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Work $work)
+    {
+        $this::index();
     }
 
     /**
@@ -66,6 +78,7 @@ class WorkController extends Controller
         return redirect()->back()
             ->with('message', 'Obra creada correctamente.');
     }
+
 
     /**
      * Show the form for creating a new resource.
