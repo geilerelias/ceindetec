@@ -296,3 +296,8 @@ function listadoDirectorio($directorio)
 
     return $folder;
 }
+
+
+Route::get('/developer/gers', function () {
+    return Inertia\Inertia::render('Gers');
+})->name('developer.gers');

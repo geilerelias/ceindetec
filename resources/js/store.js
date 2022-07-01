@@ -238,21 +238,7 @@ const store = new Vuex.Store({
                     route: "follow",
                     //can: 'view permission',
                     array: null
-                },
-                {
-                    title: "Construcción",
-                    icon: 'mdi-account-hard-hat',
-                    route: "work.building",
-                    //can: 'view permission',
-                    array: null
-                },
-                {
-                    title: "Adecuación",
-                    icon: 'mdi-account-wrench',
-                    route: "work.adequacy",
-                    //can: 'view permission',
-                    array: null
-                },
+                }
             ]
         ]
     },
@@ -260,15 +246,19 @@ const store = new Vuex.Store({
         getDrawer(state) {
             return state.drawer;
         },
+        
         getIdBusiness(state) {
             return state.idBusiness;
         },
+
         getSearch(state) {
             return state.search;
         },
+
         getPage(state) {
             return state.page;
         },
+
         getFlat(state) {
             return state.flat;
         }
@@ -277,12 +267,15 @@ const store = new Vuex.Store({
         setDrawer(state, v) {
             state.drawer = v;
         },
+
         setIdBusiness(state, v) {
             state.idBusiness = v;
         },
+
         setSearch(state, v) {
             state.search = v;
         },
+
         setPage(state, v) {
             state.page = v;
         },
