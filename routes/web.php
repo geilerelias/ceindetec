@@ -110,7 +110,8 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
     Route::resource('/dashboard/headquarters', HeadquartersController::class);
 
     //personas
-    Route::get('/dashboard/person/student', [PersonController::class, 'createStudent'])->name('person.create.student');
+    Route::get('/dashboard/person/student/create', [PersonController::class, 'createStudent'])->name('person.create.student');
+    Route::get('/dashboard/person/student', [PersonController::class, 'indexStudent'])->name('person.index.student');
     Route::get('/dashboard/person/teacher', [PersonController::class, 'createTeacher'])->name('person.create.teacher');
     Route::get('/dashboard/person/attendant', [PersonController::class, 'createAttendant'])->name('person.create.attendant');
     Route::resource('/dashboard/person', PersonController::class);
@@ -171,6 +172,10 @@ Route::get('/example', function (Request $request) {
 
 Route::resource('/posts', PostController::class);
 
+Route::get('before-during-after', function () {
+    return Inertia\Inertia::render('BeforeDuringAfter/Index');
+})->name('before_during_after');
+
 Route::get('before-during-after/building', function () {
     return Inertia\Inertia::render('BeforeDuringAfter/Building');
 })->name('before_during_after.building');
@@ -193,11 +198,15 @@ Route::get('/find/{page}/{folder?}/{sub?}', function ($page, $folder, $sub) {
     return json_encode($images);
 });
 
-Route::get('/src/{page}/{folder?}/{sub?}/{filename}', function ($page, $folder = "null", $sub = "null", $filename) {
+Route::get('/src/{page?}/{folder?}/{sub?}/{filename}', function ($page = "null", $folder = "null", $sub = "null", $filename) {
     try {
         $path = '';
-        if ($folder == "null") {
+        if ($page == "null") {
+            $path = base_path() . '/resources/images/' . $filename;
+        } elseif ($folder == "null") {
             $path = base_path() . '/resources/images/' . $page . '/' . $filename;
+        } elseif ($sub == "null") {
+            $path = base_path() . '/resources/images/' . $page . '/' . $folder . '/' . $filename;
         } else {
             $path = base_path() . '/resources/images/' . $page . '/' . $folder . '/' . $sub . '/' . $filename;
             //$path = storage_path() . '/app/' . $folder . '/' . $filename;
@@ -210,14 +219,13 @@ Route::get('/src/{page}/{folder?}/{sub?}/{filename}', function ($page, $folder =
 
         return $response;
 
-
     } catch (Throwable $th) {
         return $th->getMessage();
     }
 });
 
 Route::get('/get/route/seguimiento/{type}/{municipality}/{establishments}/{headquarters}', function ($type, $municipality, $establishments, $headquarters) {
-    $directory = base_path() . '/resources/images/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
+    $directory = base_path() . '/resources/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
 
     try {
         if (!file_exists($directory)) {
@@ -233,7 +241,7 @@ Route::get('/get/route/seguimiento/{type}/{municipality}/{establishments}/{headq
 });
 
 Route::get('/get/src/seguimiento/{type}/{municipality}/{establishments}/{headquarters}/{folder}/{file}', function ($type, $municipality, $establishments, $headquarters, $folder, $file) {
-    $directory = base_path() . '/resources/images/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/EVIDENCIAS FOTOGRAFICAS/' . trim($folder, " ") . '/' . trim($file, " ");
+    $directory = base_path() . '/resources/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/EVIDENCIAS FOTOGRAFICAS/' . trim($folder, " ") . '/' . trim($file, " ");
     try {
 
         $file = File::get($directory);

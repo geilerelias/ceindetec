@@ -62,10 +62,34 @@
             </v-row>
         </section>
 
+        <section>
+            <v-container>
+                <v-row class="px-sm-12">
+                    <v-col class="col-12">
+                        <div class="text-left my-12">
+                            <h1 class="text-uppercase text-h5 font-weight-bold mb-2 text-left">
+                                ¿QUIENES SOMOS?
+                            </h1>
+                            <v-responsive class=" rounded-lg primary mr-auto mb-6" style="max-width: 100px;">
+                                <v-divider light class="pb-1 rounded-lg"/>
+                            </v-responsive>
+
+                            <p class="base-body text-body-1  grey--text text--darken-1  mb-10 text-justify">
+                                La Corporación Centro de Investigación y Desarrollo Tecnológico de los llanos –
+                                CEINDETEC Llanos es una entidad sin ánimo de lucro dedicada al fomento de la
+                                Investigación y al diseño y desarrollo de tecnologías innovadoras, de alta calidad que
+                                se adaptan a las necesidades específicas de nuestros clientes.
+                            </p>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
+
         <section
-            style="background-color: rgb(218, 218, 218); height: calc(100vh - 250px);"
+            style="background-color: rgb(218, 218, 218);"
         >
-            <v-row class="py-5 my-0 fill-height">
+            <v-row class="py-5 my-0">
                 <v-col class="col">
                     <v-container class="container">
                         <v-row
@@ -134,7 +158,89 @@
                 </v-col>
             </v-row>
         </section>
-        
+
+        <section>
+            <v-container>
+                <v-row class="px-sm-12">
+                    <v-col class="col-12">
+                        <div class="text-left my-12">
+                            <h1 class="text-uppercase text-h5 font-weight-bold mb-2 text-left">
+                                NUESTROS SERVICIOS
+                            </h1>
+                            <v-responsive class=" rounded-lg primary mr-auto mb-6" style="max-width: 100px;">
+                                <v-divider light class="pb-1 rounded-lg"/>
+                            </v-responsive>
+
+                            <div class="pa-4 mt-6 ">
+                                <v-row>
+                                    <v-col v-for="item in services" :key="item.id"
+                                           class="col-12  col-md-6 col-lg-4 ">
+                                        <div class="d-flex align-center">
+                                            <div class="mr-2">
+                                                <v-avatar class="elevation-4" color="primary" size="144">
+                                                    <v-avatar size="140" class="">
+                                                        <v-img :src="`/src/about-us/services/null/${item.src}`">
+                                                        </v-img>
+                                                    </v-avatar>
+                                                </v-avatar>
+                                            </div>
+                                            <div>
+                                                <div class="text-body-1 font-weight-black">{{ item.title }}</div>
+                                                <div class="text-subtitle-1 text-md-justify text-lg-left">
+                                                    {{ item.description }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
+        <section>
+            <v-container>
+                <v-row class="px-sm-12">
+                    <v-col class="col-12">
+                        <div class="text-left my-12">
+                            <h1 class="text-uppercase text-h5 font-weight-bold mb-2 text-left">
+                                NUESTROS PRODUCTOS
+                            </h1>
+                            <v-responsive class=" rounded-lg primary mr-auto mb-6" style="max-width: 100px;">
+                                <v-divider light class="pb-1 rounded-lg"/>
+                            </v-responsive>
+
+                            <div class="pa-4 mt-6 ">
+                                <v-row>
+                                    <v-col v-for="(item, n) in products" :key="item.id"
+                                           class="col-sm-6 col-12">
+                                        <div class="d-flex align-center"
+                                             :class="{'flex-row-reverse':n%2!==0}">
+                                            <div class="mr-2">
+                                                <v-avatar class="elevation-4" color="grey" size="124">
+                                                    <v-avatar size="120" class="">
+                                                        <v-img :src="`/src/about-us/products/null/${item.src}`">
+                                                        </v-img>
+                                                    </v-avatar>
+                                                </v-avatar>
+                                            </div>
+                                            <div>
+                                                <div class="text-body-1 font-weight-black">{{ item.title }}</div>
+                                                <div class="text-subtitle-1">{{ item.description }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </section>
+
+
     </page-layout>
 </template>
 
@@ -162,6 +268,76 @@ export default {
                 disabled: true,
                 href: ''
             }
+        ],
+        services: [
+            {
+                title: 'Desarrollo de software y hardware ',
+                description: 'Software y hardware a la medida, software estándar, sistemas inteligentes, Apps móviles.',
+                src: 'Imagen1.png'
+            }, {
+                title: 'Consultoría, interventoría y auditoría en software y hardware',
+                description: 'Asesorías especializadas para su empresa.',
+                src: 'Imagen2.png'
+            }, {
+                title: 'Cursos y capacitaciones ',
+                description: 'Capacitaciones en distintas tecnologías y temáticas sobre ciencias básicas e ingenierías.',
+                src: 'Imagen3.png'
+            }, {
+                title: 'Automatización de procesos',
+                description: 'Mejore la productividad de su negocio, tecnifique sus procesos y reduzca riesgos\n',
+                src: 'Imagen4.png'
+            }, {
+                title: 'Investigación y desarrollo de nuevos productos y servicios',
+                description: 'Sistemas inalámbricos y Diseños de prototipos',
+                src: 'Imagen5.png'
+            }, {
+                title: 'Redes eléctricas ',
+                description: 'Electricidad y alternativas energéticas.',
+                src: 'Imagen6.png'
+            }, {
+                title: 'Diseño de circuitos impresos',
+                description: 'Fabricación de tarjetas electrónicas.',
+                src: 'Imagen7.png'
+            }, {
+                title: 'Tecnología en realidad aumentada ',
+                description: 'Experiencias digitales de alto impacto para el comercio y la academia.',
+                src: 'Imagen8.png'
+            }, {
+                title: 'Suministro de componentes tecnológicos',
+                description: 'Venta de equipos de cómputo y de red, instalación de redes en oficinas u hogares.',
+                src: 'Imagen9.png'
+            }, {
+                title: 'Producción de sistemas holográficos ',
+                description: 'Muestre sus productos de manera diferente e innovadora',
+                src: 'Imagen10.png'
+            },
+        ],
+        products: [
+            {
+                title: 'PHYSILAB+',
+                description: 'Tus prácticas de laboratorio de física en un solo lugar, fácil, rápidas e interactivas.',
+                src: 'Imagen1.png'
+            }, {
+                title: 'CUSTODE',
+                description: 'Olvídate de abrir o cerrar la puerta de tu negocio u hogar de forma manual. Con Custode, toma el control y permite únicamente   el   ingreso   de   personal autorizado.',
+                src: 'Imagen2.png'
+            }, {
+                title: 'IKARO',
+                description: 'Diseño y fabricación de prótesis utilizando tecnología de impresión 3D.',
+                src: 'Imagen3.png'
+            }, {
+                title: 'LEARNING WORDS',
+                description: 'La plataforma aliada de los estudiantes que te ayudará a ampliar tu vocabulario, en diferentes idiomas.',
+                src: 'Imagen4.png'
+            }, {
+                title: 'WICKO',
+                description: 'Tener un hogar inteligente ahora es posible. Esta es tu oportunidad, disfruta de la comodidad, la seguridad y el confort que Wicko tiene para ti.',
+                src: 'Imagen5.png'
+            }, {
+                title: 'GOADVISERS',
+                description: 'Mejora la presencia digital de tu negocio y obtén herramientas digitales que harán tu negocio más competitivo ante el mundo.',
+                src: 'Imagen6.png'
+            },
         ]
     })
 };

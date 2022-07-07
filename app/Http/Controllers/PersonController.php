@@ -35,6 +35,16 @@ class PersonController extends Controller
      */
     public function createStudent()
     {
+        return Inertia::render('Dashboard/Person/Student/CreateUpdate');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexStudent()
+    {
         return Inertia::render('Dashboard/Person/Student/Index');
     }
 

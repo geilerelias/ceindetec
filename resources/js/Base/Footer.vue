@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-img :src="bg" class="my-0 py-0">
+        <v-img :src="bg" :lazy-src="lazy" class="my-0 py-0">
             <v-footer
                 class="px-0 my-0 py-0 fill-height"
                 style="background-color: rgba(8, 0, 56, 0.77);"
@@ -255,13 +255,15 @@
 import {mapMutations, mapState} from 'vuex';
 
 import logo from '../../images/logo-ceindetec.png';
-import bg from '@/../images/computer3.jpg';
+import bg from '@/../images/ninos-wayuu.jpg';
+import lazy from '@/../images/ninos-wayuu-lazy.jpg';
 
 export default {
     data() {
         return {
             bg,
             logo,
+            lazy,
             dialogPrivacyPolicies: false,
             dialogTermCondition: false,
             socialMedia: [

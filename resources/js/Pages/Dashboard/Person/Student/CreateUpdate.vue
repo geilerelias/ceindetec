@@ -1,15 +1,13 @@
 <template>
     <v-dialog
         :value="open"
-        max-width="800"
         style="z-index: 9"
         fullscreen
         hide-overlay
         persistent
         transition="dialog-bottom-transition"
-        scrollable
     >
-        <v-card tile color="grey lighten-4" class="min-h-screen">
+        <v-card max-width="800" tile color="grey lighten-4">
             <v-toolbar
                 flat
                 dark
@@ -66,45 +64,144 @@
                                     style="max-width: 100%; "
                             >
                                 <div class="pa-8">
-                                    <v-icon dark size="36">mdi-book-multiple</v-icon>
+                                    <v-icon dark size="36">mdi-account-school</v-icon>
                                 </div>
                             </v-card>
-                            <div class="text-h5  pl-4 ">
-                                {{ isEdit !== false ? 'Editar area' : 'Crear nueva area' }}
-                            </div>
+
+                            <v-breadcrumbs :items="
+                            [
+                                {
+                                    text: 'Dashboard',
+                                    disabled: false,
+                                    href: '/dashboard',
+                                },
+                                {
+                                    text: 'Estudiante',
+                                    disabled: false,
+                                    href: '/dashboard/person/student',
+                                },
+                                {
+                                    text: this.edit ? 'Editar' : 'Crear',
+                                    disabled: true,
+                                    href: '#',
+                                },
+                            ]">
+
+                            </v-breadcrumbs>
                         </v-card-title>
+
                         <v-card-text>
-                            <v-row>
-                                <v-col class="col-12">
-                                    <v-text-field
-                                        outlined
-                                        v-model="form.name"
-                                        :counter="50"
-                                        label="Nombre"
-                                        :rules="[rules.required]"
-                                    ></v-text-field>
+                            <div class="wrapper">
+                                <div class="px-8">
+                                    <v-row class="mb-5">
+                                        <v-col class="mb-4" style="max-height: 300px">
+                                            <picture-input
+                                                width="260"
+                                                height="260"
+                                                ref="pictureInput"
+                                                @change="onChange"
+                                                size="10"
+                                                button-class="v-btn--is-elevated v-btn--has-bg theme--light v-size--default success v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
+                                                removeButtonClass="v-btn--is-elevated v-btn--has-bg theme--light v-size--default error v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
+                                                :zIndex="0"
+                                                radius="0"
+                                                :crop="true"
+                                                :customStrings="customStrings"
+                                                :removable="true"
+                                            >
+                                            </picture-input>
+                                        </v-col>
+                                        <v-col>
+                                            <v-row>
+                                                <v-col class="col-12 ">
+                                                    <v-text-field
+                                                        label="Nombres"
+                                                        v-model="person.name"
+                                                        outlined
+                                                    ></v-text-field>
+                                                </v-col>
+                                                <v-col class="col-12 ">
+                                                    <v-text-field
+                                                        label="Apellidos"
+                                                        v-model="person.surname"
+                                                        outlined
+                                                    ></v-text-field>
+                                                </v-col>
+                                                <v-col class="col-12 ">
+                                                    <v-menu
+                                                        v-model="menu1"
+                                                        :close-on-content-click="false"
+                                                        :nudge-right="40"
+                                                        transition="scale-transition"
+                                                        offset-y
+                                                        min-width="auto"
+                                                    >
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <v-text-field
+                                                                v-model="person.birthday_date"
+                                                                label="Fecha de nacimiento"
+                                                                outlined
+                                                                readonly
+                                                                v-bind="attrs"
+                                                                v-on="on"
+                                                            ></v-text-field>
+                                                        </template>
+                                                        <v-date-picker
+                                                            v-model="person.birthday_date"
+                                                            @input="menu1 = false"
+                                                            locale="es-Es"
+                                                        ></v-date-picker>
+                                                    </v-menu>
+                                                    <div v-if="$page.errors.starts_at" class="text-red-500">{{
+                                                            $page.errors.starts_at[0]
+                                                        }}
+                                                    </div>
+                                                </v-col>
 
-                                    <div v-if="$page.errors.title" class="text-red-500">
-                                        {{ $page.errors.title[0] }}
-                                    </div>
-                                </v-col>
 
-                                <v-col class="col-12">
-                                    <v-label for="myTextEditor" class="mb-4">Descripción</v-label>
-                                    <div class="py-2">
-                                        <vue-editor :editor-toolbar="customToolbar"
-                                                    ref="myTextEditor"
-                                                    v-model="form.description"
-                                                    :rules="[rules.required]"
-                                        ></vue-editor>
-                                    </div>
+                                            </v-row>
 
-                                    <div v-if="$page.errors.starts_at" class="text-red-500">
-                                        {{ $page.errors.starts_at[0] }}
-                                    </div>
-                                </v-col>
-                            </v-row>
+                                        </v-col>
 
+
+                                        <v-col cols="12">
+                                            <v-row>
+                                                <v-col class="col col-4">
+                                                    <v-select
+                                                        v-model="person.ethnic_group"
+                                                        :items="gruposEtnicos"
+                                                        label="Grupo Etnico al que pertenece"
+                                                        outlined
+                                                    ></v-select>
+                                                </v-col>
+                                                <v-col class="col col-8">
+                                                    <v-text-field
+                                                        label="Correo electronico"
+                                                        v-model="person.email"
+                                                        outlined
+                                                    ></v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                        </v-col>
+                                        <v-col class="col-12 col-sm-6">
+                                            <v-select
+                                                label="Tipo de identificación"
+                                                v-model="person.id_type"
+                                                :items="tiposDocumentos"
+                                                outlined
+                                            ></v-select>
+                                        </v-col>
+
+                                        <v-col class="col-12 col-sm-6">
+                                            <v-text-field
+                                                label="Numero de identificación"
+                                                v-model="person.identification_number"
+                                                outlined
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </div>
 
                             <div class="d-flex justify-end">
                                 <v-btn wire:click.prevent="store()" type="button"
@@ -126,7 +223,6 @@
                             </div>
 
                         </v-card-text>
-
                     </v-card>
                 </v-form>
             </v-container>
@@ -137,12 +233,14 @@
 <script>
 import {VueEditor} from "vue2-editor";
 import SpinnerComponent from "@/Components/SpinnerComponent";
+import PictureInput from 'vue-picture-input'
 
 export default {
     name: "CreateUpdate",
     components: {
         VueEditor,
-        SpinnerComponent
+        SpinnerComponent,
+        PictureInput,
     },
     props: {
         data: Object,
@@ -155,7 +253,34 @@ export default {
         errors: Object,
     },
     data: () => ({
+        gruposEtnicos: [
+            'Comunidades indígenas',
+            'Comunidades negras',
+            'Comunidades afrocolombianas',
+            'Comunidad Raizal',
+        ],
+        tiposDocumentos: [
+            'Registro Civil (RC)',
+            'Tarjeta de identidad (TI)',
+            'Cédula de Ciudadanía (CC)',
+            'Cédula Extranjera (CE)',
+            'Permiso Especial de Permanencia (PEP)',
+            'Número establecido por la Secretaría de Educación (NES)'
+
+        ],
         valid: false,
+        menu1: null,
+        person: {
+            name: null,
+            surname: null,
+            id_type: null,
+            identification_number: null,
+            birthday_date: null,
+            ethnic_group: null,
+            email: null,
+            person_type: null,
+            profile_photo_path: null,
+        },
         rules: {
             required: value => !!value || 'Campo requerido.',
             max: value => value.length <= 20 || 'Máximo 20 caracteres',
@@ -189,7 +314,6 @@ export default {
             name: null,
             description: null
         },
-
         customToolbar: [
             [{'font': []}],
             [{'header': [false, 1, 2, 3, 4, 5, 6,]}],
@@ -206,13 +330,24 @@ export default {
             [{'direction': 'rtl'}],
             ['clean'],
         ],
-
         management: [
             {title: 'Editar', icon: 'mdi-playlist-edit', route: 'person.create.student'},
             {title: 'Eliminar', icon: 'mdi-playlist-remove', route: 'person.index.student'},
             {title: 'Crear', icon: 'mdi-playlist-plus', route: 'person.create.student'},
             {title: 'Salir', icon: 'mdi-close', route: 'person.create.student'},
         ],
+        customStrings: {
+            upload: "<p> Su dispositivo no admite la carga de archivos. </p>", // HTML allowed
+            drag: "Arrastre una imagen o <br> haga clic aquí para seleccionar", // HTML allowed
+            tap: "Toque aquí para seleccionar una foto <br> de su galería", // HTML allowed
+            change: "Cambiar", // Text only
+            remove: "Eliminar", // Text only
+            select: "Selecciona una foto", // Text only
+            selected: '<p>Photo successfully selected!</p>', // HTML allowed
+            fileType: "Este tipo de archivo no es compatible.",
+            fileSize: 'The file size exceeds the limit', // Text only
+            aspect: 'Landscape/Portrait',// Text only
+        },
 
     }),
     computed: {
@@ -221,9 +356,20 @@ export default {
                 this.form = this.data
 
             return this.edit
-        }
+        },
     },
     methods: {
+        onChange(image) {
+            if (image) {
+                console.log("Cover Picture loaded.");
+                this.person.profile_photo_path = this.$refs.pictureInput.file;
+                console.log(this.$refs.pictureInput.file);
+            } else {
+                console.log(
+                    "FileReader API not supported: use the <form>, Luke!"
+                );
+            }
+        },
         validate() {
             if (!this.$refs.form.validate()) {
                 return;
@@ -319,6 +465,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+#picture-input > div > div {
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
 </style>

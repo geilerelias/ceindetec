@@ -9,41 +9,24 @@ const store = new Vuex.Store({
         search: "",
         page: "",
         flat: "",
-        links: [{
-            title: "Inicio",
-            icon: 'mdi-home',
-            route: "home"
-        },
+        links: [
+            {
+                title: "Inicio",
+                icon: 'mdi-home',
+                route: "home"
+            },
             {
                 title: "Nosotros",
                 icon: 'mdi-account-question',
                 route: "about-us"
             },
             {
-                title: "Construcción",
+                title: "Antes durante y después",
                 icon: 'mdi-account-hard-hat',
-                route: "before_during_after.building"
+                route: "before_during_after"
             },
             {
-                title: "Adecuación",
-                icon: 'mdi-account-wrench',
-                route: "before_during_after.adequacy"
-            },
-
-            {
-                title: "Clientes",
-                icon: 'mdi-account-group',
-                route: "customers"
-            },
-            {
-
-                title: "Blog",
-                icon: 'mdi-post',
-                route: "blog"
-            },
-            {
-
-                title: "Contácto",
+                title: "Contacto",
                 icon: 'mdi-card-account-phone',
                 route: "contact-us"
             },
@@ -151,7 +134,7 @@ const store = new Vuex.Store({
                 {
                     title: "Estudiantes",
                     icon: 'mdi-account-school',
-                    route: "person.create.student",
+                    route: "person.index.student",
                     //can: 'view permission',
                     array: null
                 },
@@ -246,7 +229,7 @@ const store = new Vuex.Store({
         getDrawer(state) {
             return state.drawer;
         },
-        
+
         getIdBusiness(state) {
             return state.idBusiness;
         },

@@ -112,12 +112,13 @@
                         :href="route(item.route)"
                     >
                         <v-btn
+                            rounded
                             :class="
                                 route().current(item.route)
                                     ? 'active secondary--text  font-weight-black white--text'
                                     : 'accent--text link'
                             "
-                            class="overline font-weight-bold rounded-0"
+                            class="overline font-weight-bold v"
                             text
                         >
                             {{ item.title }}
