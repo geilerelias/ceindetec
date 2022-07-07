@@ -45,9 +45,8 @@
                 icon="mdi-alert"
                 dismissible
             >
-                {{$page.errors.email[0]}}
+                {{ $page.errors.email[0] }}
             </v-alert>
-
 
 
             <v-text-field

@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <bread-crumbs name="Areas curriculares" :items="items"></bread-crumbs>
+        <bread-crumbs name="Gestión de Estudiantes" :items="items"></bread-crumbs>
         <v-container class="py-12">
             <v-row class="ma-0">
                 <v-col>
@@ -14,7 +14,7 @@
                                         <v-icon class="notranslate mr-2">
                                             mdi-plus
                                         </v-icon>
-                                        Add
+                                        Agregar
                                     </v-btn>
 
                                     <v-btn outlined
@@ -23,7 +23,7 @@
                                                 class="notranslate mr-2">
                                             mdi-filter-variant
                                         </v-icon>
-                                        Filters
+                                        Filtros
                                     </v-btn>
                                 </div>
                                 <v-spacer></v-spacer>
@@ -31,7 +31,7 @@
                                 <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
                                     <v-text-field hide-details dense enclosed outlined
                                                   append-icon="mdi-magnify"
-                                                  placeholder="search"
+                                                  placeholder="Buscar"
                                                   v-model="search"
                                     ></v-text-field>
                                 </div>
@@ -93,7 +93,7 @@ export default {
     components: {
         AppLayout,
         BreadCrumbs,
-        CreateUpdate: () => import('@/Pages/Dashboard/Area/CreateUpdate')
+        CreateUpdate: () => import('@/Pages/Dashboard/Person/Student/CreateUpdate')
     },
     props: ['data', 'errors'],
     data() {
@@ -122,7 +122,7 @@ export default {
                     href: 'dashboard',
                 },
                 {
-                    text: 'Areas curriculares',
+                    text: 'Estudiantes',
                     disabled: true,
                     href: 'areas.index',
                 }

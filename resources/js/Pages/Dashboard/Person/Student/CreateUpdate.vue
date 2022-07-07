@@ -23,7 +23,10 @@
                 >
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
-                <v-toolbar-title class="text-h5 white--text">Gestión de areas curriculares</v-toolbar-title>
+                <v-toolbar-title class="text-h5 white--text">{{
+                        isEdit !== false ? 'Editar estudiante' : 'Crear nuevo estudiante'
+                    }}
+                </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-menu
                     bottom
@@ -205,10 +208,10 @@ export default {
         ],
 
         management: [
-            {title: 'Editar', icon: 'mdi-playlist-edit', route: 'area.index'},
-            {title: 'Eliminar', icon: 'mdi-playlist-remove', route: 'area.index'},
-            {title: 'Crear', icon: 'mdi-playlist-plus', route: 'area.index'},
-            {title: 'Salir', icon: 'mdi-close', route: 'area.index'},
+            {title: 'Editar', icon: 'mdi-playlist-edit', route: 'person.create.student'},
+            {title: 'Eliminar', icon: 'mdi-playlist-remove', route: 'person.index.student'},
+            {title: 'Crear', icon: 'mdi-playlist-plus', route: 'person.create.student'},
+            {title: 'Salir', icon: 'mdi-close', route: 'person.create.student'},
         ],
 
     }),
@@ -249,7 +252,7 @@ export default {
 
                 this.saving = false;
             } else {
-                this.$inertia.post(this.route('area.store'), data, {
+                this.$inertia.post(this.route('estudiante.store'), data, {
                     onSuccess: (response) => {
                         let res = response.data;
                         console.log(response)
@@ -265,7 +268,7 @@ export default {
                                 this.headquarters = this.defaultHeadquarters;
                                 this.reset();
                                 this.resetValidation();
-                                this.$inertia.get(this.route('area.index'));
+                                this.$inertia.get(this.route('estudiante.index'));
                             }
                         });
                     },
@@ -290,7 +293,7 @@ export default {
         },
         update: function (data) {
             data._method = 'PUT';
-            this.$inertia.post(this.route('area.update', data.id), data, {
+            this.$inertia.post(this.route('estudiante.update', data.id), data, {
                 onSuccess: page => {
                     console.log(page.props.errors)
                     this.$swal({
