@@ -16,12 +16,17 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('surname')->nullable();
-            $table->string('id_type')->nullable();
+            $table->string('gender');
+            $table->string('identification_type')->nullable();
             $table->string('identification_number')->nullable();
             $table->string('birthday_date')->nullable();
             $table->string('ethnic_group')->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->string('person_type');
+            $table->string('department')->nullable();
+            $table->string('municipality')->nullable();
+            $table->string('direction')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
         });

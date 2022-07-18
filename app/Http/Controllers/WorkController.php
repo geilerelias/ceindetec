@@ -36,7 +36,6 @@ class WorkController extends Controller
     {
         //DB::table('works')->where('votes', 100)->get();
         // $data = Work::where('work_type', 'Adecuación')->get();
-        return Inertia::render('Dashboard/Tracing/Adequacy', ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]);
     }
 
 
@@ -44,7 +43,7 @@ class WorkController extends Controller
     {
         /* $data = Work::where('work_type', 'Construcción')->get();
          return Inertia::render('Dashboard/Tracing/Building', ['data' => $data]);*/
-        return Inertia::render('Dashboard/Tracing/Building', ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]);
+        return Inertia::render('Dashboard/Tracing/Building',);
 
     }
 

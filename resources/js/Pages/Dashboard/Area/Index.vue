@@ -6,7 +6,7 @@
                 <v-col>
                     <v-card style="width: 100%;">
                         <v-card-text class="">
-                            <v-row class=" no-gutters">
+                            <v-row class="no-gutters">
                                 <div class="d-flex justify-space-between justify-md-start col-md-6 col-12">
                                     <v-btn
                                         @click="create()"

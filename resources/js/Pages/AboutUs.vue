@@ -180,6 +180,15 @@
                                                 <v-avatar class="elevation-4" color="primary" size="144">
                                                     <v-avatar size="140" class="">
                                                         <v-img :src="`/src/about-us/services/null/${item.src}`">
+                                                            <template v-slot:placeholder>
+                                                                <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                                >
+                                                                    <loading-component/>
+                                                                </v-row>
+                                                            </template>
                                                         </v-img>
                                                     </v-avatar>
                                                 </v-avatar>
@@ -199,6 +208,7 @@
                 </v-row>
             </v-container>
         </section>
+
         <section>
             <v-container>
                 <v-row class="px-sm-12">
@@ -207,6 +217,7 @@
                             <h1 class="text-uppercase text-h5 font-weight-bold mb-2 text-left">
                                 NUESTROS PRODUCTOS
                             </h1>
+
                             <v-responsive class=" rounded-lg primary mr-auto mb-6" style="max-width: 100px;">
                                 <v-divider light class="pb-1 rounded-lg"/>
                             </v-responsive>
@@ -221,6 +232,15 @@
                                                 <v-avatar class="elevation-4" color="grey" size="124">
                                                     <v-avatar size="120" class="">
                                                         <v-img :src="`/src/about-us/products/null/${item.src}`">
+                                                            <template v-slot:placeholder>
+                                                                <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                                >
+                                                                    <loading-component/>
+                                                                </v-row>
+                                                            </template>
                                                         </v-img>
                                                     </v-avatar>
                                                 </v-avatar>
@@ -239,21 +259,19 @@
                 </v-row>
             </v-container>
         </section>
-
-
     </page-layout>
 </template>
 
 <script>
 import PageLayout from '@/Layouts/PageLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
 import bg from '@/../images/computer3.jpg';
+import LoadingComponent from "@/Components/LoadingComponent";
 
 export default {
     name: 'AboutUs',
     components: {
-        PageLayout,
-        BreadCrumbs
+        LoadingComponent,
+        PageLayout
     },
     data: () => ({
         bg,
@@ -343,4 +361,19 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+
+
+/* Spinner 1 starts here */
+
+@keyframes spinnerOne {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+/* Spinner 1 ends here */
+</style>

@@ -1,8 +1,7 @@
 <template>
-    <v-app-bar
-        class="ma-0 pa-0"
-        tile
-        :height="
+    <v-app-bar app
+               class="ma-0 pa-0 "
+               :height="
             $vuetify.breakpoint.mdAndUp
                 ? 136
                 : $vuetify.breakpoint.xsOnly
@@ -126,11 +125,7 @@
                     </inertia-link>
 
                     <settings-dropdown v-if="$page.user!==null"></settings-dropdown>
-                    <inertia-link v-else :href="route('dashboard')">
-                        <v-btn icon>
-                            <v-icon>mdi-view-dashboard</v-icon>
-                        </v-btn>
-                    </inertia-link>
+                   
                 </v-toolbar>
             </v-col>
         </v-row>
@@ -183,6 +178,10 @@ export default {
     border-bottom: 136px solid transparent;
     z-index: 1;
     left: 259px;
+}
+
+.active {
+    border-bottom: none !important;;
 }
 
 /*.active {*/

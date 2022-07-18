@@ -21,15 +21,28 @@ const store = new Vuex.Store({
                 route: "about-us"
             },
             {
-                title: "Antes durante y después",
+                title: "Beneficiados",
                 icon: 'mdi-account-hard-hat',
-                route: "before_during_after"
+                route: "follow"
             },
             {
                 title: "Contacto",
                 icon: 'mdi-card-account-phone',
                 route: "contact-us"
             },
+            {
+                title: "Qr code",
+                icon: 'mdi-qrcode',
+                route: "qrcode",
+                //can: 'view permission',
+                array: null
+            },
+            {
+                title: "Acceder",
+                icon: 'mdi-card-account-phone',
+                route: "dashboard"
+            },
+
         ],
 
         linksWithAuth: [
@@ -118,34 +131,16 @@ const store = new Vuex.Store({
                     array: null
                 },
 
+                {
+                    title: "Miembros de la Comunidad educativa",
+                    icon: 'mdi-account-supervisor',
+                    route: "person.index",
+                    //can: 'view permission',
+                    array: null
+                },
+
             ],
 
-
-            [
-                {title: "Usuarios", icon: 'mdi-account-supervisor'},
-
-                {
-                    title: "Docentes",
-                    icon: 'mdi-human-male-board',
-                    route: "person.create.teacher",
-                    //can: 'view permission',
-                    array: null
-                },
-                {
-                    title: "Estudiantes",
-                    icon: 'mdi-account-school',
-                    route: "person.index.student",
-                    //can: 'view permission',
-                    array: null
-                },
-                {
-                    title: "Acudiente",
-                    icon: 'mdi-account-circle',
-                    route: "person.create.attendant",
-                    //can: 'view permission',
-                    array: null
-                },
-            ],
 
             [
                 {title: "Calificaciones", icon: 'mdi-file-certificate'},
@@ -222,7 +217,8 @@ const store = new Vuex.Store({
                     //can: 'view permission',
                     array: null
                 }
-            ]
+            ],
+
         ]
     },
     getters: {

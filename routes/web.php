@@ -54,9 +54,27 @@ Route::get('/about-us', function () {
     return Inertia\Inertia::render('AboutUs');
 })->name('about-us');
 
+Route::get('/qrcode', function () {
+    return Inertia\Inertia::render('CodeQr/Index');
+})->name('qrcode');
+
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');
 })->name('contact-us');
+
+Route::get('/benefited', function () {
+    return Inertia\Inertia::render('Benefited/Follow');
+})->name('follow');
+
+Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
+    # [\App\Http\Controllers\WorkController::class, 'adequacy'])
+    return Inertia\Inertia::render('Benefited/Adequacy',
+        ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]
+    );
+})->name('work.adequacy');
+Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}',
+    [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
+
 
 Route::get('/back', function () {
     //return back();
@@ -67,6 +85,18 @@ Route::get('/back', function () {
 
     return url()->previous();
 })->name('back');
+
+//sedes de establecimientos
+Route::get('/dashboard/headquarters/all', [HeadquartersController::class, 'all']);
+Route::get('/dashboard/headquarters/{id}/establishment', [HeadquartersController::class, 'getEstablishment']);
+
+//establecimientos educativos
+Route::get('/dashboard/establishment/all', [EstablishmentController::class, 'all']);
+Route::get('/dashboard/establishment/{id}/headquarters', [EstablishmentController::class, 'getHeadquarters']);
+
+Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
+Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
+
 
 Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(function () {
     //middleware(['can:view dashboard'])->
@@ -83,16 +113,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
     })->name('reports');
 
 
-    Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
-    Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
     /*    Route::post('/dashboard/work/building', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');*/
-    Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarters}', [\App\Http\Controllers\WorkController::class, 'adequacy'])->name('work.adequacy');
-    Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}', [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
     Route::resource('/dashboard/work', \App\Http\Controllers\WorkController::class);
     Route::resource('/dashboard/seguimiento', \App\Http\Controllers\TracingController::class);
-    Route::get('/dashboard/follow', function () {
-        return Inertia\Inertia::render('Dashboard/Tracing/Follow');
-    })->name('follow');
 
 
     /*Route::get('/dashboard/establishment', function () {
@@ -100,13 +123,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(func
     })->name('establishment');*/
 
     //establecimientos educativos
-    Route::get('/dashboard/establishment/all', [EstablishmentController::class, 'all']);
-    Route::get('/dashboard/establishment/{id}/headquarters', [EstablishmentController::class, 'getHeadquarters']);
     Route::resource('/dashboard/establishment', EstablishmentController::class);
 
     //sedes de establecimientos
-    Route::get('/dashboard/headquarters/all', [HeadquartersController::class, 'all']);
-    Route::get('/dashboard/headquarters/{id}/establishment', [HeadquartersController::class, 'getEstablishment']);
     Route::resource('/dashboard/headquarters', HeadquartersController::class);
 
     //personas
@@ -196,6 +215,27 @@ Route::get('/find/{page}/{folder?}/{sub?}', function ($page, $folder, $sub) {
     }
     $dirint->close();
     return json_encode($images);
+});
+
+Route::get('/storage/{folder}/{filename}', function ($folder, $filename) {
+
+    try {
+        $path = storage_path() . '/app/' . $folder . '/' . $filename;
+
+        //si no se encuentra lanzamos un error 404.
+        if (!Storage::exists($folder . '/' . $filename)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    } catch (\Throwable $th) {
+        return $th->getMessage();
+    }
 });
 
 Route::get('/src/{page?}/{folder?}/{sub?}/{filename}', function ($page = "null", $folder = "null", $sub = "null", $filename) {
