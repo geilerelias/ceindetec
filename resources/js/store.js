@@ -33,7 +33,7 @@ const store = new Vuex.Store({
             {
                 title: "Qr code",
                 icon: 'mdi-qrcode',
-                route: "qrcode",
+                route: "qrcode.index",
                 //can: 'view permission',
                 array: null
             },

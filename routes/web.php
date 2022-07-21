@@ -54,9 +54,10 @@ Route::get('/about-us', function () {
     return Inertia\Inertia::render('AboutUs');
 })->name('about-us');
 
-Route::get('/qrcode', function () {
-    return Inertia\Inertia::render('CodeQr/Index');
-})->name('qrcode');
+Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
+Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
+
+Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
 
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');

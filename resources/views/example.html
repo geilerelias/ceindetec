@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <style>
+        .first {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            /*
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);*/
+        }
+
+        .terciar {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <v-main>
+            <v-container>
+                <p style="max-width: 7cm" class="second text-center">cooperacion </p>
+                <v-row style="max-width: 7cm">
+                    <v-col cols="2">
+                        <p class="first">convenio de</p>
+                    </v-col>
+                    <v-col cols="8">
+                        <v-img contain height="80" :aspect-ratio="1/1"
+                               src="https://images.freeimages.com/images/large-previews/a31/colorful-umbrella-1176220.jpg"
+                               alt=""/>
+                    </v-col>
+                    <v-col cols="2">
+                        <p class="terciar">No. 005 2021</p>
+                    </v-col>
+                </v-row>
+
+            </v-container>
+        </v-main>
+    </v-app>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+    })
+</script>
+</body>
+
