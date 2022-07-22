@@ -125,7 +125,7 @@
                     </inertia-link>
 
                     <settings-dropdown v-if="$page.user!==null"></settings-dropdown>
-                   
+
                 </v-toolbar>
             </v-col>
         </v-row>
@@ -146,9 +146,6 @@ export default {
     }),
     computed: {
         ...mapState(['drawer', 'links'])
-    },
-    mounted() {
-        console.log('Hola mundo');
     },
     methods: {
         ...mapMutations([

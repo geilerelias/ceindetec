@@ -142,6 +142,7 @@
                         </v-card>
                     </v-col>
                 </v-row>
+                {{ getData }}
                 <v-row class="ma-0">
                     <v-col>
                         <v-sheet min-height="70vh" rounded="lg" class="pa-8">
@@ -252,6 +253,7 @@
             <v-row justify="center">
                 <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <v-card>
+
                         <v-toolbar dark color="primary">
                             <v-btn icon dark @click="dialog = false">
                                 <v-icon>mdi-close</v-icon>
@@ -264,6 +266,7 @@
                                 </v-btn>
                             </v-toolbar-items>
                         </v-toolbar>
+
                         <v-container style="height: 100vh;">
                             <v-sheet class="gray" min-height="70vh" rounded="lg">
                                 <div class="iframe-container mx-auto rounded-lg" elevation="12">
@@ -284,14 +287,12 @@
 <script>
 import PageLayout from '@/Layouts/PageLayout'
 import SpinnerComponent from "@/Components/SpinnerComponent";
-import BeforeDuringAfter from '@/Pages/BeforeDuringAfter/Index'
 
 export default {
     name: "Follow",
     components: {
         PageLayout,
         SpinnerComponent,
-        BeforeDuringAfter
     },
     props: ['data', 'errors'],
     data: () => ({
@@ -373,7 +374,7 @@ export default {
         getData() {
             try {
                 let search = this.search.toLowerCase()
-                // console.log('this is information => ', this.information, ' type => ', typeof this.information)
+                console.log('this is information => ', this.information, ' type => ', typeof this.information)
 
                 let data = new Array();
 
