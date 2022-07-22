@@ -1,31 +1,13 @@
 <template>
-    <v-app id="inspire">
-        <v-card outlined tile id="no-print-header">
-            <v-toolbar
-                color="primary"
-                dark
-                height="100"
-            >
-                <v-btn icon @click="back()">
-                    <v-icon color="white">
-                        mdi-arrow-left
-                    </v-icon>
-                </v-btn>
-                <logo :tile="true" :light="true" color="primary" :width="150"></logo>
-                <v-spacer></v-spacer>
-
-                <div class="text-right">
-                    <div class="text-h6 white--text font-weight-bold text-uppercase py-0 my-0">
-                        CONVENIO DE COOPERACIÓN No 005 2021
-                    </div>
-                    <div class="text-subtitle-1 secondary--text font-weight-bold py-0 my-0">
-                        Listados de consecutivos
-                    </div>
-                </div>
-            </v-toolbar>
-            <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
-        </v-card>
-
+    <simple-layout>
+        <template v-slot:header>
+            <div class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
+                Listados de consecutivos
+            </div>
+            <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
+                CONVENIO DE COOPERACIÓN No 005 2021
+            </div>
+        </template>
         <v-main class="">
             <!--
                         <v-container id="printer" style="max-width: 21.6cm; border:solid 1px grey">
@@ -149,10 +131,11 @@
                 >
                     <template v-slot:header>
                         <v-toolbar
+                            id="no-print"
                             dark
                             color="primary"
 
-                            class="mb-1 rounded-lg "
+                            class="mb-3 rounded-lg"
                         >
                             <v-text-field
                                 v-model="search"
@@ -204,7 +187,7 @@
                     </template>
 
                     <template v-slot:default="props">
-                        <v-row class="pt-10">
+                        <v-row>
                             <v-col
                                 class="d-flex justify-center"
                                 cols="12"
@@ -261,10 +244,10 @@
                     </template>
 
                     <template v-slot:footer>
-                        <v-row
-                            class="mt-2 px-2"
-                            align="center"
-                            justify="center"
+                        <v-row id="no-print"
+                               class="mt-2 px-2"
+                               align="center"
+                               justify="center"
                         >
                             <span class="grey--text">elementos por página</span>
                             <v-menu offset-y>
@@ -338,19 +321,20 @@
             <v-icon>mdi-printer-outline</v-icon>
         </v-btn>
 
-        <v-btn id="no-print-btn"
-               color="primary"
-               dark
-               bottom
-               left
-               fixed
-               fab
-               @click="savedConsecutive()"
-        >
-            <v-icon>mdi-content-save</v-icon>
-        </v-btn>
+        <!--        <v-btn id="no-print-btn"
+                       color="primary"
+                       dark
+                       bottom
+                       left
+                       fixed
+                       fab
+                       @click="savedConsecutive()"
+                >
+                    <v-icon>mdi-content-save</v-icon>
+                </v-btn>-->
+
         <spinner-component :value="inProcess"></spinner-component>
-    </v-app>
+    </simple-layout>
 </template>
 
 <script>
@@ -359,15 +343,15 @@ import SpinnerComponent from "@/Components/SpinnerComponent";
 import QrcodeVue from 'qrcode.vue'
 
 import logo from "@/Components/Logo";
-
+import simpleLayout from "@/Layouts/SimpleLayout";
 
 export default {
     name: "Index",
     props: ['data'],
     components: {
-        PageLayout,
         SpinnerComponent,
         QrcodeVue,
+        simpleLayout,
         logo
     },
 
@@ -450,6 +434,10 @@ export default {
     }
 
     #no-print-header {
+        display: none;
+    }
+
+    #no-print {
         display: none;
     }
 

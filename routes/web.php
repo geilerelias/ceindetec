@@ -55,9 +55,9 @@ Route::get('/about-us', function () {
 })->name('about-us');
 
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
-Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
+Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate'])->middleware(['auth:sanctum', 'can:crear qrcode']);
 
-Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
+Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class)->middleware(['auth:sanctum', 'can:ver qrcode']);
 
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');
@@ -73,6 +73,7 @@ Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarte
         ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]
     );
 })->name('work.adequacy');
+
 Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}',
     [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
 

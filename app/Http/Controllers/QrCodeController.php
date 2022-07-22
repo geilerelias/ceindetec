@@ -9,6 +9,16 @@ use Inertia\Inertia;
 
 class QrCodeController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->middleware('can:view rol')->only('index');
+//        $this->middleware('can:create rol')->only('create', 'store');
+//        $this->middleware('can:edit rol')->only('edit', 'update');
+//        $this->middleware('can:destroy rol')->only('destroy');
+        $this->middleware(['auth:sanctum', 'can:edit qrcode'])->only('edit', 'update');
+    }
+
     /**
      * Display a listing of the resource.
      *

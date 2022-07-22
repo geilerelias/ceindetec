@@ -1,139 +1,118 @@
 <template>
-    <v-app id="inspire">
-        <v-card outlined tile id="no-print-header">
-            <v-toolbar
-                color="primary"
-                dark
-                height="100"
-            >
-                <v-btn icon @click="back()">
-                    <v-icon color="white">
-                        mdi-arrow-left
-                    </v-icon>
-                </v-btn>
-                <logo :tile="true" :light="true" color="primary" :width="150"></logo>
-                <v-spacer></v-spacer>
+    <simple-layout>
+        <template v-slot:header>
+            <div class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
+                Actualización de información
+            </div>
+            <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
+                CONVENIO DE COOPERACIÓN No 005 2021
+            </div>
+        </template>
 
-                <div class="text-right">
-                    <div class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
-                        CONVENIO DE COOPERACIÓN
-                    </div>
-                    <div class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
-                        No 005 2021
-                    </div>
-                    <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
-                        Listados de consecutivos
-                    </div>
-                </div>
-            </v-toolbar>
-            <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
-        </v-card>
-        <v-main class="">
-            <v-container>
-                <v-row class="d-flex justify-center">
-                    <v-col class="col-md-8 col-12 ">
-                        <v-card class="mt-4 text-center ">
-                            <!--                            <v-avatar tile size="150" color="" class="elevation-6 mt-n12 d-inline-block">
-                                                            <qrcode-vue class=""
-                                                                        :value="`http://sigac.almaguajira.com/qrcode/${data.consecutive}`"
-                                                                        :size="150"
-                                                                        level="H"/>
-                                                        </v-avatar>-->
-                            <v-card-title class="d-flex justify-space-around pt-1 pb-0 mt-2">
-                                <logo :tile="true" :light="false" color="primary"
-                                      :width="100"></logo>
-                                <logo :tile="true" :light="false" color="primary" :width="100"
-                                      src="logoAlcaldia"></logo>
+        <v-container>
+            <v-row class="d-flex justify-center">
+                <v-col class="col-md-8 col-12 ">
+                    <v-card class="mt-4 text-center ">
+                        <!--                            <v-avatar tile size="150" color="" class="elevation-6 mt-n12 d-inline-block">
+                                                        <qrcode-vue class=""
+                                                                    :value="`http://sigac.almaguajira.com/qrcode/${data.consecutive}`"
+                                                                    :size="150"
+                                                                    level="H"/>
+                                                    </v-avatar>-->
+                        <v-card-title class="d-flex justify-space-around pt-1 pb-0 mt-2">
+                            <logo :tile="true" :light="false" color="primary"
+                                  :width="100"></logo>
+                            <logo :tile="true" :light="false" color="primary" :width="100"
+                                  src="logoAlcaldia"></logo>
 
-                            </v-card-title>
+                        </v-card-title>
 
-                            <v-card-text class="text-center">
-                                <h4 class="text-h6 mt-3 text--primary font-weight-black"> {{ data.consecutive }} </h4>
+                        <v-card-text class="text-center">
+                            <h4 class="text-h6 mt-3 text--primary font-weight-black"> {{ data.consecutive }} </h4>
 
-                                <div class="pa-1 flex-grow-1">
-                                    <div class="d-flex align-center flex-column">
-                                        <div class="d-flex  justify-space-around">
-                                            <div>
-                                                <v-input label="Estado:"></v-input>
-                                            </div>
-                                            &nbsp;
-                                            <v-chip v-if="data.status=='inactive'" small
-                                                    class="font-weight-bold  accent">
-                                                {{ data.status }}
-                                            </v-chip>
-                                            <v-chip v-else small
-                                                    class="font-weight-bold secondary">
-                                                {{ data.status }}
-                                            </v-chip>
+                            <div class="pa-1 flex-grow-1">
+                                <div class="d-flex align-center flex-column">
+                                    <div class="d-flex  justify-space-around">
+                                        <div>
+                                            <v-input label="Estado:"></v-input>
                                         </div>
+                                        &nbsp;
+                                        <v-chip v-if="data.status=='inactive'" small
+                                                class="font-weight-bold  accent">
+                                            {{ data.status }}
+                                        </v-chip>
+                                        <v-chip v-else small
+                                                class="font-weight-bold secondary">
+                                            {{ data.status }}
+                                        </v-chip>
                                     </div>
                                 </div>
-                                <v-divider></v-divider>
-                                <v-form ref="form"
-                                        v-model="valid">
-                                    <div class="wrapper">
-                                        <div class="pa-8">
-                                            <v-row class="mb-5">
-                                                <v-col class="col-12">
-                                                    <v-text-field
-                                                        label="Descripción"
-                                                        v-model="qrcode.description"
-                                                        :rules="[rules.required,rules.text(qrcode.description,'Descripción')]"
-                                                        outlined
-                                                    ></v-text-field>
-                                                </v-col>
+                            </div>
+                            <v-divider></v-divider>
+                            <v-form ref="form"
+                                    v-model="valid">
+                                <div class="wrapper">
+                                    <div class="pa-8">
+                                        <v-row class="mb-5">
+                                            <v-col class="col-12">
+                                                <v-text-field
+                                                    label="Descripción"
+                                                    v-model="qrcode.description"
+                                                    :rules="[rules.required,rules.text(qrcode.description,'Descripción')]"
+                                                    outlined
+                                                ></v-text-field>
+                                            </v-col>
 
 
-                                                <v-col class="col-12">
-                                                    <v-select
-                                                        @change="getHeadquarters(qrcode.establishment_id)"
-                                                        v-model="qrcode.establishment_id"
-                                                        :items="establishments"
-                                                        item-text="name"
-                                                        item-value="id"
-                                                        label="Establecimiento al que pertenece"
-                                                        outlined
-                                                        :rules="[rules.required]">
-                                                    </v-select>
-                                                </v-col>
+                                            <v-col class="col-12">
+                                                <v-select
+                                                    @change="getHeadquarters(qrcode.establishment_id)"
+                                                    v-model="qrcode.establishment_id"
+                                                    :items="establishments"
+                                                    item-text="name"
+                                                    item-value="id"
+                                                    label="Establecimiento al que pertenece"
+                                                    outlined
+                                                    :rules="[rules.required]">
+                                                </v-select>
+                                            </v-col>
 
-                                                <v-col class="col-12">
-                                                    <v-select
-                                                        :disabled="qrcode.establishment_id==''"
-                                                        v-model="qrcode.headquarters_id"
-                                                        :items="headquarters"
-                                                        item-text="name"
-                                                        item-value="id"
-                                                        label="Sede a la que pertenece"
-                                                        outlined
-                                                        :rules="[rules.required]">
-                                                    </v-select>
-                                                </v-col>
-                                            </v-row>
-                                        </div>
+                                            <v-col class="col-12">
+                                                <v-select
+                                                    :disabled="qrcode.establishment_id==''"
+                                                    v-model="qrcode.headquarters_id"
+                                                    :items="headquarters"
+                                                    item-text="name"
+                                                    item-value="id"
+                                                    label="Sede a la que pertenece"
+                                                    outlined
+                                                    :rules="[rules.required]">
+                                                </v-select>
+                                            </v-col>
+                                        </v-row>
                                     </div>
-                                </v-form>
-                                <div class="d-flex justify-end">
-
-                                    <v-btn @click="update(qrcode)"
-                                           class="primary x-1" dark>
-                                        Actualizar
-                                    </v-btn>
-
-                                    <v-btn @click="reset"
-                                           class="secondary mx-1" dark>
-                                        Cancelar
-                                    </v-btn>
                                 </div>
-                            </v-card-text>
-                        </v-card>
-                    </v-col>
-                </v-row>
+                            </v-form>
+                            <div class="d-flex justify-end">
+
+                                <v-btn @click="update(qrcode)"
+                                       class="primary x-1" dark>
+                                    Actualizar
+                                </v-btn>
+
+                                <v-btn @click="reset"
+                                       class="secondary mx-1" dark>
+                                    Cancelar
+                                </v-btn>
+                            </div>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
 
 
-            </v-container>
-        </v-main>
-    </v-app>
+        </v-container>
+    </simple-layout>
 </template>
 
 <script>
@@ -141,6 +120,7 @@ import SpinnerComponent from "@/Components/SpinnerComponent";
 import QrcodeVue from 'qrcode.vue'
 import logo from "@/Components/Logo";
 import colombiaJson from "@/../assets/colombia.json";
+import simpleLayout from "@/Layouts/SimpleLayout";
 
 export default {
     name: "Edit",
@@ -148,7 +128,8 @@ export default {
     components: {
         SpinnerComponent,
         QrcodeVue,
-        logo
+        logo,
+        simpleLayout
     },
     data: () => ({
         qrcode: {
