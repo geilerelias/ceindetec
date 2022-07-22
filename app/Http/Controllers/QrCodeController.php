@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\QrCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class QrCodeController extends Controller
@@ -65,8 +66,19 @@ class QrCodeController extends Controller
      */
     public function showQr($consecutive)
     {
-        $response = QrCode::where('consecutive', $consecutive)->first();
-        return Inertia::render('CodeQr/Show', ['data' => $response]);
+
+        $qrCode = QrCode::where('consecutive', $consecutive)->first();
+
+        if ($qrCode !== null) {
+            return Inertia::render('CodeQr/Show', ['data' => $qrCode]);
+        } else {
+            $qrCode = QrCode::find($consecutive);
+            if ($qrCode !== null) {
+                return Inertia::render('CodeQr/Show', ['data' => $qrCode]);
+            } else {
+                abort(404);
+            }
+        }
     }
 
     /**
@@ -77,18 +89,24 @@ class QrCodeController extends Controller
      */
     public function show(QrCode $qrCode)
     {
+        return $qrCode;
         return Inertia::render('CodeQr/Show', ['data' => $qrCode]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\QrCode $qrCode
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
-    public function edit(QrCode $qrCode)
+    public function edit($id)
     {
-        //
+        $qrCode = QrCode::find($id);
+        if ($qrCode !== null) {
+            return Inertia::render('CodeQr/Edit', ['data' => $qrCode]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -100,7 +118,21 @@ class QrCodeController extends Controller
      */
     public function update(Request $request, QrCode $qrCode)
     {
-        //
+
+        Validator::make($request->all(), [
+            'description' => ['required'],
+            'establishment_id' => ['required'],
+            'headquarters_id' => ['required'],
+        ])->validate();
+
+        if ($request->has('id')) {
+            QrCode::find($request->input('id'))->update($request->all());
+            return redirect()->back()
+                ->with('message', 'Informacion actualizada correctamente.');
+        }
+
+        return redirect()->back()
+            ->withErrors('message', 'Ah ocurrido un error.');
     }
 
     /**

@@ -1,8 +1,6 @@
 <template>
     <v-app id="inspire">
         <v-card outlined tile id="no-print-header">
-            <v-system-bar></v-system-bar>
-
             <v-toolbar
                 color="primary"
                 dark
@@ -139,7 +137,7 @@
                             </v-row>
                         </v-container>-->
 
-            <v-container fluid>
+            <v-container>
                 <v-data-iterator
                     :items="data"
                     :items-per-page.sync="itemsPerPage"
@@ -174,6 +172,8 @@
                                     solo-inverted
                                     hide-details
                                     :items="keys"
+                                    item-text="text"
+                                    item-value="value"
                                     prepend-inner-icon="mdi-filter-variant"
                                     label="Ordenar por"
                                 ></v-select>
@@ -204,44 +204,13 @@
                     </template>
 
                     <template v-slot:default="props">
-                        <v-row>
+                        <v-row class="pt-10">
                             <v-col
-                                v-for="item in props.items"
-                                :key="item.name"
+                                class="d-flex justify-center"
                                 cols="12"
                                 sm="6"
-                                md="4"
-                                lg="3"
-                            >
-                                <v-card>
-                                    <v-card-title class="subheading font-weight-bold">
-                                        {{ item.consecutive }}
-                                    </v-card-title>
-
-                                    <v-divider></v-divider>
-
-                                    <v-list dense>
-                                        <v-list-item
-                                            v-for="(key, index) in filteredKeys"
-                                            :key="index"
-                                        >
-                                            <v-list-item-content :class="{ 'blue--text': sortBy === key }">
-                                                {{ key }}:
-                                            </v-list-item-content>
-                                            <v-list-item-content
-                                                class="align-end"
-                                                :class="{ 'blue--text': sortBy === key }"
-                                            >
-                                                {{ item[key.toLowerCase()] }}
-                                            </v-list-item-content>
-                                        </v-list-item>
-                                    </v-list>
-                                </v-card>
-                            </v-col>
-
-                            <v-col
-                                class="d-flex justify-center pa-1 "
-                                cols="3"
+                                md="3"
+                                lg="2"
                                 v-for="(item, n) in  props.items" :key="item.id"
                             >
                                 <div class="saltopagina"
@@ -293,11 +262,11 @@
 
                     <template v-slot:footer>
                         <v-row
-                            class="mt-2"
+                            class="mt-2 px-2"
                             align="center"
                             justify="center"
                         >
-                            <span class="grey--text">Items per page</span>
+                            <span class="grey--text">elementos por página</span>
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn
@@ -325,14 +294,11 @@
 
                             <v-spacer></v-spacer>
 
-                            <span
-                                class="mr-4
-            grey--text"
-                            >
-            Page {{ page }} of {{ numberOfPages }}
-          </span>
+
                             <v-btn
+                                :disabled="page==1"
                                 fab
+                                text
                                 dark
                                 color="blue darken-3"
                                 class="mr-1"
@@ -340,8 +306,13 @@
                             >
                                 <v-icon>mdi-chevron-left</v-icon>
                             </v-btn>
+                            <div class="mr-4 grey--text">
+                                Página {{ page }} de {{ numberOfPages }}
+                            </div>
                             <v-btn
+                                :disabled="page==numberOfPages"
                                 fab
+                                text
                                 dark
                                 color="blue darken-3"
                                 class="ml-1"
@@ -399,26 +370,27 @@ export default {
         QrcodeVue,
         logo
     },
+
     data: () => ({
         value: 'https://example.com',
         inProcess: false,
-        itemsPerPageArray: [4, 8, 12],
+        itemsPerPageArray: [36, 72, 144, 'all'],
         search: '',
         filter: {},
         sortDesc: false,
         page: 1,
-        itemsPerPage: 4,
-        sortBy: 'name',
+        itemsPerPage: 36,
+        sortBy: 'consecutive',
         keys: [
-            'consecutive',
-            'status',
-            'description',
-            'municipality',
-            'department',
-            'establishments_id',
-            'headquarters_id',
-            'created_at',
-            'updated_at',
+            {text: 'Consecutivo', value: 'consecutive'},
+            {text: 'Estado', value: 'status'},
+            {text: 'Descripción', value: 'description'},
+            {text: 'Municipio', value: 'municipality'},
+            {text: 'Departamento', value: 'department'},
+            {text: 'Establecimiento', value: 'establishments_id'},
+            {text: 'Sede', value: 'headquarters_id'},
+            {text: 'Creado en ', value: 'created_at'},
+            {text: 'Actualizado en', value: 'updated_at'},
         ],
     }),
     computed: {
@@ -426,7 +398,7 @@ export default {
             return Math.ceil(this.data.length / this.itemsPerPage)
         },
         filteredKeys() {
-            return this.keys.filter(key => key !== 'Name')
+            return this.keys.filter(key => key !== 'consecutive')
         },
     },
     methods: {
@@ -455,7 +427,12 @@ export default {
             if (this.page - 1 >= 1) this.page -= 1
         },
         updateItemsPerPage(number) {
-            this.itemsPerPage = number
+            if (number == 'all') {
+                this.itemsPerPage = this.data.length
+            } else {
+                this.itemsPerPage = number
+            }
+
         },
     },
     back() {

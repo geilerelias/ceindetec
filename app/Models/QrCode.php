@@ -13,6 +13,8 @@ class QrCode extends Model
         'consecutive',
         'status',
         'description',
-        'photo_path'
+        'photo_path',
+        'establishment_id',
+        'headquarters_id',
     ];
 }

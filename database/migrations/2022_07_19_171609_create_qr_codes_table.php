@@ -19,10 +19,7 @@ return new class extends Migration {
             $table->string('description')->nullable();
             $table->text('photo_path')->nullable();
 
-            $table->string('municipality')->nullable();
-            $table->string('department')->nullable();
-
-            $table->foreignId('establishments_id')->nullable()->constrained('establishments');
+            $table->foreignId('establishment_id')->nullable()->constrained('establishments');
             $table->foreignId('headquarters_id')->nullable()->constrained('headquarters');
 
             $table->timestamps();
