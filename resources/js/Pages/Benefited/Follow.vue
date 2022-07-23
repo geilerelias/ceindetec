@@ -415,10 +415,13 @@ export default {
                     data[key] = values;
                     // console.log('this is values  => ', values);
                 }
+                
                 console.log('this is data => ', data)
                 return Object.assign({}, data);
+
             } catch (e) {
                 console.log(e)
+                return this.information
             }
         }
     },
@@ -503,11 +506,14 @@ export default {
 
         applyChanges() {
             console.log('se ejecuta apply changes')
-            axios.get(`/dashboard/work/group-by/${this.group}`)
+            const headers = {
+                'Access-Control-Allow-Origin': 'http://127.0.0.1:8000/',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+            axios.get(`/dashboard/work/group-by/${this.group}`, headers)
                 .then((response) => {
                     console.log(response.data)
                     this.information = response.data
-                    return
                 })
                 .catch((error) => {
                     console.log(error)
