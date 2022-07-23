@@ -417,7 +417,7 @@ export default {
                 // console.log('this is data => ', data)
                 return Object.assign({}, data);
             } catch (e) {
-                console.log()
+                console.log(e)
             }
         }
     },
