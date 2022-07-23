@@ -142,7 +142,11 @@
                         </v-card>
                     </v-col>
                 </v-row>
+                <h1>get data </h1>
                 {{ getData }}
+                <br>
+                <h1>information </h1>
+                {{ information }}
                 <v-row class="ma-0">
                     <v-col>
                         <v-sheet min-height="70vh" rounded="lg" class="pa-8">
