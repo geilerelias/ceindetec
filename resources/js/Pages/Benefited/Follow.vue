@@ -384,8 +384,9 @@ export default {
 
                 for (const key in this.information) {
                     // console.log(this.information[key])
+
                     let values = this.information[key].filter(item => {
-                        // console.log(item)
+                        console.log('this item =>', item)
                         const municipio = item.municipality.toLowerCase()
                         const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
                         const sede = this.getHeadquarters(item.headquarters_id).toLowerCase()
@@ -414,7 +415,7 @@ export default {
                     data[key] = values;
                     // console.log('this is values  => ', values);
                 }
-                // console.log('this is data => ', data)
+                console.log('this is data => ', data)
                 return Object.assign({}, data);
             } catch (e) {
                 console.log(e)
