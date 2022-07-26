@@ -150,7 +150,7 @@
                 <v-row class="ma-0">
                     <v-col>
                         <v-sheet min-height="70vh" rounded="lg" class="pa-8">
-                            <v-slide-x-reverse-transition>
+                            <transition-group name="slide-x-transition">
                                 <div v-for="(info, n) in getData">
                                     <v-list two-line>
                                         <v-subheader>
@@ -236,8 +236,9 @@
                                         </v-row>
                                     </v-list>
                                 </div>
-                            </v-slide-x-reverse-transition>
-                            <v-slide-x-transition>
+                            </transition-group>
+
+                            <transition-group name="slide-x-transition">
                                 <div v-if="Object.keys(information).length<=0">
 
                                     <v-row class="mt-2">
@@ -249,7 +250,7 @@
                                         </v-col>
                                     </v-row>
                                 </div>
-                            </v-slide-x-transition>
+                            </transition-group>
                         </v-sheet>
                     </v-col>
                 </v-row>
