@@ -415,7 +415,7 @@ export default {
                     data[key] = values;
                     // console.log('this is values  => ', values);
                 }
-                
+
                 console.log('this is data => ', data)
                 return Object.assign({}, data);
 
