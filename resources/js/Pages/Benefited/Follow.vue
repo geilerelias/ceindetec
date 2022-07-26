@@ -142,115 +142,106 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <h1>get data </h1>
-                {{ getData }}
-                <br>
-                <h1>information </h1>
-                {{ information }}
+                
                 <v-row class="ma-0">
                     <v-col>
                         <v-sheet min-height="70vh" rounded="lg" class="pa-8">
-                            <transition-group name="slide-x-transition">
-                                <div v-for="(info, n) in getData">
-                                    <v-list two-line>
-                                        <v-subheader>
-                                            <div v-if="group==null">
-                                                Todos
-                                            </div>
-                                            <div class="text-uppercase font-weight-bold"
-                                                 v-else-if="group=='establishments_id'">
-                                                {{ getEstablishment(n) }}
-                                            </div>
-                                            <div class="text-uppercase font-weight-bold" v-else>
-                                                {{ n }}
-                                            </div>
-                                            <v-spacer></v-spacer>
-                                            cantidad: {{ info.length }}
-                                        </v-subheader>
+                            <div v-for="(info, n) in getData">
+                                <v-list two-line>
+                                    <v-subheader>
+                                        <div v-if="group==null">
+                                            Todos
+                                        </div>
+                                        <div class="text-uppercase font-weight-bold"
+                                             v-else-if="group=='establishments_id'">
+                                            {{ getEstablishment(n) }}
+                                        </div>
+                                        <div class="text-uppercase font-weight-bold" v-else>
+                                            {{ n }}
+                                        </div>
+                                        <v-spacer></v-spacer>
+                                        cantidad: {{ info.length }}
+                                    </v-subheader>
 
-                                        <v-divider></v-divider>
-
-                                        <v-row class="mt-2">
-                                            <v-col cols="12" sm="6" md="4" v-for="(item, j) in info" :key="item.id">
-
-                                                <v-card>
-
-                                                    <v-list-item>
-                                                        <template v-slot:default="{ active }">
-                                                            <v-list-item-avatar color="grey lighten-2">
-                                                                <v-icon class="text--white" color='orange'
-                                                                        v-if="item.work_type=='Construcción'"
-                                                                        v-text="'mdi-account-hard-hat'">
-                                                                </v-icon>
-                                                                <v-icon v-else color='green'
-                                                                        v-text="'mdi-account-wrench'">
-                                                                </v-icon>
-
-                                                            </v-list-item-avatar>
-                                                            <v-list-item-content>
-                                                                <v-list-item-title
-                                                                    v-text="getHeadquarters(item.headquarters_id)">
-
-                                                                </v-list-item-title>
-
-                                                                <v-list-item-subtitle class="text--primary"
-                                                                                      v-text="getEstablishment(item.establishments_id)">
-                                                                </v-list-item-subtitle>
-
-                                                                <v-list-item-subtitle v-text="item.municipality">
-                                                                </v-list-item-subtitle>
-                                                            </v-list-item-content>
-                                                            <v-list-item-action>
-
-
-                                                                <v-tooltip top>
-                                                                    <template v-slot:activator="{ on, attrs }">
-                                                                        <v-btn icon @click="openDialog(item)"
-                                                                               v-bind="attrs"
-                                                                               v-on="on">
-                                                                            <v-icon color="grey lighten-1">
-                                                                                mdi-map-marker-path
-                                                                            </v-icon>
-                                                                        </v-btn>
-                                                                    </template>
-                                                                    <span>Ruta desde el centro de soporte</span>
-                                                                </v-tooltip>
-                                                                <v-tooltip bottom>
-                                                                    <template v-slot:activator="{ on, attrs }">
-                                                                        <v-btn icon @click="dailyRecords(item)"
-                                                                               v-bind="attrs"
-                                                                               v-on="on">
-                                                                            <v-icon color="grey lighten-1"
-                                                                                    class="mr-1">
-                                                                                mdi-chart-timeline
-                                                                            </v-icon>
-                                                                        </v-btn>
-                                                                    </template>
-                                                                    <span>Seguimiento de actividades</span>
-                                                                </v-tooltip>
-                                                            </v-list-item-action>
-                                                        </template>
-                                                    </v-list-item>
-                                                </v-card>
-                                            </v-col>
-                                        </v-row>
-                                    </v-list>
-                                </div>
-                            </transition-group>
-
-                            <transition-group name="slide-x-transition">
-                                <div v-if="Object.keys(information).length<=0">
+                                    <v-divider></v-divider>
 
                                     <v-row class="mt-2">
-                                        <v-col cols="12" sm="6" md="4" v-for="item in 10" :key="item.id">
-                                            <v-skeleton-loader
-                                                v-bind="attrs"
-                                                type="list-item-avatar-three-line"
-                                            ></v-skeleton-loader>
+                                        <v-col cols="12" sm="6" md="4" v-for="(item, j) in info" :key="item.id">
+
+                                            <v-card>
+
+                                                <v-list-item>
+                                                    <template v-slot:default="{ active }">
+                                                        <v-list-item-avatar color="grey lighten-2">
+                                                            <v-icon class="text--white" color='orange'
+                                                                    v-if="item.work_type=='Construcción'"
+                                                                    v-text="'mdi-account-hard-hat'">
+                                                            </v-icon>
+                                                            <v-icon v-else color='green'
+                                                                    v-text="'mdi-account-wrench'">
+                                                            </v-icon>
+
+                                                        </v-list-item-avatar>
+                                                        <v-list-item-content>
+                                                            <v-list-item-title
+                                                                v-text="getHeadquarters(item.headquarters_id)">
+
+                                                            </v-list-item-title>
+
+                                                            <v-list-item-subtitle class="text--primary"
+                                                                                  v-text="getEstablishment(item.establishments_id)">
+                                                            </v-list-item-subtitle>
+
+                                                            <v-list-item-subtitle v-text="item.municipality">
+                                                            </v-list-item-subtitle>
+                                                        </v-list-item-content>
+                                                        <v-list-item-action>
+
+
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-btn icon @click="openDialog(item)"
+                                                                           v-bind="attrs"
+                                                                           v-on="on">
+                                                                        <v-icon color="grey lighten-1">
+                                                                            mdi-map-marker-path
+                                                                        </v-icon>
+                                                                    </v-btn>
+                                                                </template>
+                                                                <span>Ruta desde el centro de soporte</span>
+                                                            </v-tooltip>
+                                                            <v-tooltip bottom>
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-btn icon @click="dailyRecords(item)"
+                                                                           v-bind="attrs"
+                                                                           v-on="on">
+                                                                        <v-icon color="grey lighten-1"
+                                                                                class="mr-1">
+                                                                            mdi-chart-timeline
+                                                                        </v-icon>
+                                                                    </v-btn>
+                                                                </template>
+                                                                <span>Seguimiento de actividades</span>
+                                                            </v-tooltip>
+                                                        </v-list-item-action>
+                                                    </template>
+                                                </v-list-item>
+                                            </v-card>
                                         </v-col>
                                     </v-row>
-                                </div>
-                            </transition-group>
+                                </v-list>
+                            </div>
+                            <div v-if="Object.keys(information).length<=0">
+
+                                <v-row class="mt-2">
+                                    <v-col cols="12" sm="6" md="4" v-for="item in 10" :key="item.id">
+                                        <v-skeleton-loader
+                                            v-bind="attrs"
+                                            type="list-item-avatar-three-line"
+                                        ></v-skeleton-loader>
+                                    </v-col>
+                                </v-row>
+                            </div>
                         </v-sheet>
                     </v-col>
                 </v-row>
