@@ -80,7 +80,6 @@ Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarte
 
 Route::get('/back', function () {
     //return back();
-
     return redirect()->back();
 
     return redirect()->previous();

@@ -142,7 +142,7 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                
+
                 <v-row class="ma-0">
                     <v-col>
                         <v-sheet min-height="70vh" rounded="lg" class="pa-8">
@@ -427,16 +427,20 @@ export default {
                 let work_type = item.work_type
 
                 if (work_type === "Adecuación") {
-                    /* this.$inertia.get(route('work.adequacy', {
-                         municipality,
-                         establishments,
-                         headquarters
-                     }));*/
-                    window.open(route('work.adequacy', {
+                    let options = {
+                        target: "_blank"
+                    }
+                    this.$inertia.get(route('work.adequacy', {
                         municipality,
                         establishments,
                         headquarters
-                    }), '_blank');
+                    }), null, options);
+
+                    /*window.open(route('work.adequacy', {
+                        municipality,
+                        establishments,
+                        headquarters
+                    }), '_blank');*/
 
                 } else {
                     window.open(route('work.building', {
@@ -447,7 +451,7 @@ export default {
                 }
 
             } catch (e) {
-
+                console.error(e)
             }
 
         },
