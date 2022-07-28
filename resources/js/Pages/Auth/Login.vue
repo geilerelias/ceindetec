@@ -92,15 +92,16 @@
                                     @submit.prevent="login"
                                 >
                                     <v-alert
-                                        v-if="$page.errors.email"
+                                        v-if="getErrors('email')"
                                         text
                                         prominent
                                         type="error"
                                         icon="mdi-alert"
                                         dismissible
                                     >
-                                        {{ $page.errors.email[0] }}
+                                        {{ this.text }}
                                     </v-alert>
+
                                     <v-text-field
                                         dense
                                         v-model="form.email"
@@ -111,6 +112,7 @@
                                             emailRules.required,
                                             emailRules.valid
                                         ]"
+                                        @change="isValid=true"
                                     ></v-text-field>
 
                                     <v-text-field
@@ -192,6 +194,7 @@ export default {
         logo: logo,
         show: null,
         valid: true,
+        isValid: true,
         form: {
             email: '',
             password: '',
@@ -204,9 +207,13 @@ export default {
         passwordRules: {
             required: value => !!value || 'Required.',
             min: v => v.length >= 8 || 'Min 8 characters'
-        }
+        },
+        messageErrors: [],
     }),
     methods: {
+        updateValidation() {
+            this.isValid = true
+        },
         submit() {
             const isFormValid = this.$refs.form.validate();
             if (isFormValid) {
@@ -260,6 +267,7 @@ export default {
                     // `soy error.response.data.message ${error.response.data.message}`
                     // );
                     const array = error.response.data.errors;
+                    this.messageErrors = error.response.data.errors;
                     this.overlay = false;
                     console.log(`soy un array ${array}`);
                     this.text = '';
@@ -274,6 +282,14 @@ export default {
                     //     setTimeout(() => location.reload(), 500);
                     // }
                 });
+        },
+        getErrors(name) {
+            try {
+                this.isValid = false
+                return this.messageErrors[name]
+            } catch (e) {
+
+            }
         }
     }
 };
