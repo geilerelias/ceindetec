@@ -37,7 +37,7 @@ import 'animate.css';
 Vue.use(VAnimateCss);
 
 //Plugins Permissions
-import Permissions from '../Plugins/Permissions';
+import Permissions from '../plugins/Permissions';
 
 Vue.use(Permissions);
 

@@ -149,7 +149,7 @@
                             </v-row>
                         </div>
                     </v-card>
-
+                   
                     <v-tabs-items class="transparent" v-model="tab">
                         <v-tab-item
                             v-for="(item,k) in getRecords"
@@ -231,9 +231,7 @@
                                                 </v-row>
                                             </template>
                                         </v-img>
-                                        <div v-else>
 
-                                        </div>
                                     </v-col>
                                 </v-row>
                             </v-card>
@@ -395,12 +393,16 @@ export default {
                 // console.log(error)
             })
 
-        //console.log('this is data => ', this.data)
+        console.log('this is data => ', this.data)
+        console.log('this is municipality => ', this.data.municipality)
+        console.log('this is establishments => ', this.data.establishments)
+        console.log('this is headquarters => ', this.data.headquarters)
 
         axios
             .get(`/get/route/seguimiento/Adecuación/${this.data.municipality}/${this.data.establishments}/${this.data.headquarters}`)
             .then(response => {
                 this.records = response.data
+                console.log('this is response data ==>', response.data)
             });
 
         this.getHeight
@@ -417,7 +419,9 @@ export default {
         getRecords: function () {
             let array = null
             try {
-                let aux = this.records[1].sub
+                console.log('this is record', this.records[0])
+                let aux = this.records[0].sub
+                console.log(aux)
                 array = aux.sort((a, b) => {
                     if (new Date(a.folder).getTime() > new Date(b.folder).getTime())
                         return -1
@@ -426,7 +430,7 @@ export default {
                     return 0
                 })
             } catch (e) {
-                //console.log('error => ', e)
+                console.log('error => ', e)
             }
             return array
         },
