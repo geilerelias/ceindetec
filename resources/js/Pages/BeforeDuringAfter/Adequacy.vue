@@ -1,22 +1,16 @@
 <template>
     <div>
-        <v-app v-for="(item, pag) in allSedes" :key="item.id" id="inspire">
-            <v-system-bar></v-system-bar>
-            <v-card flat tile class="primary" style="max-height: 80px; height: 80px">
-
-                <v-card-text class="d-flex justify-space-around align-center fill-height">
-                    <img :src="logo" alt="" width="150px" class="float-right"/>
-                    <v-spacer></v-spacer>
-                    <p class="text-h5 white--text font-weight-bold text-uppercase text-center ma-12">
-                        {{ item.sede }}
-                    </p>
-                </v-card-text>
-            </v-card>
-            <v-toolbar dense class="secondary" style="max-height: 10px;"></v-toolbar>
-            <v-main class="bg pt-6">
+        <simple-layout v-for="(item, pag) in allSedes" :key="item.id" id="inspire" class="bg">
+            <template v-slot:header>
+                <p class="text-h5 white--text font-weight-bold text-uppercase text-center ma-12">
+                    {{ item.sede }}
+                </p>
+            </template>
+            <v-main class="bg pt-6 fill-height">
                 <v-container fluid>
                     <v-row>
-                        <v-col class="d-flex" v-for="(elemento, i) in item.items" :key="item.id">
+                        <v-col :style="i!==0?'border-left: solid 3px rgba(158,158,158,1)':''" class="d-flex"
+                               v-for="(elemento, i) in item.items" :key="item.id">
                             <v-card color="transparent" flat width="100%">
                                 <v-card-title class="d-flex justify-center align-center">
                                     <v-card
@@ -34,7 +28,9 @@
                                             class="d-flex child-flex"
                                             cols="12"
                                         >
+
                                             <v-img
+                                                @click="showImage(src)"
                                                 :src="src"
                                                 :aspect-ratio="16/9"
                                                 :elevation="5"
@@ -57,12 +53,9 @@
                                     </v-row>
                                 </v-card-text>
                             </v-card>
-                            <div v-if="i!==2" class="ml-4 mt-12 pl-1 grey rounded-xl"></div>
                         </v-col>
                     </v-row>
                 </v-container>
-
-
                 <v-footer padless color="transparent">
 
                     <v-col
@@ -80,18 +73,78 @@
                     </v-col>
                 </v-footer>
             </v-main>
-        </v-app>
+
+            <div class="text-center">
+                <v-dialog
+                    v-model="dialog"
+                    fullscreen
+                    hide-overlay
+                    transition="dialog-bottom-transition"
+                >
+                    <v-card>
+                        <v-toolbar
+                            dark
+                            color="primary"
+                        >
+                            <v-btn
+                                icon
+                                dark
+                                @click="dialog = false"
+                            >
+                                <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                            <v-toolbar-title>Settings</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-toolbar-items>
+                                <v-btn
+                                    dark
+                                    text
+                                    @click="dialog = false"
+                                >
+                                    Save
+                                </v-btn>
+                            </v-toolbar-items>
+                        </v-toolbar>
+                        <v-img
+                            :src="pathImage"
+                            :aspect-ratio="16/9"
+                            contain
+                            class="grey lighten-2 rounded"
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                                >
+                                    <v-progress-circular
+                                        indeterminate
+                                        color="grey lighten-5"
+                                    ></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
+                    </v-card>
+                </v-dialog>
+            </div>
+
+        </simple-layout>
     </div>
 </template>
 
 <script>
-import logo from '@/../images/logo-ceindetec.png';
+import logo from "@/Components/Logo";
+
+
 import * as VueGoogleMaps from 'vue2-google-maps'
+import SimpleLayout from "@/Layouts/SimpleLayout";
 
 export default {
     name: "Index",
     components: {
-        VueGoogleMaps
+        SimpleLayout,
+        VueGoogleMaps,
+        logo
     },
     data: () => ({
         logo,
@@ -322,7 +375,9 @@ export default {
                     },
                 ]
             },
-        ]
+        ],
+        dialog: false,
+        pathImage: ''
     }),
     created() {
         var lista = [];
@@ -398,6 +453,13 @@ export default {
             }
             return color;
         },
+        showImage(src) {
+            this.pathImage = src
+            this.dialog = true
+        },
+        back() {
+            window.history.back()
+        }
     }
 }
 </script>
@@ -408,8 +470,5 @@ export default {
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 10%, rgba(206, 206, 206, 1) 100%);
 }
 
-.v-application [class*="text-"] {
-    color: #36405a;
-    font-family: "Montserrat", sans-serif !important;
-}
+
 </style>

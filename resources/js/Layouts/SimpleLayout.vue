@@ -23,7 +23,7 @@
         </v-card>
 
         <!-- Page Content -->
-        <main>
+        <main class="fill-height">
             <slot></slot>
         </main>
     </v-app>
