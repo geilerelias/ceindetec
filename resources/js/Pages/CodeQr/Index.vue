@@ -8,7 +8,7 @@
                 CONVENIO DE COOPERACIÓN No 005 2021
             </div>
         </template>
-        <v-main class="">
+        <v-main class="d-flex justify-center align-center">
             <!--
                         <v-container id="printer" style="max-width: 21.6cm; border:solid 1px grey">
                             <v-row>
@@ -64,249 +64,246 @@
                             </v-row>
                         </v-container>
             -->
-
-
-            <!--            <v-container id="printer" style="max-width: 21.6cm; border:solid 1px grey">
-                            <v-row>
-                                <v-col
-                                    class="d-flex justify-center pa-1 "
-                                    cols="3"
-                                    v-for="(item, n) in data" :key="item.id"
-                                >
-                                    <div class="saltopagina"
-                                         :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
-                                        <inertia-link :href="`/qrcode/${item.consecutive}`">
-                                            <v-card outlined
-                                                    class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
-                                                    max-height="4cm" height="2.8cm">
-                                                <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
-                                                        height="2.5cm"
-                                                        style="border: 2px solid #001c47">
-                                                    <v-row>
-                                                        <v-col cols="6">
-                                                            <div class="d-flex flex-column justify-center align-center">
-                                                                <div class="circulo">
-                                                                    <qrcode-vue class=""
-                                                                                :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
-                                                                                :size="75"
-                                                                                level="H"/>
-                                                                </div>
-
-                                                                <div class="text-center" style="font-size: 8px"
-                                                                     v-text="`${item.consecutive}`"></div>
-                                                            </div>
-                                                        </v-col>
-                                                        <v-col cols="6" class="ml-0 pl-0">
-                                                            <div class="d-flex justify-space-around py-1 mb-0">
-                                                                <logo :tile="true" :light="false" color="primary"
-                                                                      :width="80"></logo>
-                                                                <logo :tile="true" :light="false" color="primary" :width="80"
-                                                                      src="logoAlcaldia"></logo>
-                                                            </div>
-                                                            <div class="text-left font-weight-black  mb-0 py-0"
-                                                                 style="font-size: 9px; font-stretch: extra-condensed">
-                                                                CONVENIO DE COOPERACIÓN
-                                                                No 005 2021
-                                                            </div>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-card>
-                                            </v-card>
-                                        </inertia-link>
-                                    </div>
-
-                                </v-col>
-                            </v-row>
-                        </v-container>-->
-
-            <v-container>
-                <v-data-iterator
-                    :items="data"
-                    :items-per-page.sync="itemsPerPage"
-                    :page.sync="page"
-                    :search="search"
-                    :sort-by="sortBy.toLowerCase()"
-                    :sort-desc="sortDesc"
-                    hide-default-footer
+            <div class="d-flex justify-center align-center flex-column">
+                <div
+                    class="d-flex justify-center align-center"
+                    v-for="(item, n) in listaQr" :key="item.id"
+                    style="min-height: 21.59cm;max-height: 21.59cm;height: 21.59cm;min-width:27.94cm;max-width:27.94cm;width:27.94cm"
                 >
-                    <template v-slot:header>
-                        <v-toolbar
-                            id="no-print"
-                            dark
-                            color="primary"
+                    <div class="saltopagina"
+                         :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
+                        <inertia-link :href="`/qrcode/${item.consecutive}`">
+                            <v-card outlined
+                                    min-height="15cm" max-height="15cm" min-width="25cm" max-width="25cm"
+                                    class="d-flex justify-center align-center pa-1 rounded-0 ">
+                                <v-card outlined class="rounded-lg" :aspect-ratio="16/9"
+                                        min-height="14cm" max-height="14cm" min-width="24cm" max-width="24cm"
+                                        style="border: 2px solid #001c47">
+                                    <v-row>
+                                        <v-col cols="6">
+                                            <div class="d-flex flex-column justify-center align-center">
+                                                <div class="circulo pt-8">
+                                                    <qrcode-vue class=""
+                                                                :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
+                                                                :size="380"
+                                                                level="H"/>
+                                                </div>
 
-                            class="mb-3 rounded-lg"
-                        >
-                            <v-text-field
-                                v-model="search"
-                                clearable
-                                flat
-                                solo-inverted
-                                hide-details
-                                prepend-inner-icon="mdi-magnify"
-                                label="Buscar"
-                            ></v-text-field>
+                                                <div class="text-center" style="font-size: 40px"
+                                                     v-text="`${item.consecutive}`"></div>
+                                            </div>
+                                        </v-col>
+                                        <v-col cols="6" class="mt-2 ml-0 pl-0">
+                                            <div class="d-flex justify-space-around mt-4 mx-0 py-1 mb-0">
+                                                <logo :tile="true" :light="false" color="primary"
+                                                      :width="200"></logo>
+                                                <logo :tile="true" :light="false" color="primary" :width="200"
+                                                      src="logoAlcaldia"></logo>
+                                            </div>
+                                            <div class="text-center font-weight-black mt-6  mb-0 py-0"
+                                                 style="font-size: 50px; font-stretch: extra-condensed">
+                                                CONVENIO DE COOPERACIÓN
+                                                No 005 2021
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-card>
+                            </v-card>
+                        </inertia-link>
+                    </div>
 
-                            <template v-if="$vuetify.breakpoint.mdAndUp">
-                                <v-spacer></v-spacer>
-                                <v-select
-                                    v-model="sortBy"
-                                    flat
-                                    solo-inverted
-                                    hide-details
-                                    :items="keys"
-                                    item-text="text"
-                                    item-value="value"
-                                    prepend-inner-icon="mdi-filter-variant"
-                                    label="Ordenar por"
-                                ></v-select>
-                                <v-spacer></v-spacer>
-                                <v-btn-toggle
-                                    v-model="sortDesc"
-                                    mandatory
-                                >
-                                    <v-btn
-                                        large
-                                        depressed
-                                        color="secondary"
-                                        :value="false"
-                                    >
-                                        <v-icon>mdi-arrow-up</v-icon>
-                                    </v-btn>
-                                    <v-btn
-                                        large
-                                        depressed
-                                        color="secondary"
-                                        :value="true"
-                                    >
-                                        <v-icon>mdi-arrow-down</v-icon>
-                                    </v-btn>
-                                </v-btn-toggle>
-                            </template>
-                        </v-toolbar>
-                    </template>
-
-                    <template v-slot:default="props">
-                        <v-row>
-                            <v-col
-                                class="d-flex justify-center"
-                                cols="12"
-                                sm="6"
-                                md="3"
-                                lg="2"
-                                v-for="(item, n) in  props.items" :key="item.id"
+                </div>
+            </div>
+            <!--
+                        <v-container>
+                            <v-data-iterator
+                                :items="data"
+                                :items-per-page.sync="itemsPerPage"
+                                :page.sync="page"
+                                :search="search"
+                                :sort-by="sortBy.toLowerCase()"
+                                :sort-desc="sortDesc"
+                                hide-default-footer
                             >
-                                <div class="saltopagina"
-                                     :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
-                                    <inertia-link :href="`/qrcode/${item.consecutive}`">
-                                        <v-card outlined
-                                                class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
-                                                max-height="4cm" height="2.8cm">
-                                            <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
-                                                    height="2.5cm"
-                                                    style="border: 2px solid #001c47">
-                                                <v-row>
-                                                    <v-col cols="6">
-                                                        <div class="d-flex flex-column justify-center align-center">
-                                                            <div class="circulo">
-                                                                <qrcode-vue class=""
-                                                                            :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
-                                                                            :size="75"
-                                                                            level="H"/>
-                                                            </div>
-
-                                                            <div class="text-center" style="font-size: 8px"
-                                                                 v-text="`${item.consecutive}`"></div>
-                                                        </div>
-                                                    </v-col>
-                                                    <v-col cols="6" class="ml-0 pl-0">
-                                                        <div class="d-flex justify-space-around py-1 mb-0">
-                                                            <logo :tile="true" :light="false" color="primary"
-                                                                  :width="80"></logo>
-                                                            <logo :tile="true" :light="false" color="primary"
-                                                                  :width="80"
-                                                                  src="logoAlcaldia"></logo>
-                                                        </div>
-                                                        <div class="text-left font-weight-black  mb-0 py-0"
-                                                             style="font-size: 9px; font-stretch: extra-condensed">
-                                                            CONVENIO DE COOPERACIÓN
-                                                            No 005 2021
-                                                        </div>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-card>
-                                        </v-card>
-                                    </inertia-link>
-                                </div>
-
-                            </v-col>
-                        </v-row>
-                    </template>
-
-                    <template v-slot:footer>
-                        <v-row id="no-print"
-                               class="mt-2 px-2"
-                               align="center"
-                               justify="center"
-                        >
-                            <span class="grey--text">elementos por página</span>
-                            <v-menu offset-y>
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn
+                                <template v-slot:header>
+                                    <v-toolbar
+                                        id="no-print"
                                         dark
-                                        text
                                         color="primary"
-                                        class="ml-2"
-                                        v-bind="attrs"
-                                        v-on="on"
+
+                                        class="mb-3 rounded-lg"
                                     >
-                                        {{ itemsPerPage }}
-                                        <v-icon>mdi-chevron-down</v-icon>
-                                    </v-btn>
+                                        <v-text-field
+                                            v-model="search"
+                                            clearable
+                                            flat
+                                            solo-inverted
+                                            hide-details
+                                            prepend-inner-icon="mdi-magnify"
+                                            label="Buscar"
+                                        ></v-text-field>
+
+                                        <template v-if="$vuetify.breakpoint.mdAndUp">
+                                            <v-spacer></v-spacer>
+                                            <v-select
+                                                v-model="sortBy"
+                                                flat
+                                                solo-inverted
+                                                hide-details
+                                                :items="keys"
+                                                item-text="text"
+                                                item-value="value"
+                                                prepend-inner-icon="mdi-filter-variant"
+                                                label="Ordenar por"
+                                            ></v-select>
+                                            <v-spacer></v-spacer>
+                                            <v-btn-toggle
+                                                v-model="sortDesc"
+                                                mandatory
+                                            >
+                                                <v-btn
+                                                    large
+                                                    depressed
+                                                    color="secondary"
+                                                    :value="false"
+                                                >
+                                                    <v-icon>mdi-arrow-up</v-icon>
+                                                </v-btn>
+                                                <v-btn
+                                                    large
+                                                    depressed
+                                                    color="secondary"
+                                                    :value="true"
+                                                >
+                                                    <v-icon>mdi-arrow-down</v-icon>
+                                                </v-btn>
+                                            </v-btn-toggle>
+                                        </template>
+                                    </v-toolbar>
                                 </template>
-                                <v-list>
-                                    <v-list-item
-                                        v-for="(number, index) in itemsPerPageArray"
-                                        :key="index"
-                                        @click="updateItemsPerPage(number)"
+
+                                <template v-slot:default="props">
+                                    <v-row>
+                                        <v-col
+                                            class="d-flex justify-center"
+                                            cols="12"
+                                            sm="6"
+                                            md="3"
+                                            lg="2"
+                                            v-for="(item, n) in  props.items" :key="item.id"
+                                        >
+                                            <div class="saltopagina"
+                                                 :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
+                                                <inertia-link :href="`/qrcode/${item.consecutive}`">
+                                                    <v-card outlined
+                                                            class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
+                                                            max-height="4cm" height="2.8cm">
+                                                        <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
+                                                                height="2.5cm"
+                                                                style="border: 2px solid #001c47">
+                                                            <v-row>
+                                                                <v-col cols="6">
+                                                                    <div class="d-flex flex-column justify-center align-center">
+                                                                        <div class="circulo">
+                                                                            <qrcode-vue class=""
+                                                                                        :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
+                                                                                        :size="75"
+                                                                                        level="H"/>
+                                                                        </div>
+
+                                                                        <div class="text-center" style="font-size: 8px"
+                                                                             v-text="`${item.consecutive}`"></div>
+                                                                    </div>
+                                                                </v-col>
+                                                                <v-col cols="6" class="ml-0 pl-0">
+                                                                    <div class="d-flex justify-space-around py-1 mb-0">
+                                                                        <logo :tile="true" :light="false" color="primary"
+                                                                              :width="80"></logo>
+                                                                        <logo :tile="true" :light="false" color="primary"
+                                                                              :width="80"
+                                                                              src="logoAlcaldia"></logo>
+                                                                    </div>
+                                                                    <div class="text-left font-weight-black  mb-0 py-0"
+                                                                         style="font-size: 9px; font-stretch: extra-condensed">
+                                                                        CONVENIO DE COOPERACIÓN
+                                                                        No 005 2021
+                                                                    </div>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-card>
+                                                    </v-card>
+                                                </inertia-link>
+                                            </div>
+
+                                        </v-col>
+                                    </v-row>
+                                </template>
+
+                                <template v-slot:footer>
+                                    <v-row id="no-print"
+                                           class="mt-2 px-2"
+                                           align="center"
+                                           justify="center"
                                     >
-                                        <v-list-item-title>{{ number }}</v-list-item-title>
-                                    </v-list-item>
-                                </v-list>
-                            </v-menu>
+                                        <span class="grey&#45;&#45;text">elementos por página</span>
+                                        <v-menu offset-y>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <v-btn
+                                                    dark
+                                                    text
+                                                    color="primary"
+                                                    class="ml-2"
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                >
+                                                    {{ itemsPerPage }}
+                                                    <v-icon>mdi-chevron-down</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <v-list>
+                                                <v-list-item
+                                                    v-for="(number, index) in itemsPerPageArray"
+                                                    :key="index"
+                                                    @click="updateItemsPerPage(number)"
+                                                >
+                                                    <v-list-item-title>{{ number }}</v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </v-menu>
 
-                            <v-spacer></v-spacer>
+                                        <v-spacer></v-spacer>
 
 
-                            <v-btn
-                                :disabled="page==1"
-                                fab
-                                text
-                                dark
-                                color="blue darken-3"
-                                class="mr-1"
-                                @click="formerPage"
-                            >
-                                <v-icon>mdi-chevron-left</v-icon>
-                            </v-btn>
-                            <div class="mr-4 grey--text">
-                                Página {{ page }} de {{ numberOfPages }}
-                            </div>
-                            <v-btn
-                                :disabled="page==numberOfPages"
-                                fab
-                                text
-                                dark
-                                color="blue darken-3"
-                                class="ml-1"
-                                @click="nextPage"
-                            >
-                                <v-icon>mdi-chevron-right</v-icon>
-                            </v-btn>
-                        </v-row>
-                    </template>
-                </v-data-iterator>
-            </v-container>
+                                        <v-btn
+                                            :disabled="page==1"
+                                            fab
+                                            text
+                                            dark
+                                            color="blue darken-3"
+                                            class="mr-1"
+                                            @click="formerPage"
+                                        >
+                                            <v-icon>mdi-chevron-left</v-icon>
+                                        </v-btn>
+                                        <div class="mr-4 grey&#45;&#45;text">
+                                            Página {{ page }} de {{ numberOfPages }}
+                                        </div>
+                                        <v-btn
+                                            :disabled="page==numberOfPages"
+                                            fab
+                                            text
+                                            dark
+                                            color="blue darken-3"
+                                            class="ml-1"
+                                            @click="nextPage"
+                                        >
+                                            <v-icon>mdi-chevron-right</v-icon>
+                                        </v-btn>
+                                    </v-row>
+                                </template>
+                            </v-data-iterator>
+                        </v-container>
+            -->
 
         </v-main>
         <v-btn id="no-print-btn"
@@ -376,6 +373,37 @@ export default {
             {text: 'Creado en ', value: 'created_at'},
             {text: 'Actualizado en', value: 'updated_at'},
         ],
+        listaQr: [
+            {id: 1, consecutive: "CONV005-000356",},
+            {id: 2, consecutive: "CONV005-000141",},
+            {id: 3, consecutive: "CONV005-000898",},
+            {id: 4, consecutive: "CONV005-000052",},
+            {id: 5, consecutive: "CONV005-000553",},
+            {id: 6, consecutive: "CONV005-000143",},
+            {id: 7, consecutive: "CONV005-000091",},
+            {id: 8, consecutive: "CONV005-000661",},
+            {id: 9, consecutive: "CONV005-000130",},
+            {id: 10, consecutive: "CONV005-000176",},
+            {id: 11, consecutive: "CONV005-000140",},
+            {id: 12, consecutive: "CONV005-000175",},
+            {id: 13, consecutive: "CONV005-000148",},
+            {id: 14, consecutive: "CONV005-000146",},
+            {id: 15, consecutive: "CONV005-000142",},
+            {id: 16, consecutive: "CONV005-000149",},
+            {id: 17, consecutive: "CONV005-000900",},
+            {id: 18, consecutive: "CONV005-000899",},
+            {id: 19, consecutive: "CONV005-000127",},
+            {id: 20, consecutive: "CONV005-000897",},
+            {id: 21, consecutive: "CONV005-000993",},
+            {id: 22, consecutive: "CONV005-000555",},
+            {id: 23, consecutive: "CONV005-000147",},
+            {id: 24, consecutive: "CONV005-000554",},
+            {id: 25, consecutive: "CONV005-000917",},
+            {id: 26, consecutive: "CONV005-000916",},
+            {id: 27, consecutive: "CONV005-000915"},
+        ]
+
+
     }),
     computed: {
         numberOfPages() {

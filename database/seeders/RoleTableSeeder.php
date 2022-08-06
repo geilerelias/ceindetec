@@ -16,12 +16,12 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         $roles = [
-            [1, 'admin', 'sanctum', '2022-01-04 13:32:03'],
-            [2, 'directivo', 'sanctum', '2022-01-04 13:32:12'],
-            [3, 'administrativo', 'sanctum', '2022-01-04 13:32:21'],
-            [4, 'docente', 'sanctum', '2022-01-04 13:33:01'],
-            [5, 'estudiante', 'sanctum', '2022-01-04 13:33:12'],
-            [6, 'acudiente', 'sanctum', '2022-01-04 13:33:22'],
+            [1, 'Admin', 'sanctum', '2022-01-04 13:32:03'],
+            [2, 'Directivo', 'sanctum', '2022-01-04 13:32:12'],
+            [3, 'Administrativo', 'sanctum', '2022-01-04 13:32:21'],
+            [4, 'Docente', 'sanctum', '2022-01-04 13:33:01'],
+            [5, 'Estudiante', 'sanctum', '2022-01-04 13:33:12'],
+            [6, 'Acudiente', 'sanctum', '2022-01-04 13:33:22'],
         ];
 
         foreach ($roles as $role) {

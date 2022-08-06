@@ -55,9 +55,9 @@ Route::get('/about-us', function () {
 })->name('about-us');
 
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
-Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate'])->middleware(['auth:sanctum', 'can:crear qrcode']);
+Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate'])->middleware(['auth:sanctum', 'can:Crear qrcode']);
 
-Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class)->middleware(['auth:sanctum', 'can:ver qrcode']);
+Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class)->middleware(['auth:sanctum', 'can:Ver qrcode']);
 
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');
@@ -99,7 +99,7 @@ Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 
 Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
 
 
-Route::middleware(['auth:sanctum', 'verified', 'can:ver dashboard'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(function () {
     //middleware(['can:view dashboard'])->
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');

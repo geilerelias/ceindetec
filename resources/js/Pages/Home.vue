@@ -106,7 +106,7 @@
                 </v-responsive>
                 <v-container>
                     <p class="text-body-1 mx-auto grey--text text--darken-1 text-justify">
-                        El Sistema para la gestión académica (SIGAC) surge como una solución de software desarrollado
+                        El Sistema para la Gestión Académica (SIGAC) surge como una solución de software desarrollado
                         por
                         Ceindetec, para agilizar los
                         procesos inherentes a las instituciones educativas. Con esta aplicación se pueden llevar a cabo
