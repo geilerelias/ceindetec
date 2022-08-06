@@ -246,6 +246,7 @@
                     </v-col>
                 </v-row>
             </v-container>
+            
             <v-row justify="center">
                 <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <v-card>

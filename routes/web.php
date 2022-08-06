@@ -54,10 +54,13 @@ Route::get('/about-us', function () {
     return Inertia\Inertia::render('AboutUs');
 })->name('about-us');
 
-Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
-Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate'])->middleware(['auth:sanctum', 'can:Crear qrcode']);
+Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
 
-Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class)->middleware(['auth:sanctum', 'can:Ver qrcode']);
+Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
+
+Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
+
+Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
 
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');

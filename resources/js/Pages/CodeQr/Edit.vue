@@ -55,17 +55,18 @@
                                     <div class="pa-8">
                                         <v-row class="mb-5">
                                             <v-col class="col-12">
-                                                <v-text-field
-                                                    label="Descripción"
-                                                    v-model="qrcode.description"
-                                                    :rules="[rules.required,rules.text(qrcode.description,'Descripción')]"
-                                                    outlined
-                                                ></v-text-field>
+                                                <vue-editor :editor-toolbar="customToolbar"
+                                                            ref="myTextEditor"
+                                                            v-model="qrcode.description"
+                                                            :rules="[rules.required,rules.text(qrcode.description,'Descripción')]"
+                                                ></vue-editor>
+
                                             </v-col>
 
 
                                             <v-col class="col-12">
-                                                <v-select
+
+                                                <v-autocomplete
                                                     @change="getHeadquarters(qrcode.establishment_id)"
                                                     v-model="qrcode.establishment_id"
                                                     :items="establishments"
@@ -74,12 +75,12 @@
                                                     label="Establecimiento al que pertenece"
                                                     outlined
                                                     :rules="[rules.required]">
-                                                </v-select>
+                                                </v-autocomplete>
                                             </v-col>
 
                                             <v-col class="col-12">
-                                                <v-select
-                                                    :disabled="qrcode.establishment_id==''"
+                                                <v-autocomplete
+                                                    :disabled="qrcode.establishment_id==''||qrcode.establishment_id==null"
                                                     v-model="qrcode.headquarters_id"
                                                     :items="headquarters"
                                                     item-text="name"
@@ -87,7 +88,7 @@
                                                     label="Sede a la que pertenece"
                                                     outlined
                                                     :rules="[rules.required]">
-                                                </v-select>
+                                                </v-autocomplete>
                                             </v-col>
                                         </v-row>
                                     </div>
@@ -121,6 +122,7 @@ import QrcodeVue from 'qrcode.vue'
 import logo from "@/Components/Logo";
 import colombiaJson from "@/../assets/colombia.json";
 import simpleLayout from "@/Layouts/SimpleLayout";
+import {VueEditor} from "vue2-editor";
 
 export default {
     name: "Edit",
@@ -129,7 +131,8 @@ export default {
         SpinnerComponent,
         QrcodeVue,
         logo,
-        simpleLayout
+        simpleLayout,
+        VueEditor
     },
     data: () => ({
         qrcode: {
@@ -175,6 +178,22 @@ export default {
             }
         },
         valid: false,
+        customToolbar: [
+            [{'font': []}],
+            [{'header': [false, 1, 2, 3, 4, 5, 6,]}],
+            [{'size': ['small', false, 'large', 'huge']}],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+            [{'header': 1}, {'header': 2}],
+            ['blockquote', 'code-block'],
+            [{'list': 'ordered'}, {'list': 'bullet'}, {'list': 'check'}],
+            [{'script': 'sub'}, {'script': 'super'}],
+            [{'indent': '-1'}, {'indent': '+1'}],
+            [{'color': []}, {'background': []}],
+            ['link', 'formula'],
+            [{'direction': 'rtl'}],
+            ['clean'],
+        ],
     }),
     created() {
         this.qrcode = this.data;
@@ -186,7 +205,12 @@ export default {
             })
             .catch((error) => {
                 console.log(error)
-            })
+            });
+
+        if (this.qrcode.establishment_id !== '') {
+            this.getHeadquarters(this.qrcode.establishment_id)
+        }
+
     },
     methods: {
         getCities(department) {
