@@ -1,14 +1,5 @@
 <template>
-    <simple-layout>
-        <template v-slot:header>
-            <div class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
-                Actualización de información
-            </div>
-            <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
-                CONVENIO DE COOPERACIÓN No 005 2021
-            </div>
-        </template>
-
+    <div>
         <v-container>
             <v-row class="d-flex justify-center">
                 <v-col class="col-md-8 col-12 ">
@@ -94,16 +85,10 @@
                                     </div>
                                 </div>
                             </v-form>
-                            <div class="d-flex justify-end">
-
-                                <v-btn @click="update(qrcode)"
-                                       class="primary x-1" dark>
-                                    Actualizar
-                                </v-btn>
-
-                                <v-btn @click="reset"
-                                       class="secondary mx-1" dark>
-                                    Cancelar
+                            <div class="d-flex justify-end px-8">
+                                <v-btn @click="update(qrcode)" block
+                                       class="primary" dark>
+                                    Actualizar información
                                 </v-btn>
                             </div>
                         </v-card-text>
@@ -113,7 +98,7 @@
 
 
         </v-container>
-    </simple-layout>
+    </div>
 </template>
 
 <script>

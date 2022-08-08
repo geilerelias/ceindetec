@@ -33,10 +33,10 @@ class EstablishmentsSeeder extends Seeder
             [15, "Institución etnoducativa rural internado laachon mayapo", "0000", "Manaure", "La Guajira",],
             [16, "Institución etnoeducativa nuestra señora de Fátima", "0000", "Manaure", "La Guajira",],
             [17, "Institución etnoeducativa de maracari", "0000", "Manaure", "La Guajira",],
-            [18, "Centro etnoeducativo numero 17 (kousachon)", "0000", "Riohacha", "La Guajira",],
-            [19, "Centro etnoeducativo numero 4", "0000", "Riohacha", "La Guajira",],
-            [20, "Centro etnoeducativo numero 8 (paraver)", "0000", "Riohacha", "La Guajira",],
-            [21, "Centro etnoeducativo numero 9 (mañature)", "0000", "Riohacha", "La Guajira"],
+            [18, "Centro etnoeducativo #17 (kousachon)", "0000", "Riohacha", "La Guajira",],
+            [19, "Centro etnoeducativo #4", "0000", "Riohacha", "La Guajira",],
+            [20, "Centro etnoeducativo #8 (paraver)", "0000", "Riohacha", "La Guajira",],
+            [21, "Centro etnoeducativo #9 (mañature)", "0000", "Riohacha", "La Guajira"],
         ];
 
 

@@ -8,8 +8,8 @@
                 CONVENIO DE COOPERACIÓN No 005 2021
             </div>
         </template>
-        <v-main class="d-flex justify-center align-center">
-            <v-container>
+        <v-main class="d-flex justify-center align-center ">
+            <v-container class="fill-height">
                 <v-data-iterator
                     :items="data"
                     :items-per-page.sync="itemsPerPage"
@@ -88,45 +88,43 @@
                             >
                                 <div class="saltopagina"
                                      :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
-                                    <inertia-link :href="`/qrcode/${item.id}/edit`">
-                                        <v-card outlined
-                                                class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
-                                                max-height="4cm" height="2.8cm">
-                                            <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
-                                                    height="2.5cm"
-                                                    style="border: 2px solid #001c47">
-                                                <v-row>
-                                                    <v-col cols="6">
-                                                        <div class="d-flex flex-column justify-center align-center">
-                                                            <div class="circulo">
-                                                                <qrcode-vue class=""
-                                                                            :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
-                                                                            :size="75"
-                                                                            level="H"/>
-                                                            </div>
+                                    <v-card outlined @click="showEditDialog(item)"
+                                            class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
+                                            max-height="4cm" height="2.8cm">
+                                        <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
+                                                height="2.5cm"
+                                                style="border: 2px solid #001c47">
+                                            <v-row>
+                                                <v-col cols="6">
+                                                    <div class="d-flex flex-column justify-center align-center">
+                                                        <div class="circulo">
+                                                            <qrcode-vue class=""
+                                                                        :value="`http://sigac.almaguajira.com/qrcode/${item.consecutive}`"
+                                                                        :size="75"
+                                                                        level="H"/>
+                                                        </div>
 
-                                                            <div class="text-center" style="font-size: 8px"
-                                                                 v-text="`${item.consecutive}`"></div>
-                                                        </div>
-                                                    </v-col>
-                                                    <v-col cols="6" class="ml-0 pl-0">
-                                                        <div class="d-flex justify-space-around py-1 mb-0">
-                                                            <logo :tile="true" :light="false" color="primary"
-                                                                  :width="80"></logo>
-                                                            <logo :tile="true" :light="false" color="primary"
-                                                                  :width="80"
-                                                                  src="logoAlcaldia"></logo>
-                                                        </div>
-                                                        <div class="text-left font-weight-black  mb-0 py-0"
-                                                             style="font-size: 9px; font-stretch: extra-condensed">
-                                                            CONVENIO DE COOPERACIÓN
-                                                            No 005 2021
-                                                        </div>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-card>
+                                                        <div class="text-center" style="font-size: 8px"
+                                                             v-text="`${item.consecutive}`"></div>
+                                                    </div>
+                                                </v-col>
+                                                <v-col cols="6" class="ml-0 pl-0">
+                                                    <div class="d-flex justify-space-around py-1 mb-0">
+                                                        <logo :tile="true" :light="false" color="primary"
+                                                              :width="80"></logo>
+                                                        <logo :tile="true" :light="false" color="primary"
+                                                              :width="80"
+                                                              src="logoAlcaldia"></logo>
+                                                    </div>
+                                                    <div class="text-left font-weight-black  mb-0 py-0"
+                                                         style="font-size: 9px; font-stretch: extra-condensed">
+                                                        CONVENIO DE COOPERACIÓN
+                                                        No 005 2021
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
                                         </v-card>
-                                    </inertia-link>
+                                    </v-card>
                                 </div>
 
                             </v-col>
@@ -198,18 +196,72 @@
                 </v-data-iterator>
             </v-container>
         </v-main>
-        <inertia-link href="/qrcode/print">
-            <v-btn id="no-print-btn"
-                   color="secondary"
-                   dark
-                   bottom
-                   right
-                   fixed
-                   fab
+
+
+        <v-card id="create" flat>
+            <v-speed-dial
+                v-model="fab"
+                :bottom="true"
+                right
+                direction="top"
+                :open-on-hover="true"
+                transition="slide-y-reverse-transition"
             >
-                <v-icon>mdi-file-document-outline</v-icon>
-            </v-btn>
-        </inertia-link>
+                <template v-slot:activator>
+                    <v-btn
+                        v-model="fab"
+                        color="secondary"
+                        dark
+                        fab
+                    >
+                        <v-icon v-if="fab">
+                            mdi-close
+                        </v-icon>
+                        <v-icon v-else>
+                            mdi-tune
+                        </v-icon>
+                    </v-btn>
+                </template>
+
+                <inertia-link href="/qrcode/print">
+                    <v-btn id="no-print-btn"
+                           color="red darken-4"
+                           dark
+                           small
+                           fab
+                    >
+                        <v-icon>mdi-file-document-outline</v-icon>
+                    </v-btn>
+                </inertia-link>
+                <inertia-link href="/qrcode/search-edit">
+                    <v-btn
+                        fab
+                        dark
+                        small
+                        color="green"
+                    >
+                        <v-icon>mdi-pencil</v-icon>
+                    </v-btn>
+                </inertia-link>
+                <v-btn
+                    fab
+                    dark
+                    small
+                    color="indigo"
+                >
+                    <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <v-btn
+                    fab
+                    dark
+                    small
+                    color="red"
+                >
+                    <v-icon>mdi-delete</v-icon>
+                </v-btn>
+
+            </v-speed-dial>
+        </v-card>
 
         <!--        <v-btn id="no-print-btn"
                        color="primary"
@@ -224,6 +276,45 @@
                 </v-btn>-->
 
         <spinner-component :value="inProcess"></spinner-component>
+
+        <v-row justify="center">
+            <v-dialog
+                v-model="dialog"
+                fullscreen
+                hide-overlay
+                transition="dialog-bottom-transition"
+                persistent
+            >
+                <v-card class="rounded-0">
+                    <v-toolbar
+                        dark
+                        color="primary"
+                        height="100"
+                    >
+                        <v-toolbar-title>
+                            <div
+                                class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
+                                Actualización de información
+                            </div>
+                            <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
+                                CONVENIO DE COOPERACIÓN No 005 2021
+                            </div>
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            icon
+                            dark
+                            @click="closeDialog()"
+                        >
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+                    <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
+                    <edit v-if="editItem!==null" :data="editItem"></edit>
+                </v-card>
+            </v-dialog>
+        </v-row>
+
     </simple-layout>
 </template>
 
@@ -234,6 +325,7 @@ import QrcodeVue from 'qrcode.vue'
 
 import logo from "@/Components/Logo";
 import simpleLayout from "@/Layouts/SimpleLayout";
+import edit from "./Edit";
 
 export default {
     name: "Index",
@@ -242,7 +334,8 @@ export default {
         SpinnerComponent,
         QrcodeVue,
         simpleLayout,
-        logo
+        logo,
+        edit
     },
 
     data: () => ({
@@ -266,6 +359,7 @@ export default {
             {text: 'Creado en ', value: 'created_at'},
             {text: 'Actualizado en', value: 'updated_at'},
         ],
+        editItem: null,
         listaQr: [
             {id: 1, consecutive: "CONV005-000356", description: `<div class="text-h5">Ceindetec</div>`},
             {id: 2, consecutive: "CONV005-000141", description: `<div class="text-h5">Santa fé</div>`},
@@ -297,7 +391,8 @@ export default {
         ],
         establishments: [],
         headquarters: [],
-
+        fab: false,
+        dialog: false,
     }),
     created() {
         axios.get('/dashboard/establishment/all')
@@ -358,13 +453,25 @@ export default {
                 this.itemsPerPage = number
             }
         },
+        showEditDialog(item) {
+            this.editItem = item
+            this.dialog = true
+        },
+        closeDialog() {
+            this.dialog = false
+            this.editItem = null
+        },
+        back() {
+            window.history.back()
+        }
     },
-    back() {
-        window.history.back()
-    }
+
 
 }
-</script>
+
+function closeDialog() {
+    dialog = false
+}</script>
 
 
 <style type="text/css" media="print">
@@ -409,6 +516,15 @@ export default {
 </style>
 
 <style>
+/* This is for documentation purposes and will not be needed in your application */
+#create .v-speed-dial {
+    position: absolute;
+}
+
+#create .v-btn--floating {
+    position: relative;
+}
+
 .first {
     writing-mode: vertical-rl;
     text-orientation: mixed;

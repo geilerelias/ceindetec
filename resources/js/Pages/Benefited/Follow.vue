@@ -132,9 +132,10 @@
 
                                     <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
                                         <v-text-field hide-details dense enclosed outlined
-                                                      append-icon="mdi-magnify"
+                                                      prepend-inner-icon="mdi-magnify"
                                                       placeholder="Buscar"
                                                       v-model="search"
+                                                      clearable
                                         ></v-text-field>
                                     </div>
                                 </v-row>
@@ -246,7 +247,7 @@
                     </v-col>
                 </v-row>
             </v-container>
-            
+
             <v-row justify="center">
                 <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <v-card>

@@ -66,10 +66,10 @@
                     <div class="saltopagina"
                          :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
                         <v-card outlined
-                                min-height="15cm" max-height="15cm" min-width="25cm" max-width="25cm"
+                                min-height="15cm" max-height="15cm" min-width="20cm" max-width="20cm"
                                 class="d-flex justify-center align-center pa-1 rounded-0 ">
                             <v-card outlined class="rounded-lg" :aspect-ratio="16/9"
-                                    min-height="14cm" max-height="14cm" min-width="24cm" max-width="24cm"
+                                    min-height="14cm" max-height="14cm" min-width="19cm" max-width="19cm"
                                     style="border: 2px solid #001c47">
                                 <v-row>
                                     <v-col class="mt-2 ml-0 pl-0">
@@ -82,27 +82,37 @@
                                         <v-container>
 
                                             <div class="text-center font-weight-black mt-1  mb-0 py-0"
-                                                 style="font-size: 50px; font-stretch: extra-condensed">
+                                                 style="font-size: 35px; font-stretch: extra-condensed">
                                                 CONVENIO DE COOPERACIÓN
                                             </div>
                                             <div class="text-center font-weight-black mt-n6  mb-0 py-0"
-                                                 style="font-size: 50px; font-stretch: extra-condensed">
+                                                 style="font-size: 35px; font-stretch: extra-condensed">
                                                 No 005 2021
                                             </div>
-
-                                            <div class="px-3">
-                                                <div class="text-h5">{{ getHeadquarters(item.headquarters_id) }}</div>
-                                                <div class="text-h6 secondary--text">
-                                                    {{ getEstablishment(item.establishment_id) }}
+                                            <v-container class="px-6">
+                                                <div class="px-3">
+                                                    <div class="text-h5 text-uppercase">{{
+                                                            getHeadquarters(item.headquarters_id)
+                                                        }}
+                                                    </div>
+                                                    <div class="text-h6 secondary--text text-uppercase">
+                                                        {{ getEstablishment(item.establishment_id) }}
+                                                    </div>
+                                                    <div class="text-h6 terciar--text text-caption text-uppercase">
+                                                        {{ getMunicipalityDeparment(item.headquarters_id) }}
+                                                    </div>
+                                                    <div class="text-h6 mt-3 description"
+                                                         v-html="item.description"></div>
                                                 </div>
-                                                <div class="text-h6 mt-3 description" v-html="item.description"></div>
-                                            </div>
-                                            <div class="d-flex align-center justify-space-around">
-                                                <div class="text-center" style="font-size: 30px"
-                                                     v-text="`${item.consecutive}`"></div>
-                                                <a href="">
-                                                    {{ `http://sigac.almaguajira.com/qrcode/${item.consecutive}` }}
-                                                </a>
+                                            </v-container>
+                                            <div class="d-flex justify-center  ">
+                                                <div class="d-flex flex-column">
+                                                    <a href="">
+                                                        {{ item.consecutive }}
+                                                    </a>
+                                                    <div class="primary pb-1 rounded-lg" style="width: 132px"></div>
+
+                                                </div>
                                             </div>
                                         </v-container>
                                     </v-col>
@@ -113,6 +123,8 @@
 
                 </div>
             </div>
+
+
         </v-main>
         <v-btn id="no-print-btn"
                color="secondary"
@@ -139,6 +151,7 @@ export default {
     data: () => ({
         establishments: [],
         headquarters: [],
+
     }),
     created() {
         axios.get('/dashboard/establishment/all')
@@ -159,6 +172,7 @@ export default {
                 console.log(error)
             })
     },
+
     methods: {
         getNumber(id) {
             // console.log('este es id =>', id, ' type => ', typeof (parseInt(id)));
@@ -192,6 +206,15 @@ export default {
             try {
                 let found = this.headquarters.find(element => element.id === id);
                 return found.name;
+            } catch (e) {
+                return null;
+            }
+        },
+
+        getMunicipalityDeparment(id) {
+            try {
+                let found = this.headquarters.find(element => element.id === id);
+                return `Municipio de ${found.municipality} Departamento de ${found.department}`
             } catch (e) {
                 return null;
             }

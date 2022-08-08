@@ -55,6 +55,8 @@ Route::get('/about-us', function () {
 })->name('about-us');
 
 Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
+Route::get('/qrcode/search-edit', [\App\Http\Controllers\QrCodeController::class, 'searchEdit']);
+Route::get('/qrcode/search/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'search']);
 
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
 
