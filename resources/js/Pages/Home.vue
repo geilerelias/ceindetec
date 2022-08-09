@@ -96,6 +96,21 @@
                     </v-row>
                 </section>
         -->
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <template>
+                        <div>
+                            {{ $page.auth.roles[0] === 'admin' ? true : false }}
+                            <br>
+                            {{ $page.auth.permissions[0] === 'view dashboard' ? true : false }}
+                            <br>
+                            {{ $page.auth }}
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
 
         <v-sheet light class="rounded-0 py-8">
             <div class="my-12">
