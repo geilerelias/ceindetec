@@ -60,7 +60,7 @@ Route::get('/qrcode/search/{consecutive}', [\App\Http\Controllers\QrCodeControll
 
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
 
-Route::post('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
+Route::get('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
 
 Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
 
@@ -106,6 +106,7 @@ Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkContro
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(function () {
     //middleware(['can:view dashboard'])->
+
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');

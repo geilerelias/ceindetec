@@ -16,7 +16,7 @@ class QrCodeController extends Controller
 //        $this->middleware('can:create rol')->only('create', 'store');
 //        $this->middleware('can:edit rol')->only('edit', 'update');
 //        $this->middleware('can:destroy rol')->only('destroy');
-        $this->middleware(['auth:sanctum', 'can:Crear qrcode'])->only('store', 'update');
+        $this->middleware(['auth:sanctum', 'can:Crear qrcode'])->only('store', 'update', 'generate');
         $this->middleware(['auth:sanctum', 'can:Ver qrcode'])->only('index');
         $this->middleware(['auth:sanctum', 'can:Editar qrcode'])->only('edit', 'update');
     }
