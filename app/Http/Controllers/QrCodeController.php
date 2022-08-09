@@ -122,7 +122,7 @@ class QrCodeController extends Controller
             if ($qrCode !== null) {
                 return $qrCode;
             } else {
-                return null;
+                abort(404);
             }
         }
     }

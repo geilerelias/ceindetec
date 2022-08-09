@@ -54,9 +54,9 @@
                             <div v-if="data.status!=='inactive'">
                                 <div>
                                     Descripción:
-                                    <span class="font-weight-black text--primary">
-                                            {{ data.description }}
-                                        </span>
+                                    <div class="font-weight-black text--primary description" v-html="data.description ">
+
+                                    </div>
                                 </div>
                                 <div>
                                     Establecimiento:
@@ -74,20 +74,58 @@
                         </v-card-text>
 
                         <v-divider></v-divider>
-                        <v-card-actions style="height: 40px">
+                        
+                        <v-card-actions style="height: 50px">
                             <v-spacer></v-spacer>
-                            <inertia-link :href="route('qrcode.edit',{id:data.id})">
-                                <v-btn text fab small
-                                       class="flex-grow-1">
-                                    <v-icon>mdi-text-box-edit-outline</v-icon>
-                                </v-btn>
-                            </inertia-link>
+                            <v-btn text fab small
+                                   class="mr-3"
+                                   @click="showEditDialog(data)">
+                                <v-icon>mdi-text-box-edit-outline</v-icon>
+                            </v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
 
         </v-container>
+
+        <v-row justify="center">
+            <v-dialog
+                v-model="dialog"
+                fullscreen
+                hide-overlay
+                transition="dialog-bottom-transition"
+                persistent
+            >
+                <v-card class="rounded-0">
+                    <v-toolbar
+                        dark
+                        color="primary"
+                        height="100"
+                    >
+                        <v-toolbar-title>
+                            <div
+                                class=" text-subtitle-2 text-sm-h6 white--text font-weight-bold text-uppercase py-0 my-0">
+                                Actualización de información
+                            </div>
+                            <div class="text-caption text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0">
+                                CONVENIO DE COOPERACIÓN No 005 2021
+                            </div>
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            icon
+                            dark
+                            @click="closeDialog()"
+                        >
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+                    <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
+                    <edit v-if="editItem!==null" :data="editItem"></edit>
+                </v-card>
+            </v-dialog>
+        </v-row>
 
     </simple-layout>
 </template>
@@ -97,6 +135,7 @@ import SpinnerComponent from "@/Components/SpinnerComponent";
 import QrcodeVue from 'qrcode.vue'
 import logo from "@/Components/Logo";
 import SimpleLayout from "@/Layouts/SimpleLayout";
+import edit from "./Edit";
 
 export default {
     name: "Show",
@@ -105,11 +144,14 @@ export default {
         SpinnerComponent,
         QrcodeVue,
         SimpleLayout,
-        logo
+        logo,
+        edit
     },
     data: () => ({
         establishments: [],
         headquarters: [],
+        dialog: false,
+        editItem: null
     }),
     created() {
         axios.get(`/dashboard/establishment/all`)
@@ -141,10 +183,20 @@ export default {
                 return null;
             }
         },
+        showEditDialog(item) {
+            this.editItem = item
+            this.dialog = true
+        },
+        closeDialog() {
+            this.dialog = false
+            this.editItem = null
+        },
     }
 }
 </script>
 
-<style scoped>
-
+<style>
+.description > ul > li {
+    list-style-type: circle;
+}
 </style>

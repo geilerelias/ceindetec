@@ -468,10 +468,7 @@ export default {
 
 
 }
-
-function closeDialog() {
-    dialog = false
-}</script>
+</script>
 
 
 <style type="text/css" media="print">

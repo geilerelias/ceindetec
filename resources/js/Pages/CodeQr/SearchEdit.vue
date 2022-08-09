@@ -14,8 +14,9 @@
                 </div>
                 <p class="base-body text-body-1 grey--text text--darken-1 text-left mb-10">
                     A partir del consecutivo <span class="font-weight-bold text--primary">CONV005-</span> ingresa el
-                    serial correspondiente para consultar y modificar, si este se encuentra registrado automáticamente
-                    el sistema te mostrara la información para posteriormente modificar,
+                    serial correspondiente para consultar y modificar, si este se encuentra registrado; de ser así,
+                    automáticamente
+                    el sistema te mostrara la información para posteriormente actualizar.
                 </p>
                 <div>
                     <div class="ma-auto position-relative" style="max-width: 300px">
@@ -87,7 +88,7 @@ export default {
                 .catch(error => {
                     console.log(error)
                     this.loading = false
-                    this.snackbarColor = 'warning'
+                    this.snackbarColor = 'error'
                     this.text = `Búsqueda errónea de consecutivo "CONV005-${rsp}" (${this.snackbarColor})`
                     this.snackbar = true
                 })
