@@ -414,7 +414,7 @@ export default {
                 return Object.assign({}, data);
 
             } catch (e) {
-                console.log(e)
+                console.log("Error inesperado => ", e)
                 return this.information
             }
         }
