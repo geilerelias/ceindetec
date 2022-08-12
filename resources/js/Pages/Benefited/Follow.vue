@@ -381,8 +381,9 @@ export default {
 
                     let values = this.information[key].filter(item => {
                         console.log('this item =>', item)
-                        console.log("municipio")
                         const municipio = item.municipality.toLowerCase()
+                        console.log("municipio")
+
                         console.log('establecimiento')
                         const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
                         console.log("sede")
@@ -498,7 +499,19 @@ export default {
 
         getHeadquarters(id) {
             try {
-                let found = this.headquarters.find(element => element.id === id);
+                // console.log(id)
+                let found = null;
+                if (typeof (id) !== 'number') {
+                    let nuevo = this.getNumber(id)
+                    //console.log(nuevo)
+                    found = this.headquarters.find(
+                        element => element.id === nuevo
+                    );
+                } else {
+                    found = this.headquarters.find(
+                        element => element.id === id
+                    );
+                }
                 return found.name;
             } catch (e) {
                 return null;
