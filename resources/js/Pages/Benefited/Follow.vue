@@ -381,9 +381,13 @@ export default {
 
                     let values = this.information[key].filter(item => {
                         console.log('this item =>', item)
+                        console.log("municipio")
                         const municipio = item.municipality.toLowerCase()
+                        console.log('establecimiento')
                         const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
+                        console.log("sede")
                         const sede = this.getHeadquarters(item.headquarters_id).toLowerCase()
+                        console.log("tipo")
                         const tipo = item.work_type.toLowerCase()
                         if (this.isMunicipality && !this.isWorkType && !this.isEstablishments) {
                             return municipio.indexOf(search) > -1
