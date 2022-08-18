@@ -230,7 +230,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <template>
                         <div>
-                            {{ $page.auth.roles[0] === 'admin' ? true : false }}
+                            {{ $page.auth.roles[0] === 'Admin' ? true : false }}
                             <br>
                             {{ $page.auth.permissions[0] === 'view dashboard' ? true : false }}
                             <br>

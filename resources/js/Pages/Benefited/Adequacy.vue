@@ -149,7 +149,7 @@
                             </v-row>
                         </div>
                     </v-card>
-                   
+
                     <v-tabs-items class="transparent" v-model="tab">
                         <v-tab-item
                             v-for="(item,k) in getRecords"
@@ -437,20 +437,14 @@ export default {
 
         getHeight: () => {
             try {
-
                 let element = document.getElementById('container');
-
                 // console.log("este es elemnt => ", element.clientHeight)
                 let height = element.clientHeight
-
                 let res = height / 1000
-
                 let cant = Math.ceil(res);
-
                 if (height > 1056) {
                     this.height = 1090 * cant
                 }
-
                 return this.height
             } catch (e) {
 

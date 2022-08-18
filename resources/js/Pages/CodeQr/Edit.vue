@@ -86,7 +86,7 @@
                                 </div>
                             </v-form>
                             <div class="d-flex justify-end px-8">
-                                <v-btn @click="update(qrcode)" block
+                                <v-btn :disabled="can" @click="update(qrcode)" block
                                        class="primary" dark>
                                     Actualizar información
                                 </v-btn>

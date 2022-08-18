@@ -57,11 +57,8 @@ Route::get('/about-us', function () {
 Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
 Route::get('/qrcode/search-edit', [\App\Http\Controllers\QrCodeController::class, 'searchEdit']);
 Route::get('/qrcode/search/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'search']);
-
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
-
 Route::get('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
-
 Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
 
 Route::get('/contact-us', function () {
@@ -356,3 +353,11 @@ function listadoDirectorio($directorio)
 Route::get('/developer/gers', function () {
     return Inertia\Inertia::render('Gers');
 })->name('developer.gers');
+
+
+Route::get('/update-qrcode/', function () {
+    echo "actualización de información";
+});
+
+
+

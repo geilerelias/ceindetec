@@ -213,6 +213,7 @@
                         color="secondary"
                         dark
                         fab
+                        fixed
                     >
                         <v-icon v-if="fab">
                             mdi-close
@@ -310,6 +311,7 @@
                         </v-btn>
                     </v-toolbar>
                     <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
+                    {{ $page.auth !== null }}
                     <edit v-if="editItem!==null" :data="editItem"></edit>
                 </v-card>
             </v-dialog>
