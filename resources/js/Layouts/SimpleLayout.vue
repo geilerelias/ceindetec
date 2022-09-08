@@ -1,6 +1,6 @@
 <template>
-    <v-app id="inspire">
-        <v-card outlined tile id="no-print-header">
+    <v-app>
+        <v-card outlined tile class="no-print">
             <v-toolbar
                 color="primary"
                 dark
@@ -18,6 +18,9 @@
                     <slot name="header"></slot>
                 </div>
                 <settings-dropdown></settings-dropdown>
+                <template v-slot:extension>
+                    <slot name="extension"></slot>
+                </template>
             </v-toolbar>
             <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
         </v-card>
@@ -47,6 +50,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style type="text/css" media="print">
+@media print {
+    #no-print {
+        display: none;
+    }
+}
 
 </style>

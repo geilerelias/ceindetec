@@ -53,6 +53,16 @@ class QrCodeController extends Controller
         return Inertia::render('CodeQr/SearchEdit');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchShow()
+    {
+        return Inertia::render('CodeQr/SearchShow');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,6 +87,7 @@ class QrCodeController extends Controller
     public function generate($starts_in, $ends_in)
     {
         for ($i = $starts_in; $i <= $ends_in; $i++) {
+
             $qrCode = new QrCode(['consecutive' => 'CONV005-00' . $i]);
             $qrCode->save();
         }

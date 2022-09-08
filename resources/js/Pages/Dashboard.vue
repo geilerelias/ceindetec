@@ -229,6 +229,27 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <template>
+                        <div v-if="$page.user!==null" dense>
+                            <div v-permission="'Ver dashboard'">
+                                puedo ver el dashboard
+                            </div>
+
+                            <div v-permission="'Ver calificaciones'">
+                                puedo ver calificaciones
+                            </div>
+
+                            <div v-permission="'Ver calificaciones'">
+                                puedo ver calificaciones
+                            </div>
+
+                            <div v-role="'Admin'">
+                                Soy administrador
+                            </div>
+                            
+                            <div v-role="'Directivo'">
+                                Soy directivo
+                            </div>
+                        </div>
                         <div>
                             {{ $page.auth.roles[0] === 'Admin' ? true : false }}
                             <br>

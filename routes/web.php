@@ -56,6 +56,7 @@ Route::get('/about-us', function () {
 
 Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
 Route::get('/qrcode/search-edit', [\App\Http\Controllers\QrCodeController::class, 'searchEdit']);
+Route::get('/qrcode/search-show', [\App\Http\Controllers\QrCodeController::class, 'searchShow']);
 Route::get('/qrcode/search/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'search']);
 Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
 Route::get('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
@@ -356,7 +357,87 @@ Route::get('/developer/gers', function () {
 
 
 Route::get('/update-qrcode/', function () {
-    echo "actualización de información";
+    //echo "actualización de información";
+    $qrcode = new \App\Models\QrCode();
+    $trapezoidales = [
+        array('CONV005-001000', 'active', 'Mesas Trapezoidal', 5, 5),
+        array('CONV005-001001', 'active', 'Mesas Trapezoidal', 5, 5),
+        array('CONV005-001002', 'active', 'Mesas Trapezoidal', 5, 5),
+        array('CONV005-001003', 'active', 'Mesas Trapezoidal', 5, 5),
+        array('CONV005-001004', 'active', 'Mesas Trapezoidal', 7, 7),
+        array('CONV005-001005', 'active', 'Mesas Trapezoidal', 7, 7),
+        array('CONV005-001006', 'active', 'Mesas Trapezoidal', 7, 7),
+        array('CONV005-001007', 'active', 'Mesas Trapezoidal', 7, 7),
+        array('CONV005-001008', 'active', 'Mesas Trapezoidal', 3, 3),
+        array('CONV005-001009', 'active', 'Mesas Trapezoidal', 3, 3),
+        array('CONV005-001010', 'active', 'Mesas Trapezoidal', 3, 3),
+        array('CONV005-001011', 'active', 'Mesas Trapezoidal', 3, 3),
+        array('CONV005-001012', 'active', 'Mesas Trapezoidal', 1, 1),
+        array('CONV005-001013', 'active', 'Mesas Trapezoidal', 1, 1),
+        array('CONV005-001014', 'active', 'Mesas Trapezoidal', 1, 1),
+        array('CONV005-001015', 'active', 'Mesas Trapezoidal', 1, 1),
+        array('CONV005-001016', 'active', 'Mesas Trapezoidal', 9, 10),
+        array('CONV005-001017', 'active', 'Mesas Trapezoidal', 9, 10),
+        array('CONV005-001018', 'active', 'Mesas Trapezoidal', 9, 10),
+        array('CONV005-001019', 'active', 'Mesas Trapezoidal', 9, 10),
+        array('CONV005-001020', 'active', 'Mesas Trapezoidal', 18, 26),
+        array('CONV005-001021', 'active', 'Mesas Trapezoidal', 18, 26),
+        array('CONV005-001022', 'active', 'Mesas Trapezoidal', 18, 26),
+        array('CONV005-001023', 'active', 'Mesas Trapezoidal', 18, 26),
+        array('CONV005-001024', 'active', 'Mesas Trapezoidal', 21, 27),
+        array('CONV005-001025', 'active', 'Mesas Trapezoidal', 21, 27),
+        array('CONV005-001026', 'active', 'Mesas Trapezoidal', 21, 27),
+        array('CONV005-001027', 'active', 'Mesas Trapezoidal', 21, 27),
+        array('CONV005-001028', 'active', 'Mesas Trapezoidal', 12, 15),
+        array('CONV005-001029', 'active', 'Mesas Trapezoidal', 12, 15),
+        array('CONV005-001030', 'active', 'Mesas Trapezoidal', 12, 15),
+        array('CONV005-001031', 'active', 'Mesas Trapezoidal', 12, 15),
+        array('CONV005-001032', 'active', 'Mesas Trapezoidal', 13, 16),
+        array('CONV005-001033', 'active', 'Mesas Trapezoidal', 13, 16),
+        array('CONV005-001034', 'active', 'Mesas Trapezoidal', 13, 16),
+        array('CONV005-001035', 'active', 'Mesas Trapezoidal', 13, 16),
+        array('CONV005-001036', 'active', 'Mesas Trapezoidal', 14, 18),
+        array('CONV005-001037', 'active', 'Mesas Trapezoidal', 14, 18),
+        array('CONV005-001038', 'active', 'Mesas Trapezoidal', 14, 18),
+        array('CONV005-001039', 'active', 'Mesas Trapezoidal', 14, 18),
+        array('CONV005-001040', 'active', 'Mesas Trapezoidal', 11, 14),
+        array('CONV005-001041', 'active', 'Mesas Trapezoidal', 11, 14),
+        array('CONV005-001042', 'active', 'Mesas Trapezoidal', 11, 14),
+        array('CONV005-001043', 'active', 'Mesas Trapezoidal', 11, 14),
+        array('CONV005-001044', 'active', 'Mesas Trapezoidal', 15, 19),
+        array('CONV005-001045', 'active', 'Mesas Trapezoidal', 15, 19),
+        array('CONV005-001046', 'active', 'Mesas Trapezoidal', 15, 19),
+        array('CONV005-001047', 'active', 'Mesas Trapezoidal', 15, 19),
+        array('CONV005-001048', 'active', 'Mesas Trapezoidal', 15, 20),
+        array('CONV005-001049', 'active', 'Mesas Trapezoidal', 15, 20),
+        array('CONV005-001050', 'active', 'Mesas Trapezoidal', 15, 20),
+        array('CONV005-001051', 'active', 'Mesas Trapezoidal', 15, 20),
+        array('CONV005-001052', 'active', 'Mesas Trapezoidal', 10, 11),
+        array('CONV005-001053', 'active', 'Mesas Trapezoidal', 10, 11),
+        array('CONV005-001054', 'active', 'Mesas Trapezoidal', 10, 11),
+        array('CONV005-001055', 'active', 'Mesas Trapezoidal', 10, 11),
+        array('CONV005-001056', 'active', 'Mesas Trapezoidal', 8, 9),
+        array('CONV005-001057', 'active', 'Mesas Trapezoidal', 8, 9),
+        array('CONV005-001058', 'active', 'Mesas Trapezoidal', 8, 9),
+        array('CONV005-001059', 'active', 'Mesas Trapezoidal', 8, 9),
+        array('CONV005-001060', 'active', 'Mesas Trapezoidal', 8, 8),
+        array('CONV005-001061', 'active', 'Mesas Trapezoidal', 8, 8),
+        array('CONV005-001062', 'active', 'Mesas Trapezoidal', 8, 8),
+        array('CONV005-001063', 'active', 'Mesas Trapezoidal', 8, 8),
+    ];
+
+    foreach ($trapezoidales as $sub) {
+        echo " Consecutive: " . $sub[0] . " status: " . $sub[1] . " description: " . $sub[2] . " establishment_id: " . $sub[3] . " headquarters_id: " . $sub[4];
+        $qrcode->consecutive = $sub[0];
+        $qrcode->status = $sub[1];
+        $qrcode->description = $sub[2];
+        $qrcode->establishment_id = $sub[3];
+        $qrcode->headquarters_id = $sub[4];
+        $qrcode->save();
+        echo '</br>';
+    }
+
+
 });
 
 

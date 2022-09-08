@@ -6,6 +6,7 @@ import Vue from 'vue';
 
 //inertia
 import {InertiaApp} from '@inertiajs/inertia-vue';
+import {InertiaProgress} from '@inertiajs/progress'
 import {InertiaForm} from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 
@@ -36,15 +37,15 @@ import 'animate.css';
 
 Vue.use(VAnimateCss);
 
-//Plugins Permissions
-import Permissions from '../plugins/Permissions';
-
-Vue.use(Permissions);
-
 //vue gates
 import VueGates from 'vue-gates'
 
 Vue.use(VueGates)
+
+//Plugins Permissions
+import Permissions from '../plugins/Permissions';
+
+Vue.use(Permissions);
 
 //Vue GoogleMaps
 import * as VueGoogleMaps from "vue2-google-maps";
@@ -71,4 +72,14 @@ new Vue({
         }),
 }).$mount(app);
 
-
+InertiaProgress.init({
+    // The delay after which the progress bar will
+    // appear during navigation, in milliseconds.
+    delay: 250,
+    // The color of the progress bar.
+    color: '#29d',
+    // Whether to include the default NProgress styles.
+    includeCSS: true,
+    // Whether the NProgress spinner will be shown.
+    showSpinner: true,
+});

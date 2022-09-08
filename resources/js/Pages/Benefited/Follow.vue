@@ -167,7 +167,7 @@
                                     <v-divider></v-divider>
 
                                     <v-row class="mt-2">
-                                        <v-col cols="12" sm="6" md="4" v-for="(item, j) in info" :key="item.id">
+                                        <v-col cols="12" md="6" lg="4" v-for="(item, j) in info" :key="item.id">
 
                                             <v-card>
 
@@ -184,16 +184,36 @@
 
                                                         </v-list-item-avatar>
                                                         <v-list-item-content>
-                                                            <v-list-item-title
-                                                                v-text="getHeadquarters(item.headquarters_id)">
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-list-item-title
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                        class="text-uppercase"
+                                                                        v-text="getHeadquarters(item.headquarters_id)">
+                                                                    </v-list-item-title>
+                                                                </template>
+                                                                <span class="white--text text-uppercase">
+                                                                    {{ getHeadquarters(item.headquarters_id) }}
+                                                                </span>
+                                                            </v-tooltip>
+                                                            <v-tooltip bottom>
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-list-item-subtitle v-bind="attrs"
+                                                                                          v-on="on"
+                                                                                          class="text--primary text-uppercase"
+                                                                                          v-text="getEstablishment(item.establishments_id)">
+                                                                    </v-list-item-subtitle>
+                                                                </template>
+                                                                <span class="white--text text-uppercase">
+                                                                    {{
+                                                                        getEstablishment(item.establishments_id)
+                                                                    }}
+                                                                </span>
+                                                            </v-tooltip>
 
-                                                            </v-list-item-title>
-
-                                                            <v-list-item-subtitle class="text--primary"
-                                                                                  v-text="getEstablishment(item.establishments_id)">
-                                                            </v-list-item-subtitle>
-
-                                                            <v-list-item-subtitle v-text="item.municipality">
+                                                            <v-list-item-subtitle class="text-uppercase"
+                                                                                  v-text="item.municipality">
                                                             </v-list-item-subtitle>
                                                         </v-list-item-content>
                                                         <v-list-item-action>
@@ -248,6 +268,8 @@
                 </v-row>
             </v-container>
 
+
+            <!--Dialog fullscreen-->
             <v-row justify="center">
                 <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <v-card>

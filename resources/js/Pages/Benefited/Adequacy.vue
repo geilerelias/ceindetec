@@ -1,326 +1,307 @@
 <template class="bg">
-    <div class="bg">
-        <v-app id="inspire">
-            <v-card outlined tile>
-                <v-system-bar></v-system-bar>
-
-                <v-toolbar
-                    color="primary"
-                    dark
-                    height="100"
+    <simple-layout>
+        <template v-slot:header>
+            <div class="text-right">
+                <div class="text-h6 white--text font-weight-bold text-uppercase py-0 my-0">
+                    {{
+                        data.headquarters
+                    }}
+                </div>
+                <div class="text-subtitle-1 secondary--text font-weight-bold py-0 my-0">
+                    {{ data.establishments }}
+                </div>
+                <div class="text-subtitle-2 white--text font-weight-bold py-0 my-0">
+                    {{ data.municipality }}
+                </div>
+            </div>
+        </template>
+        <template v-slot:extension>
+            <v-tabs
+                v-model="tab"
+                align-with-title
+            >
+                <v-tabs-slider color="white"></v-tabs-slider>
+                <v-tab
+                    v-for="item in getRecords"
+                    :key="item.folder"
                 >
-                    <v-btn icon @click="back()">
-                        <v-icon color="white">
-                            mdi-arrow-left
-                        </v-icon>
-                    </v-btn>
-                    <logo :tile="true" :light="true" color="primary" :width="150"></logo>
-                    <v-spacer></v-spacer>
+                    {{ item.folder }}
+                </v-tab>
+            </v-tabs>
+        </template>
 
-                    <div class="text-right">
-                        <div class="text-h6 white--text font-weight-bold text-uppercase py-0 my-0">
-                            {{
-                                data.headquarters
-                            }}
-                        </div>
-                        <div class="text-subtitle-1 secondary--text font-weight-bold py-0 my-0">
-                            {{ data.establishments }}
-                        </div>
-                        <div class="text-subtitle-2 white--text font-weight-bold py-0 my-0">
-                            {{ data.municipality }}
-                        </div>
-                    </div>
+        <v-main class="transparent pt-6 bg">
 
-                    <template v-slot:extension>
-                        <v-tabs
-                            v-model="tab"
-                            align-with-title
-                        >
-                            <v-tabs-slider color="white"></v-tabs-slider>
-                            <v-tab
-                                v-for="item in getRecords"
-                                :key="item.folder"
-                            >
-                                {{ item.folder }}
-                            </v-tab>
-                        </v-tabs>
-                    </template>
-                </v-toolbar>
-                <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
-            </v-card>
-            <v-main class="transparent pt-6 bg">
+            <v-container id="printer" class="white rounded-lg container-adequacy "
+                         :style="{'min-height':localHeight, 'height':localHeight}">
+                <v-card outlined flat class="rounded-lg rounded-b-0 pb-0" style="width: 100%">
+                    <v-row class="justify-center my-0 py-0  ">
+                        <v-col class="d-flex justify-center align-center ">
 
-                <v-container id="printer" class="white rounded-lg "
-                             :style="{'min-height':localHeight, 'height':localHeight}">
-                    <v-card outlined flat class="rounded-lg rounded-b-0 pb-0" style="width: 100%">
-                        <v-row class="justify-center my-0 py-0  ">
-                            <v-col class="d-flex justify-center align-center ">
-
-                                <logo :tile="true" color="primary" :width="200"></logo>
+                            <logo :tile="true" color="primary" :width="200"></logo>
+                        </v-col>
+                        <v-divider vertical></v-divider>
+                        <v-col class="col-md-8 col-8 text-center ">
+                            <h3 class="my-4 text-h5 primary--text font-weight-bold ">
+                                CONTRATO 002
+                            </h3>
+                            <v-divider></v-divider>
+                            <v-row class="my-0 py-0">
+                                <v-col class="col-6 my-1 py-0  font-weight-bold">
+                                    INFORME DIARIO DE AVANCE DE OBRA
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="col-6 my-1 py-0">
+                                    CONSECUTIVO 002
+                                </v-col>
+                            </v-row>
+                            <v-divider></v-divider>
+                            <v-row class="my-0 py-0">
+                                <v-divider></v-divider>
+                                <v-col class="col-6 my-1 py-0 font-weight-bold">
+                                    FECHA
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="col-6 my-1 py-0">
+                                    {{ getDate(tab) }}
+                                </v-col>
+                            </v-row>
+                            <v-divider></v-divider>
+                        </v-col>
+                    </v-row>
+                </v-card>
+                <v-card outlined flat class="rounded-0 px-2" style="width: 100%">
+                    <div v-for="(item, i) in information"
+                         :key="item.id">
+                        <v-divider v-if="i!==0"></v-divider>
+                        <v-row class="my-0 py-0 ">
+                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
+                                {{ item.title }}
                             </v-col>
                             <v-divider vertical></v-divider>
-                            <v-col class="col-md-8 col-8 text-center ">
-                                <h3 class="my-4 text-h5 primary--text font-weight-bold ">
-                                    CONTRATO 002
-                                </h3>
-                                <v-divider></v-divider>
-                                <v-row class="my-0 py-0">
-                                    <v-col class="col-6 my-1 py-0  font-weight-bold">
-                                        INFORME DIARIO DE AVANCE DE OBRA
-                                    </v-col>
-                                    <v-divider vertical></v-divider>
-                                    <v-col class="col-6 my-1 py-0">
-                                        CONSECUTIVO 002
-                                    </v-col>
-                                </v-row>
-                                <v-divider></v-divider>
-                                <v-row class="my-0 py-0">
-                                    <v-divider></v-divider>
-                                    <v-col class="col-6 my-1 py-0 font-weight-bold">
-                                        FECHA
-                                    </v-col>
-                                    <v-divider vertical></v-divider>
-                                    <v-col class="col-6 my-1 py-0">
-                                        {{ getDate(tab) }}
-                                    </v-col>
-                                </v-row>
-                                <v-divider></v-divider>
+                            <v-col class="my-0 py-0 text-justify text-body-2">
+                                {{ item.description }}
                             </v-col>
                         </v-row>
-                    </v-card>
-                    <v-card outlined flat class="rounded-0 px-2" style="width: 100%">
-                        <div v-for="(item, i) in information"
-                             :key="item.id">
-                            <v-divider v-if="i!==0"></v-divider>
-                            <v-row class="my-0 py-0 ">
-                                <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
-                                    {{ item.title }}
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="my-0 py-0 text-justify text-body-2">
-                                    {{ item.description }}
-                                </v-col>
-                            </v-row>
 
-                        </div>
-                    </v-card>
-                    <v-card outlined flat class="rounded-0 px-2 py-4" style="width: 100%">
-                        <div>
-                            <v-row class="my-0 py-0 ">
-                                <v-col class="col-3 my-0 py-0 font-weight-bold text-body-2">
-                                    SEDE:
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="my-0 py-0">
-                                    <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
-                                        {{
-                                            data.headquarters
-                                        }}
-                                    </div>
-                                </v-col>
-                            </v-row>
-                            <v-divider></v-divider>
-                            <v-row class="my-0 py-0 ">
-                                <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
-                                    ESTABLECIMIENTO:
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="my-0 py-0">
-                                    <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
-                                        {{
-                                            data.establishments
-                                        }}
-                                    </div>
-                                </v-col>
-                            </v-row>
-                            <v-divider></v-divider>
-                            <v-row class="my-0 py-0 ">
-                                <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
-                                    MUNICIPIO:
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="my-0 py-0">
-                                    <div class=" primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
-                                        {{
-                                            data.municipality
-                                        }}
-                                    </div>
-                                </v-col>
-                            </v-row>
-                        </div>
-                    </v-card>
-
-                    <v-tabs-items class="transparent" v-model="tab">
-                        <v-tab-item
-                            v-for="(item,k) in getRecords"
-                            :key="item.folder"
-                            class="transparent"
-                        >
-                            <v-card outlined flat class="rounded-0 pa-2" style="width: 100%;page-break-before:avoid">
-
-                                <v-row>
-                                    <v-col class="col-12 font-weight-bold primary--text ">
-                                        ACTIVIDADES REALIZADAS EN EL DIA
-                                        <div class="pb-1 secondary rounded-lg" style="width: 100px"/>
-                                    </v-col>
-                                    <v-col class="grey--text text-body-2">
-                                        {{ getDate(tab) }}
-                                    </v-col>
-                                    <v-col class="text-right grey--text text-body-2">
-                                        ESTADO DEL TIEMPO: SOLEADO
-                                    </v-col>
-                                </v-row>
-
-
-                                <div v-if="existFile(item.sub)" class="mt-3">
-
-                                    <show-data-file
-                                        :link="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/actividades.txt`"
-                                    ></show-data-file>
+                    </div>
+                </v-card>
+                <v-card outlined flat class="rounded-0 px-2 py-4" style="width: 100%">
+                    <div>
+                        <v-row class="my-0 py-0 ">
+                            <v-col class="col-3 my-0 py-0 font-weight-bold text-body-2">
+                                SEDE:
+                            </v-col>
+                            <v-divider vertical></v-divider>
+                            <v-col class="my-0 py-0">
+                                <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
+                                    {{
+                                        data.headquarters
+                                    }}
                                 </div>
-
-                                <div class="mt-3" v-else>
-                                    no existe información de las actividades realizadas en esta fecha
+                            </v-col>
+                        </v-row>
+                        <v-divider></v-divider>
+                        <v-row class="my-0 py-0 ">
+                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
+                                ESTABLECIMIENTO:
+                            </v-col>
+                            <v-divider vertical></v-divider>
+                            <v-col class="my-0 py-0">
+                                <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
+                                    {{
+                                        data.establishments
+                                    }}
                                 </div>
-                            </v-card>
-                            <v-card outlined flat class="rounded-0 pa-2" style="width: 100%;page-break-before:avoid">
-                                <v-row>
-                                    <v-col class="col-12 font-weight-bold primary--text">
-                                        ACTIVIDADES A REALIZAR EN EL SIGUIENTE DIA
-                                        <div class="pb-1 mb-3 secondary rounded-lg" style="width: 100px"/>
-                                    </v-col>
-                                </v-row>
-                                <div class="mt-3">
-                                    no se registro información de las actividades a realizar
+                            </v-col>
+                        </v-row>
+                        <v-divider></v-divider>
+                        <v-row class="my-0 py-0 ">
+                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
+                                MUNICIPIO:
+                            </v-col>
+                            <v-divider vertical></v-divider>
+                            <v-col class="my-0 py-0">
+                                <div class=" primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
+                                    {{
+                                        data.municipality
+                                    }}
                                 </div>
+                            </v-col>
+                        </v-row>
+                    </div>
+                </v-card>
 
-                            </v-card>
-                            <v-card id="contenedor_image" style="page-break-before:avoid" outlined flat
-                                    class="rounded-lg rounded-t-0 px-2 py-3 fill-height"
-                            >
-                                <v-row>
-                                    <v-col class="font-weight-bold primary--text">
-                                        REGISTRO FOTOGRÁFICO
-                                        <div class="pb-1 secondary rounded-lg" style="width: 100px"></div>
-                                    </v-col>
-                                </v-row>
-
-                                <v-row>
-                                    <v-col
-                                        v-for="(src, h) in item.sub" :key="`${item.folder}${k}${h}`"
-                                        class="d-flex child-flex"
-                                        cols="4"
-                                    >
-                                        <v-img
-                                            v-if="src!=='actividades.txt'"
-                                            :src="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
-                                            :aspect-ratio="16/9"
-                                            :elevation="5"
-                                            class="grey lighten-2 rounded "
-                                        >
-                                            <template v-slot:placeholder>
-                                                <v-row
-                                                    class="fill-height ma-0"
-                                                    align="center"
-                                                    justify="center"
-                                                >
-                                                    <v-progress-circular
-                                                        indeterminate
-                                                        color="grey lighten-5"
-                                                    ></v-progress-circular>
-                                                </v-row>
-                                            </template>
-                                        </v-img>
-
-                                    </v-col>
-                                </v-row>
-                            </v-card>
-                        </v-tab-item>
-                    </v-tabs-items>
-
-                </v-container>
-
-                <v-btn id="no-print-btn"
-                       color="secondary"
-                       dark
-                       bottom
-                       right
-                       fixed
-                       fab
-                       @click="imprimir()"
-                >
-                    <v-icon>mdi-printer-outline</v-icon>
-                </v-btn>
-
-                <!--`                <v-container fluid>
-                                    <v-row>
-                                        <div v-for="(record, i )in item.records" :key="record.id">
-                                            {{ record }}{{ i }}
-                                        </div>
-
-                                        <v-col class="d-flex" v-for="(elemento, i) in item.items" :key="item.id">
-                                            <v-card color="transparent" flat width="100%">
-                                                <v-card-title class="d-flex justify-center align-center">
-                                                    <v-card
-                                                        class=" white&#45;&#45;text font-weight-bold text-center text-h6 white&#45;&#45;text font-weight-bold"
-                                                        width="150"
-                                                        :color="getColor(elemento.title)">
-                                                        {{ elemento.title }}
-                                                    </v-card>
-                                                </v-card-title>
-                                                <v-card-text>
-                                                    <v-row>
-                                                        <v-col
-                                                            v-for="(src, n) in elemento.src"
-                                                            :key="n"
-                                                            class="d-flex child-flex"
-                                                            cols="12"
-                                                        >
-                                                            <v-img
-                                                                :src="src"
-                                                                :aspect-ratio="16/9"
-                                                                :elevation="5"
-                                                                class="grey lighten-2 rounded"
-                                                            >
-                                                                <template v-slot:placeholder>
-                                                                    <v-row
-                                                                        class="fill-height ma-0"
-                                                                        align="center"
-                                                                        justify="center"
-                                                                    >
-                                                                        <v-progress-circular
-                                                                            indeterminate
-                                                                            color="grey lighten-5"
-                                                                        ></v-progress-circular>
-                                                                    </v-row>
-                                                                </template>
-                                                            </v-img>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-card-text>
-                                            </v-card>
-                                            <div v-if="i!==2" class="ml-4 mt-12 pl-1 grey rounded-xl"></div>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>-->
-                <v-footer class="mt-12 primary" id="no-print-footer" padless>
-                    <v-col
-                        class="px-8"
-                        cols="12"
+                <v-tabs-items class="transparent" v-model="tab">
+                    <v-tab-item
+                        v-for="(item,k) in getRecords"
+                        :key="item.folder"
+                        class="transparent"
                     >
-                        <div
-                            class="text-center white--text">
-                            Centro de Desarrollo Tecnologico de los Llanos -
-                            {{
-                                new Date().toLocaleDateString("es-Es")
-                            }}
-                        </div>
-                    </v-col>
-                </v-footer>
-            </v-main>
+                        <v-card outlined flat class="rounded-0 pa-2" style="width: 100%;page-break-before:avoid">
 
-        </v-app>
-    </div>
+                            <v-row>
+                                <v-col class="col-12 font-weight-bold primary--text ">
+                                    ACTIVIDADES REALIZADAS EN EL DIA
+                                    <div class="pb-1 secondary rounded-lg" style="width: 100px"/>
+                                </v-col>
+                                <v-col class="grey--text text-body-2">
+                                    {{ getDate(tab) }}
+                                </v-col>
+                                <v-col class="text-right grey--text text-body-2">
+                                    ESTADO DEL TIEMPO: SOLEADO
+                                </v-col>
+                            </v-row>
+
+
+                            <div v-if="existFile(item.sub)" class="mt-3">
+
+                                <show-data-file
+                                    :link="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/actividades.txt`"
+                                ></show-data-file>
+                            </div>
+
+                            <div class="mt-3" v-else>
+                                no existe información de las actividades realizadas en esta fecha
+                            </div>
+                        </v-card>
+                        <v-card outlined flat class="rounded-0 pa-2" style="width: 100%;page-break-before:avoid">
+                            <v-row>
+                                <v-col class="col-12 font-weight-bold primary--text">
+                                    ACTIVIDADES A REALIZAR EN EL SIGUIENTE DIA
+                                    <div class="pb-1 mb-3 secondary rounded-lg" style="width: 100px"/>
+                                </v-col>
+                            </v-row>
+                            <div class="mt-3">
+                                no se registro información de las actividades a realizar
+                            </div>
+
+                        </v-card>
+                        <v-card id="contenedor_image" style="page-break-before:avoid" outlined flat
+                                class="rounded-lg rounded-t-0 px-2 py-3 fill-height"
+                        >
+                            <v-row>
+                                <v-col class="font-weight-bold primary--text">
+                                    REGISTRO FOTOGRÁFICO
+                                    <div class="pb-1 secondary rounded-lg" style="width: 100px"></div>
+                                </v-col>
+                            </v-row>
+
+                            <v-row>
+                                <v-col
+                                    v-for="(src, h) in item.sub" :key="`${item.folder}${k}${h}`"
+                                    class="d-flex child-flex"
+                                    cols="4"
+                                >
+                                    <v-img
+                                        v-if="src!=='actividades.txt'"
+                                        :src="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
+                                        :aspect-ratio="16/9"
+                                        :elevation="5"
+                                        class="grey lighten-2 rounded "
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                            >
+                                                <v-progress-circular
+                                                    indeterminate
+                                                    color="grey lighten-5"
+                                                ></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
+
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-tab-item>
+                </v-tabs-items>
+
+            </v-container>
+
+            <v-btn id="no-print-btn"
+                   color="secondary"
+                   dark
+                   bottom
+                   right
+                   fixed
+                   fab
+                   @click="imprimir()"
+            >
+                <v-icon>mdi-printer-outline</v-icon>
+            </v-btn>
+
+            <!--`                <v-container fluid>
+                                <v-row>
+                                    <div v-for="(record, i )in item.records" :key="record.id">
+                                        {{ record }}{{ i }}
+                                    </div>
+
+                                    <v-col class="d-flex" v-for="(elemento, i) in item.items" :key="item.id">
+                                        <v-card color="transparent" flat width="100%">
+                                            <v-card-title class="d-flex justify-center align-center">
+                                                <v-card
+                                                    class=" white&#45;&#45;text font-weight-bold text-center text-h6 white&#45;&#45;text font-weight-bold"
+                                                    width="150"
+                                                    :color="getColor(elemento.title)">
+                                                    {{ elemento.title }}
+                                                </v-card>
+                                            </v-card-title>
+                                            <v-card-text>
+                                                <v-row>
+                                                    <v-col
+                                                        v-for="(src, n) in elemento.src"
+                                                        :key="n"
+                                                        class="d-flex child-flex"
+                                                        cols="12"
+                                                    >
+                                                        <v-img
+                                                            :src="src"
+                                                            :aspect-ratio="16/9"
+                                                            :elevation="5"
+                                                            class="grey lighten-2 rounded"
+                                                        >
+                                                            <template v-slot:placeholder>
+                                                                <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                                >
+                                                                    <v-progress-circular
+                                                                        indeterminate
+                                                                        color="grey lighten-5"
+                                                                    ></v-progress-circular>
+                                                                </v-row>
+                                                            </template>
+                                                        </v-img>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
+                                        </v-card>
+                                        <div v-if="i!==2" class="ml-4 mt-12 pl-1 grey rounded-xl"></div>
+                                    </v-col>
+                                </v-row>
+                            </v-container>-->
+            <v-footer class="mt-12 primary" id="no-print-footer" padless>
+                <v-col
+                    class="px-8"
+                    cols="12"
+                >
+                    <div
+                        class="text-center white--text">
+                        Centro de Desarrollo Tecnologico de los Llanos -
+                        {{
+                            new Date().toLocaleDateString("es-Es")
+                        }}
+                    </div>
+                </v-col>
+            </v-footer>
+        </v-main>
+    </simple-layout>
+
 </template>
 
 <script>
@@ -328,11 +309,13 @@
 import * as VueGoogleMaps from 'vue2-google-maps'
 import logo from '@/Components/Logo'
 import showDataFile from "@/Components/ShowDataFile";
+import SimpleLayout from "@/Layouts/SimpleLayout";
 
 
 export default {
     name: "Index",
     components: {
+        SimpleLayout,
         logo,
         showDataFile
     },
@@ -546,6 +529,10 @@ export default {
         display: none;
     }
 
+    .no-print {
+        display: none;
+    }
+
     #no-print-header {
         display: none;
     }
@@ -582,7 +569,7 @@ export default {
 }
 
 
-.container {
+.container-adequacy {
     max-width: 1000px;
 }
 

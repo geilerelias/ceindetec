@@ -194,75 +194,28 @@
                         </v-row>
                     </template>
                 </v-data-iterator>
+
             </v-container>
+
         </v-main>
 
+        <v-btn
+            @click="sheet=!sheet"
+            color="secondary"
+            dark
+            fab
+            bottom
+            right
+            fixed
+        >
+            <v-icon v-if="fab">
+                mdi-close
+            </v-icon>
+            <v-icon v-else>
+                mdi-tune
+            </v-icon>
+        </v-btn>
 
-        <v-card id="create" flat>
-            <v-speed-dial
-                v-model="fab"
-                :bottom="true"
-                right
-                direction="top"
-                :open-on-hover="true"
-                transition="slide-y-reverse-transition"
-            >
-                <template v-slot:activator>
-                    <v-btn
-                        v-model="fab"
-                        color="secondary"
-                        dark
-                        fab
-                        fixed
-                    >
-                        <v-icon v-if="fab">
-                            mdi-close
-                        </v-icon>
-                        <v-icon v-else>
-                            mdi-tune
-                        </v-icon>
-                    </v-btn>
-                </template>
-
-                <inertia-link href="/qrcode/print">
-                    <v-btn id="no-print-btn"
-                           color="red darken-4"
-                           dark
-                           small
-                           fab
-                    >
-                        <v-icon>mdi-file-document-outline</v-icon>
-                    </v-btn>
-                </inertia-link>
-                <inertia-link href="/qrcode/search-edit">
-                    <v-btn
-                        fab
-                        dark
-                        small
-                        color="green"
-                    >
-                        <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
-                </inertia-link>
-                <v-btn
-                    fab
-                    dark
-                    small
-                    color="indigo"
-                >
-                    <v-icon>mdi-plus</v-icon>
-                </v-btn>
-                <v-btn
-                    fab
-                    dark
-                    small
-                    color="red"
-                >
-                    <v-icon>mdi-delete</v-icon>
-                </v-btn>
-
-            </v-speed-dial>
-        </v-card>
 
         <!--        <v-btn id="no-print-btn"
                        color="primary"
@@ -278,6 +231,31 @@
 
         <spinner-component :value="inProcess"></spinner-component>
 
+        <!--List into a Bottom sheet-->
+        <div class="text-center">
+            <v-bottom-sheet v-model="sheet">
+                <v-list flat>
+                    <v-subheader>Otras Operaciones</v-subheader>
+                    <v-list-item-group
+                        color="primary"
+                    >
+                        <inertia-link v-for="(item, i) in listSheet"
+                                      :key="i" :href="item.route">
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon v-text="item.icon"></v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </inertia-link>
+                    </v-list-item-group>
+                </v-list>
+            </v-bottom-sheet>
+        </div>
+
+        <!--Dialog edit Qrcode-->
         <v-row justify="center">
             <v-dialog
                 v-model="dialog"
@@ -311,12 +289,10 @@
                         </v-btn>
                     </v-toolbar>
                     <v-toolbar dense class="secondary" max-height="10"></v-toolbar>
-                    {{ $page.auth !== null }}
                     <edit v-if="editItem!==null" :data="editItem"></edit>
                 </v-card>
             </v-dialog>
         </v-row>
-
     </simple-layout>
 </template>
 
@@ -395,6 +371,36 @@ export default {
         headquarters: [],
         fab: false,
         dialog: false,
+        sheet: false,
+        listSheet: [
+            {
+                title: 'Buscar y mostrar QrCode',
+                icon: 'mdi-magnify',
+                route: '/qrcode/search-show',
+                color: "green"
+            }, {
+                title: 'Buscar y editar QrCode',
+                icon: 'mdi-pencil',
+                route: '/qrcode/search-edit',
+                color: "green"
+            },
+            {
+                title: 'Imprimir Qrcode',
+                icon: 'mdi-file-document-outline',
+                route: '/qrcode/print',
+                color: "red darken-4",
+            }, {
+                title: 'Agregar Qrcode',
+                icon: 'mdi-plus',
+                route: '#',
+                color: "indigo"
+            }, {
+                title: 'Eliminar Qrcode',
+                icon: 'mdi-delete',
+                route: '#',
+                color: "red"
+            }
+        ]
     }),
     created() {
         axios.get('/dashboard/establishment/all')
