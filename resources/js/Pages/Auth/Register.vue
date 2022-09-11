@@ -17,13 +17,13 @@
                                                 </v-img>
                                             </h2>
                                             <h6
-                                                class="subtitle-1 mt-4 white--text op-5 font-weight-regular">
-                                                <!--                                                Sistema web para la gestión del servicio de reparaciones de dispositivos-->
-                                                <!--                                                mobiles-->
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad
-                                                earum, excepturi hic iste neque numquam quaerat qui quos! Beatae
-                                                distinctio facere nesciunt numquam soluta veniam! Doloribus iure quidem
-                                                quod!
+                                                class="subtitle-1 mt-4 white--text op-5 font-weight-regular text-justify">
+                                                El Sistema para la Gestión Académica (SIGAC) surge como una solución de
+                                                software desarrollado por Ceindetec, para agilizar los procesos
+                                                inherentes a las instituciones educativas. Con esta aplicación se pueden
+                                                llevar a cabo procesos administrativos, que redundan en la
+                                                centralización de la información de cada uno de los estudiantes de la
+                                                institución.
                                             </h6>
                                             <inertia-link href="/about-us">
                                                 <v-btn depressed outlined x-large
@@ -148,7 +148,7 @@
                 </v-container>
             </v-col>
         </v-row>
-        
+
         <spinner-component :value="overlay" color="primary" :opacity="0.9"></spinner-component>
     </v-app>
 </template>

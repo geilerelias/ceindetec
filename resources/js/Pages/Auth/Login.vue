@@ -19,19 +19,16 @@
                                                 <v-img :src="logoFinal"></v-img>
                                             </h2>
                                             <h6
-                                                class="subtitle-1 mt-4 white--text op-5 font-weight-regular"
+                                                class="subtitle-1 mt-4 white--text op-5 font-weight-regular text-justify"
                                             >
-                                                <!--                                                Sistema web para la gestión del servicio de reparaciones de dispositivos
-                                                mobiles-->
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipisicing elit.
-                                                Adipisci asperiores consequatur
-                                                debitis dolorem eaque inventore
-                                                ipsa ipsam iste laboriosam minus
-                                                nesciunt odio, odit possimus
-                                                provident quae repellat
-                                                similique soluta, velit.
+                                                El Sistema para la Gestión Académica (SIGAC) surge como una solución de
+                                                software desarrollado por Ceindetec, para agilizar los procesos
+                                                inherentes a las instituciones educativas. Con esta aplicación se pueden
+                                                llevar a cabo procesos administrativos, que redundan en la
+                                                centralización de la información de cada uno de los estudiantes de la
+                                                institución.
                                             </h6>
+                                            
                                             <inertia-link href="/about-us">
                                                 <v-btn
                                                     depressed

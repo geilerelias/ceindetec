@@ -15,16 +15,33 @@
                                             </v-icon>
                                         </v-btn>
                                         <div class="ml-2 mr-1">
-                                            <h2 class="headline font-weight-light"> $3249 </h2>
+                                            <h2 class="headline font-weight-light"> 3 </h2>
                                             <h5
                                                 class="subtitle-2 font-weight-regular">
-                                                Total Revenue
+                                                Cursos totales
                                             </h5>
                                         </div>
                                     </div>
                                 </v-card-text>
                             </v-card>
                         </v-col>
+
+
+                        <div revenuecard="[object Object]" class="py-0 mb-7 col-sm-6 col-lg-3 col-12">
+                            <div class="v-card v-sheet theme--light">
+                                <div class="v-card__text pa-5">
+                                    <div class="d-flex align-center">
+                                        <button type="button"
+                                                class="elevation-0 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--default deep-purple accent-2">
+                                            <span class="v-btn__content"><i aria-hidden="true"
+                                                                            class="v-icon notranslate mdi mdi-home-clock theme--dark"></i></span>
+                                        </button>
+                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> 2 </h2><h5
+                                            class="subtitle-2 font-weight-regular"> Total de sedes </h5></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div revenuecard="[object Object]" class="py-0 mb-7 col-sm-6 col-lg-3 col-12">
                             <div class="v-card v-sheet theme--light">
@@ -33,25 +50,10 @@
                                         <button type="button"
                                                 class="elevation-0 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--default warning">
                                             <span class="v-btn__content"><i aria-hidden="true"
-                                                                            class="v-icon notranslate mdi mdi-cellphone-link theme--dark"></i></span>
+                                                                            class="v-icon notranslate mdi mdi-account-tie  theme--dark"></i></span>
                                         </button>
-                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> $2376 </h2><h5
-                                            class="subtitle-2 font-weight-regular"> Online Revenue </h5></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div revenuecard="[object Object]" class="py-0 mb-7 col-sm-6 col-lg-3 col-12">
-                            <div class="v-card v-sheet theme--light">
-                                <div class="v-card__text pa-5">
-                                    <div class="d-flex align-center">
-                                        <button type="button"
-                                                class="elevation-0 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--default deep-purple accent-2">
-                                            <span class="v-btn__content"><i aria-hidden="true"
-                                                                            class="v-icon notranslate mdi mdi-cart-outline theme--dark"></i></span>
-                                        </button>
-                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> $1795 </h2><h5
-                                            class="subtitle-2 font-weight-regular"> Offline Revenue </h5></div>
+                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> 3 </h2><h5
+                                            class="subtitle-2 font-weight-regular"> Cantidad de docentes </h5></div>
                                     </div>
                                 </div>
                             </div>
@@ -63,10 +65,10 @@
                                         <button type="button"
                                                 class="elevation-0 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--default error">
                                             <span class="v-btn__content"><i aria-hidden="true"
-                                                                            class="v-icon notranslate mdi mdi-bullseye theme--dark"></i></span>
+                                                                            class="v-icon notranslate mdi mdi-account-supervisor theme--dark"></i></span>
                                         </button>
-                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> $687 </h2><h5
-                                            class="subtitle-2 font-weight-regular"> Ad. Expense </h5></div>
+                                        <div class="ml-2 mr-1"><h2 class="headline font-weight-light"> 30 </h2><h5
+                                            class="subtitle-2 font-weight-regular"> Total de estudiantes </h5></div>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +81,7 @@
                         <v-card-text class="v-card__text pa-5">
                             <div class="d-md-flex align-start">
                                 <h3 class="title font-weight-regular">
-                                    Projects of the Month
+                                    Areas y Asignaturas
                                 </h3>
                                 <v-spacer class="spacer"></v-spacer>
                                 <div class="ml-auto">
@@ -92,7 +94,7 @@
                                                     <div class="v-select__slot">
                                                         <div class="v-select__selections">
                                                             <div class="v-select__selection v-select__selection--comma">
-                                                                January
+                                                                Septiembre
                                                             </div>
                                                             <input id="input-2652" readonly="readonly" type="text"
                                                                    aria-readonly="false" autocomplete="off"></div>
@@ -118,51 +120,61 @@
                             <div class="v-data-table month-table theme--light">
                                 <div class="v-data-table__wrapper">
                                     <table>
-                                        <thead>
+                                        <thead class="primary">
+                                        <tr class="b-solid">
+                                            <th :rowspan="4"
+                                                class=" b-solid font-weight-bold subtitle-2 text-uppercase text-center white--text">
+                                                Areas Curriculares
+                                            </th>
+                                            <th :rowspan="4"
+                                                class=" b-solid font-weight-bold subtitle-2 text-uppercase text-center white--text">
+                                                Asignatura
+                                            </th>
+                                        </tr>
                                         <tr>
-                                            <th class="font-weight-regular subtitle-2">Assigned</th>
-                                            <th class="font-weight-regular subtitle-2">Name</th>
-                                            <th class="font-weight-regular subtitle-2">Priority</th>
-                                            <th class="font-weight-regular subtitle-2">Budget</th>
+                                            <th colspan="5"
+                                                class="b-solid font-weight-bold subtitle-1 text-center white--text">
+                                                ciclos o grados de
+                                                estudio
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2"
+                                                class="b-solid font-weight-regular subtitle-2 text-center white--text">
+                                                VI CICLO
+                                            </th>
+                                            <th colspan="3"
+                                                class="b-solid font-weight-regular subtitle-2 text-center white--text">
+                                                VII CICLO
+                                            </th>
+                                        </tr>
+                                        <tr class="b-solid">
+                                            <th v-for="i in 5"
+                                                class="b-solid  font-weight-regular subtitle-2 white--text">
+                                                {{ (i + 1) }}º
+                                            </th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr v-for="item in 4" :key="item.id" class="month-item">
-                                            <td>
-                                                <div class="d-flex align-center">
-                                                    <img
-                                                        src="/images/logo.png"
-                                                        alt="user" width="45" class="rounded-circle"/>
 
-                                                    <div class="mx-4">
-                                                        <h4 class="font-weight-medium text-no-wrap">
-                                                            Sunil Joshi
-                                                        </h4>
-                                                        <h6
-                                                            class="blue-grey--text text-no-wrap text--lighten-2 font-weight-regular caption">
-                                                            Web Designer
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <h5 class="font-weight-light text-no-wrap subtitle-2">
-                                                    Elite Admin
-                                                </h5>
-                                            </td>
-                                            <td>
-                                                <span
-                                                    class="ma-2 v-chip v-chip--label v-chip--no-color theme--light v-size--small success">
-                                                    <span
-                                                        class="v-chip__content">
-                                                    Low
-                                                    </span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <h5 class="font-weight-light subtitle-2">$3.9K</h5>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+
+                                        <template v-for="elements in tabla">
+                                            <template v-for="(element,area) in elements">
+                                                <tr class="b-solid">
+                                                    <td class="primary b-solid- white--text text-center"
+                                                        :rowspan="element.length+1">
+                                                        {{ area }}
+                                                    </td>
+                                                </tr>
+                                                <tr class="b-solid " v-for="item in element">
+                                                    <td class="b-solid text-center" v-for="i in item">
+                                                        {{ i }}
+                                                    </td>
+                                                </tr>
+                                            </template>
+
+                                        </template>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -225,6 +237,7 @@
 
             </v-row>
         </v-container>
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -245,7 +258,7 @@
                             <div v-role="'Admin'">
                                 Soy administrador
                             </div>
-                            
+
                             <div v-role="'Directivo'">
                                 Soy directivo
                             </div>
@@ -274,8 +287,38 @@ export default {
         AppLayout,
         Welcome,
     },
+
     data: () => ({
-        logo
+        logo,
+        tabla: [
+            {
+                'Comunicación': [
+                    ['comunicación', 4, 4, 4, 4, 4],
+                    ['literatura', 2, 2, 2, 2, 2],
+                    ['lectura y redacción', 2, 2, 2, 2, 2]
+                ],
+                'Matemática': [
+                    ['aritmética', 4, 4, 4, 4, 4],
+                    ['geometría', 2, 2, 2, 2, 2],
+                    ['trigonometría', 2, 2, 2, 2, 2]
+                ],
+                'Ciencia y tecnología': [
+                    ['anatomía', 4, 4, 4, 4, 4],
+                    ['biología', 2, 2, 2, 2, 2],
+                    ['química', 2, 2, 2, 2, 2],
+                    ['física', 2, 2, 2, 2, 2],
+                ], 'Ciencias sociales': [
+                    ['Historia', 4, 4, 4, 4, 4],
+                    ['geografía', 2, 2, 2, 2, 2],
+                    ['economía', 2, 2, 2, 2, 2],
+                ]
+            }
+        ]
     })
 }
 </script>
+<style>
+.b-solid {
+    border: solid 1px #e0e0e0;
+}
+</style>

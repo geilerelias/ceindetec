@@ -102,8 +102,8 @@ Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 
 Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
 
 
-Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(function () {
-    //middleware(['can:view dashboard'])->
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // 'can:Ver dashboard'
 
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
@@ -161,22 +161,24 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
 
 
     //spatie Permission laravel
-    Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/role/all', [RoleController::class, 'all']);
+    Route::controller(RoleController::class)->group(function () {
+        Route::middleware(['auth:sanctum', 'verified'])
+            ->get('/role/all', 'all');
 
-    Route::middleware(['auth:sanctum', 'verified'])
-        ->post('/role/assign/permissions', [RoleController::class, 'assignPermissions']);
+        Route::middleware(['auth:sanctum', 'verified'])
+            ->post('/role/assign/permissions', 'assignPermissions');
 
-    Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/role/{role}/permissions', [RoleController::class, 'getPermissions']);
+        Route::middleware(['auth:sanctum', 'verified'])
+            ->get('/role/{role}/permissions', 'getPermissions');
+    });
 
     Route::middleware(['auth:sanctum', 'verified'])
         ->resource('role', RoleController::class);
 
-    Route::middleware(['auth:sanctum', 'verified'])
+    Route::middleware(['auth:sanctum', 'verified',])
         ->get('/permission/all', [PermissionController::class, 'all']);
 
-    Route::middleware(['auth:sanctum', 'verified'])
+    Route::middleware(['auth:sanctum', 'verified',])
         ->resource('permission', PermissionController::class);
 
     Route::middleware(['auth:sanctum', 'verified'])

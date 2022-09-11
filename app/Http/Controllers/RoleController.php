@@ -13,10 +13,10 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('can:view rol')->only('index');
-//        $this->middleware('can:create rol')->only('create', 'store');
-//        $this->middleware('can:edit rol')->only('edit', 'update');
-//        $this->middleware('can:destroy rol')->only('destroy');
+        $this->middleware("can:Ver rol")->only('index');
+        $this->middleware("can:Crear rol")->only('create', 'store');
+        $this->middleware("can:Editar rol")->only('edit', 'update');
+        $this->middleware("can:Eliminar rol")->only('destroy');
     }
 
     /**

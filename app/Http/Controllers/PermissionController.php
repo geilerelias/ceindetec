@@ -11,6 +11,15 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:Ver permisos')->only('index');
+        $this->middleware('can:Crear permisos')->only('create', 'store');
+        $this->middleware('can:Editar permisos')->only('edit', 'update');
+        $this->middleware('can:Eliminar permisos')->only('destroy');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
