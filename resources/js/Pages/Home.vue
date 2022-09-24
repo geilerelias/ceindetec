@@ -96,7 +96,7 @@
                     </v-row>
                 </section>
         -->
-       
+
         <v-sheet light class="rounded-0 py-8">
             <div class="my-12">
                 <h1
@@ -133,10 +133,7 @@
                                                 align="center"
                                                 justify="center"
                                             >
-                                                <v-progress-circular
-                                                    indeterminate
-                                                    color="grey lighten-5"
-                                                ></v-progress-circular>
+                                                <loading-component/>
                                             </v-row>
                                         </template>
                                     </v-img>
@@ -169,11 +166,13 @@ import BreadCrumbs from '@/Components/BreadCrumbs';
 
 import bg from '@/../images/infantes_guajiros.jpg';
 import lazy from '@/../images/infantes_guajiros_lazy.jpg';
+import LoadingComponent from "@/Components/LoadingComponent";
 
 export default {
     components: {
         PageLayout,
-        BreadCrumbs
+        BreadCrumbs,
+        "loading-component": LoadingComponent
     },
     name: 'Home',
     data: () => ({

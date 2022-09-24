@@ -29,6 +29,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/package', function () {
+    return Inertia\Inertia::render('Package');
+});
+
 Route::get('/', function () {
     return Inertia\Inertia::render('Home');
 })->name('home');

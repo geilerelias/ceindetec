@@ -1,38 +1,48 @@
 <template>
+
     <div>
+
         <v-dialog
             :value="open"
-            style="z-index: 9"
             fullscreen
             hide-overlay
             persistent
+            style="z-index: 9"
             transition="dialog-bottom-transition"
         >
-            <v-card max-width="800" tile color="grey lighten-4">
+
+            <v-card color="grey lighten-4" max-width="800" tile>
+
                 <v-toolbar
-                    flat
-                    dark
                     color="primary"
+                    dark
+                    flat
                     style="max-height: 150px"
                 >
+
                     <v-btn
-                        icon
                         dark
+                        icon
                         @click="closeModal()"
                     >
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
+
                     <v-toolbar-title class="text-h5 white--text">{{
-                            isEdit !== false ? 'Editar miembro' : 'Crear nueva miembro'
+                            isEdit !== false ? 'Editar miembro' : 'Crear nuevo miembro'
                         }}
                     </v-toolbar-title>
+
                     <v-spacer></v-spacer>
+
                     <v-menu
                         bottom
-                        right
                         offset-y
+                        right
                     >
+
                         <template v-slot:activator="{ on, attrs }">
+
                             <v-btn
                                 dark
                                 icon
@@ -41,32 +51,50 @@
                             >
                                 <v-icon>mdi-dots-vertical</v-icon>
                             </v-btn>
+
                         </template>
+
                         <v-list dense>
-                            <inertia-link :href="route(item.route)" v-for="(item, i) in management"
-                                          :key="i">
+
+                            <inertia-link v-for="(item, i) in management" :key="i"
+                                          :href="route(item.route)">
+
                                 <v-list-item link>
+
                                     <v-list-item-icon>
                                         <v-icon>{{ item.icon }}</v-icon>
                                     </v-list-item-icon>
+
                                     <v-list-item-title>{{ item.title }}</v-list-item-title>
+
                                 </v-list-item>
+
                             </inertia-link>
+
                         </v-list>
+
                     </v-menu>
+
                 </v-toolbar>
+
                 <v-container>
+
                     <v-form
                         ref="form"
                         v-model="valid">
+
                         <v-card class="mt-12">
+
                             <v-card-title class="align-start">
+
                                 <v-card class="overflow-hidden mt-n9 transition-swing elevation-6 rounded primary fixed"
                                         style="max-width: 100%; "
                                 >
+
                                     <div class="pa-8">
                                         <v-icon dark size="36">mdi-account-supervisor</v-icon>
                                     </div>
+
                                 </v-card>
 
                                 <v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
@@ -74,6 +102,7 @@
                             </v-card-title>
 
                             <v-card-text>
+
                                 <div class="wrapper">
                                     <div class="px-8">
                                         <v-row class="mb-5">
@@ -82,25 +111,25 @@
                                                 <v-row>
                                                     <v-col class="col-12">
                                                         <v-text-field
-                                                            label="Nombres"
                                                             v-model="person.name"
                                                             :rules="[rules.required,rules.text(person.name,'nombre')]"
+                                                            label="Nombres"
                                                             outlined
                                                         ></v-text-field>
                                                     </v-col>
                                                     <v-col class="col-12 ">
                                                         <v-text-field
-                                                            label="Apellidos"
                                                             v-model="person.surname"
                                                             :rules="[rules.required,rules.text(person.surname,'Apellido')]"
+                                                            label="Apellidos"
                                                             outlined
                                                         ></v-text-field>
                                                     </v-col>
                                                     <v-col class="col-12">
                                                         <v-text-field
-                                                            label="Correo electrónico"
                                                             v-model="person.email"
                                                             :rules="[rules.required,rules.email]"
+                                                            label="Correo electrónico"
                                                             outlined
                                                         ></v-text-field>
                                                     </v-col>
@@ -110,30 +139,30 @@
 
                                             <v-col class="col-12 col-sm-6 col-md-4" style="max-height: 300px">
                                                 <picture-input
-                                                    width="260"
-                                                    height="260"
                                                     ref="pictureInput"
-                                                    @change="onChange"
-                                                    size="10"
-                                                    :prefill="getImg()"
-                                                    button-class="v-btn--is-elevated v-btn--has-bg theme--light v-size--default success v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
-                                                    removeButtonClass="v-btn--is-elevated v-btn--has-bg theme--light v-size--default error v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
-                                                    :zIndex="0"
-                                                    radius="0"
                                                     :crop="true"
                                                     :customStrings="customStrings"
+                                                    :prefill="getImg()"
                                                     :removable="true"
+                                                    :zIndex="0"
+                                                    button-class="v-btn--is-elevated v-btn--has-bg theme--light v-size--default success v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
+                                                    height="260"
+                                                    radius="0"
+                                                    removeButtonClass="v-btn--is-elevated v-btn--has-bg theme--light v-size--default error v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small"
+                                                    size="10"
+                                                    width="260"
+                                                    @change="onChange"
                                                 >
                                                 </picture-input>
                                             </v-col>
                                             <v-col class="col-12 col-sm-5">
                                                 <v-select
-                                                    label="Tipo de identificación"
                                                     v-model="person.identification_type"
                                                     :items="tiposDocumentos"
+                                                    :rules="[rules.required]"
                                                     item-text="text"
                                                     item-value="value"
-                                                    :rules="[rules.required]"
+                                                    label="Tipo de identificación"
                                                     outlined
                                                 ></v-select>
                                             </v-col>
@@ -170,9 +199,9 @@
                                                     v-model="menu1"
                                                     :close-on-content-click="false"
                                                     :nudge-right="40"
-                                                    transition="scale-transition"
-                                                    offset-y
                                                     min-width="auto"
+                                                    offset-y
+                                                    transition="scale-transition"
                                                 >
                                                     <template v-slot:activator="{ on, attrs }">
                                                         <v-text-field
@@ -206,32 +235,32 @@
                                             </v-col>
                                             <v-col class="col-12 col-sm-3">
                                                 <v-select
-                                                    outlined
+                                                    v-model="person.person_type"
                                                     :items="items"
                                                     :rules="[rules.required]"
                                                     label="Rol en la comunidad educativa"
-                                                    v-model="person.person_type"
+                                                    outlined
                                                 ></v-select>
                                             </v-col>
 
                                             <v-col class="col-12 col-sm-3">
                                                 <v-select
-                                                    outlined
                                                     v-model="person.department"
                                                     :items="departments"
                                                     :rules="[rules.required]"
                                                     label="Departamento *"
+                                                    outlined
                                                     required
                                                 ></v-select>
                                             </v-col>
                                             <v-col class="col-12 col-sm-3">
                                                 <v-select
-                                                    outlined
-                                                    :disabled="person.department==null"
                                                     v-model="person.municipality"
+                                                    :disabled="person.department==null"
                                                     :items="getCities(person.department)"
                                                     :rules="[rules.required]"
                                                     label="Municipio *"
+                                                    outlined
                                                     required
                                                 ></v-select>
                                             </v-col>
@@ -248,36 +277,44 @@
                                 </div>
 
                                 <div class="d-flex justify-end">
-                                    <v-btn v-show="!edit" @click="save(person)"
-                                           class="primary mx-1" dark>
+
+                                    <v-btn v-show="!edit" class="primary mx-1"
+                                           dark @click="save(person)">
                                         Guardar
                                     </v-btn>
 
-                                    <v-btn v-show="edit" @click="update(person)"
-                                           class="primary x-1" dark>
+                                    <v-btn v-show="edit" class="primary x-1"
+                                           dark @click="update(person)">
                                         Actualizar
                                     </v-btn>
 
-                                    <v-btn @click="closeModal()" type="button"
-                                           class="secondary mx-1" dark>
+                                    <v-btn class="secondary mx-1" dark
+                                           type="button" @click="closeModal()">
                                         Cancelar
                                     </v-btn>
+
                                 </div>
 
                             </v-card-text>
+
                         </v-card>
+
                     </v-form>
+
                 </v-container>
+
             </v-card>
 
-
         </v-dialog>
+
         <spinner-component :value="saving"></spinner-component>
+
     </div>
 
 </template>
 
 <script>
+
 import {VueEditor} from "vue2-editor";
 import SpinnerComponent from "@/Components/SpinnerComponent";
 import PictureInput from 'vue-picture-input'

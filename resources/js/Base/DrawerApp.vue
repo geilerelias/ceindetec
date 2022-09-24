@@ -7,24 +7,7 @@
         clipped
         style="box-shadow: rgb(0 0 0 / 20%) -20px 1px 17px 8px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px"
     >
-        <template v-if="$page.user !== null" v-slot:prepend>
-            <v-list-item two-line>
-                <v-list-item-avatar>
-                    <img
-                        :src="$page.user.profile_photo_url"
-                        :alt="$page.user.name"
-                    />
-                </v-list-item-avatar>
 
-                <v-list-item-content>
-                    <v-list-item-title>{{ $page.user.name }}</v-list-item-title>
-                    <v-list-item-subtitle>
-                        {{ $page.user.email }}
-                    </v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
-            <v-divider></v-divider>
-        </template>
 
         <v-img
             :aspect-ratio="1"
@@ -43,7 +26,27 @@
                 </v-row>
             </template>
         </v-img>
+
         <v-divider></v-divider>
+
+        <template v-if="$page.user !== null">
+            <v-list-item two-line>
+                <v-list-item-avatar>
+                    <img
+                        :src="$page.user.profile_photo_url"
+                        :alt="$page.user.name"
+                    />
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                    <v-list-item-title>{{ $page.user.name }}</v-list-item-title>
+                    <v-list-item-subtitle>
+                        {{ $page.user.email }}
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
+        </template>
 
         <v-list nav dense shaped>
             <v-list-item-group v-model="group" color="primary">

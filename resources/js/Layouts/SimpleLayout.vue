@@ -6,7 +6,7 @@
                 dark
                 height="100"
             >
-                <v-btn icon @click="back()">
+                <v-btn icon @click="back()" v-if="elements">
                     <v-icon color="white">
                         mdi-arrow-left
                     </v-icon>
@@ -17,8 +17,8 @@
                 <div class="text-right">
                     <slot name="header"></slot>
                 </div>
-                <settings-dropdown></settings-dropdown>
-                <template v-slot:extension>
+                <settings-dropdown v-if="elements==true"></settings-dropdown>
+                <template v-slot:extension v-if="extension==true">
                     <slot name="extension"></slot>
                 </template>
             </v-toolbar>
@@ -38,6 +38,16 @@ import SettingsDropdown from "@/Components/SettingsDropdown";
 
 export default {
     name: "SimpleLayout",
+    props: {
+        extension: {
+            type: Boolean,
+            default: true
+        },
+        elements: {
+            type: Boolean,
+            default: true
+        }
+    },
     components: {
         logo,
         SettingsDropdown
