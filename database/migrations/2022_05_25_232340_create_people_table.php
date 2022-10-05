@@ -23,11 +23,16 @@ return new class extends Migration {
             $table->string('ethnic_group')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->string('blood_type')->nullable();
             $table->string('person_type');
+            $table->foreignId('attended_by')->nullable()->constrained('people');
+            $table->string('relationship')->nullable();
             $table->string('department')->nullable();
             $table->string('municipality')->nullable();
             $table->string('direction')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->foreignId('establishment_id')->constrained('establishments');
+            $table->foreignId('headquarter_id')->constrained('headquarters');
             $table->timestamps();
         });
     }

@@ -33,6 +33,10 @@ Route::get('/package', function () {
     return Inertia\Inertia::render('Package');
 });
 
+Route::get('/add-information', function () {
+    return Inertia\Inertia::render('AddInformation');
+})->name('add.information');
+
 Route::get('/', function () {
     return Inertia\Inertia::render('Home');
 })->name('home');
@@ -105,6 +109,10 @@ Route::get('/dashboard/establishment/{id}/headquarters', [EstablishmentControlle
 Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
 Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
 
+Route::get('/dashboard/person/get/{id}', [PersonController::class, 'getById']);
+Route::get('/dashboard/person/{headquarter_id}/{type}/all', [PersonController::class, 'getByHeadquartersAndPersonType']);
+Route::get('/dashboard/person/{headquarter_id}/all', [PersonController::class, 'getByHeadquarters']);
+Route::post('/dashboard/person/add', [PersonController::class, 'store']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // 'can:Ver dashboard'
@@ -143,7 +151,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard/person/teacher', [PersonController::class, 'createTeacher'])->name('person.create.teacher');
     Route::get('/dashboard/person/attendant', [PersonController::class, 'createAttendant'])->name('person.create.attendant');
     Route::resource('/dashboard/person', PersonController::class);
-
 
     //años académicos
     Route::get('/dashboard/year/all', [YearController::class, 'all']);

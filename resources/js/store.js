@@ -38,6 +38,13 @@ const store = new Vuex.Store({
                 array: null
             },
             {
+                title: "Registro",
+                icon: 'mdi-add-user',
+                route: "add.information",
+                //can: 'view permission',
+                array: null
+            },
+            {
                 title: "Acceder",
                 icon: 'mdi-card-account-phone',
                 route: "dashboard"

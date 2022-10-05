@@ -1,259 +1,242 @@
 <template>
     <v-app>
-        <!--
-                <v-main class="bg">
-                    <div class="d-flex justify-center align-center flex-column">
-                        <div class="d-flex justify-center align-center sheet-letter saltopagina"
-                             style="page-break-before: avoid !important;"
-                             v-for="(item, n) in headquarters"
-                             :key="item.id">
-                            <v-row class=" d-flex justify-center"
-                                   style="height: 8in !important;
-                                    width: 10in !important;
-                                    max-height: 8in !important;
-                                    max-width: 10in !important;
-                                    min-height: 8in !important;
-                                    min-width: 10in !important;">
-                                <v-col class="col-md-8 col-12"
-                                       style="width: 100%;min-width: 100%;height: 100%;min-height: 100%"
-                                >
-                                    <v-card class="d-flex flex-column">
-                                        <div class="d-flex align-end justify-end mr-2">
-                                            <v-card
-                                                class="overflow-hidden  transition-swing elevation-6 rounded primary fixed mt-1"
-                                                style="max-width: 100%; width: 65px;height: 65px"
-                                            >
-
-                                                <div class="pa-3 text-h4 text&#45;&#45;white white&#45;&#45;text font-weight-bold text-center">
-                                                    {{ n + 1 }}
-                                                </div>
-
-                                            </v-card>
-                                        </div>
-
-                                        <v-card-title class="d-flex justify-space-around pt-1 pb-0 mb-0">
-
-
-                                            <logo :tile="true" :light="false" color="primary"
-                                                  :width="120"></logo>
-                                            <logo :tile="true" :light="false" color="primary" :width="120"
-                                                  src="logoAlcaldia"></logo>
-                                        </v-card-title>
-                                        <v-divider class="my-2"></v-divider>
-                                        <v-toolbar flat>
-                                            <div class="d-flex  flex-column">
-                                                <div
-                                                    class=" text-subtitle-2 text-sm-h6  primary&#45;&#45;text font-weight-bold text-uppercase py-0 my-0">
-                                                    {{ item.name }}
-                                                </div>
-                                                <div class="grey&#45;&#45;text font-weight-bold text-uppercase py-0 my-0">
-                                                    {{ getEstablishment(item.establishment_id) }}
-                                                </div>
-                                            </div>
-                                            <v-spacer></v-spacer>
-                                            <div
-                                                class="text-caption text-right text-sm-subtitle-1 secondary&#45;&#45;text font-weight-bold py-0 my-0 uppercase">
-                                                {{ item.address }}
-                                                <br>
-                                                <span class="grey&#45;&#45;text">
-                                            {{ item.municipality }}
-                                            {{ item.department }}
-                                        </span>
-                                            </div>
-                                        </v-toolbar>
-                                        <v-card-text class="pa-3 flex-grow-1">
-                                            <v-simple-table dense class="rounded-lg">
-                                                <template v-slot:default>
-                                                    <thead class="primary rounded-b-0">
-                                                    <tr>
-                                                        <th style="border: solid 1px white !important;"
-                                                            class="text-left text-uppercase white&#45;&#45;text text-center rounded-b-0">
-                                                            Descripción
-                                                        </th>
-                                                        <th style="border: solid 1px white !important;"
-                                                            class="text-left text-uppercase white&#45;&#45;text text-center rounded-b-0">
-                                                            Serial
-                                                        </th>
-                                                        <th style="border: solid 1px white !important;"
-                                                            class="text-left text-uppercase white&#45;&#45;text text-center rounded-b-0">
-                                                            Cantidad
-                                                        </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr class=" rounded-b-0"
-                                                        v-for="(item, i) in getElements[n]"
-                                                        :key="i"
-                                                    >
-                                                        <td class="b-solid-g rounded-b-0">{{ item.DESCRIPTION }}</td>
-                                                        <td class="b-solid-g  rounded-b-0">{{ item.SERIAL }}</td>
-                                                        <td class="b-solid-g  rounded-b-0">{{ item.QUANTITY }}</td>
-                                                    </tr>
-                                                    <tr class="primary rounded-t-0">
-                                                        <td class="b-solid white&#45;&#45;text rounded-t-0" colspan="2">TOTAL</td>
-                                                        <td class="b-solid white&#45;&#45;text rounded-t-0">{{
-                                                                getElements[n].length
-                                                            }}
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </template>
-                                            </v-simple-table>
-                                        </v-card-text>
-                                    </v-card>
-                                </v-col>
-                            </v-row>
-
-
-                        </div>
-                    </div>
-                </v-main>
-        -->
-
-
-        <v-main class="bg">
-            <div class="d-flex justify-center align-center flex-column">
-                <div class="d-flex justify-center align-center sheet-letter saltopagina"
-                     style="page-break-before: avoid !important;"
-                     v-for="(item, n) in headquarters"
-                     :key="item.id">
-                    <v-row class=" d-flex justify-center"
-                           style="height: 8in !important;
+        <v-row align="center">
+            <v-col>
+                <v-window
+                    v-model="window"
+                    class="bg"
+                    vertical
+                >
+                    <v-window-item>
+                        <v-main>
+                            <div class="d-flex justify-center align-center flex-column">
+                                <div class="d-flex justify-center align-center sheet-letter saltopagina"
+                                     style="page-break-before: avoid !important;"
+                                     v-for="(item, n) in headquarters"
+                                     :key="item.id">
+                                    <v-row class=" d-flex justify-center"
+                                           style="height: 8in !important;
                             width: 10in !important;
                             max-height: 8in !important;
                             max-width: 10in !important;
                             min-height: 8in !important;
                             min-width: 10in !important;">
-                        <v-col class="col-md-8 col-12"
-                               style="width: 100%;min-width: 100%;height: 100%;min-height: 100%"
-                        >
-                            <v-card class="d-flex flex-column">
-                                <div class="d-flex align-end justify-end mr-2">
-                                    <v-card
-                                        class="overflow-hidden  transition-swing elevation-6 rounded primary fixed mt-1"
-                                        style="max-width: 100%; width: 65px;height: 65px"
-                                    >
+                                        <v-col class="col-md-8 col-12"
+                                               style="width: 100%;min-width: 100%;height: 100%;min-height: 100%"
+                                        >
+                                            <v-card class="d-flex flex-column">
+                                                <div class="d-flex align-end justify-end mr-2">
+                                                    <v-card
+                                                        class="overflow-hidden  transition-swing elevation-6 rounded primary fixed mt-1"
+                                                        style="max-width: 100%; width: 65px;height: 65px"
+                                                    >
 
-                                        <div class="pa-3 text-h4 text--white white--text font-weight-bold text-center">
-                                            {{ n + 1 }}
-                                        </div>
-
-                                    </v-card>
-                                </div>
-
-                                <v-card-title class="d-flex justify-space-around pt-1 pb-0 mb-0">
-
-
-                                    <logo :tile="true" :light="false" color="primary"
-                                          :width="120"></logo>
-                                    <logo :tile="true" :light="false" color="primary" :width="120"
-                                          src="logoAlcaldia"></logo>
-                                </v-card-title>
-                                <v-divider class="my-2"></v-divider>
-                                <v-toolbar flat>
-                                    <div class="d-flex  flex-column">
-                                        <div
-                                            class=" text-subtitle-2 text-sm-h6  primary--text font-weight-bold text-uppercase py-0 my-0">
-                                            {{ item.name }}
-                                        </div>
-                                        <div class="grey--text font-weight-bold text-uppercase py-0 my-0">
-                                            {{ getEstablishment(item.establishment_id) }}
-                                        </div>
-                                    </div>
-                                    <v-spacer></v-spacer>
-                                    <div
-                                        class="text-caption text-right text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0 uppercase">
-                                        {{ item.address }}
-                                        <br>
-                                        <span class="grey--text">
-                                    {{ item.municipality }}
-                                    {{ item.department }}
-                                </span>
-                                    </div>
-                                </v-toolbar>
-                                <v-card-text class="pa-3 flex-grow-1">
-                                    <v-simple-table dense class="rounded-lg">
-                                        <template v-slot:default>
-                                            <thead class="primary rounded-b-0">
-                                            <tr>
-                                                <th style="border: solid 1px white !important;"
-                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
-                                                    Descripción
-                                                </th>
-                                                <th style="border: solid 1px white !important;"
-                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
-                                                    Serial
-                                                </th>
-                                                <th style="border: solid 1px white !important;"
-                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
-                                                    Cantidad
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <template class=" rounded-b-0"
-                                                      v-for="(item, i) in getElements[n]">
-                                                <tr v-if="i!=='TOTAL'">
-                                                    <td class="b-solid-g rounded-b-0">
-                                                        {{
-                                                            i
-                                                        }}
-                                                    </td>
-                                                    <td class="b-solid-g  rounded-b-0">
-                                                        <div class="d-flex flex-wrap">
-                                                            <span
-                                                                class="w-half  mb-1"
-                                                                v-for="(j, x) in item"
-                                                                :key="x"
-                                                            >
-                                                                <span
-                                                                    class="text-decoration-none"
-                                                                >
-                                                                    <v-icon left color="success">
-                                                                        mdi-checkbox-marked-outline
-                                                                    </v-icon>
-                                                                    {{ j }}<span
-                                                                    v-if="i==='PRESENTADOR INALÁMBRICO'">{{ n }}</span>
-                                                                </span>
-                                                            </span>
+                                                        <div
+                                                            class="pa-3 text-h4 text--white white--text font-weight-bold text-center">
+                                                            {{ n + 1 }}
                                                         </div>
+
+                                                    </v-card>
+                                                </div>
+
+                                                <v-card-title class="d-flex justify-space-around pt-1 pb-0 mb-0">
+
+
+                                                    <logo :tile="true" :light="false" color="primary"
+                                                          :width="120"></logo>
+                                                    <logo :tile="true" :light="false" color="primary" :width="120"
+                                                          src="logoAlcaldia"></logo>
+                                                </v-card-title>
+                                                <v-divider class="my-2"></v-divider>
+                                                <v-toolbar flat>
+                                                    <div class="d-flex  flex-column">
+                                                        <div
+                                                            class=" text-subtitle-2 text-sm-h6  primary--text font-weight-bold text-uppercase py-0 my-0">
+                                                            {{ item.name }}
+                                                        </div>
+                                                        <div
+                                                            class="grey--text font-weight-bold text-uppercase py-0 my-0">
+                                                            {{ getEstablishment(item.establishment_id) }}
+                                                        </div>
+                                                    </div>
+                                                    <v-spacer></v-spacer>
+                                                    <div
+                                                        class="text-caption text-right text-sm-subtitle-1 secondary--text font-weight-bold py-0 my-0 uppercase">
+                                                        {{ item.address }}
+                                                        <br>
+                                                        <span class="grey--text">
+                                                            {{ item.municipality }}
+                                                            {{ item.department }}
+                                                        </span>
+                                                    </div>
+                                                </v-toolbar>
+                                                <v-card-text class="pa-3 flex-grow-1">
+                                                    <v-simple-table dense class="rounded-lg">
+                                                        <template v-slot:default>
+                                                            <thead class="primary rounded-b-0">
+                                                            <tr>
+                                                                <th style="border: solid 1px white !important;"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                    Descripción
+                                                                </th>
+                                                                <th style="border: solid 1px white !important;"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                    Serial
+                                                                </th>
+                                                                <th style="border: solid 1px white !important;"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                    Cantidad
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            <template class=" rounded-b-0"
+                                                                      v-for="(item, i) in getElements[n]">
+                                                                <tr v-if="i!=='TOTAL'">
+                                                                    <td class="b-solid-g rounded-b-0">
+                                                                        {{
+                                                                            i
+                                                                        }}
+                                                                    </td>
+                                                                    <td class="b-solid-g  rounded-b-0">
+                                                                        <div class="d-flex flex-wrap">
+                                                                            <div
+                                                                                class="w-half  mb-1"
+                                                                                v-for="(j, x) in item"
+                                                                                :key="x"
+                                                                            >
+                                                                                <div
+                                                                                    class="text-decoration-none"
+                                                                                >
+                                                                                    <v-icon left color="success">
+                                                                                        mdi-checkbox-marked-outline
+                                                                                    </v-icon>
+                                                                                    {{ j }}<span
+                                                                                    v-if="i==='PRESENTADOR INALÁMBRICO'">{{
+                                                                                        n
+                                                                                    }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="b-solid-g rounded-b-0">
+                                                                        {{
+                                                                            item.length
+                                                                        }}
+                                                                    </td>
+                                                                </tr>
+                                                            </template>
+                                                            <tr class="primary">
+                                                                <td colspan="2"
+                                                                    style="border: solid 1px white !important;"
+                                                                    class="text-uppercase white--text text-center rounded-b-0">
+                                                                    TOTAL
+                                                                </td>
+                                                                <td style="border: solid 1px white !important;"
+                                                                    class="text-uppercase white--text text-center rounded-b-0">
+                                                                    {{ getElements[n].TOTAL }}
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </template>
+                                                    </v-simple-table>
+                                                </v-card-text>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+
+
+                                </div>
+                            </div>
+                        </v-main>
+                    </v-window-item>
+
+                    <v-window-item>
+                        <v-main>
+                            <v-container class="d-flex justify-center">
+                                <v-card class="sheet-width-letter ">
+                                    <v-card-text class="pa-3 flex-grow-1">
+                                        <v-simple-table id="tableId" dense class="rounded-lg">
+                                            <template v-slot:default>
+                                                <thead class="primary rounded-lg rounded-b-0">
+                                                <tr>
+                                                    <th style="border: solid 1px white !important;"
+                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                        Descripción
+                                                    </th>
+                                                    <th style="border: solid 1px white !important;"
+                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                        Serial
+                                                    </th>
+                                                    <th style="border: solid 1px white !important;"
+                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                        Cantidad
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr v-for="(item, n) in elementos"
+                                                    :key="item.id">
+                                                    <td class="b-solid-g rounded-b-0">
+                                                        {{ item.DESCRIPTION }}
                                                     </td>
                                                     <td class="b-solid-g rounded-b-0">
-                                                        {{
-                                                            item.length
-                                                        }}
+                                                        {{ item.SERIAL }}
+                                                    </td>
+                                                    <td class="b-solid-g rounded-b-0">
+                                                        {{ item.QUANTITY }}
                                                     </td>
                                                 </tr>
+                                                </tbody>
                                             </template>
-                                            <tr class="primary">
-                                                <td colspan="2" style="border: solid 1px white !important;"
-                                                    class="text-uppercase white--text text-center rounded-b-0">
-                                                    TOTAL
-                                                </td>
-                                                <td style="border: solid 1px white !important;"
-                                                    class="text-uppercase white--text text-center rounded-b-0">
-                                                    {{ getElements[n].TOTAL }}
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </template>
-                                    </v-simple-table>
-                                </v-card-text>
-                            </v-card>
-                        </v-col>
-                    </v-row>
+                                        </v-simple-table>
+                                    </v-card-text>
+                                </v-card>
+                            </v-container>
+                        </v-main>
+                    </v-window-item>
+                    <v-fab-transition>
+                        <v-btn
+                            color="pink"
+                            fab
+                            dark
+                            small
+                            fixed
+                            bottom
+                            left
+                            @click="prev"
+                        >
+                            <v-icon>mdi-page-previous-outline</v-icon>
+                        </v-btn>
+                    </v-fab-transition>
 
+                    <v-fab-transition>
+                        <v-btn
+                            class="ml-12"
+                            color="pink"
+                            fab
+                            dark
+                            small
+                            fixed
+                            bottom
+                            left
+                            @click="next"
+                        >
 
-                </div>
-            </div>
-        </v-main>
+                            <v-icon>mdi-page-next-outline</v-icon>
+                        </v-btn>
+                    </v-fab-transition>
+                </v-window>
+            </v-col>
+        </v-row>
     </v-app>
 </template>
 
 <script>
 import SimpleLayout from "@/Layouts/SimpleLayout";
 import logo from "@/Components/Logo";
+
 
 export default {
     name: "Package",
@@ -2079,7 +2062,10 @@ export default {
                 "QUANTITY": 1
             },
 
-        ]
+        ],
+        length: 2,
+        window: 1,
+        fab: false,
     }),
     async created() {
         this.establishments = await axios.get('/dashboard/establishment/all')
@@ -2141,6 +2127,41 @@ export default {
                 return null;
             }
         },
+        next() {
+            this.window = this.window + 1 === this.length
+                ? 0
+                : this.window + 1
+        },
+        prev() {
+            this.window = this.window - 1 < 0
+                ? this.length - 1
+                : this.window - 1
+        },
+        downloadExl() {
+            let wb = XLSX.utils.table_to_book(document.getElementById('tableId')),
+                wopts = {
+                    bookType: 'xlsx',
+                    bookSST: false,
+                    type: 'binary'
+                },
+                wbout = XLSX.write(wb, wopts);
+
+            FileSaver.saveAs(new Blob([this.s2ab(wbout)], {
+                type: "application/octet-stream;charset=utf-8"
+            }), "Formulario de perfil personal.xlsx");
+        },
+        s2ab(s) {
+            if (typeof ArrayBuffer !== 'undefind') {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            } else {
+                var buf = new Array(s.length);
+                for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+        }
     }
 }
 </script>
@@ -2209,7 +2230,22 @@ export default {
     min-width: 11in !important;
 }
 
+.sheet-width-letter {
+    width: 11in !important;
+    max-width: 11in !important;
+    min-width: 11in !important;
+}
+
 .v-application .w-half {
     width: 50% !important;
 }
+
+#create .v-speed-dial {
+    position: absolute;
+}
+
+#create .v-btn--floating {
+    position: relative;
+}
+
 </style>

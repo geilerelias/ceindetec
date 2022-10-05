@@ -12,6 +12,7 @@
   "dependencies": {
     "@inertiajs/progress": "^0.1.0",
     "animate.css": "^4.1.1",
+    "file-saver": "^2.0.5",
     "google-maps-api-loader": "^1.1.1",
     "i": "^0.3.7",
     "laravel-permission-to-vuejs": "^3.0.1",

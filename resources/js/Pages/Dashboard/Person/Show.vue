@@ -2,183 +2,23 @@
     <app-layout>
         <bread-crumbs name="Gestión de los Miembros de la Comunidad educativa" :items="items"></bread-crumbs>
 
-        <v-container fluid>
-            <div>
-                <v-row class="row">
-                    <v-col class="col-sm-6 col-md-5 col-12">
-                        <v-row class="row">
-                            <v-col class="col col-12">
-                                <v-card class=" ma-1 theme--light" style="min-height: 282px;">
-                                    <v-card-text class="pa-5 pt-9 fill-height">
-                                        <v-row class="fill-height no-gutters">
-                                            <v-col
-                                                class="d-flex justify-center align-center flex-column col-sm-5 col-xl-6 col-12">
-                                                <div class="">
-                                                    <v-img size="182"
-                                                           cover
-                                                           class="elevation-4 rounded-circle"
-                                                           height="172"
-                                                           width="172"
-                                                           :src="data.profile_photo_path!==null?`/storage/${data.profile_photo_path}`:`/src/avatar/null/null/${data.gender}.jpg`"
-                                                           :alt="$page.user.name"
-                                                    />
-
-                                                </div>
-                                                <v-chip
-                                                    class="mr-2 my-4 mb-sm-0 error"
-                                                    small
-                                                    light>
-                                                    {{ data.person_type }}
-                                                </v-chip>
-                                            </v-col>
-                                            <v-col
-                                                class="pl-0 pl-sm-4 d-flex flex-column align-center align-sm-start col-sm-7 col-xl-6 col-12">
-                                                <p class="font-weight-regular">
-                                                    {{ data.name }}
-                                                    {{ data.surname }}
-                                                </p>
-
-                                                <p class="font-weight-regular">
-                                                    {{ data.ethnic_group }}
-                                                </p>
-
-                                                <p class="ma-0">
-                                                    {{ data.identification_type }}
-                                                    {{ data.identification_number }}
-                                                </p>
-
-                                                <p class="ma-0">
-                                                    {{ getDate(data.birthday_date) }}
-                                                </p>
-                                                <p class="ma-0">
-                                                    {{ getYearsOld(data.birthday_date) }} Años
-                                                </p>
-
-                                                <p class="ma-0">
-                                                    {{ data.gender }}
-                                                </p>
-
-                                                <a :href="`tel:${data.phone}`"
-                                                   class="body-1">
-                                                    {{ data.phone }}
-                                                </a>
-                                                <a :href="`mailto:${data.email}`"
-                                                   class="body-1">
-                                                    {{ data.email }}
-                                                </a>
-
-
-                                            </v-col>
-                                        </v-row>
-                                    </v-card-text>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-col>
-                </v-row>
-            </div>
-
-            <v-list
-                three-line
-                subheader
-            >
-                <v-subheader>User Controls</v-subheader>
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title>Content filtering</v-list-item-title>
-                        <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title>Password</v-list-item-title>
-                        <v-list-item-subtitle>Require password for purchase or use password to restrict purchase
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-            <v-divider></v-divider>
-            <v-list
-                three-line
-                subheader
-            >
-                <v-subheader>General</v-subheader>
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-checkbox v-model="notifications"></v-checkbox>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Notifications</v-list-item-title>
-                        <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-checkbox v-model="sound"></v-checkbox>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Sound</v-list-item-title>
-                        <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-checkbox v-model="widgets"></v-checkbox>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Auto-add widgets</v-list-item-title>
-                        <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-        </v-container>
-        {{ data }}
         <v-container>
             <v-row>
-                <v-col class="col-lg-3">
-                    <v-card class="rounded-lg">
-                        <div class="px-4 pt-3 pb-0">
-                            <v-list dense rounded>
-                                <v-list-item-group
-                                    v-model="selectedItem"
-                                    color="primary"
-                                    class="rounded-sm"
-                                >
-                                    <v-list-item class="px-3 py-1 rounded-lg mb-2"
-                                                 v-for="(item, i) in list"
-                                                 :key="i"
-                                    >
-                                        <v-list-item-icon>
-                                            <v-icon v-text="item.icon"></v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-content>
-                                            <v-list-item-title v-text="item.text"></v-list-item-title>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </v-list-item-group>
-                            </v-list>
-                        </div>
-                    </v-card>
-                </v-col>
-                <v-col class="col-lg-9">
-                    <v-card class=" px-4 py-4 rounded-lg">
-                        <v-row class="row">
-                            <v-col class="col col-auto">
-                                <v-avatar class="shadow rounded-circle"
-                                          size="75">
-                                    <v-img
-                                        cover
-                                        class="elevation-4 rounded-circle"
-
-                                        :src="data.profile_photo_path!==null?`/storage/${data.profile_photo_path}`:`/src/avatar/null/null/${data.gender}.jpg`"
-                                        :alt="$page.user.name"
-                                    />
-                                </v-avatar>
-                            </v-col>
-                            <v-col class="my-auto col-auto">
+                <v-col class="col-lg-9 mx-auto">
+                    <v-card class=" px-4 py-4 rounded-lg mx-auto">
+                        <v-row class="mx-auto ">
+                            <v-col class="d-flex">
+                                <div class="mr-6">
+                                    <v-avatar class="shadow rounded-circle"
+                                              size="75">
+                                        <v-img
+                                            cover
+                                            class="elevation-4 rounded-circle"
+                                            :src="data.profile_photo_path!==null?`/storage/${data.profile_photo_path}`:`https://ui-avatars.com/api/?name=${data.name}.&color=7F9CF5&background=EBF4FF`"
+                                            :alt="$page.user.name"
+                                        />
+                                    </v-avatar>
+                                </div>
                                 <div>
                                     <h5 class="mb-1 text-h5 text-typo font-weight-bold">
                                         {{ data.name }} {{ data.surname }}
@@ -193,7 +33,8 @@
                                     </p>
                                 </div>
                             </v-col>
-                            <div class="my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 col-md-6 col-lg-4 col">
+                            <v-spacer></v-spacer>
+                            <div class="my-sm-auto  mx-auto mt-3">
                                 <div class="d-flex align-center">
                                     <p class="mb-0 text-body text-xs ms-auto">
                                         activar usuario
@@ -216,35 +57,57 @@
                         </div>
                         <div class="px-6 pb-6 pt-0">
                             <v-row>
-                                <v-col class="col col-6">
+                                <v-col>
                                     <label class="text-sm text-body">Nombres</label>
 
                                     <p class="text-sm text-body-1">
                                         {{ data.name }}
                                     </p>
                                 </v-col>
-                                <div class="col col-6">
+
+                                <v-col>
                                     <label class="text-sm text-body">Apellidos</label>
                                     <p class="text-sm text-body-1">
                                         {{ data.surname }}
                                     </p>
-                                </div>
+                                </v-col>
+                            </v-row>
+                            <v-divider></v-divider>
+                            <v-row>
+                                <v-col>
+                                    <label class="text-sm text-body">Tipo de identificación</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ data.identification_type }}
+                                    </p>
+                                </v-col>
+                                <v-col>
+                                    <label class="text-sm text-body">Numero de identificación</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ data.identification_number }}
+                                    </p>
+                                </v-col>
                             </v-row>
                             <v-divider></v-divider>
                             <v-row class="mt-0">
-                                <v-col class="col-sm-4 col-12">
+                                <v-col>
                                     <label class="text-sm text-body">Genero</label>
                                     <p class="text-sm text-body-1">
                                         {{ data.gender }}
                                     </p>
                                 </v-col>
-                                <v-col class="col-sm-4 col-12">
+                                <v-col>
+                                    <label class="text-sm text-body">Tipo de sangre</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ data.blood_type }}
+                                    </p>
+                                </v-col>
+                                <v-col>
                                     <label class="text-sm text-body">Fecha de nacimiento</label>
                                     <p class="text-sm text-body-1">
                                         {{ getDate(data.birthday_date) }}
                                     </p>
                                 </v-col>
-                                <v-col class="col-sm-4 col-12">
+                                <v-col>
                                     <label class="text-sm text-body">Edad</label>
                                     <p class="text-sm text-body-1">
                                         {{ getYearsOld(data.birthday_date) }} años
@@ -280,7 +143,7 @@
                             <v-divider></v-divider>
                             <v-row class="mt-0">
                                 <v-col class="col-sm-4 col-12">
-                                    <label class="text-sm text-body">Direccion de residencia</label>
+                                    <label class="text-sm text-body">Dirección de residencia</label>
                                     <p class="text-sm text-body-1">
                                         {{ data.phone }}
                                     </p>
@@ -299,6 +162,54 @@
                                 </v-col>
                             </v-row>
                             <v-divider></v-divider>
+                        </div>
+                    </v-card>
+                    
+
+                    <v-card class="card-shadow rounded-lg mt-6" v-if="data.attended_by">
+                        <div class="px-6 py-6">
+                            <h5 class="text-h5 font-weight-bold text-typo">
+                                Información de acudientes
+                            </h5>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <v-row>
+                                <v-col>
+                                    <label class="text-sm text-body">Nombres de acudiente</label>
+
+                                    <p class="text-sm text-body-1">
+                                        {{ attended.name }} {{ attended.surname }}
+                                    </p>
+                                </v-col>
+                                <v-col>
+                                    <label class="text-sm text-body">Tipo de parentesco</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ data.relationship }}
+                                    </p>
+                                </v-col>
+                                <v-col>
+                                    <label class="text-sm text-body">Dirección de residencia</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ attended.direction }}
+                                    </p>
+                                </v-col>
+                            </v-row>
+                            <v-divider></v-divider>
+                            <v-row>
+                                <v-col class="col col-6">
+                                    <label class="text-sm text-body">Correo electrónico</label>
+
+                                    <p class="text-sm text-body-1">
+                                        {{ attended.email }}
+                                    </p>
+                                </v-col>
+                                <div class="col col-6">
+                                    <label class="text-sm text-body">Numero de teléfono</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ attended.phone }}
+                                    </p>
+                                </div>
+                            </v-row>
                         </div>
                     </v-card>
                 </v-col>
@@ -342,8 +253,20 @@ export default {
             {text: 'Audience', icon: 'mdi-account'},
             {text: 'Conversions', icon: 'mdi-flag'},
         ],
-        switch1: true
+        switch1: true,
+        attended: null
     }),
+    created() {
+        if (this.data.attended_by !== null) {
+            axios.get(`/dashboard/person/get/${this.data.attended_by}`)
+                .then(res => {
+                    this.attended = res.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    },
     methods: {
         getYearsOld(dateString) {
             var today = new Date();

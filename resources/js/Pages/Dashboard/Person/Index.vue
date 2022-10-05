@@ -59,33 +59,37 @@
                                     cover
                                     :aspect-ratio="1/1"
                                     class="elevation-4 rounded-circle"
-                                    :src="`/storage/${item.profile_photo_path}`"
-                                    :alt="item.profile_photo_path!==null?item.name:`/src/avatar/null/null/${item.gender}.jpg`"
+                                    :src="item.profile_photo_path!==null?`/storage/${item.profile_photo_path}`:`https://ui-avatars.com/api/?name=${item.name}.&color=7F9CF5&background=EBF4FF`"
+                                    :alt="item.name"
                                 />
                             </template>
                             <template v-slot:item.actions="{ item }">
-                                <v-icon
-                                    small
-                                    class="mr-2"
-                                    @click="edit(item)"
-                                >
-                                    mdi-pencil-outline
-                                </v-icon>
-                                <v-icon
-                                    small
-                                    class="mr-2"
-                                    @click="deleteRow(item)"
-                                >
-                                    mdi-delete-outline
-                                </v-icon>
-                                <inertia-link :href="route('person.show',item.id)">
-                                    <v-icon
-                                        small
-                                        @click="view(item)"
-                                    >
-                                        mdi-eye-outline
-                                    </v-icon>
-                                </inertia-link>
+                                <div class="d-flex">
+                                    <v-btn class="mr-2" x-small
+                                           @click="edit(item)"
+                                           icon
+                                           :loading="editMode"
+                                           :disabled="editMode">
+                                        <v-icon small>
+                                            mdi-pencil-outline
+                                        </v-icon>
+                                    </v-btn>
+                                    <v-btn icon class="mr-2" x-small>
+                                        <v-icon
+                                            small
+                                            @click="deleteRow(item)"
+                                        >
+                                            mdi-delete-outline
+                                        </v-icon>
+                                    </v-btn>
+                                    <inertia-link :href="route('person.show',item.id)">
+                                        <v-btn icon x-small>
+                                            <v-icon small>
+                                                mdi-eye-outline
+                                            </v-icon>
+                                        </v-btn>
+                                    </inertia-link>
+                                </div>
                             </template>
                             <template v-slot:no-data>
                                 <v-btn
@@ -100,13 +104,15 @@
                 </v-col>
             </v-row>
         </v-container>
-        <create-update :close="closeModal" :open="isOpen" :edit="editMode" :data="form"></create-update>
+        <create-update v-if="isOpen" :close="closeModal" :open="isOpen" :edit="editMode" :value="form"></create-update>
     </app-layout>
 </template>
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import BreadCrumbs from "@/Components/BreadCrumbs";
+import loadingComponent from "@/Components/LoadingComponent";
 
+loadingComponent
 export default {
     components: {
         AppLayout,
@@ -151,7 +157,6 @@ export default {
                     href: 'areas.index',
                 }
             ],
-
             form: null,
         }
     },
@@ -176,7 +181,9 @@ export default {
             this.openModal();
         },
         edit: function (data) {
+            console.log(data)
             this.form = Object.assign({}, data);
+            console.log(this.form)
             this.editMode = true;
             this.openModal();
         },
@@ -229,9 +236,6 @@ export default {
             })
         },
 
-        view(item) {
-
-        },
 
         initialize() {
             this.$inertia.get(this.route('person.index'));

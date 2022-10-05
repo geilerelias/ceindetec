@@ -17,4 +17,9 @@ class Establishment extends Model
     {
         return $this->hasMany(Headquarters::class);
     }
+
+    public function people()
+    {
+        return $this->hasMany(Person::class);
+    }
 }

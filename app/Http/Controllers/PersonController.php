@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -19,6 +20,27 @@ class PersonController extends Controller
     {
         $data = Person::all();
         return Inertia::render('Dashboard/Person/Index', ['data' => $data]);
+    }
+
+    public function getById($id)
+    {
+        return DB::table('people')->where('id', '=', $id)->first();
+        //return Inertia::render('Dashboard/Person/Index', ['data' => $data]);
+    }
+
+    public function getByHeadquarters($headquarter_id)
+    {
+        return DB::table('people')->where('headquarter_id', '=', $headquarter_id)->get();
+        //return Inertia::render('Dashboard/Person/Index', ['data' => $data]);
+    }
+
+    public function getByHeadquartersAndPersonType($headquarter_id, $type)
+    {
+        return DB::table('people')
+            ->where('headquarter_id', '=', $headquarter_id)
+            ->where('person_type', '=', $type)
+            ->get();
+        //return Inertia::render('Dashboard/Person/Index', ['data' => $data]);
     }
 
     /**
@@ -53,6 +75,8 @@ class PersonController extends Controller
             'email' => ['required', 'unique:people'],
             'phone' => ['required'],
             'person_type' => ['required'],
+            'establishment_id' => ['required'],
+            'headquarter_id' => ['required'],
         ])->validate();
 
         $person = new Person($request->all());
@@ -64,7 +88,6 @@ class PersonController extends Controller
             $pathImage = $file->storeAs('person', $fileName);
             $person->profile_photo_path = $pathImage;
         }
-
         $person->save();
 
         return redirect()->back()
