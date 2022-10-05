@@ -1,7 +1,7 @@
 <template>
     <simple-layout :extension="false">
         <template v-slot:header>
-            <p class="text-h5  text-sm-body-2 white--text font-weight-bold text-uppercase text-center ma-12">
+            <p class="fill-height text-sm-h5  text-body-2 white--text font-weight-bold text-uppercase text-right  d-flex align-center mr-2 pt-5">
                 Registro de información personal
             </p>
         </template>

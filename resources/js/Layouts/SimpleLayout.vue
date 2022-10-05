@@ -13,11 +13,12 @@
                 </v-btn>
                 <logo :tile="true" :light="true" color="primary" :width="150"></logo>
                 <v-spacer></v-spacer>
-
-                <div class="text-right">
-                    <slot name="header"></slot>
+                <div class="d-flex justify-space-around align-center">
+                    <div class="text-right mr-sm-2 fill-height d-flex justify-space-around align-center">
+                        <slot name="header"></slot>
+                    </div>
+                    <settings-dropdown v-if="elements==true"></settings-dropdown>
                 </div>
-                <settings-dropdown v-if="elements==true"></settings-dropdown>
                 <template v-slot:extension v-if="extension==true">
                     <slot name="extension"></slot>
                 </template>
