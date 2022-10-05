@@ -1,7 +1,7 @@
 <template>
     <simple-layout :extension="false">
         <template v-slot:header>
-            <p class="text-h5 white--text font-weight-bold text-uppercase text-center ma-12">
+            <p class="text-h5  text-sm-body-2 white--text font-weight-bold text-uppercase text-center ma-12">
                 Registro de información personal
             </p>
         </template>
@@ -29,7 +29,7 @@
                         Coordinador
                     </li>
                     <li class="font-weight-bold text--primary">
-                        Mínimo tres(2) Docentes
+                        Mínimo dos (2) Docentes
                     </li>
                     <li class="font-weight-bold text--primary">
                         Mínimo tres (3) Estudiantes con sus acudientes
