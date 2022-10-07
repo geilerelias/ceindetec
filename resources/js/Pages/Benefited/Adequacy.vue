@@ -43,7 +43,7 @@
                         <v-divider vertical></v-divider>
                         <v-col class="col-md-8 col-8 text-center ">
                             <h3 class="my-4 text-h5 primary--text font-weight-bold ">
-                                CONTRATO 002
+                                CONVENIO ESPECIAL No 005 DE 2021
                             </h3>
                             <v-divider></v-divider>
                             <v-row class="my-0 py-0">
@@ -52,7 +52,7 @@
                                 </v-col>
                                 <v-divider vertical></v-divider>
                                 <v-col class="col-6 my-1 py-0">
-                                    CONSECUTIVO 002
+                                    CONSECUTIVO 003
                                 </v-col>
                             </v-row>
                             <v-divider></v-divider>
@@ -328,16 +328,15 @@ export default {
         titles: [],
         information: [
             {
-                title: "PROYECTO No.:",
-                description: '002'
+                title: "CONTRATO No.:",
+                description: '003'
             },
             {
-                title: 'OBJETO PROYECTO:',
+                title: 'OBJETO CONTRATO:',
 
-                description: `FORTALECIMIENTO DE CAPACIDADES PARA LA INNOVACIÓN EDUCATIVA EN INSTITUCIONES OFICIALES
-                MEDIANTE EL USO DE TECNOLOGÍAS DE LA
-                INFORMACIÓN Y LAS COMUNICACIONES EN EL MARCO DE LA MODALIDAD DE ALTERNANCIA EN EL DEPARTAMENTO
-                DE LA GUAJIRA`
+                description: `
+                MANTENIMIENTO, REPARACIONES Y ADECUACIONES DE AULAS INTERACTIVAS UBICADAS EN LAS INSTITUCIONES EDUCATIVAS DE LOS MUNICIPIOS DE ALBANIA, MANAURE, DIBULLA, BARRANCA, FONSECA, LA JAGUA Y RIOHACHA, DEPARTAMENTO DE LA GUAJIRA, EN CUMPLIMENTO DE LOS OBJETIVOS DEL CONVENIO ESPECIAL DE COOPERACIÓN CIENTÍFICA Y TECNÓLOGICA NO. 005 DE 2021 SUSCRITO ENTRE LA GOBERNACIÓN DE LA GUAJIRA Y CEINDETEC LLANOS.
+                `
             },
             {
                 title: 'CONTRATISTA:',

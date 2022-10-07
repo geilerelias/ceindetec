@@ -1,2 +1,2 @@
-revision de puntos de datos
-revision de puntos electricos
+Revision de puntos de datos
+Revision de puntos electricos

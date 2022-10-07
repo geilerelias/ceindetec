@@ -17,8 +17,10 @@
                     establecimiento educativo y la sede de la cual eres miembro.
                 </div>
                 <div class="base-body text-body-1 grey--text text--darken-1 text-left">
-                    se les solicita encarecidamente ingresar por cada sede la información de
-                    miembros de la comunidad educativa como son:
+                    Se les solicita encarecidamente ingresar por sede la información de
+                    miembros de la comunidad educativa.
+                    <br>
+                    Los miembros y solicitada es la siguiente:
                 </div>
 
                 <ul style="list-style-type: disc !important;">
@@ -37,7 +39,7 @@
                 </ul>
 
                 <p>
-                    no olvidar especificar el rol del mismo dentro del establecimiento.
+                    No olvidar especificar el rol del mismo dentro del establecimiento.
                 </p>
 
                 <v-row>

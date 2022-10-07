@@ -1,11 +1,2 @@
-25 de marzo de 2022.
-
-Mingueo (Siete de Junio)
-
-1. Adecuación y resanes en muro.
-2. Cambio de 3 RJ45 que estaban dañados.
-3. Instalación de tapa de canaleta y limpieza del cableado.
-4. Identificación de la linea eléctrica principal que entra al aula, la cual registra 102Vac a su entrada. El motivo de este voltaje es por lo lejano que se encuentra el transformador.
-5. Corte de varillas salientes de las ventanas del aula.
-6. Limpieza y ajuste de 10 tomas corrientes.
-7. Instlación de 3 Faceplate.
+Adecuación y resanes en muro.
+Corte de varillas salientes de las ventanas del aula.
