@@ -34,103 +34,113 @@
 
             <v-container id="printer" class="white rounded-lg container-adequacy "
                          :style="{'min-height':localHeight, 'height':localHeight}">
-                <v-card outlined flat class="rounded-lg rounded-b-0 pb-0" style="width: 100%">
-                    <v-row class="justify-center my-0 py-0  ">
-                        <v-col class="d-flex justify-center align-center ">
 
-                            <logo :tile="true" color="primary" :width="200"></logo>
-                        </v-col>
-                        <v-divider vertical></v-divider>
-                        <v-col class="col-md-8 col-8 text-center ">
-                            <h3 class="my-4 text-h5 primary--text font-weight-bold ">
-                                CONVENIO ESPECIAL No 005 DE 2021
-                            </h3>
-                            <v-divider></v-divider>
-                            <v-row class="my-0 py-0">
-                                <v-col class="col-6 my-1 py-0  font-weight-bold">
+
+                <v-simple-table dense>
+                    <template v-slot:default>
+                        <thead>
+                        <tr class="b-solid-g">
+                            <th class="b-solid-g text-center" :rowspan="5" :colspan="4">
+                                <div class="mx-auto d-flex align-center justify-center">
+                                    <logo :tile="true" color="primary" :width="200"></logo>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="b-solid-g text-center" :colspan="8">
+                                <h3 class="my-4 mx-auto text-h5 primary--text font-weight-bold ">
+                                    CONVENIO ESPECIAL No 005 DE 2021
+                                </h3>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th :colspan="4" class="b-solid-g text-center">
+                                <div class=" my-1 py-0  text-body-2 font-weight-bold">
                                     INFORME DIARIO DE AVANCE DE OBRA
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="col-6 my-1 py-0">
-                                    CONSECUTIVO 003
-                                </v-col>
-                            </v-row>
-                            <v-divider></v-divider>
-                            <v-row class="my-0 py-0">
-                                <v-divider></v-divider>
-                                <v-col class="col-6 my-1 py-0 font-weight-bold">
+                                </div>
+                            </th>
+                            <th :colspan="4" class="b-solid-g text-center">
+                                <div class=" my-1 py-0  text-body-2 font-weight-bold ">
                                     FECHA
-                                </v-col>
-                                <v-divider vertical></v-divider>
-                                <v-col class="col-6 my-1 py-0">
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th :colspan="4" class="b-solid-g text-center">
+                                <div class="my-1 py-0 ">
+                                    CONSECUTIVO 003
+                                </div>
+                            </th>
+                            <th :colspan="4" class="b-solid-g text-center">
+                                <div class="my-1 py-0">
                                     {{ getDate(tab) }}
-                                </v-col>
-                            </v-row>
-                            <v-divider></v-divider>
-                        </v-col>
-                    </v-row>
-                </v-card>
-                <v-card outlined flat class="rounded-0 px-2" style="width: 100%">
-                    <div v-for="(item, i) in information"
-                         :key="item.id">
-                        <v-divider v-if="i!==0"></v-divider>
-                        <v-row class="my-0 py-0 ">
-                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
-                                {{ item.title }}
-                            </v-col>
-                            <v-divider vertical></v-divider>
-                            <v-col class="my-0 py-0 text-justify text-body-2">
-                                {{ item.description }}
-                            </v-col>
-                        </v-row>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                    </template>
+                </v-simple-table>
 
-                    </div>
-                </v-card>
-                <v-card outlined flat class="rounded-0 px-2 py-4" style="width: 100%">
-                    <div>
-                        <v-row class="my-0 py-0 ">
-                            <v-col class="col-3 my-0 py-0 font-weight-bold text-body-2">
+                <v-simple-table dense>
+                    <template v-slot:default>
+                        <tbody>
+                        <tr class="b-solid-g"
+                            v-for="(item, i) in information"
+                            :key="item.id">
+                            <td :colspan="4" class="b-solid-g my-0 py-0 text-body-2 font-weight-bold">
+                                {{ item.title }}
+                            </td>
+                            <td :colspan="8" class="b-solid-g my-0 py-0 text-justify text-body-2">
+                                {{ item.description }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </template>
+                </v-simple-table>
+
+                <v-simple-table dense>
+                    <template v-slot:default>
+                        <tbody>
+                        <tr class="b-solid-gmy-0 py-0 ">
+                            <td :colspan="4" class="b-solid-g my-0 py-0 font-weight-bold text-body-2">
                                 SEDE:
-                            </v-col>
-                            <v-divider vertical></v-divider>
-                            <v-col class="my-0 py-0">
+                            </td>
+                            <td :colspan="8" class=" b-solid-g my-0 py-0">
                                 <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
                                     {{
                                         data.headquarters
                                     }}
                                 </div>
-                            </v-col>
-                        </v-row>
-                        <v-divider></v-divider>
-                        <v-row class="my-0 py-0 ">
-                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
+                            </td>
+                        </tr>
+                        <tr class="b-solid-g my-0 py-0 ">
+                            <td :colspan="4" class="b-solid-g  my-0 py-0 text-body-2 font-weight-bold">
                                 ESTABLECIMIENTO:
-                            </v-col>
-                            <v-divider vertical></v-divider>
-                            <v-col class="my-0 py-0">
+                            </td>
+                            <td :colspan="8" class="b-solid-g my-0 py-0">
                                 <div class="primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
                                     {{
                                         data.establishments
                                     }}
                                 </div>
-                            </v-col>
-                        </v-row>
-                        <v-divider></v-divider>
-                        <v-row class="my-0 py-0 ">
-                            <v-col class="col-3 my-0 py-0 text-body-2 font-weight-bold">
+                            </td>
+                        </tr>
+                        <tr class="b-solid-g my-0 py-0 ">
+                            <td :colspan="4" class="b-solid-g my-0 py-0 text-body-2 font-weight-bold">
                                 MUNICIPIO:
-                            </v-col>
-                            <v-divider vertical></v-divider>
-                            <v-col class="my-0 py-0">
+                            </td>
+                            <td :colspan="8" class="b-solid-g my-0 py-0">
                                 <div class=" primary--text text-body-2 font-weight-bold text-uppercase py-0 my-0">
                                     {{
                                         data.municipality
                                     }}
                                 </div>
-                            </v-col>
-                        </v-row>
-                    </div>
-                </v-card>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </template>
+                </v-simple-table>
+
 
                 <v-tabs-items class="transparent" v-model="tab">
                     <v-tab-item
@@ -138,7 +148,7 @@
                         :key="item.folder"
                         class="transparent"
                     >
-                        <v-card outlined flat class="rounded-0 pa-2" style="width: 100%;page-break-before:avoid">
+                        <v-card outlined flat class="rounded-0 px-2 py-4" style="width: 100%;page-break-before:avoid">
 
                             <v-row>
                                 <v-col class="col-12 font-weight-bold primary--text ">
@@ -148,8 +158,8 @@
                                 <v-col class="grey--text text-body-2">
                                     {{ getDate(tab) }}
                                 </v-col>
-                                <v-col class="text-right grey--text text-body-2">
-                                    ESTADO DEL TIEMPO: SOLEADO
+                                <v-col class="text-right grey--text text-body-2 text-uppercase">
+                                    ESTADO DEL TIEMPO: {{ getWeatherConditions }}
                                 </v-col>
                             </v-row>
 
@@ -193,33 +203,43 @@
                                     class="d-flex child-flex"
                                     cols="4"
                                 >
-                                    <v-img
-                                        v-if="src!=='actividades.txt'"
-                                        :src="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
-                                        :aspect-ratio="16/9"
-                                        :elevation="5"
-                                        class="grey lighten-2 rounded "
+                                    <v-hover
+                                        v-slot="{ hover }"
+                                        open-delay="200"
                                     >
-                                        <template v-slot:placeholder>
-                                            <v-row
-                                                class="fill-height ma-0"
-                                                align="center"
-                                                justify="center"
-                                            >
-                                                <v-progress-circular
-                                                    indeterminate
-                                                    color="grey lighten-5"
-                                                ></v-progress-circular>
-                                            </v-row>
-                                        </template>
-                                    </v-img>
+                                        <v-card color="transparent"
+                                                :elevation="hover ? 16 : 0"
+                                                flat
+                                                class="ma-0 pa-0 transparent"
+                                                @click="showImage(`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`)">
 
+                                            <v-img
+                                                v-if="src!=='actividades.txt'"
+                                                :src="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
+                                                :aspect-ratio="16/9"
+                                                :elevation="5"
+                                                class="grey lighten-2 rounded "
+                                            >
+                                                <template v-slot:placeholder>
+                                                    <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                    >
+                                                        <v-progress-circular
+                                                            indeterminate
+                                                            color="grey lighten-5"
+                                                        ></v-progress-circular>
+                                                    </v-row>
+                                                </template>
+                                            </v-img>
+                                        </v-card>
+                                    </v-hover>
                                 </v-col>
                             </v-row>
                         </v-card>
                     </v-tab-item>
                 </v-tabs-items>
-
             </v-container>
 
             <v-btn id="no-print-btn"
@@ -300,6 +320,8 @@
                 </v-col>
             </v-footer>
         </v-main>
+
+        <preview-image :dialog="dialog" :selectedImage="selectedImage" :close="closePreviewImage"></preview-image>
     </simple-layout>
 
 </template>
@@ -310,14 +332,16 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import logo from '@/Components/Logo'
 import showDataFile from "@/Components/ShowDataFile";
 import SimpleLayout from "@/Layouts/SimpleLayout";
-
+import previewImage from "@/Components/PreviewImage";
+import weather_conditions from '@/../assets/weather_conditions.json'
 
 export default {
     name: "Index",
     components: {
         SimpleLayout,
         logo,
-        showDataFile
+        showDataFile,
+        previewImage
     },
     props: ['data'],
     data: () => ({
@@ -352,7 +376,9 @@ export default {
             }
         ],
         files: [],
-        height: null
+        height: null,
+        dialog: false,
+        selectedImage: null,
     }),
 
     async created() {
@@ -384,13 +410,37 @@ export default {
             .get(`/get/route/seguimiento/Adecuación/${this.data.municipality}/${this.data.establishments}/${this.data.headquarters}`)
             .then(response => {
                 this.records = response.data
-                console.log('this is response data ==>', response.data)
+                console.log('this is response in records data ==>', response.data)
             });
 
         this.getHeight
     },
 
     computed: {
+        getWeatherConditions() {
+            try {
+                const result = JSON.stringify(weather_conditions)
+                let weather = JSON.parse(result);
+                let localDate = this.getRecords[this.tab].folder
+                let found = weather.find(element => {
+                    let dateWeather = element.SunData.sunriseISO;
+                    let localWeather = dateWeather.toString()
+                    localWeather = localWeather.substring(0, 10)
+                    // console.log(localWeather)
+                    // console.log(typeof localWeather)
+                    // console.log(typeof localDate)
+                    return localWeather == localDate
+
+                });
+
+                console.log(found)
+                return found.WxDetails.wx
+            } catch (e) {
+                console.log(e)
+            }
+        },
+
+
         localHeight() {
             try {
                 return this.height
@@ -401,8 +451,8 @@ export default {
         getRecords: function () {
             let array = null
             try {
-                console.log('this is record', this.records[0])
-                let aux = this.records[0].sub
+                console.log('this is record in get getRecords', this.records[1])
+                let aux = this.records[1].sub
                 console.log(aux)
                 array = aux.sort((a, b) => {
                     if (new Date(a.folder).getTime() > new Date(b.folder).getTime())
@@ -436,7 +486,14 @@ export default {
     },
 
     methods: {
-
+        showImage(image) {
+            this.selectedImage = image
+            this.dialog = true
+            console.log('show image dialog', this.dialog, this.getDialog)
+        },
+        closePreviewImage() {
+            this.dialog = false;
+        },
         getNumber(id) {
             // console.log('este es id =>', id, ' type => ', typeof (parseInt(id)));
             return parseInt(id)
@@ -458,7 +515,6 @@ export default {
                 return null;
             }
         },
-
         getHeadquarters(id) {
             try {
                 let found = this.headquarters.find(element => element.id === id);
@@ -467,7 +523,6 @@ export default {
                 return null;
             }
         },
-
         getColor(title) {
             let color = '';
             if (title === 'Antes') {
@@ -479,6 +534,7 @@ export default {
             }
             return color;
         },
+
         getDate(tab) {
             try {
                 //.log('this is tab => ', tab)
@@ -503,16 +559,21 @@ export default {
         existFile(items) {
             //console.log('file => ', items)
             //let res = items.find((item) => item === 'actividades.txt')
-            let res = items.indexOf('actividades.txt')
-            //console.log(res)
-            if (res > -1) {
-                //console.log('existe')
-                return true;
-            } else {
-                //console.log('no existe')
-                return false
-            }
+            try {
 
+
+                let res = items.indexOf('actividades.txt')
+                //console.log(res)
+                if (res > -1) {
+                    //console.log('existe')
+                    return true;
+                } else {
+                    //console.log('no existe')
+                    return false
+                }
+            } catch (e) {
+                console.log(e)
+            }
 
         },
         back() {
@@ -585,4 +646,12 @@ export default {
     color: #36405a;
     font-family: "Montserrat", sans-serif !important;
 }*/
+
+.b-solid {
+    border: solid 1px white !important;
+}
+
+.b-solid-g {
+    border: solid 1px lightgray !important;
+}
 </style>
