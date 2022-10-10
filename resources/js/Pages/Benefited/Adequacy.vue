@@ -254,57 +254,6 @@
                 <v-icon>mdi-printer-outline</v-icon>
             </v-btn>
 
-            <!--`                <v-container fluid>
-                                <v-row>
-                                    <div v-for="(record, i )in item.records" :key="record.id">
-                                        {{ record }}{{ i }}
-                                    </div>
-
-                                    <v-col class="d-flex" v-for="(elemento, i) in item.items" :key="item.id">
-                                        <v-card color="transparent" flat width="100%">
-                                            <v-card-title class="d-flex justify-center align-center">
-                                                <v-card
-                                                    class=" white&#45;&#45;text font-weight-bold text-center text-h6 white&#45;&#45;text font-weight-bold"
-                                                    width="150"
-                                                    :color="getColor(elemento.title)">
-                                                    {{ elemento.title }}
-                                                </v-card>
-                                            </v-card-title>
-                                            <v-card-text>
-                                                <v-row>
-                                                    <v-col
-                                                        v-for="(src, n) in elemento.src"
-                                                        :key="n"
-                                                        class="d-flex child-flex"
-                                                        cols="12"
-                                                    >
-                                                        <v-img
-                                                            :src="src"
-                                                            :aspect-ratio="16/9"
-                                                            :elevation="5"
-                                                            class="grey lighten-2 rounded"
-                                                        >
-                                                            <template v-slot:placeholder>
-                                                                <v-row
-                                                                    class="fill-height ma-0"
-                                                                    align="center"
-                                                                    justify="center"
-                                                                >
-                                                                    <v-progress-circular
-                                                                        indeterminate
-                                                                        color="grey lighten-5"
-                                                                    ></v-progress-circular>
-                                                                </v-row>
-                                                            </template>
-                                                        </v-img>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-card-text>
-                                        </v-card>
-                                        <div v-if="i!==2" class="ml-4 mt-12 pl-1 grey rounded-xl"></div>
-                                    </v-col>
-                                </v-row>
-                            </v-container>-->
             <v-footer class="mt-12 primary" id="no-print-footer" padless>
                 <v-col
                     class="px-8"
@@ -454,9 +403,12 @@ export default {
         getRecords: function () {
             let array = null
             try {
-                console.log('this is record in get getRecords', this.records[1])
-                let aux = this.records[1].sub
-                console.log(aux)
+                // console.log('this is record in get getRecords', this.records)
+                let evidencias = this.records.filter(element => element.folder === 'EVIDENCIAS FOTOGRAFICAS');
+                // console.log('estas son las evidencias => ', evidencias)
+                let aux = evidencias[0].sub
+                // console.log('aux', aux)
+
                 array = aux.sort((a, b) => {
                     if (new Date(a.folder).getTime() > new Date(b.folder).getTime())
                         return -1
