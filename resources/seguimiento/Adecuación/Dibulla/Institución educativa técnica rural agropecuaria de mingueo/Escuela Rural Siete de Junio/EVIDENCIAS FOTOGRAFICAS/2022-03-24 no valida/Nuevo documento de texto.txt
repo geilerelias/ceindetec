@@ -1,9 +1,0 @@
-24 de marzo de 2022
-
-Mingueo (Siete de Junio)
-
-1. Limpieza general del cableado estructurado.
-2. Levantamiento y ajuste en los puntos debiles de la canaleta.
-3. Verificación y ajuste de los RJ45 desde cada punto.
-4. Verificación del estado de los patch panel del Rack y sus puntos de conexión.
-5. Desarme y limpieza general del Rack y de sus elementos.

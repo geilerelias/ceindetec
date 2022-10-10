@@ -167,7 +167,7 @@
                             <div v-if="existFile(item.sub)" class="mt-3">
 
                                 <show-data-file
-                                    :link="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/actividades.txt`"
+                                    :link="'/get/src/seguimiento/Adecuación/'+encodeURIComponent(`${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}`)+'/actividades.txt'"
                                 ></show-data-file>
                             </div>
 
@@ -211,11 +211,11 @@
                                                 :elevation="hover ? 16 : 0"
                                                 flat
                                                 class="ma-0 pa-0 transparent"
-                                                @click="showImage(`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`)">
+                                                @click="showImage('/get/src/seguimiento/Adecuación/'+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src))">
 
                                             <v-img
                                                 v-if="src!=='actividades.txt'"
-                                                :src="`/get/src/seguimiento/Adecuación/${data.municipality}/${data.establishments}/${data.headquarters}/${item.folder}/${src}`"
+                                                :src="'/get/src/seguimiento/Adecuación/'+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src)"
                                                 :aspect-ratio="16/9"
                                                 :elevation="5"
                                                 class="grey lighten-2 rounded "
@@ -406,8 +406,13 @@ export default {
         console.log('this is establishments => ', this.data.establishments)
         console.log('this is headquarters => ', this.data.headquarters)
 
+
+        let ruta = this.data.municipality + '/' + this.data.establishments + '/' + this.data.headquarters;
+        ruta = encodeURIComponent(ruta)
+        let url = '/get/route/seguimiento/Adecuación/' + ruta
+        console.log(url)
         axios
-            .get(`/get/route/seguimiento/Adecuación/${this.data.municipality}/${this.data.establishments}/${this.data.headquarters}`)
+            .get(url)
             .then(response => {
                 this.records = response.data
                 console.log('this is response in records data ==>', response.data)
@@ -439,8 +444,6 @@ export default {
                 console.log(e)
             }
         },
-
-
         localHeight() {
             try {
                 return this.height
@@ -466,7 +469,6 @@ export default {
             }
             return array
         },
-
         getHeight: () => {
             try {
                 let element = document.getElementById('container');
@@ -486,6 +488,9 @@ export default {
     },
 
     methods: {
+        getSrcUrl(municipality, establishments, headquarters, folder, src) {
+            return encodeURIComponent(`${municipality}/${establishments}/${headquarters}/${folder}/${src}`);
+        },
         showImage(image) {
             this.selectedImage = image
             this.dialog = true
