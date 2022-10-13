@@ -3,17 +3,15 @@
         <v-row align="center">
             <v-col>
                 <v-window
-                    v-model="window"
-                    class="bg"
-                    vertical
-                >
+                    v-model="window">
+
                     <v-window-item>
                         <v-main>
                             <div class="d-flex justify-center align-center flex-column">
-                                <div class="d-flex justify-center align-center sheet-letter saltopagina"
-                                     style="page-break-before: avoid !important;"
-                                     v-for="(item, n) in headquarters"
-                                     :key="item.id">
+                                <div v-for="(item, n) in headquarters"
+                                     :key="item.id"
+                                     class="d-flex justify-center align-center sheet-letter saltopagina"
+                                     style="page-break-before: avoid !important;">
                                     <v-row class=" d-flex justify-center"
                                            style="height: 8in !important;
                             width: 10in !important;
@@ -42,9 +40,9 @@
                                                 <v-card-title class="d-flex justify-space-around pt-1 pb-0 mb-0">
 
 
-                                                    <logo :tile="true" :light="false" color="primary"
-                                                          :width="120"></logo>
-                                                    <logo :tile="true" :light="false" color="primary" :width="120"
+                                                    <logo :light="false" :tile="true" :width="120"
+                                                          color="primary"></logo>
+                                                    <logo :light="false" :tile="true" :width="120" color="primary"
                                                           src="logoAlcaldia"></logo>
                                                 </v-card-title>
                                                 <v-divider class="my-2"></v-divider>
@@ -71,28 +69,28 @@
                                                     </div>
                                                 </v-toolbar>
                                                 <v-card-text class="pa-3 flex-grow-1">
-                                                    <v-simple-table dense class="rounded-lg">
+                                                    <v-simple-table class="rounded-lg" dense>
                                                         <template v-slot:default>
                                                             <thead class="primary rounded-b-0">
                                                             <tr>
-                                                                <th style="border: solid 1px white !important;"
-                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                    style="border: solid 1px white !important;">
                                                                     Descripción
                                                                 </th>
-                                                                <th style="border: solid 1px white !important;"
-                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                    style="border: solid 1px white !important;">
                                                                     Serial
                                                                 </th>
-                                                                <th style="border: solid 1px white !important;"
-                                                                    class="text-left text-uppercase white--text text-center rounded-b-0">
+                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                    style="border: solid 1px white !important;">
                                                                     Cantidad
                                                                 </th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
 
-                                                            <template class=" rounded-b-0"
-                                                                      v-for="(item, i) in getElements[n]">
+                                                            <template v-for="(item, i) in getElements[n]"
+                                                                      class=" rounded-b-0">
                                                                 <tr v-if="i!=='TOTAL'">
                                                                     <td class="b-solid-g rounded-b-0">
                                                                         {{
@@ -102,14 +100,14 @@
                                                                     <td class="b-solid-g  rounded-b-0">
                                                                         <div class="d-flex flex-wrap">
                                                                             <div
-                                                                                class="w-half  mb-1"
                                                                                 v-for="(j, x) in item"
                                                                                 :key="x"
+                                                                                class="w-half  mb-1"
                                                                             >
                                                                                 <div
                                                                                     class="text-decoration-none"
                                                                                 >
-                                                                                    <v-icon left color="success">
+                                                                                    <v-icon color="success" left>
                                                                                         mdi-checkbox-marked-outline
                                                                                     </v-icon>
                                                                                     {{ j }}<span
@@ -128,13 +126,13 @@
                                                                 </tr>
                                                             </template>
                                                             <tr class="primary">
-                                                                <td colspan="2"
-                                                                    style="border: solid 1px white !important;"
-                                                                    class="text-uppercase white--text text-center rounded-b-0">
+                                                                <td class="text-uppercase white--text text-center rounded-b-0"
+                                                                    colspan="2"
+                                                                    style="border: solid 1px white !important;">
                                                                     TOTAL
                                                                 </td>
-                                                                <td style="border: solid 1px white !important;"
-                                                                    class="text-uppercase white--text text-center rounded-b-0">
+                                                                <td class="text-uppercase white--text text-center rounded-b-0"
+                                                                    style="border: solid 1px white !important;">
                                                                     {{ getElements[n].TOTAL }}
                                                                 </td>
                                                             </tr>
@@ -145,8 +143,6 @@
                                             </v-card>
                                         </v-col>
                                     </v-row>
-
-
                                 </div>
                             </div>
                         </v-main>
@@ -155,22 +151,131 @@
                     <v-window-item>
                         <v-main>
                             <v-container class="d-flex justify-center">
+                                <v-card flat class="sheet-width-letter mt-4">
+                                    <v-card-title
+                                        class="d-flex justify-space-around pt-6 pb-0 mb-0">
+                                        <logo :light="false" :tile="true" :width="120"
+                                              color="primary"></logo>
+                                        <logo :light="false" :tile="true" :width="120"
+                                              color="primary"
+                                              src="logoAlcaldia"></logo>
+                                    </v-card-title>
+
+                                    <v-simple-table id="tableId" class="rounded-lg" dense>
+                                        <template v-slot:default>
+                                            <thead class="primary rounded-lg rounded-b-0">
+                                            <tr>
+                                                <td class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                    style="border: solid 1px white !important;">
+                                                    Institución
+                                                </td>
+                                                <td class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                    style="border: solid 1px white !important;">
+                                                    Sede
+                                                </td>
+                                                <td class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                    style="border: solid 1px white !important;">
+                                                    Fecha
+                                                </td>
+                                                <td class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                    style="border: solid 1px white !important;">
+                                                    Descripción
+                                                </td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <template v-for="(elements, n) in obtenerEntregas">
+                                                <tr v-if="n!=0">
+                                                    <td class="b-solid-g text-uppercase font-weight-black"
+                                                        :rowspan="Object.values(elements).length+1">
+                                                        {{ getEstablishment(n) }}
+                                                    </td>
+                                                </tr>
+
+                                                <tr v-if="n!=0"
+                                                    v-for="(sede, i) in elements" :key="sede.id">
+                                                    <td class="b-solid-g">
+                                                        {{ sede.name }}
+                                                    </td>
+                                                    <td class="b-solid-g">
+                                                        {{ getDateObra(sede.id) }}
+                                                    </td>
+                                                    <td class="b-solid-g">
+                                                        <div v-if="entregas[(sede.id*1-1)].tipo==1">
+                                                            Entrega de elementos mobiliario y
+                                                            <span class="font-weight-black">adecuación</span> de las
+                                                            aulas institucionales
+                                                            para la innovación
+                                                        </div>
+                                                        <div v-else>
+                                                            Entrega de elementos mobiliario y
+                                                            <span class="font-weight-black">Construcción</span> de
+                                                            las aulas institucionales
+                                                            para la innovación.
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            </template>
+
+                                            <!--                                                    <td class="d-flex  flex-column">
+                                                                                                    <div
+                                                                                                        class=" text-subtitle-2 text-sm-h6  primary&#45;&#45;text font-weight-bold text-uppercase py-0 my-0">
+                                                                                                        {{ item.id }}
+                                                                                                        {{ item.name }}
+
+                                                                                                    </div>
+                                                                                                    <div class="grey&#45;&#45;text">
+                                                                                                        {{ getDate(entregas[n].entrega_mobiliario) }}
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="grey&#45;&#45;text font-weight-bold text-uppercase py-0 my-0">
+                                                                                                        {{ getEstablishment(item.establishment_id) }}
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    class="text-caption text-right text-sm-subtitle-1 secondary&#45;&#45;text font-weight-bold py-0 my-0 uppercase">
+                                                                                                    {{ item.address }}
+                                                                                                    <br>
+                                                                                                    <span class="grey&#45;&#45;text">
+                                                                                                                                                                {{
+                                                                                                            item.municipality
+                                                                                                        }}
+                                                                                                                                                                {{
+                                                                                                            item.department
+                                                                                                        }}
+                                                                                                                                                            </span>
+                                                                                                </td>-->
+
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
+
+                                </v-card>
+                            </v-container>
+                        </v-main>
+                    </v-window-item>
+
+                    <v-window-item>
+                        <v-main>
+                            <v-container class="d-flex justify-center">
                                 <v-card class="sheet-width-letter ">
                                     <v-card-text class="pa-3 flex-grow-1">
-                                        <v-simple-table id="tableId" dense class="rounded-lg">
+                                        <v-simple-table id="tableId" class="rounded-lg" dense>
                                             <template v-slot:default>
                                                 <thead class="primary rounded-lg rounded-b-0">
                                                 <tr>
-                                                    <th style="border: solid 1px white !important;"
-                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                    <th class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                        style="border: solid 1px white !important;">
                                                         Descripción
                                                     </th>
-                                                    <th style="border: solid 1px white !important;"
-                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                    <th class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                        style="border: solid 1px white !important;">
                                                         Serial
                                                     </th>
-                                                    <th style="border: solid 1px white !important;"
-                                                        class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0">
+                                                    <th class="text-left text-uppercase white--text text-center rounded-lg rounded-b-0"
+                                                        style="border: solid 1px white !important;">
                                                         Cantidad
                                                     </th>
                                                 </tr>
@@ -196,38 +301,16 @@
                             </v-container>
                         </v-main>
                     </v-window-item>
-                    <v-fab-transition>
-                        <v-btn
-                            color="pink"
-                            fab
-                            dark
-                            small
-                            fixed
-                            bottom
-                            left
-                            @click="prev"
-                        >
-                            <v-icon>mdi-page-previous-outline</v-icon>
-                        </v-btn>
-                    </v-fab-transition>
 
-                    <v-fab-transition>
-                        <v-btn
-                            class="ml-12"
-                            color="pink"
-                            fab
-                            dark
-                            small
-                            fixed
-                            bottom
-                            left
-                            @click="next"
-                        >
 
-                            <v-icon>mdi-page-next-outline</v-icon>
-                        </v-btn>
-                    </v-fab-transition>
                 </v-window>
+                <v-bottom-navigation class="no-print">
+                    <v-pagination
+                        v-model="window"
+                        :length="length"
+                        circle
+                    ></v-pagination>
+                </v-bottom-navigation>
             </v-col>
         </v-row>
     </v-app>
@@ -2063,9 +2146,176 @@ export default {
             },
 
         ],
-        length: 2,
+        length: 3,
         window: 1,
         fab: false,
+        entregas: [
+            {
+                id: 1,
+                entrega_mobiliario: '2022-08-11',
+                entrega_audio_visuales: '2022-08-11',
+                entrega_obra: '2022-08-11',
+                tipo: 1
+            }, {
+                id: 2,
+                entrega_mobiliario: '2022-09-08',
+                entrega_audio_visuales: '2022-09-08',
+                entrega_obra: '2022-09-08',
+                tipo: 2
+            }, {
+                id: 3,
+                entrega_mobiliario: '2022-08-11',
+                entrega_audio_visuales: '2022-08-11',
+                entrega_obra: '2022-08-11',
+                tipo: 1
+            }, {
+                id: 4,
+                entrega_mobiliario: '2022-09-14',
+                entrega_audio_visuales: '2022-09-14',
+                entrega_obra: '2022-09-14',
+                tipo: 2
+            }, {
+                id: 5,
+                entrega_mobiliario: '2022-08-09',
+                entrega_audio_visuales: '2022-08-09',
+                entrega_obra: '2022-08-09',
+                tipo: 1
+            }, {
+                id: 6,
+                entrega_mobiliario: '2022-09-06',
+                entrega_audio_visuales: '2022-09-06',
+                entrega_obra: '2022-09-06',
+                tipo: 2
+            }, {
+                id: 7,
+                entrega_mobiliario: '2022-09-06',
+                entrega_audio_visuales: '2022-09-06',
+                entrega_obra: '2022-09-06',
+                tipo: 1
+            }, {
+                id: 8,
+                entrega_mobiliario: '2022-08-10',
+                entrega_audio_visuales: '2022-08-10',
+                entrega_obra: '2022-08-10',
+                tipo: 1
+            }, {
+                id: 9,
+                entrega_mobiliario: '2022-08-10',
+                entrega_audio_visuales: '2022-08-10',
+                entrega_obra: '2022-08-10',
+                tipo: 1
+            }, {
+                id: 10,
+                entrega_mobiliario: '2022-08-10',
+                entrega_audio_visuales: '2022-08-10',
+                entrega_obra: '2022-08-10',
+                tipo: 1
+            }, {
+                id: 11,
+                entrega_mobiliario: '2022-08-18',
+                entrega_audio_visuales: '2022-08-18',
+                entrega_obra: '2022-08-18',
+                tipo: 1
+            }, {
+                id: 12,
+                entrega_mobiliario: '2022-10-06',
+                entrega_audio_visuales: '2022-10-06',
+                entrega_obra: '2022-10-06',
+                tipo: 2
+            }, {
+                id: 13,
+                entrega_mobiliario: '2022-09-20',
+                entrega_audio_visuales: '2022-09-20',
+                entrega_obra: '2022-09-20',
+                tipo: 2
+            }, {
+                id: 14,
+                entrega_mobiliario: '2022-08-17',
+                entrega_audio_visuales: '2022-08-17',
+                entrega_obra: '2022-08-17',
+                tipo: 1
+            }, {
+                id: 15,
+                entrega_mobiliario: '2022-08-16',
+                entrega_audio_visuales: '2022-08-16',
+                entrega_obra: '2022-08-16',
+                tipo: 1
+            }, {
+                id: 16,
+                entrega_mobiliario: '2022-08-16',
+                entrega_audio_visuales: '2022-08-16',
+                entrega_obra: '2022-08-16',
+                tipo: 1
+            }, {
+                id: 17,
+                entrega_mobiliario: '2022-09-20',
+                entrega_audio_visuales: '2022-09-20',
+                entrega_obra: '2022-09-20',
+                tipo: 2
+            }, {
+                id: 18,
+                entrega_mobiliario: '2022-08-17',
+                entrega_audio_visuales: '2022-08-17',
+                entrega_obra: '2022-08-17',
+                tipo: 1
+            }, {
+                id: 19,
+                entrega_mobiliario: '2022-08-18',
+                entrega_audio_visuales: '2022-08-18',
+                entrega_obra: '2022-08-18',
+                tipo: 1
+            }, {
+                id: 20,
+                entrega_mobiliario: '2022-08-18',
+                entrega_audio_visuales: '2022-08-18',
+                entrega_obra: '2022-08-18',
+                tipo: 1
+            }, {
+                id: 21,
+                entrega_mobiliario: '2022-09-09',
+                entrega_audio_visuales: '2022-09-09',
+                entrega_obra: '2022-09-09',
+                tipo: 2
+            }, {
+                id: 22,
+                entrega_mobiliario: '2022-09-09',
+                entrega_audio_visuales: '2022-09-09',
+                entrega_obra: '2022-09-09',
+                tipo: 2
+            }, {
+                id: 23,
+                entrega_mobiliario: '2022-09-20',
+                entrega_audio_visuales: '2022-09-20',
+                entrega_obra: '2022-09-20',
+                tipo: 2
+            }, {
+                id: 24,
+                entrega_mobiliario: '2022-09-09',
+                entrega_audio_visuales: '2022-09-09',
+                entrega_obra: '2022-09-09',
+                tipo: 2
+            }, {
+                id: 25,
+                entrega_mobiliario: '2022-09-14',
+                entrega_audio_visuales: '2022-09-14',
+                entrega_obra: '2022-09-14',
+                tipo: 2
+            }, {
+                id: 26,
+                entrega_mobiliario: '2022-08-12',
+                entrega_audio_visuales: '2022-08-12',
+                entrega_obra: '2022-08-12',
+                tipo: 1
+            }, {
+                id: 27,
+                entrega_mobiliario: '2022-08-12',
+                entrega_audio_visuales: '2022-08-12',
+                entrega_obra: '2022-08-12',
+                tipo: 1
+            },
+
+
+        ]
     }),
     async created() {
         this.establishments = await axios.get('/dashboard/establishment/all')
@@ -2087,6 +2337,27 @@ export default {
             })
     },
     computed: {
+        obtenerEntregas() {
+            try {
+                let nuevoObjeto = []
+                //Recorremos el arreglo
+                this.headquarters.forEach(x => {
+                    //Si la ciudad no existe en nuevoObjeto entonces
+                    //la creamos e inicializamos el arreglo de profesionales.
+                    console.log(x)
+                    if (!nuevoObjeto.hasOwnProperty(x.establishment_id)) {
+                        nuevoObjeto[x.establishment_id] = []
+                    }
+
+                    //Agregamos los datos de profesionales.
+                    nuevoObjeto[x.establishment_id].push(x)
+                })
+                console.log('nuevoObjeto', nuevoObjeto)
+                return nuevoObjeto;
+            } catch (e) {
+                return null
+            }
+        },
         getElements() {
             let items = []
 
@@ -2100,7 +2371,7 @@ export default {
             let result = []
 
             items.forEach(element => {
-                let nuevoObjeto = {}
+                let nuevoObjeto = []
                 let total = 0
                 element.forEach(x => {
                     console.log(x)
@@ -2119,6 +2390,42 @@ export default {
         }
     },
     methods: {
+
+        getDateObra(value) {
+            console.log('entregas', this.entregas[(value - 1)], ' value => ', value)
+            let valor = this.entregas[(value - 1)].entrega_obra
+            try {
+                //.log('this is tab => ', tab)
+                //console.log(this.getRecords[tab].folder)
+                let date = new Date(valor + " 00:00:00").toLocaleDateString("es-ES",
+                    {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                    })
+                //console.log(date)
+                return date
+            } catch (e) {
+                //console.log(e)
+            }
+        }, getDate(value) {
+            try {
+                //.log('this is tab => ', tab)
+                //console.log(this.getRecords[tab].folder)
+                let date = new Date(value + " 00:00:00").toLocaleDateString("es-ES",
+                    {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                    })
+                //console.log(date)
+                return date
+            } catch (e) {
+                //console.log(e)
+            }
+        },
         getEstablishment(id) {
             try {
                 let found = this.establishments.find(element => element.id === id);
@@ -2173,11 +2480,23 @@ export default {
         display: none;
     }
 
+    .no-print {
+        display: none;
+    }
+
+    #no-print-btn {
+        display: none;
+    }
+
     #no-print-header {
         display: none;
     }
 
     #no-print {
+        display: none;
+    }
+
+    .no-print {
         display: none;
     }
 

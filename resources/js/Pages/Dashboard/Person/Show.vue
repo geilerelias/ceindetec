@@ -60,14 +60,14 @@
                                 <v-col>
                                     <label class="text-sm text-body">Nombres</label>
 
-                                    <p class="text-sm text-body-1">
+                                    <p class="text-sm text-body-1 text-uppercase">
                                         {{ data.name }}
                                     </p>
                                 </v-col>
 
                                 <v-col>
                                     <label class="text-sm text-body">Apellidos</label>
-                                    <p class="text-sm text-body-1">
+                                    <p class="text-sm text-body-1 text-uppercase">
                                         {{ data.surname }}
                                     </p>
                                 </v-col>
@@ -83,10 +83,11 @@
                                 <v-col>
                                     <label class="text-sm text-body">Numero de identificación</label>
                                     <p class="text-sm text-body-1">
-                                        {{ data.identification_number }}
+                                        {{ showNumericFormat(data.identification_number) }}
                                     </p>
                                 </v-col>
                             </v-row>
+
                             <v-divider></v-divider>
                             <v-row class="mt-0">
                                 <v-col>
@@ -149,22 +150,49 @@
                                     </p>
                                 </v-col>
                                 <v-col class="col-sm-4 col-12">
-                                    <label class="text-sm text-body">Fecha de nacimiento</label>
+                                    <label class="text-sm text-body">Municipio</label>
                                     <p class="text-sm text-body-1">
-                                        {{ getDate(data.birthday_date) }}
+                                        {{ data.municipality }}
                                     </p>
                                 </v-col>
                                 <v-col class="col-sm-4 col-12">
-                                    <label class="text-sm text-body">Edad</label>
+                                    <label class="text-sm text-body">Departamento</label>
                                     <p class="text-sm text-body-1">
-                                        {{ getYearsOld(data.birthday_date) }} años
+                                        {{ data.department }}
                                     </p>
                                 </v-col>
+
                             </v-row>
                             <v-divider></v-divider>
                         </div>
                     </v-card>
-                    
+
+                    <v-card class="card-shadow rounded-lg mt-6">
+                        <div class="px-6 py-6">
+                            <h5 class="text-h5 font-weight-bold text-typo">
+                                Información de establecimiento
+                            </h5>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <v-row>
+                                <v-col class="col col-6">
+                                    <label class="text-sm text-body">Institución</label>
+
+                                    <p class="text-sm text-body-1">
+                                        {{ establishment.name }}
+                                    </p>
+                                </v-col>
+                                <div class="col col-6">
+                                    <label class="text-sm text-body">Sede</label>
+                                    <p class="text-sm text-body-1">
+                                        {{ headquarters.name }}
+                                    </p>
+                                </div>
+                            </v-row>
+                            <v-divider></v-divider>
+                        </div>
+                    </v-card>
+
 
                     <v-card class="card-shadow rounded-lg mt-6" v-if="data.attended_by">
                         <div class="px-6 py-6">
@@ -254,9 +282,29 @@ export default {
             {text: 'Conversions', icon: 'mdi-flag'},
         ],
         switch1: true,
-        attended: null
+        attended: null,
+        headquarters: null,
+        establishment: null
     }),
     created() {
+        axios.get(`/dashboard/headquarters/${this.data.headquarter_id}/get-by-id`)
+            .then(res => {
+                console.log(res)
+                this.headquarters = res.data
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        axios.get(`/dashboard/establishment/${this.data.establishment_id}/get-by-id`)
+            .then(res => {
+                console.log(res)
+                this.establishment = res.data
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
         if (this.data.attended_by !== null) {
             axios.get(`/dashboard/person/get/${this.data.attended_by}`)
                 .then(res => {
@@ -293,6 +341,9 @@ export default {
                 //console.log(e)
             }
         },
+        showNumericFormat(number) {
+            return Intl.NumberFormat('es-ES').format(number)
+        }
     }
 }
 </script>

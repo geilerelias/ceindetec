@@ -62,6 +62,10 @@ Route::get('/about-us', function () {
     return Inertia\Inertia::render('AboutUs');
 })->name('about-us');
 
+Route::get('/create-person', function () {
+    return Inertia\Inertia::render('Dashboard/Person/Create');
+})->name('create.person');
+
 Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
 Route::get('/qrcode/search-edit', [\App\Http\Controllers\QrCodeController::class, 'searchEdit']);
 Route::get('/qrcode/search-show', [\App\Http\Controllers\QrCodeController::class, 'searchShow']);
@@ -100,10 +104,12 @@ Route::get('/back', function () {
 
 //sedes de establecimientos
 Route::get('/dashboard/headquarters/all', [HeadquartersController::class, 'all']);
+Route::get('/dashboard/headquarters/{id}/get-by-id', [HeadquartersController::class, 'getById']);
 Route::get('/dashboard/headquarters/{id}/establishment', [HeadquartersController::class, 'getEstablishment']);
 
 //establecimientos educativos
 Route::get('/dashboard/establishment/all', [EstablishmentController::class, 'all']);
+Route::get('/dashboard/establishment/{id}/get-by-id', [EstablishmentController::class, 'getById']);
 Route::get('/dashboard/establishment/{id}/headquarters', [EstablishmentController::class, 'getHeadquarters']);
 
 Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);

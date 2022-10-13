@@ -3523,7 +3523,7 @@
         },
         "WxDetails": {
             "icon": 38,
-            "wx": "Tronando"
+            "wx": "Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 1.21,
@@ -3563,7 +3563,7 @@
         },
         "WxDetails": {
             "icon": 38,
-            "wx": "Tronando"
+            "wx": "Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 1.22,
@@ -4319,7 +4319,7 @@
         },
         "WxDetails": {
             "icon": 38,
-            "wx": "Tronando"
+            "wx": "Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 0.54,
@@ -5761,7 +5761,7 @@
         },
         "WxDetails": {
             "icon": 4,
-            "wx": "Lluvia ligera y Tronando"
+            "wx": "Lluvia ligera con Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 0.14,
@@ -8443,7 +8443,7 @@
         },
         "WxDetails": {
             "icon": 38,
-            "wx": "Tronando"
+            "wx": "Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 0.41,
@@ -9959,7 +9959,7 @@
         },
         "WxDetails": {
             "icon": 38,
-            "wx": "Tronando"
+            "wx": "Truenos"
         },
         "Precips": {
             "sevenDayPrecipIn": 0.86,

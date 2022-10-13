@@ -29,6 +29,11 @@ class HeadquartersController extends Controller
         return Headquarters::all();
     }
 
+    public function getById($id)
+    {
+        return Headquarters::find($id);
+    }
+
     public function getEstablishment($id)
     {
         return Headquarters::find($id)->establishments;

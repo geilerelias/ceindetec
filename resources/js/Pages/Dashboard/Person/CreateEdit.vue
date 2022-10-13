@@ -242,7 +242,7 @@
 
                                             </v-row>
                                         </section>
-                                        
+
                                         <section id="info-localization">
                                             <v-row class="text-left">
                                                 <v-col class="col-10">
@@ -956,6 +956,7 @@ export default {
                                     //this.$inertia.get(this.route('person.index'));
                                 }
                             });
+
                         }
                     },
                     onError: error => {
@@ -976,6 +977,13 @@ export default {
                         this.saving = false;
                         this.reset();
                         this.resetValidation();
+                        if (this.establishment_id > -1) {
+                            this.person.establishment_id = this.establishment_id
+                            this.$nextTick(() => {
+                                this.getAllHeadquarters()
+                                this.person.headquarter_id = this.headquarter_id
+                            })
+                        }
                     },
                 });
             }

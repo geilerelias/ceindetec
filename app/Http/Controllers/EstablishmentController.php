@@ -41,6 +41,11 @@ class EstablishmentController extends Controller
         return Establishment::all();
     }
 
+    public function getById($id)
+    {
+        return Establishment::find($id);
+    }
+
     public function getHeadquarters($id)
     {
         return Establishment::find($id)->headquarters;
