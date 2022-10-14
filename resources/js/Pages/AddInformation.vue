@@ -20,7 +20,7 @@
                     Se les solicita encarecidamente ingresar por sede la información de
                     miembros de la comunidad educativa.
                     <br>
-                    Los miembros y solicitada es la siguiente:
+                    Los miembros a registrar son los siguiente:
                 </div>
 
                 <ul style="list-style-type: disc !important;">
@@ -105,7 +105,7 @@
                                             {{ person.profile_photo_path }}
                                             <v-list-item-avatar>
                                                 <img class="rounded-circle" cover
-                                                     :src="person.profile_photo_path==='' ||person.profile_photo_path===null?`https://ui-avatars.com/api/?name=${person.name+person.surname}&color=7F9CF5&background=EBF4FF`:person.profile_photo_path"></img>
+                                                     :src="person.profile_photo_path==='' ||person.profile_photo_path===null?`https://ui-avatars.com/api/?name=${person.name+person.surname}&color=7F9CF5&background=EBF4FF`:'/storage/'+person.profile_photo_path"></img>
                                             </v-list-item-avatar>
 
                                             <v-list-item-content>
