@@ -102,7 +102,7 @@
                                         <v-list-item
                                             :key="person.id"
                                         >
-                                            {{ person.profile_photo_path }}
+                                            
                                             <v-list-item-avatar>
                                                 <img class="rounded-circle" cover
                                                      :src="person.profile_photo_path==='' ||person.profile_photo_path===null?`https://ui-avatars.com/api/?name=${person.name+person.surname}&color=7F9CF5&background=EBF4FF`:'/storage/'+person.profile_photo_path"></img>
