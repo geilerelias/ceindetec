@@ -340,6 +340,28 @@ export default {
             {
                 "GROUP": 1,
                 "DESCRIPTION": "DIADEMA CON MICRÓFONO",
+                "SERIAL": "20122814792",
+                "QUANTITY": 1
+            },
+            {
+                "GROUP": 1,
+                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
+                "SERIAL": "20122814793",
+                "QUANTITY": 1
+            }, {
+                "GROUP": 1,
+                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
+                "SERIAL": "20122814809",
+                "QUANTITY": 1
+            }, {
+                "GROUP": 1,
+                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
+                "SERIAL": "20122814811",
+                "QUANTITY": 1
+            },
+            {
+                "GROUP": 1,
+                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
                 "SERIAL": "20122814815",
                 "QUANTITY": 1
             },
