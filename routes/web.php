@@ -13,6 +13,8 @@ use App\Http\Controllers\PensumController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\StudyPlanController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\NoticeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +80,10 @@ Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');
 })->name('contact-us');
 
+//send mail contact
+Route::post('/send-mail', [\App\Http\Controllers\SendMailController::class, 'send'])
+    ->name('send-email');
+
 Route::get('/benefited', function () {
     return Inertia\Inertia::render('Benefited/Follow');
 })->name('follow');
@@ -102,6 +108,14 @@ Route::get('/back', function () {
     return url()->previous();
 })->name('back');
 
+
+//notices
+Route::get('notices/all', [NoticeController::class, 'all']);
+Route::middleware(['auth:sanctum', 'verified', 'can:Ver noticias'])->group(function () {
+    Route::resource('/notices', NoticeController::class);
+    Route::post('/notices/update/{id}', [NoticeController::class, 'update']);
+});
+
 //sedes de establecimientos
 Route::get('/dashboard/headquarters/all', [HeadquartersController::class, 'all']);
 Route::get('/dashboard/headquarters/{id}/get-by-id', [HeadquartersController::class, 'getById']);
@@ -120,7 +134,7 @@ Route::get('/dashboard/person/{headquarter_id}/{type}/all', [PersonController::c
 Route::get('/dashboard/person/{headquarter_id}/all', [PersonController::class, 'getByHeadquarters']);
 Route::post('/dashboard/person/add', [PersonController::class, 'store']);
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(function () {
     // 'can:Ver dashboard'
 
     Route::get('/dashboard', function () {
@@ -206,6 +220,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->get('/user/{user}/roles', [UserController::class, 'getRoleNames']);
 
     Route::middleware(['auth:sanctum', 'verified'])->resource('user', UserController::class);
+
+    //Ticket
+    Route::resource('/dashboard/ticket-category', \App\Http\Controllers\TicketCategoryController::class);
+    Route::resource('/dashboard/ticket', \App\Http\Controllers\TicketController::class);
+
 });
 
 Route::get('/example', function (Request $request) {
@@ -214,6 +233,10 @@ Route::get('/example', function (Request $request) {
 });
 
 Route::resource('/posts', PostController::class);
+
+Route::get('/user-activation', function () {
+    return Inertia\Inertia::render('Auth/UserActivation');
+})->name('auth.user.activation');
 
 Route::get('before-during-after', function () {
     return Inertia\Inertia::render('BeforeDuringAfter/Index');

@@ -59,6 +59,13 @@ const store = new Vuex.Store({
                 title: "Dashboard"
             },
             {
+                title: "Noticias",
+                icon: 'mdi-bulletin-board',
+                route: "notices.index",
+                /*can: 'view notices',
+                array: null*/
+            },
+            {
                 title: "Agenda",
                 icon: 'mdi-calendar-month',
                 route: "schedule"
@@ -198,6 +205,7 @@ const store = new Vuex.Store({
                     array: null
                 },
             ],
+
             {
                 title: "Post",
                 icon: 'mdi-note-text',
@@ -225,6 +233,16 @@ const store = new Vuex.Store({
                     array: null
                 }
             ],
+
+            {
+                title: "Tickets",
+                icon: 'mdi-ticket',
+
+                route: "ticket.index",
+                //can: 'view permission',
+                array: null
+            },
+
 
         ]
     },

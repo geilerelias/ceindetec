@@ -12,10 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('administratives', function (Blueprint $table) {
+        Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->string('administrative_type');
-            $table->foreignId('person_id')->constrained('people');
+            $table->string('image');
+            $table->string('title');
+            $table->string('city')->nullable();;
+            $table->string('date');
+            $table->string('time')->nullable();;
+            $table->text('description');
+            $table->text('links')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('administratives');
+        Schema::dropIfExists('notices');
     }
 };

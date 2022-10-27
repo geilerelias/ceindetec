@@ -1,15 +1,10 @@
 <template>
-
     <v-app>
-
-
         <v-form
             ref="form"
             v-model="valid">
-
-
+            
             <v-card-title class="align-start">
-
 
                 <div class="mx-auto text-center d-flex flex-column">
                     <div class="mx-auto text-h5 primary--text  font-weight-black">

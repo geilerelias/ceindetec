@@ -1,37 +1,29 @@
 <template>
     <app-layout>
-        <bread-crumbs name="Areas curriculares" :items="items"></bread-crumbs>
+        <bread-crumbs name="Categoría de tickets" :items="items"></bread-crumbs>
         <v-container class="py-12">
             <v-row class="ma-0">
                 <v-col>
                     <v-card style="width: 100%;">
                         <v-card-text class="">
-                            <v-row class="no-gutters">
+                            <v-row class=" no-gutters">
                                 <div class="d-flex justify-space-between justify-md-start col-md-6 col-12">
                                     <v-btn
-                                        @click="create()"
+                                        @click="isOpen = !isOpen"
                                         class="mr-3 success">
                                         <v-icon class="notranslate mr-2">
                                             mdi-plus
                                         </v-icon>
-                                        Add
-                                    </v-btn>
-
-                                    <v-btn outlined
-                                           class="button-shadow primary--text">
-                                        <v-icon aria-hidden="true"
-                                                class="notranslate mr-2">
-                                            mdi-filter-variant
-                                        </v-icon>
-                                        Filters
+                                        Crear
                                     </v-btn>
                                 </div>
+
                                 <v-spacer></v-spacer>
 
                                 <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
                                     <v-text-field hide-details dense enclosed outlined
                                                   append-icon="mdi-magnify"
-                                                  placeholder="search"
+                                                  placeholder="Consultar"
                                                   v-model="search"
                                     ></v-text-field>
                                 </div>
@@ -51,9 +43,6 @@
                             :search="search"
                             class="elevation-1"
                         >
-                            <template v-slot:item.description="{ item }">
-                                {{ ConvertStringToHTML(item.description) }}
-                            </template>
                             <template v-slot:item.actions="{ item }">
                                 <v-icon
                                     small
@@ -74,7 +63,7 @@
                                     color="primary"
                                     @click="initialize"
                                 >
-                                    Reset
+                                    Recargar
                                 </v-btn>
                             </template>
                         </v-data-table>
@@ -82,7 +71,55 @@
                 </v-col>
             </v-row>
         </v-container>
-        <create-update :close="closeModal" :open="isOpen" :edit="editMode" :data="form"></create-update>
+
+        <v-dialog
+            v-model="isOpen"
+            max-width="800"
+        >
+            <v-card class="pa-6">
+                <v-card-text>
+                    <v-text-field
+                        v-model="form.name"
+                        :counter="10"
+                        label="Nombre"
+                        required
+                    ></v-text-field>
+                    <div v-if="$page.errors.name" class="text-red-500">{{
+                            $page.errors.name[0]
+                        }}
+                    </div>
+
+                    <v-textarea
+                        v-model="form.description"
+                        label="Descripción"
+                        required
+                    ></v-textarea>
+
+                    <div v-if="$page.errors.description" class="text-red-500">{{
+                            $page.errors.description[0]
+                        }}
+                    </div>
+                    <div class="d-flex justify-end">
+                        <v-btn wire:click.prevent="store()" type="button"
+                               v-show="!editMode" @click="save(form)"
+                               class="primary mx-1" dark>
+                            Guardar
+                        </v-btn>
+
+                        <v-btn wire:click.prevent="store()" type="button"
+                               v-show="editMode" @click="update(form)"
+                               class="primary x-1" dark>
+                            Actualizar
+                        </v-btn>
+
+                        <v-btn @click="closeModal()" type="button"
+                               class="secondary mx-1" dark>
+                            Cancelar
+                        </v-btn>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </app-layout>
 </template>
 <script>
@@ -93,17 +130,17 @@ export default {
     components: {
         AppLayout,
         BreadCrumbs,
-        CreateUpdate: () => import('@/Pages/Dashboard/Area/CreateUpdate')
     },
     props: ['data', 'errors'],
     data() {
         return {
-            saving: false,
-            establishments: [],
-            studyPlans: [],
             editMode: false,
             isOpen: false,
             search: '',
+            form: {
+                name: null,
+                description: null,
+            },
             headers: [
                 {
                     text: 'Id',
@@ -112,58 +149,99 @@ export default {
                     value: 'id',
                 },
                 {text: 'Nombre', value: 'name',},
-                {text: 'Descripción', value: 'description',},
+                {text: 'Descripción', value: 'description'},
                 {text: 'Acciones', value: 'actions', sortable: false},
             ],
+            editedIndex: -1,
+            editedItem: {
+                name: '',
+            },
+            defaultItem: {
+                name: '',
+            },
             items: [
                 {
                     text: 'Dashboard',
                     disabled: false,
-                    href: 'dashboard',
+                    href: '/dashboard',
                 },
                 {
-                    text: 'Areas curriculares',
+                    text: 'Categoría de tickets',
                     disabled: true,
-                    href: 'areas.index',
-                }
+                    href: 'breadcrumbs_link_1',
+                },
             ],
-
-            form: null,
         }
     },
-
     methods: {
-
-        ConvertStringToHTML(str) {
-            let parser = new DOMParser();
-            let doc = parser.parseFromString(str, 'text/html');
-            /*  console.log("este es el objeto => ", doc.body)
-              doc.body.className = "text-truncate";
-              for (const property in doc.body) {
-                  console.log("este es un elemento => ", property);
-              }*/
-            return doc.body.innerText;
+        openModal: function () {
+            this.isOpen = true;
         },
-        getActualYear() {
-            return new Date(Date.parse(`${new Date().getFullYear().toString()}-01-01`)).toISOString().slice(0, 7);
-        },
-        create: function () {
+        closeModal: function () {
+            this.isOpen = false;
+            this.reset();
             this.editMode = false;
-            this.openModal();
+        },
+        reset: function () {
+            this.form = {
+                name: null,
+                description: null,
+            }
+        },
+        save: function (data) {
+            this.$inertia.post('ticket-category', data, {
+                onSuccess: page => {
+                    console.log('this is page =>', page)
+                    this.$swal(
+                        'Buen trabajo!',
+                        this.$page.flash.message,
+                        'success'
+                    )
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+                onError: errors => {
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+                onFinish: visit => {
+                    this.reset();
+                    this.closeModal();
+                    this.editMode = false;
+                },
+            })
+
         },
         edit: function (data) {
             this.form = Object.assign({}, data);
             this.editMode = true;
             this.openModal();
         },
-        openModal: function () {
-            this.isOpen = true;
+        update: function (data) {
+            data._method = 'PUT';
+            this.$inertia.post('/ticket-category/' + data.id, data, {
+                onSuccess: page => {
+                    this.$swal(
+                        'Buen trabajo!',
+                        this.$page.flash.message,
+                        'success'
+                    )
+                    this.reset();
+                    this.closeModal();
+                },
+                onError: errors => {
+                    this.reset();
+                    this.closeModal();
+                },
+                onFinish: visit => {
+                    this.reset();
+                    this.closeModal();
+                },
+            })
         },
-        closeModal: function () {
-            this.isOpen = false;
-            this.editMode = false;
-        },
-        
+
         deleteRow(item) {
             item._method = 'DELETE';
             this.$swal({
@@ -176,7 +254,7 @@ export default {
                 confirmButtonText: 'Sí, Eliminarlo!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.$inertia.post(this.route('area.destroy', item.id), item, {
+                    this.$inertia.post(this.route('ticket-category.destroy', item.id), item, {
                         onStart: (visit) => {
                             this.loadingDeleteItem = true;
                         },
@@ -205,9 +283,8 @@ export default {
         },
 
         initialize() {
-            this.$inertia.get(this.route('area.index'));
+            this.$inertia.get(this.route('ticket-category.index'));
         },
-
     }
 }
 </script>

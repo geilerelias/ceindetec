@@ -23,6 +23,9 @@ class PermissionTableSeeder extends Seeder
             [5, 'Ver persona', 'sanctum', '2022-01-04 13:33:12', '2022-01-04 13:33:12'],
             [6, 'Ver rol', 'sanctum', '2022-01-04 13:33:22', '2022-01-04 15:03:47'],
             [7, 'Ver permisos', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
+            [7, 'Editar permisos', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
+            [7, 'Eliminar permisos', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
+            [7, 'Crear permisos', 'sanctum', '2022-01-04 13:33:33', '2022-01-04 13:33:33'],
             [8, 'Edit persona', 'sanctum', '2022-01-04 13:33:45', '2022-01-04 13:33:45'],
             [9, 'Eliminar persona', 'sanctum', '2022-01-04 13:33:58', '2022-01-04 13:33:58'],
             [10, 'Crear persona', 'sanctum', '2022-01-04 13:34:07', '2022-01-04 13:34:07'],
@@ -33,6 +36,7 @@ class PermissionTableSeeder extends Seeder
             [15, 'Quitar roles', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59'],
             [16, 'Crear qrcode', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59'],
             [17, 'Ver qrcode', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59'],
+            [17, 'Ver noticias', 'sanctum', '2022-01-05 02:25:59', '2022-01-05 02:25:59'],
         ];
 
         foreach ($permisos as $permisos) {

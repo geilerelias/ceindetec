@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('study_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->foreignId('establishments_id')->constrained('establishments');
             $table->foreignId('year_id')->constrained('years');
             $table->timestamps();

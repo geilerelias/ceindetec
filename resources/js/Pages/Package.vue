@@ -5,7 +5,8 @@
                 <v-window
                     v-model="window">
 
-                    <v-window-item>
+                    <v-window-item :value="1">
+                        {{ packages }}
                         <v-main>
                             <div class="d-flex justify-center align-center flex-column">
                                 <div v-for="(item, n) in headquarters"
@@ -28,7 +29,6 @@
                                                         class="overflow-hidden  transition-swing elevation-6 rounded primary fixed mt-1"
                                                         style="max-width: 100%; width: 65px;height: 65px"
                                                     >
-
                                                         <div
                                                             class="pa-3 text-h4 text--white white--text font-weight-bold text-center">
                                                             {{ n + 1 }}
@@ -88,43 +88,45 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-
-                                                            <template v-for="(item, i) in getElements[n]"
-                                                                      class=" rounded-b-0">
-                                                                <tr v-if="i!=='TOTAL'">
-                                                                    <td class="b-solid-g rounded-b-0">
-                                                                        {{
-                                                                            i
-                                                                        }}
-                                                                    </td>
-                                                                    <td class="b-solid-g  rounded-b-0">
-                                                                        <div class="d-flex flex-wrap">
-                                                                            <div
-                                                                                v-for="(j, x) in item"
-                                                                                :key="x"
-                                                                                class="w-half  mb-1"
-                                                                            >
-                                                                                <div
-                                                                                    class="text-decoration-none"
-                                                                                >
-                                                                                    <v-icon color="success" left>
-                                                                                        mdi-checkbox-marked-outline
-                                                                                    </v-icon>
-                                                                                    {{ j }}<span
-                                                                                    v-if="i==='PRESENTADOR INALÁMBRICO'">{{
-                                                                                        n
-                                                                                    }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="b-solid-g rounded-b-0">
-                                                                        {{
-                                                                            item.length
-                                                                        }}
-                                                                    </td>
-                                                                </tr>
-                                                            </template>
+                                                            {{ getElements }}
+                                                            <!--                                                            <template v-for="(item, i) in getElements[n]"
+                                                                                                                                  class=" rounded-b-0">
+                                                                                                                            {{ item }}
+                                                                                                                            <tr v-if="i!=='TOTAL'">
+                                                                                                                                <td class="b-solid-g rounded-b-0">
+                                                                                                                                    {{
+                                                                                                                                        i
+                                                                                                                                    }}
+                                                                                                                                </td>
+                                                                                                                                <td class="b-solid-g  rounded-b-0">
+                                                                                                                                    <div class="d-flex flex-wrap">
+                                                                                                                                        <div
+                                                                                                                                            v-for="(j, x) in item"
+                                                                                                                                            :key="x"
+                                                                                                                                            class="w-half  mb-1"
+                                                                                                                                        >
+                                                                                                                                            <div
+                                                                                                                                                class="text-decoration-none"
+                                                                                                                                            >
+                                                                                                                                                <v-icon color="success" left>
+                                                                                                                                                    mdi-checkbox-marked-outline
+                                                                                                                                                </v-icon>
+                                                                                                                                                {{ j }}<span
+                                                                                                                                                v-if="i==='PRESENTADOR INALÁMBRICO'">{{
+                                                                                                                                                    n
+                                                                                                                                                }}</span>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </td>
+                                                                                                                                <td class="b-solid-g rounded-b-0">
+                                                                                                                                    {{
+                                                                                                                                        item.length
+                                                                                                                                    }}
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                        </template>
+                                                                                                                     -->
                                                             <tr class="primary">
                                                                 <td class="text-uppercase white--text text-center rounded-b-0"
                                                                     colspan="2"
@@ -133,7 +135,7 @@
                                                                 </td>
                                                                 <td class="text-uppercase white--text text-center rounded-b-0"
                                                                     style="border: solid 1px white !important;">
-                                                                    {{ getElements[n].TOTAL }}
+                                                                    <!--                                                                    {{ getElements[n].TOTAL }}-->
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -148,7 +150,7 @@
                         </v-main>
                     </v-window-item>
 
-                    <v-window-item>
+                    <v-window-item :value="2">
                         <v-main>
                             <v-container class="d-flex justify-center">
                                 <v-card flat class="sheet-width-letter mt-4">
@@ -257,7 +259,7 @@
                         </v-main>
                     </v-window-item>
 
-                    <v-window-item>
+                    <v-window-item :value="3">
                         <v-main>
                             <v-container class="d-flex justify-center">
                                 <v-card class="sheet-width-letter ">
@@ -301,8 +303,6 @@
                             </v-container>
                         </v-main>
                     </v-window-item>
-
-
                 </v-window>
                 <v-bottom-navigation class="no-print">
                     <v-pagination
@@ -335,30 +335,6 @@ export default {
                 "GROUP": 1,
                 "DESCRIPTION": "DIADEMA CON MICRÓFONO",
                 "SERIAL": "20122814780",
-                "QUANTITY": 1
-            },
-            {
-                "GROUP": 1,
-                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
-                "SERIAL": "20122814792",
-                "QUANTITY": 1
-            },
-            {
-                "GROUP": 1,
-                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
-                "SERIAL": "20122814793",
-                "QUANTITY": 1
-            },
-            {
-                "GROUP": 1,
-                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
-                "SERIAL": "20122814809",
-                "QUANTITY": 1
-            },
-            {
-                "GROUP": 1,
-                "DESCRIPTION": "DIADEMA CON MICRÓFONO",
-                "SERIAL": "20122814811",
                 "QUANTITY": 1
             },
             {
@@ -2315,7 +2291,8 @@ export default {
             },
 
 
-        ]
+        ],
+        packages: [],
     }),
     async created() {
         this.establishments = await axios.get('/dashboard/establishment/all')
@@ -2335,6 +2312,8 @@ export default {
             .catch((error) => {
                 // console.log(error)
             })
+
+
     },
     computed: {
         obtenerEntregas() {
@@ -2358,39 +2337,57 @@ export default {
                 return null
             }
         },
+
         getElements() {
-            let items = []
+            try {
+                let result = []
 
-            for (let i = 0; i < 27; i++) {
-                items[i] = this.elementos.filter(item => item.GROUP == (i + 1));
-            }
-            /* var arrayTemporal = []
-             for (let i = 0; i < item.length; i++) {
-                 arrayTemporal = nuevoArray.filter(resp => resp["DESCRIPTION"] == arrayRespuesta[i]["SERIAL"])
-             }*/
-            let result = []
-
-            items.forEach(element => {
-                let nuevoObjeto = []
-                let total = 0
-                element.forEach(x => {
-                    console.log(x)
-                    if (!nuevoObjeto.hasOwnProperty(x.DESCRIPTION)) {
-                        nuevoObjeto[x.DESCRIPTION] = []
-                    }
-                    total++;
-                    nuevoObjeto[x.DESCRIPTION].push(x.SERIAL)
+                this.groupByGroup.forEach(element => {
+                    let nuevoObjeto = []
+                    let total = 0
+                    element.forEach(x => {
+                        console.log('x => ', x)
+                        if (!nuevoObjeto.hasOwnProperty(x.DESCRIPTION)) {
+                            nuevoObjeto[x.DESCRIPTION] = []
+                        }
+                        total++;
+                        nuevoObjeto[x.DESCRIPTION].push(x.SERIAL)
+                    })
+                    nuevoObjeto['TOTAL'] = total;
+                    console.log('Nuevo Objeto => ', nuevoObjeto)
+                    result.push(nuevoObjeto)
                 })
-                nuevoObjeto['TOTAL'] = total;
-                result.push(nuevoObjeto)
-            })
 
-            console.log(result)
-            return result
-        }
+                console.log('resultados => ', result)
+
+                console.log('resultados[1] => ', result[1])
+
+                /* result = _.groupBy(this.elementos, "GROUP")
+                 console.log(result)
+
+                 let newresult = _.groupBy(this.elementos, "DESCRIPTION")
+                 console.log(newresult)*/
+                this.$nextTick(() => {
+                    this.packages = result
+                })
+
+                return result
+            } catch (e) {
+
+            }
+            return null;
+        },
+
     },
     methods: {
-
+        groupByGroup() {
+            let items = []
+            for (let i = 0; i < 27; i++) {
+                items[i] = this.elementos.filter(item => item.GROUP == (i + 1));
+                console.log('ITEM GROUP => ', items[i])
+            }
+            return items
+        },
         getDateObra(value) {
             console.log('entregas', this.entregas[(value - 1)], ' value => ', value)
             let valor = this.entregas[(value - 1)].entrega_obra
@@ -2409,7 +2406,9 @@ export default {
             } catch (e) {
                 //console.log(e)
             }
-        }, getDate(value) {
+        },
+
+        getDate(value) {
             try {
                 //.log('this is tab => ', tab)
                 //console.log(this.getRecords[tab].folder)
@@ -2426,6 +2425,7 @@ export default {
                 //console.log(e)
             }
         },
+
         getEstablishment(id) {
             try {
                 let found = this.establishments.find(element => element.id === id);

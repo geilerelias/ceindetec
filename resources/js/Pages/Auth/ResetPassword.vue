@@ -1,177 +1,128 @@
 <template>
-    <v-app id="inspire">
-        <header-app-component></header-app-component>
-        <drawer-app-component></drawer-app-component>
-        <v-content>
-            <v-container fluid>
-                <v-layout align-start justify-center>
-                    <v-flex xs12 sm8 md4>
-                        <template>
-                            <v-card
-                                class="mt-5"
-                                style="border-radius:0px!important"
-                            >
-                                <v-toolbar dark flat>
-                                    <v-toolbar-title>
-                                        Restablecimiento de contraseña
-                                    </v-toolbar-title>
-                                    <v-spacer></v-spacer>
-                                </v-toolbar>
-                                <v-card-text v-if="!tokenFound">
-                                    <v-list>
-                                        <v-list-item>
-                                            <v-list-item-avatar
-                                                color="amber darken-4"
-                                                size="40"
-                                            >
-                                                <v-icon
-                                                    icon="mdi-alert"
-                                                    color="white"
-                                                >
-                                                    mdi-lock
-                                                </v-icon>
-                                            </v-list-item-avatar>
+    <auth-layout id="inspire">
 
-                                            <v-list-item-content>
-                                                {{ message }}
-                                            </v-list-item-content>
+        <div class="pa-7 pa-sm-12">
+            <v-row class="">
 
-                                            <v-list-item-action>
-                                                <v-tooltip bottom>
-                                                    <template
-                                                        v-slot:activator="{
-                                                            on
-                                                        }"
-                                                    >
-                                                        <v-btn
-                                                            icon
-                                                            to="/send-notification"
-                                                            v-on="on"
-                                                        >
-                                                            <v-icon
-                                                                color="grey lighten-1"
-                                                            >
-                                                                mdi-email-send-outline
-                                                            </v-icon>
-                                                        </v-btn>
-                                                    </template>
-                                                    <span>Reenviar email</span>
-                                                </v-tooltip>
-                                            </v-list-item-action>
-                                        </v-list-item>
-                                    </v-list>
-                                </v-card-text>
-                                <v-card-text v-if="tokenFound">
-                                    <v-form
-                                        valid="true"
-                                        ref="form"
-                                        class="pa-5"
-                                        v-model="valid"
-                                        :lazy-validation="false"
-                                    >
-                                        ingresa la nueva contraseña y su
-                                        confirmación para actualizar
-                                        <v-row>
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field
-                                                    v-model="item.password"
-                                                    :append-icon="
-                                                        show1
-                                                            ? 'mdi-eye'
-                                                            : 'mdi-eye-off'
-                                                    "
-                                                    :rules="passwordRules"
-                                                    :type="
-                                                        show1
-                                                            ? 'text'
-                                                            : 'password'
-                                                    "
-                                                    label="Password"
-                                                    hint="Al menos 4 carácteres"
-                                                    counter
-                                                    @click:append="
-                                                        show1 = !show1
-                                                    "
-                                                ></v-text-field>
-                                            </v-col>
-
-                                            <v-col cols="12" sm="6">
-                                                <v-text-field
-                                                    v-model="
-                                                        item.password_confirmation
-                                                    "
-                                                    :append-icon="
-                                                        show2
-                                                            ? 'mdi-eye'
-                                                            : 'mdi-eye-off'
-                                                    "
-                                                    :rules="
-                                                        passwordConfirmRules
-                                                    "
-                                                    :type="
-                                                        show2
-                                                            ? 'text'
-                                                            : 'password'
-                                                    "
-                                                    label="Confirmar password"
-                                                    hint="Al menos 4 carácteres"
-                                                    counter
-                                                    @click:append="
-                                                        show2 = !show2
-                                                    "
-                                                ></v-text-field>
-                                            </v-col>
-                                        </v-row>
-                                    </v-form>
-                                </v-card-text>
-                                <v-card-actions v-if="tokenFound">
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="error" @click="reset">
-                                        Limpiar
-                                    </v-btn>
-                                    <v-btn
-                                        :disabled="!valid"
-                                        color="#212121"
-                                        class="white--text"
-                                        @click="validate"
-                                    >
-                                        Continuar
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </template>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-content>
-        <div class="text-center">
-            <v-overlay :absolute="true" :opacity="0.9" :value="overlay">
-                <v-row class="mb-6" no-gutters>
-                    <v-col sm="12"
+                <v-col class="col-lg-9 col-xl-6 col-12">
+                    <div
+                        aria-current="page"
+                        class="d-flex align-center text-decoration-none mr-2 router-link-exact-active router-link-active"
                     >
-                        <v-progress-circular
-                            indeterminate
-                            size="64"
-                        ></v-progress-circular>
-                    </v-col>
+                        <inertia-link :href="route('home')">
+                            <v-avatar color="white" size="90">
+                                <v-img
+                                    :src="logo"
+                                    alt="logo"
+                                    cover
+                                ></v-img>
+                            </v-avatar>
+                        </inertia-link>
+                    </div>
 
-                    <v-col class="mt-5">
+                    <h2
+                        class="font-weight-bold mt-4 blue-grey--text text--darken-2"
+                    >
+                        Restablecimiento de contraseña
+                    </h2>
+                    <h6 class="subtitle-1 mb-2">
+                        ¿No tienes cuenta?
+                        <inertia-link :href="route('auth.user.activation')">
+                            activación de usuario
+                        </inertia-link>
+                    </h6>
+
+                    <v-form
+                        ref="form"
+                        v-model="valid"
+                        :lazy-validation="false"
+                        valid="true"
+                    >
+                        Ingresa la nueva contraseña y su
+                        confirmación para actualizar
+                        <v-row>
+                            <v-col class="mt-2">
+
+                                <v-text-field
+                                    v-model="item.password"
+                                    :append-icon="show1? 'mdi-eye': 'mdi-eye-off'"
+                                    :rules="passwordRules"
+                                    :type="show1? 'text' : 'password'"
+                                    counter
+                                    hint="Al menos 4 caracteres"
+                                    label="Password"
+                                    outlined
+                                    @click:append="show1 = !show1"
+                                ></v-text-field>
+
+                                <v-text-field
+                                    v-model="item.password_confirmation"
+                                    :append-icon="show2? 'mdi-eye': 'mdi-eye-off'"
+                                    :rules="passwordConfirmRules"
+                                    :type="show2? 'text': 'password' "
+                                    counter
+                                    hint="Al menos 4 caracteres"
+                                    label="Confirmar password"
+                                    outlined
+                                    @click:append="show2 = !show2 "
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-form>
+
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="error" @click="reset">
+                            Limpiar
+                        </v-btn>
+                        <v-btn
+                            :disabled="!valid"
+                            class="white--text"
+                            color="primary"
+                            @click="validate"
+                        >
+                            Continuar
+                        </v-btn>
+                    </v-card-actions>
+                </v-col>
+            </v-row>
+
+
+            <div class="text-center">
+                <v-overlay :absolute="true" :opacity="0.9" :value="overlay">
+                    <v-row class="mb-6" no-gutters>
+                        <v-col sm="12"
+                        >
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-col>
+
+                        <v-col class="mt-5">
                         <span class="white--text">
                             Un momento por favor, estamos procesando su
                             solicitud
                         </span>
-                    </v-col>
-                </v-row>
-            </v-overlay>
+                        </v-col>
+                    </v-row>
+                </v-overlay>
+            </div>
+
         </div>
-    </v-app>
+    </auth-layout>
 </template>
 
 <script>
+import AuthLayout from "@/Layouts/AuthLayout";
+import logo from '@/../images/logo-ceindetec-circle.png';
+
 export default {
-    props: ["response"],
+    components: {AuthLayout},
+    props: ["request"],
     data() {
         return {
+            logo,
             message: "",
             tokenFound: false,
             item: {
@@ -199,47 +150,16 @@ export default {
             overlay: false
         };
     },
-    mounted: function () {
-        this.verifyToken();
+    created: function () {
+        console.log('email', this.request)
+        let path = window.location.pathname
+        console.log('path => ', path.split('/')[2])
+
+        this.item.email = this.request.email
+        this.item.token = path.split('/')[2]
     },
     methods: {
-        verifyToken() {
-            const token = this.$route.params.id;
-            console.log("token", token);
-            this.overlay = true;
-            axios
-                .get(`/api/password/find/${token}`)
-                .then(response => {
-                    if (response.data.status === 201) {
-                        this.tokenFound = true;
-                        //console.log(response.data[0]);
-                        this.item.email = response.data[0].email;
-                        this.item.token = response.data[0].token;
-                    } else {
-                        this.message = response.data.message;
-                        Swal.fire("Oops... 😮", response.data.message, "error");
-                    }
-                    this.overlay = false;
-                })
-                .catch(error => {
-                    this.overlay = false;
 
-                    console.log(error);
-                    console.log(error.response.data);
-                    console.log(error.response.data.message);
-                    const array = error.response.data.errors;
-                    console.log(array);
-                    this.text = "";
-                    for (var clave in array) {
-                        this.text += clave + ": " + array[clave] + "\n ";
-                    }
-
-                    console.log(this.text);
-                    this.text += error.response.data.message;
-                    this.message = this.text;
-                    Swal.fire("Oops... 😮", this.text, "error");
-                });
-        },
         validate() {
             if (!this.$refs.form.validate()) {
                 return;
@@ -256,18 +176,15 @@ export default {
             this.overlay = true;
             var data = this.item;
             axios
-                .post("/api/password/reset", data)
+                .post(`${route('password.update')}`, data)
                 .then(response => {
-                    Swal.fire(
-                        response.data.status === 201
-                            ? "!Buen trabajo! 😀"
-                            : "Oops... 😮",
+                    console.log(response)
+                    this.$swal(
+                        "!Buen trabajo! 😀",
                         response.data.message,
-                        response.data.status === 201 ? "success" : "error"
+                        "success"
                     ).then(result => {
-                        if (response.data.status === 201) {
-                            this.$router.push("/login");
-                        }
+                        this.$inertia.get('/login')
                     });
                     this.reset();
                     this.overlay = false;
@@ -284,10 +201,8 @@ export default {
                     for (var clave in array) {
                         this.text += clave + ": " + array[clave] + "\n ";
                     }
-
                     console.log(this.text);
-                    this.text += error.response.data.message;
-                    Swal.fire("Oops... 😮", this.text, "error");
+                    this.$swal("Oops... 😮", this.text, "error");
                 });
         }
     }
