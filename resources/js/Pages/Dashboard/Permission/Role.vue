@@ -2,213 +2,215 @@
     <app-layout>
         <bread-crumbs name="Roles" :items="items"></bread-crumbs>
         <v-container class="d-flex justify-center">
-            <div>
-                <v-data-table
-                    v-model="selectedRole"
-                    :headers="headers"
-                    :items="data"
-                    sort-by="calories"
-                    :search="search"
-                    class="elevation-1"
-                    single-select
-                    single-expand
-                    show-select
-                    show-expand
+            <v-row>
+                <v-col>
+                    <v-data-table
+                        v-model="selectedRole"
+                        :headers="headers"
+                        :items="data"
+                        sort-by="id"
+                        :search="search"
+                        class="elevation-1"
+                        single-select
+                        single-expand
+                        show-select
+                        show-expand
+                    >
+                        <template v-slot:top>
+                            <v-toolbar flat>
+                                <v-text-field
+                                    light
+                                    class="mr-3"
+                                    v-model="search"
+                                    append-icon="mdi-magnify"
+                                    label="Buscar"
+                                    placeholder="Texto a buscar"
+                                    single-line
+                                    hide-details
+                                ></v-text-field>
+                                <v-divider
+                                    class="mx-4"
+                                    inset
+                                    vertical
+                                ></v-divider>
+                                <v-spacer></v-spacer>
+
+
+                                <v-dialog
+                                    v-model="dialog"
+                                    max-width="500px"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            color="primary"
+                                            dark
+                                            class="mb-2"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            :loading="loadingNewItem"
+                                            :disabled="loadingNewItem"
+                                        >
+                                            Nuevo rol
+                                        </v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title>
+                                            <span class="text-h5">{{ formTitle }}</span>
+                                        </v-card-title>
+
+                                        <v-card-text>
+                                            <v-container>
+                                                <v-row>
+                                                    <v-col
+                                                        cols="12"
+                                                    >
+                                                        <v-text-field
+                                                            v-model="editedItem.name"
+                                                            label="Name"
+                                                        ></v-text-field>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-card-text>
+
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn
+                                                color="blue darken-1"
+                                                text
+                                                @click="close"
+                                            >
+                                                Cancel
+                                            </v-btn>
+                                            <v-btn v-if="editedIndex === -1"
+                                                   color="blue darken-1"
+                                                   text
+                                                   @click="save(editedItem)"
+                                            >
+                                                Save
+                                            </v-btn>
+                                            <v-btn v-else
+                                                   color="blue darken-1"
+                                                   text
+                                                   @click="update(editedItem)"
+                                            >
+                                                update
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+                            </v-toolbar>
+                        </template>
+                        <template v-slot:item.actions="{ item }">
+                            <v-icon
+                                small
+                                class="mr-2"
+                                @click="editItem(item)"
+                                :loading="loadingEditItem"
+                                :disabled="loadingEditItem"
+                            >
+                                mdi-pencil
+                            </v-icon>
+                            <v-icon
+                                small
+                                @click="deleteItem(item)"
+                                :loading="loadingDeleteItem"
+                                :disabled="loadingDeleteItem"
+                            >
+                                mdi-delete
+                            </v-icon>
+                        </template>
+
+                        <template v-slot:expanded-item="{ headers, item }">
+                            <td :colspan="headers.length">
+                                permisos establecidos:
+                                <v-chip v-for="permission in item.permission" :key="permission.id"
+                                        class="ma-2 white--text"
+                                        color="indigo"
+                                        small
+                                >
+                                    {{ permission.name }}
+                                </v-chip>
+                            </td>
+                        </template>
+
+                        <template v-slot:no-data>
+                            <v-btn
+                                color="primary"
+                                @click="initialize"
+                            >
+                                Reset
+                            </v-btn>
+                        </template>
+                    </v-data-table>
+                </v-col>
+                <v-divider vertical></v-divider>
+                <v-col
+                    cols="12"
+                    md="6"
                 >
-                    <template v-slot:top>
-                        <v-toolbar
-                            flat
-                        >
-                            <v-text-field
-                                class="mr-3"
-                                v-model="search"
-                                append-icon="mdi-magnify"
-                                label="Search"
-                                single-line
-                                hide-details
-                            ></v-text-field>
-                            <v-divider
-                                class="mx-4"
-                                inset
-                                vertical
-                            ></v-divider>
+                    <v-card>
+                        <v-toolbar flat>
+                            <v-toolbar-title>Permisos</v-toolbar-title>
                             <v-spacer></v-spacer>
 
+                            <span v-if="selectedRole.length>0"> Rol seleccionado {{ selectedRole[0].name }}</span>
+                            <span v-else> Rol no seleccionado</span>
 
-                            <v-dialog
-                                v-model="dialog"
-                                max-width="500px"
-                            >
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn
-                                        color="primary"
-                                        dark
-                                        class="mb-2"
-                                        v-bind="attrs"
-                                        v-on="on"
-                                        :loading="loadingNewItem"
-                                        :disabled="loadingNewItem"
-                                    >
-                                        New Item
-                                    </v-btn>
-                                </template>
-                                <v-card>
-                                    <v-card-title>
-                                        <span class="text-h5">{{ formTitle }}</span>
-                                    </v-card-title>
-
-                                    <v-card-text>
-                                        <v-container>
-                                            <v-row>
-                                                <v-col
-                                                    cols="12"
-                                                >
-                                                    <v-text-field
-                                                        v-model="editedItem.name"
-                                                        label="Name"
-                                                    ></v-text-field>
-                                                </v-col>
-                                            </v-row>
-                                        </v-container>
-                                    </v-card-text>
-
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn
-                                            color="blue darken-1"
-                                            text
-                                            @click="close"
-                                        >
-                                            Cancel
-                                        </v-btn>
-                                        <v-btn v-if="editedIndex === -1"
-                                               color="blue darken-1"
-                                               text
-                                               @click="save(editedItem)"
-                                        >
-                                            Save
-                                        </v-btn>
-                                        <v-btn v-else
-                                               color="blue darken-1"
-                                               text
-                                               @click="update(editedItem)"
-                                        >
-                                            update
-                                        </v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-dialog>
                         </v-toolbar>
-                    </template>
-
-
-                    <template v-slot:item.actions="{ item }">
-                        <v-icon
-                            small
-                            class="mr-2"
-                            @click="editItem(item)"
-                            :loading="loadingEditItem"
-                            :disabled="loadingEditItem"
+                        <v-banner
+                            single-line
                         >
-                            mdi-pencil
-                        </v-icon>
-                        <v-icon
-                            small
-                            @click="deleteItem(item)"
-                            :loading="loadingDeleteItem"
-                            :disabled="loadingDeleteItem"
-                        >
-                            mdi-delete
-                        </v-icon>
-                    </template>
+                            Elija los permisos para el rol seleccionado.
 
-                    <template v-slot:expanded-item="{ headers, item }">
-                        <td :colspan="headers.length">
-                            established permissions:
-                            <v-chip v-for="permission in item.permission" :key="permission.id"
-                                    class="ma-2 white--text"
-                                    color="indigo"
-                                    small
+                            <template v-slot:actions>
+                                <v-btn
+                                    color="primary"
+                                    @click="grantPermissions"
+                                    :loading="loading"
+                                    :disabled="loading"
+
+                                >
+                                    Otorgar permisos
+                                </v-btn>
+                            </template>
+                        </v-banner>
+                        <v-card-text class="grey lighten-4">
+                            <v-sheet
+                                max-width="500"
+                                class="mx-auto"
                             >
-                                {{ permission.name }}
-                            </v-chip>
-                        </td>
-                    </template>
-
-                    <template v-slot:no-data>
-                        <v-btn
-                            color="primary"
-                            @click="initialize"
-                        >
-                            Reset
-                        </v-btn>
-                    </template>
-                </v-data-table>
-            </div>
-        </v-container>
-
-        <v-container>
-            <v-card>
-                <v-toolbar flat>
-                    <v-toolbar-title>Permission</v-toolbar-title>
-                    <v-spacer></v-spacer>
-
-                    <span v-if="selectedRole.length>0">selected role {{ selectedRole[0].name }}</span>
-                    <span v-else> role not selected</span>
-
-                </v-toolbar>
-                <v-banner
-                    single-line
-                >
-                    choose the permissions for the selected role.
-
-                    <template v-slot:actions>
-                        <v-btn
-                            text
-                            color="deep-purple accent-4"
-                            @click="grantPermissions"
-                            :loading="loading"
-                            :disabled="loading"
-
-                        >
-                            grant permissions
-                        </v-btn>
-                    </template>
-                </v-banner>
-                <v-card-text class="grey lighten-4">
-                    <v-sheet
-                        max-width="500"
-                        class="mx-auto"
-                    >
-                        <div>
-                            <v-data-table
-                                v-model="selectedPermission"
-                                :headers="headersPermission"
-                                :items="permission"
-                                sort-by="calories"
-                                :search="searchPermission"
-                                class="elevation-1"
-                                show-select
-                            >
-                                <template v-slot:top>
-                                    <v-toolbar
-                                        flat
+                                <div>
+                                    <v-data-table
+                                        v-model="selectedPermission"
+                                        :headers="headersPermission"
+                                        :items="permission"
+                                        sort-by="id"
+                                        :search="searchPermission"
+                                        class="elevation-1"
+                                        show-select
                                     >
-                                        <v-text-field
-                                            class="mx-auto"
-                                            v-model="searchPermission"
-                                            append-icon="mdi-magnify"
-                                            label="Search"
-                                            single-line
-                                            hide-details
-                                        ></v-text-field>
-                                    </v-toolbar>
-                                </template>
-                            </v-data-table>
-                        </div>
-                    </v-sheet>
-                </v-card-text>
-            </v-card>
+                                        <template v-slot:top>
+                                            <v-toolbar
+                                                flat
+                                            >
+                                                <v-text-field
+                                                    class="mx-auto"
+                                                    v-model="searchPermission"
+                                                    append-icon="mdi-magnify"
+                                                    label="Buscar permisos"
+                                                    single-line
+                                                    hide-details
+                                                ></v-text-field>
+                                            </v-toolbar>
+                                        </template>
+                                    </v-data-table>
+                                </div>
+                            </v-sheet>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-container>
     </app-layout>
 </template>
@@ -260,8 +262,8 @@ export default {
                     sortable: false,
                     value: 'id',
                 },
-                {text: 'Name', value: 'name'},
-                {text: 'Actions', value: 'actions', sortable: false},
+                {text: 'Nombre', value: 'name'},
+                {text: 'Acciones', value: 'actions', sortable: false},
             ],
             loading: false,
             headersPermission: [
@@ -271,7 +273,7 @@ export default {
                     sortable: false,
                     value: 'id',
                 },
-                {text: 'Name', value: 'name'},
+                {text: 'Nombre', value: 'name'},
             ],
             desserts: [],
             editedIndex: -1,
@@ -313,7 +315,7 @@ export default {
     },
     computed: {
         formTitle() {
-            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+            return this.editedIndex === -1 ? 'Nuevo rol' : 'Editar rol'
         },
     },
 

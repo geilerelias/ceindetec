@@ -3,7 +3,7 @@
         <v-form
             ref="form"
             v-model="valid">
-            
+
             <v-card-title class="align-start">
 
                 <div class="mx-auto text-center d-flex flex-column">
@@ -517,7 +517,7 @@ export default {
             phone: "3106947004",
             person_type: "Administrativo",
             department: "La Guajira",
-            municipality: "Riohacha",
+            municipality: "Riohacha-1",
             direction: "vereda de puertocolombia",
             establishment_id: 1,
             headquarter_id: 1,

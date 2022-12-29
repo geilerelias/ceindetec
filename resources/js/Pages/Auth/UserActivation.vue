@@ -108,7 +108,9 @@
                                     </v-alert>
 
                                     <v-text-field
+                                        v-model="form.identification"
                                         label="Numero de identificación"
+                                        :rules="[rules.required,rules.number]"
                                         clearable
                                         outlined
                                     ></v-text-field>
@@ -117,16 +119,14 @@
                                         label="E-mail"
                                         clearable
                                         outlined
-                                        :rules="[
-                                            emailRules.required,
-                                            emailRules.valid
-                                        ]"
+                                        :rules="[rules.email,rules.required]"
                                         @change="isValid=true"
                                     ></v-text-field>
 
 
                                     <v-autocomplete
                                         v-model="establishment_id"
+                                        :rules="[rules.required,rules.text(form.establishment_id,'Establesimineto')]"
                                         :items="establishments"
                                         item-text="name"
                                         item-value="id"
@@ -139,6 +139,7 @@
                                     <v-autocomplete
                                         :disabled="establishment_id===null || establishment_id===''"
                                         v-model="headquarter_id"
+                                        :rules="[rules.required,rules.text(form.headquarter_id,'Sede')]"
                                         :items="headquarters"
                                         item-text="name"
                                         item-value="id"
@@ -189,23 +190,44 @@ export default {
         valid: true,
         isValid: true,
         form: {
+            identification: null,
             email: '',
             password: '',
-            remember: null
+            remember: null,
         },
-        emailRules: {
-            required: v => !!v || 'E-mail is required',
-            valid: v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+        rules: {
+            required: value => !!value || 'Campo requerido.',
+            max: value => value.length <= 20 || 'Máximo 20 caracteres',
+            min: (value, num) => value.length >= num || `Mínimo ${num} caracteres`,
+
+            email: value => {
+                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return pattern.test(value) || 'Dirección de correo invalida.'
+            },
+
+            phone: value => {
+                const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+                return pattern.test(value) || 'Numero telefónico invalido.'
+            },
+
+            text: (value, text) => {
+                const pattern = /[a-zA-Z ]{2,254}/;
+                return pattern.test(value) || `Entrada incorrecta para el campo ${text}.`
+            },
+
+            number: value => {
+                const pattern = /^\d+$/;
+                return pattern.test(value) || 'Solo caracteres numéricos.'
+            },
+
         },
-        passwordRules: {
-            required: value => !!value || 'Required.',
-            min: v => v.length >= 8 || 'Min 8 characters'
-        },
+
         messageErrors: [],
         establishments: [],
         establishment_id: -1,
         headquarters: [],
         headquarter_id: -1,
+
     }),
     created() {
         axios.get(`/dashboard/establishment/all`)

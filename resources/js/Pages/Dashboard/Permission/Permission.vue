@@ -1,13 +1,13 @@
 <template>
     <app-layout>
-        <bread-crumbs name="Permission" :items="items"></bread-crumbs>
+        <bread-crumbs name="Permisos" :items="items"></bread-crumbs>
 
         <v-container class="d-flex justify-center">
             <v-card>
                 <v-data-table
                     :headers="headers"
                     :items="data"
-                    sort-by="calories"
+                    sort-by="id"
                     :search="search"
                     class="elevation-1"
                 >
@@ -19,7 +19,7 @@
                                 class="mr-3"
                                 v-model="search"
                                 append-icon="mdi-magnify"
-                                label="Search"
+                                label="Buscar permiso"
                                 single-line
                                 hide-details
                             ></v-text-field>
@@ -43,7 +43,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                     >
-                                        New Item
+                                        Nuevo permiso
                                     </v-btn>
                                 </template>
                                 <v-card>
@@ -59,7 +59,8 @@
                                                 >
                                                     <v-text-field
                                                         v-model="editedItem.name"
-                                                        label="Name"
+                                                        label="Nombre del permiso"
+                                                        placeholder="Nombre de ejemplo"
                                                         @keyup.enter="editedIndex === -1?save(editedItem):update(editedItem)"
                                                     ></v-text-field>
                                                 </v-col>
@@ -74,21 +75,21 @@
                                             text
                                             @click="close"
                                         >
-                                            Cancel
+                                            Cancelar
                                         </v-btn>
                                         <v-btn v-if="editedIndex === -1"
                                                color="blue darken-1"
                                                text
                                                @click="save(editedItem)"
                                         >
-                                            Save
+                                            Guardar
                                         </v-btn>
                                         <v-btn v-else
                                                color="blue darken-1"
                                                text
                                                @click="update(editedItem)"
                                         >
-                                            update
+                                            Actualizar
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>
@@ -165,8 +166,8 @@ export default {
                     sortable: false,
                     value: 'id',
                 },
-                {text: 'Name', value: 'name'},
-                {text: 'Actions', value: 'actions', sortable: false},
+                {text: 'Nombre', value: 'name'},
+                {text: 'Acción', value: 'actions', sortable: false},
             ],
             desserts: [],
             editedIndex: -1,
@@ -180,7 +181,7 @@ export default {
     },
     computed: {
         formTitle() {
-            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+            return this.editedIndex === -1 ? 'Nuevo permiso' : 'Editar permiso'
         },
     },
 
@@ -236,13 +237,14 @@ export default {
         deleteItem(item) {
             item._method = 'DELETE';
             this.$swal({
-                title: 'Are you sure you want to delete this item?',
-                text: "You won't be able to revert this!",
+                title: '¿Estás seguro de que quieres eliminar este permiso?',
+                text: "No podrás revertir esto.!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: '¡Si, eliminarlo!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.$inertia.post('/permission/' + item.id, item, {

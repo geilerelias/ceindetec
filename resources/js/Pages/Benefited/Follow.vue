@@ -11,7 +11,13 @@
                                         <inertia-link href="/before-during-after">
                                             <v-btn
                                                 class="mr-3 secondary">
-                                                cambios
+                                                Cambios
+                                            </v-btn>
+                                        </inertia-link>
+                                        <inertia-link href="/list">
+                                            <v-btn
+                                                class="mr-3 primary">
+                                                Listado
                                             </v-btn>
                                         </inertia-link>
                                         <v-menu

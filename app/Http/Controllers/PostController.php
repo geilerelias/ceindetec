@@ -17,7 +17,19 @@ class PostController extends Controller
     public function index()
     {
         $data = Post::all();
-        return Inertia::render('Posts', ['data' => $data]);
+        return Inertia::render('Posts/Index', ['data' => $data]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $data = Post::all();
+        return Inertia::render('Posts/Posts', ['data' => $data]);
     }
 
     /**
@@ -31,8 +43,9 @@ class PostController extends Controller
             'title' => ['required'],
             'body' => ['required'],
         ])->validate();
-
-        Post::create($request->all());
+        $post = new Post($request->all());
+        $post->user_id = auth()->user()->id;
+        $post->save();
 
         return redirect()->back()
             ->with('message', 'Post Created Successfully.');

@@ -31,6 +31,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/list', function () {
+    return Inertia\Inertia::render('List');
+});
+
 Route::get('/package', function () {
     return Inertia\Inertia::render('Package');
 });
@@ -39,9 +43,14 @@ Route::get('/add-information', function () {
     return Inertia\Inertia::render('AddInformation');
 })->name('add.information');
 
+Route::get('/home', function () {
+    return Inertia\Inertia::render('Home');
+});
+
 Route::get('/', function () {
     return Inertia\Inertia::render('Home');
 })->name('home');
+
 
 Route::get('/allies', function () {
     return Inertia\Inertia::render('Allies');
@@ -180,7 +189,6 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
     Route::get('/dashboard/study-plans/all', [StudyPlanController::class, 'all']);
     Route::resource('/dashboard/study-plans', StudyPlanController::class);
 
-
     //areas
     Route::resource('/dashboard/area', \App\Http\Controllers\AreaController::class);
 
@@ -189,7 +197,6 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
 
     //Curso
     Route::resource('/dashboard/grade', \App\Http\Controllers\GradeController::class);
-
 
     //spatie Permission laravel
     Route::controller(RoleController::class)->group(function () {
@@ -214,8 +221,10 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
 
     Route::middleware(['auth:sanctum', 'verified'])
         ->post('/user/assign/roles', [UserController::class, 'assignRole']);
+
     Route::middleware(['auth:sanctum', 'verified'])
         ->post('/user/remove/roles', [UserController::class, 'removeRole']);
+
     Route::middleware(['auth:sanctum', 'verified'])
         ->get('/user/{user}/roles', [UserController::class, 'getRoleNames']);
 
@@ -249,7 +258,6 @@ Route::get('before-during-after/building', function () {
 Route::get('before-during-after/adequacy', function () {
     return Inertia\Inertia::render('BeforeDuringAfter/Adequacy');
 })->name('before_during_after.adequacy');
-
 
 Route::get('/find/{page}/{folder?}/{sub?}', function ($page, $folder, $sub) {
     $directory = base_path() . '/resources/images/' . $page . '/' . $folder . '/' . $sub;
@@ -344,6 +352,7 @@ Route::get('/get/src/seguimiento/{type}/{municipality}/{establishments}/{headqua
     return $directory;
 });
 
+
 Route::get('/get/file/{path}', function ($path) {
 
     $fp = fopen($path, "r");
@@ -371,20 +380,14 @@ function listadoDirectorio($directorio)
 
         if (is_dir($directorio . '/' . $elemento)) {
 
-            //echo '<li class="open-dropdown">+ ' . $elemento . '</li>';
-            //echo '<ul class="dropdown d-none">';
-            //echo '</ul>';
-
             $array = array(
                 'folder' => $elemento,
                 'sub' => listadoDirectorio($directorio . '/' . $elemento),
             );
-
             array_push($folder, $array);
         }
 
         if (!is_dir($directorio . '/' . $elemento)) {
-            //echo "<li>- <a href='$directorio/$elemento'>$elemento</a></li>";
             array_push($folder, $elemento);
         }
     }
@@ -396,7 +399,6 @@ function listadoDirectorio($directorio)
 Route::get('/developer/gers', function () {
     return Inertia\Inertia::render('Gers');
 })->name('developer.gers');
-
 
 Route::get('/update-qrcode/', function () {
     //echo "actualización de información";
@@ -478,9 +480,50 @@ Route::get('/update-qrcode/', function () {
         $qrcode->save();
         echo '</br>';
     }
-
-
 });
 
 
+Route::get('/get/src/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
+    $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
+    try {
+        if (!file_exists($directory)) {
+            mkdir($directory . '/Img torre', 0777, true);
+            mkdir($directory . '/Img aula', 0777, true);
+            mkdir($directory . '/Img entregas', 0777, true);
+        }
+        // array_push($images, listar_directorios_ruta($directory));
+
+        return json_encode(listadoDirectorio($directory));
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ', $e->getMessage(), "\n";
+    }
+    return $directory;
+});
+
+
+Route::get('/get/img/{municipality}/{establishments}/{headquarters}/{folder}/{file?}', function ($municipality, $establishments, $headquarters, $folder, $file = null) {
+    $directory ='';
+    if ($file==null){
+        $ficheros  = scandir( base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/');
+       //echo  $ficheros[2] .'<br>';
+        $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/'.$ficheros[2];
+
+    }else{
+        $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/' . trim($file, " ");
+
+    }
+    //echo  $directory;
+    try {
+
+        $file = File::get($directory);
+        $type = File::mimeType($directory);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    } catch (Exception $e) {
+        return 'Excepción capturada: '. $e->getMessage(). "\n";
+    }
+});
 
