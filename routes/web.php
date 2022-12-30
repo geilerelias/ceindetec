@@ -14,6 +14,7 @@ use App\Http\Controllers\YearController;
 use App\Http\Controllers\StudyPlanController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\NoticeController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -29,10 +30,6 @@ use App\Http\Controllers\NoticeController;
 
 Route::get('/welcome', function () {
     return view('welcome');
-});
-
-Route::get('/list', function () {
-    return Inertia\Inertia::render('List');
 });
 
 Route::get('/package', function () {
@@ -483,6 +480,15 @@ Route::get('/update-qrcode/', function () {
 });
 
 
+//listado de instituciones
+
+Route::get('/list', function () {
+    return Inertia\Inertia::render('List/List');
+});
+Route::get('/list-detail/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
+    return Inertia\Inertia::render('List/ListDetail', ["municipality" => $municipality, "establishments" => $establishments, "headquarters" => $headquarters]);
+});
+
 Route::get('/get/src/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
     $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
     try {
@@ -502,13 +508,13 @@ Route::get('/get/src/{municipality}/{establishments}/{headquarters}', function (
 
 
 Route::get('/get/img/{municipality}/{establishments}/{headquarters}/{folder}/{file?}', function ($municipality, $establishments, $headquarters, $folder, $file = null) {
-    $directory ='';
-    if ($file==null){
-        $ficheros  = scandir( base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/');
-       //echo  $ficheros[2] .'<br>';
-        $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/'.$ficheros[2];
+    $directory = '';
+    if ($file == null) {
+        $ficheros = scandir(base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/');
+        //echo  $ficheros[2] .'<br>';
+        $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/' . $ficheros[2];
 
-    }else{
+    } else {
         $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/' . trim($folder, " ") . '/' . trim($file, " ");
 
     }
@@ -523,7 +529,9 @@ Route::get('/get/img/{municipality}/{establishments}/{headquarters}/{folder}/{fi
 
         return $response;
     } catch (Exception $e) {
-        return 'Excepción capturada: '. $e->getMessage(). "\n";
+        return 'Excepción capturada: ' . $e->getMessage() . "\n";
     }
 });
+
+
 

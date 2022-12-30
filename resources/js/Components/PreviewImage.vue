@@ -24,6 +24,7 @@
                         </v-btn>
                     </v-fab-transition>
 
+
                     <v-card class="transparent" flat>
                         <v-img :src="selectedImage"
                                style="height: calc(90vh - 10px);max-height: calc(90vh - 10px);z-index: 0 !important;"
@@ -47,7 +48,7 @@
 
                     <div class="mt-n8 d-flex justify-center align-end" style="z-index: 10 !important;">
                         <v-row class="primary rounded-lg mb-2 py-0 "
-                               style="max-width: 200px; z-index: 10 !important;">
+                               style="max-width: 250px; z-index: 10 !important;">
                             <v-col class="d-flex justify-center align-end my-0">
 
                                 <v-btn icon @click="setScale(-0.1)">
@@ -77,6 +78,13 @@
                                         mdi-rotate-left
                                     </v-icon>
                                 </v-btn>
+                                <a :href="selectedImage" download>
+                                    <v-btn icon>
+                                        <v-icon color="white">
+                                            mdi-download
+                                        </v-icon>
+                                    </v-btn>
+                                </a>
 
                             </v-col>
                         </v-row>
