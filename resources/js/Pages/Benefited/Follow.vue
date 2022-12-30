@@ -14,12 +14,7 @@
                                                 Cambios
                                             </v-btn>
                                         </inertia-link>
-                                        <inertia-link href="/list">
-                                            <v-btn
-                                                class="mr-3 primary">
-                                                Listado
-                                            </v-btn>
-                                        </inertia-link>
+
                                         <v-menu
                                             v-model="menu"
                                             :close-on-content-click="false"
@@ -175,7 +170,64 @@
                                     <v-row class="mt-2">
                                         <v-col cols="12" md="6" lg="4" v-for="(item, j) in info" :key="item.id">
 
-                                            <v-card>
+
+                                            <inertia-link
+                                                :href="`/benefited-detail/${getDirectory(item)}`"
+                                                class="text-decoration-none">
+                                                <v-hover v-slot="{ hover }">
+                                                    <v-card class="pa-0 rounded-b-0"
+                                                            @click="getFolder(item.municipality,getEstablishment(item.establishment_id),item.name)">
+                                                        <v-img cover
+                                                               :aspect-ratio="16/9"
+                                                               style="transition: all 0.5s;"
+                                                               :class="hover ? 'zoom' : ''"
+                                                               :src="`/get/img/${getDirectory(item)}/Img aula/`"
+                                                        >
+                                                            <v-expand-transition>
+                                                                <div
+                                                                    v-if="hover"
+                                                                    class="d-flex pa-2 transition-fast-in-fast-out primary darken-2 v-card--reveal text-h6 white--text"
+                                                                    style="height: 100%;"
+                                                                >
+                                                                    <v-card>
+                                                                        <v-list-item>
+                                                                            <v-list-item-content>
+                                                                                <v-list-item-title
+                                                                                    class="text-subtitle-1 mb-1">
+                                                                                    {{
+                                                                                        getHeadquarters(item.headquarters_id)
+                                                                                    }}
+                                                                                </v-list-item-title>
+                                                                                <v-list-item-subtitle>
+                                                                                    {{
+                                                                                        getEstablishment(item.establishments_id)
+                                                                                    }}
+                                                                                </v-list-item-subtitle>
+                                                                            </v-list-item-content>
+                                                                        </v-list-item>
+                                                                    </v-card>
+
+                                                                </div>
+                                                            </v-expand-transition>
+
+                                                            <template v-slot:placeholder>
+                                                                <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                                >
+                                                                    <loading-component/>
+                                                                </v-row>
+
+                                                            </template>
+                                                        </v-img>
+                                                    </v-card>
+
+                                                </v-hover>
+
+                                            </inertia-link>
+
+                                            <v-card class="rounded-t-0">
 
                                                 <v-list-item>
                                                     <template v-slot:default="{ active }">
@@ -313,12 +365,14 @@
 <script>
 import PageLayout from '@/Layouts/PageLayout'
 import SpinnerComponent from "@/Components/SpinnerComponent";
+import loadingComponent from "@/Components/LoadingComponent.vue";
 
 export default {
     name: "Follow",
     components: {
         PageLayout,
         SpinnerComponent,
+        loadingComponent
     },
     props: ['data', 'errors'],
     data: () => ({
@@ -561,12 +615,24 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
+        },
+        getDirectory(item) {
+            return encodeURIComponent(item.municipality + '/' + this.getEstablishment(item.establishments_id) + '/' + this.getHeadquarters(item.headquarters_id))
         }
     }
 }
 </script>
 
 <style>
+.v-card--reveal {
+    align-items: center;
+    bottom: 0;
+    justify-content: center;
+    opacity: .8;
+    position: absolute;
+    width: 100%;
+}
+
 .iframe-container iframe {
     border: 0;
     height: calc(100vh - 100px);

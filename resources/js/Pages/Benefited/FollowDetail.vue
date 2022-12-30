@@ -31,7 +31,7 @@
             </v-tabs>
         </template>
 
-        <v-main class="transparent pt-6 bg">
+        <v-main class="transparent pt-6 bg" style="min-height: 90vh">
             <v-container>
                 <v-tabs-items class="transparent fill-height pa-2" style="min-height: 70vh" v-model="tab">
                     <v-tab-item
@@ -88,11 +88,11 @@
 <script>
 import SimpleLayout from "@/Layouts/SimpleLayout.vue";
 import loadingComponent from "@/Components/LoadingComponent.vue";
-import previewImage from "@/Components/PreviewImage";
+import previewImage from "@/Components/PreviewImage.vue";
 
 
 export default {
-    name: "ListDetail",
+    name: "FollowDetail",
     components: {SimpleLayout, loadingComponent, previewImage},
     props: ["municipality", "establishments", "headquarters"],
     data: () => ({

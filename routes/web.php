@@ -94,6 +94,10 @@ Route::get('/benefited', function () {
     return Inertia\Inertia::render('Benefited/Follow');
 })->name('follow');
 
+Route::get('/benefited-detail/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
+    return Inertia\Inertia::render('Benefited/FollowDetail', ["municipality" => $municipality, "establishments" => $establishments, "headquarters" => $headquarters]);
+});
+
 Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
     # [\App\Http\Controllers\WorkController::class, 'adequacy'])
     return Inertia\Inertia::render('Benefited/Adequacy',
@@ -481,14 +485,6 @@ Route::get('/update-qrcode/', function () {
 
 
 //listado de instituciones
-
-Route::get('/list', function () {
-    return Inertia\Inertia::render('List/List');
-});
-Route::get('/list-detail/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
-    return Inertia\Inertia::render('List/ListDetail', ["municipality" => $municipality, "establishments" => $establishments, "headquarters" => $headquarters]);
-});
-
 Route::get('/get/src/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
     $directory = base_path() . '/images/group/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ");
     try {
