@@ -60,9 +60,9 @@
 </template>
 
 <script>
-import authLayout from "@/Layouts/AuthLayout";
+import authLayout from "@/Layouts/AuthLayout.vue";
 import logo from '@/../images/logo-ceindetec-circle.png';
-import SpinnerComponent from '@/Components/SpinnerComponent';
+import SpinnerComponent from '@/Components/SpinnerComponent.vue';
 
 export default {
     name: "VerifyEmail",

@@ -317,8 +317,8 @@
 </template>
 
 <script>
-import SimpleLayout from "@/Layouts/SimpleLayout";
-import logo from "@/Components/Logo";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
+import logo from "@/Components/Logo.vue";
 
 
 export default {

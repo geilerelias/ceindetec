@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import PageLayout from '@/Layouts/PageLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import PageLayout from '@/Layouts/PageLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import bg from '@/../images/computer3.jpg';
 export default {
     name: 'Allies',

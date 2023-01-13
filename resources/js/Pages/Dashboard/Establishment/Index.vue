@@ -101,8 +101,8 @@
 
 
 <script>
-import AppLayout from '@/Layouts/AppLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 
 export default {
     name: 'Index',

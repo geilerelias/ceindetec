@@ -70,7 +70,7 @@ CREATE TABLE `establishments` (
 
 INSERT INTO `establishments` (`id`, `name`, `nit`, `municipality`, `department`, `created_at`, `updated_at`) VALUES
 (1, 'Centro Educativo Eduardo Pinto Aragón de Porciosa', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(2, 'Centro Utpurai	', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(2, 'Centro Etnoeducativo Rural Utpurai	', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (3, 'Institución Etnoeducativa Rural Akuaipa Internado Indígena de Albania', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (4, 'Centro Educativo luis A. Brito de San Pedro', '0000', 'Barrancas', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (5, 'Institución educativa técnica rural agropecuaria de mingueo', '0000', 'Dibulla', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),

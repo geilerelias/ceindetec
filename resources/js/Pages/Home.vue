@@ -1,5 +1,9 @@
 <template>
     <page-layout>
+        <inertia-head>
+            <title>Inicio</title>
+            <meta name="description" content="pagina principal del sistema de gestión académica">
+        </inertia-head>
         <v-img
             :aspect-ratio="16 / 9"
             :lazy-src="lazy"
@@ -98,18 +102,29 @@
         -->
 
         <v-sheet class="rounded-0 py-8" light>
-            <div class="my-12">
-                <h1
-                    class="text-uppercase text-h5 font-weight-black mb-2 text-center"> Características del Sistema </h1>
-                <v-responsive class="primary mx-auto mb-6" style="max-width: 48px;">
-                    <v-divider/>
-                </v-responsive>
+            <div class="px-3 pt-md-5 pb-0 mx-auto text-center">
+                <div class="base-section-heading text-center mb-0 animate__animated animate__animated:hover animate__zoomIn">
+                    <div class="d-inline-flex mb-4">
+                        <v-avatar color="secondary" size="56">
+                            <v-icon large dark>
+                                mdi-bulletin-board
+                            </v-icon>
+                        </v-avatar>
+                    </div>
+                    <h1
+                        class="text-uppercase text-h5 font-weight-black mb-2 text-center">
+                        Características del Sistema
+                    </h1>
+
+                    <v-responsive class="primary mx-auto mb-6" style="max-width: 48px;">
+                        <v-divider/>
+                    </v-responsive>
+                </div>
+
                 <v-container>
                     <p class="text-body-1 mx-auto grey--text text--darken-1 text-justify">
                         El Sistema para la Gestión Académica (SIGAC) surge como una solución de software desarrollado
-                        por
-                        Ceindetec, para agilizar los
-                        procesos inherentes a las instituciones educativas. Con esta aplicación se pueden llevar a cabo
+                        por Ceindetec, para agilizar los procesos inherentes a las instituciones educativas. Con esta aplicación se pueden llevar a cabo
                         procesos administrativos, que redundan en la centralización de la información de cada uno de los
                         estudiantes de la institución.
                     </p>
@@ -159,19 +174,32 @@
 
 
         <v-sheet id="news" class=" theme--light rounded-0">
-            <v-row>
-                <v-col class="col col-12">
-                    <h1 class="text-uppercase text-h6 font-weight-bold mb-3 text-left">
-                        ÚLTIMAS NOTICIAS
+
+            <div class="px-3 pt-md-5 pb-0 mx-auto text-center">
+                <div class="base-section-heading text-center mb-0 animate__animated:hover animate__zoomIn">
+                    <div class="d-inline-flex mb-4">
+                        <v-avatar color="secondary" size="56">
+                            <v-icon large dark>
+                                mdi-newspaper-variant-multiple-outline
+                            </v-icon>
+                        </v-avatar>
+                    </div>
+                    <h1 class="headline font-weight-bold mb-2 text-center">
+                        NOTICIAS
                     </h1>
-                    <v-responsive  class="base-divider primary mx-auto mb-6 base-divider--dense"
-                         style="max-width: 28px;">
-                        <div class="v-responsive__content">
-                            <hr aria-orientation="horizontal" class="v-divider theme--dark" role="separator">
-                        </div>
+
+                    <v-responsive class="primary mx-auto mb-6" style="max-width: 48px;">
+                        <v-divider/>
                     </v-responsive>
-                </v-col>
-            </v-row>
+
+                    <p class="base-body body-1 mx-auto grey--text text--darken-1 text-center mb-10">
+                        Estas son algunas de las
+                        noticias mas destacadas.
+                    </p>
+                </div>
+            </div>
+
+
             <v-container>
                 <v-row>
                     <v-col class="col-md-8 col-12">
@@ -497,12 +525,12 @@
 </template>
 
 <script>
-import PageLayout from '@/Layouts/PageLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import PageLayout from '@/Layouts/PageLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 
 import bg from '@/../images/infantes_guajiros.jpg';
 import lazy from '@/../images/infantes_guajiros_lazy.jpg';
-import LoadingComponent from "@/Components/LoadingComponent";
+import LoadingComponent from "@/Components/LoadingComponent.vue";
 
 export default {
     components: {

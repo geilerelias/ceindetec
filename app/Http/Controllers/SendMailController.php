@@ -19,8 +19,7 @@ class SendMailController extends Controller
             'name.required' => __('I need your name')
         ]);
 
-        Mail::to('atencionciudadana@ceindetecguajira.com')->queue(new MessageReceived($message));
         // return new MessageReceived($message);
-        return 'Mensaje enviado';
+        return Mail::to('atencionciudadana@ceindetecguajira.com')->queue(new MessageReceived($message));
     }
 }

@@ -154,8 +154,8 @@ import moment from "moment";
 
 import links from "./Links.vue";
 
-import AppLayout from '@/Layouts/AppLayout'
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import AppLayout from '@/Layouts/AppLayout.vue'
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 
 import {VueEditor} from "vue2-editor";
 

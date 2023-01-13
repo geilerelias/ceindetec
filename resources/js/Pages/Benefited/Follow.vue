@@ -311,12 +311,11 @@
                                 </v-list>
                             </div>
                             <div v-if="Object.keys(information).length<=0">
-
                                 <v-row class="mt-2">
-                                    <v-col cols="12" sm="6" md="4" v-for="item in 10" :key="item.id">
+                                    <v-col cols="12" md="6" lg="4" v-for="item in 10" :key="item.id">
                                         <v-skeleton-loader
                                             v-bind="attrs"
-                                            type="list-item-avatar-three-line"
+                                            type="image,list-item-avatar-three-line"
                                         ></v-skeleton-loader>
                                     </v-col>
                                 </v-row>
@@ -363,8 +362,8 @@
     </page-layout>
 </template>
 <script>
-import PageLayout from '@/Layouts/PageLayout'
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import PageLayout from '@/Layouts/PageLayout.vue'
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import loadingComponent from "@/Components/LoadingComponent.vue";
 
 export default {

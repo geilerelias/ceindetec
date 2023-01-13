@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import logo from "@/Components/Logo";
-import SettingsDropdown from "@/Components/SettingsDropdown";
+import logo from "@/Components/Logo.vue";
+import SettingsDropdown from "@/Components/SettingsDropdown.vue";
 
 export default {
     name: "SimpleLayout",

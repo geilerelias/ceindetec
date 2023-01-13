@@ -188,16 +188,20 @@
                 </v-row>
             </v-container>
         </v-sheet>
+
+        <spinner-component :value="overlay" color="primary" :opacity="0.9"></spinner-component>
     </page-layout>
 </template>
 
 <script>
-import PageLayout from '@/Layouts/PageLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import PageLayout from '@/Layouts/PageLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import bg from '@/../images/computer3.jpg';
+import SpinnerComponent from '@/Components/SpinnerComponent.vue';
 
 export default {
     components: {
+        SpinnerComponent,
         PageLayout,
         BreadCrumbs
     },
@@ -218,7 +222,13 @@ export default {
             }
         ],
         valid: false,
-        mail: {name: "", email: "", subject: "", content: ""},
+        mail: {
+            name: "Geiler Elias Radillo Sarmiento",
+            email: "geilerelias@gmail.com",
+            subject: "Example",
+            content: "This is a example of send mail"
+        },
+        overlay: false,
     }),
     methods: {
         validate() {
@@ -227,6 +237,8 @@ export default {
             }
             this.overlay = true;
             const newMail = this.mail;
+            this.overlay = true;
+
             axios
                 .post("/send-mail", newMail)
                 .then(res => {
@@ -245,7 +257,11 @@ export default {
                         "error"
                     );
                     this.overlay = false;
+                })
+                .finally(() => {
+                    this.overlay = false;
                 });
+
             console.log(this.mail);
         },
         reset() {

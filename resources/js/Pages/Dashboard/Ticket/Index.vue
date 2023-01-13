@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout.vue";
 
 import {VueEditor} from "vue2-editor";
 

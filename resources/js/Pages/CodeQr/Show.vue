@@ -74,7 +74,7 @@
                         </v-card-text>
 
                         <v-divider></v-divider>
-                        
+
                         <v-card-actions style="height: 50px">
                             <v-spacer></v-spacer>
                             <v-btn text fab small
@@ -131,11 +131,11 @@
 </template>
 
 <script>
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import QrcodeVue from 'qrcode.vue'
-import logo from "@/Components/Logo";
-import SimpleLayout from "@/Layouts/SimpleLayout";
-import edit from "./Edit";
+import logo from "@/Components/Logo.vue";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
+import edit from "./Edit.vue";
 
 export default {
     name: "Show",

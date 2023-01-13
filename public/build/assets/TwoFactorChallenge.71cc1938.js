@@ -1,0 +1,1 @@
+import{n as _}from"./_plugin-vue2_normalizer.358ffe07.js";const a={name:"TwoFactorChallenge"};var o=function(){var e=this,n=e._self._c;return n("div",[e._v(" TwoFactorChallenge ")])},l=[],r=_(a,o,l,!1,null,"1a6067b6",null,null);const s=r.exports;export{s as default};

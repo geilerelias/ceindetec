@@ -177,12 +177,12 @@
 </template>
 
 <script>
-import simpleLayout from "@/Layouts/SimpleLayout";
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import QrcodeVue from 'qrcode.vue'
-import logo from "@/Components/Logo";
-import SimpleLayout from "@/Layouts/SimpleLayout";
-import edit from "./Edit";
+import logo from "@/Components/Logo.vue";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
+import edit from "./Edit.vue";
 
 export default {
     name: "SearchEdit",

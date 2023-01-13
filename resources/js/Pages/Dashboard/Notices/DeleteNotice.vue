@@ -79,8 +79,8 @@
 import moment from "moment";
 import format from "date-fns/format";
 
-import AppLayout from '@/Layouts/AppLayout'
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import AppLayout from '@/Layouts/AppLayout.vue'
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 
 moment.locale("es");
 
@@ -164,4 +164,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

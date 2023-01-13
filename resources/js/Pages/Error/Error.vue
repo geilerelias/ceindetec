@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import logo from '@/Components/Logo'
+import logo from '@/Components/Logo.vue'
 
 import footerImage from '@/../images/errorcurva.png'
 

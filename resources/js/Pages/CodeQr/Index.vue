@@ -297,13 +297,13 @@
 </template>
 
 <script>
-import PageLayout from '@/Layouts/PageLayout'
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import PageLayout from '@/Layouts/PageLayout.vue'
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import QrcodeVue from 'qrcode.vue'
 
-import logo from "@/Components/Logo";
-import simpleLayout from "@/Layouts/SimpleLayout";
-import edit from "./Edit";
+import logo from "@/Components/Logo.vue";
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
+import edit from "./Edit.vue";
 
 export default {
     name: "Index",

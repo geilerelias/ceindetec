@@ -327,9 +327,8 @@
 
 <script>
 // import logo from '@/../images/logo-ceindetec.png';
-import * as VueGoogleMaps from 'vue2-google-maps'
-import logo from '@/Components/Logo'
-import showDataFile from "@/Components/ShowDataFile";
+import logo from '@/Components/Logo.vue'
+import showDataFile from "@/Components/ShowDataFile.vue";
 
 
 export default {

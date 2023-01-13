@@ -1,13 +1,13 @@
 <template>
     <!-- Settings Dropdown -->
-    <div v-if="$page.user!==null" class="text-center hidden-xs-only">
+    <div v-if="$page.user" class="text-center hidden-xs-only">
         <v-menu
             offset-y
             :close-on-content-click="false"
         >
 
             <template v-slot:activator="{ on, attrs }">
-                <v-btn v-if="$page.jetstream.managesProfilePhotos"
+                <v-btn v-if="$page.managesProfilePhotos"
                        fab
                        dark
                        text
@@ -21,10 +21,11 @@
                 </v-btn>
             </template>
 
+
             <v-card class="pa-5">
                 <v-list>
                     <v-list-item>
-                        <v-list-item-avatar v-if="$page.jetstream.managesProfilePhotos">
+                        <v-list-item-avatar v-if="$page.managesProfilePhotos">
                             <img
                                 :src="$page.user.profile_photo_url"
                                 :alt="$page.user.name"

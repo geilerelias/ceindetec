@@ -86,14 +86,14 @@
     </app-layout>
 </template>
 <script>
-import AppLayout from '@/Layouts/AppLayout'
-import BreadCrumbs from "@/Components/BreadCrumbs";
+import AppLayout from '@/Layouts/AppLayout.vue'
+import BreadCrumbs from "@/Components/BreadCrumbs.vue";
 
 export default {
     components: {
         AppLayout,
         BreadCrumbs,
-        CreateUpdate: () => import('@/Pages/Dashboard/Area/CreateUpdate')
+        CreateUpdate: () => import('@/Pages/Dashboard/Area/CreateUpdate.vue')
     },
     props: ['data', 'errors'],
     data() {
@@ -163,7 +163,7 @@ export default {
             this.isOpen = false;
             this.editMode = false;
         },
-        
+
         deleteRow(item) {
             item._method = 'DELETE';
             this.$swal({

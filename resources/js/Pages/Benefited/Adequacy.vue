@@ -277,11 +277,10 @@
 
 <script>
 // import logo from '@/../images/logo-ceindetec.png';
-import * as VueGoogleMaps from 'vue2-google-maps'
-import logo from '@/Components/Logo'
-import showDataFile from "@/Components/ShowDataFile";
-import SimpleLayout from "@/Layouts/SimpleLayout";
-import previewImage from "@/Components/PreviewImage";
+import logo from '@/Components/Logo.vue'
+import showDataFile from "@/Components/ShowDataFile.vue";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
+import previewImage from "@/Components/PreviewImage.vue";
 import weather_conditions from '@/../assets/weather_conditions.json'
 
 export default {

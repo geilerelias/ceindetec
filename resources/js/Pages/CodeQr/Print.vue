@@ -141,8 +141,8 @@
 </template>
 
 <script>
-import simpleLayout from "@/Layouts/SimpleLayout";
-import logo from "@/Components/Logo";
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
+import logo from "@/Components/Logo.vue";
 
 export default {
     name: "Print",

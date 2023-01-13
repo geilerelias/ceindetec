@@ -263,9 +263,9 @@
 </template>
 
 <script>
-import PageLayout from '@/Layouts/PageLayout';
+import PageLayout from '@/Layouts/PageLayout.vue';
 import bg from '@/../images/computer3.jpg';
-import LoadingComponent from "@/Components/LoadingComponent";
+import LoadingComponent from "@/Components/LoadingComponent.vue";
 
 export default {
     name: 'AboutUs',

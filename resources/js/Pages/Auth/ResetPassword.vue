@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import AuthLayout from "@/Layouts/AuthLayout";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 import logo from '@/../images/logo-ceindetec-circle.png';
 
 export default {

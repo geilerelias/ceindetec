@@ -145,8 +145,8 @@
 </template>
 
 <script>
-import simpleLayout from "@/Layouts/SimpleLayout";
-import createPerson from "@/Pages/Dashboard/Person/CreateEdit"
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
+import createPerson from "@/Pages/Dashboard/Person/CreateEdit.vue"
 
 export default {
     name: "AddInformation",

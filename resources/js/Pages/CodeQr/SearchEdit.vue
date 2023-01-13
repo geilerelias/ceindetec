@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import simpleLayout from "@/Layouts/SimpleLayout";
-import edit from './Edit'
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
+import edit from './Edit.vue'
 
 export default {
     name: "SearchEdit",

@@ -133,11 +133,10 @@
 </template>
 
 <script>
-import logo from "@/Components/Logo";
+import logo from "@/Components/Logo.vue";
 
 
-import * as VueGoogleMaps from 'vue2-google-maps'
-import SimpleLayout from "@/Layouts/SimpleLayout";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
 
 export default {
     name: "Index",

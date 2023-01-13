@@ -17,7 +17,7 @@ class EstablishmentsSeeder extends Seeder
     {
         $establishments = [
             [1, "Centro Educativo Eduardo Pinto Aragón de Porciosa", "0000", "Albania", "La Guajira",],
-            [2, "Centro Utpurai	", "0000", "Albania", "La Guajira",],
+            [2, "Centro Etnoeducativo Rural Utpurai	", "0000", "Albania", "La Guajira",],
             [3, "Institución Etnoeducativa Rural Akuaipa Internado Indígena de Albania", "0000", "Albania", "La Guajira",],
             [4, "Centro Educativo luis A. Brito de San Pedro", "0000", "Barrancas", "La Guajira",],
             [5, "Institución educativa técnica rural agropecuaria de mingueo", "0000", "Dibulla", "La Guajira",],

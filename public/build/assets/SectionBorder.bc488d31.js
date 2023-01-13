@@ -1,0 +1,1 @@
+import{n as s}from"./_plugin-vue2_normalizer.358ffe07.js";const t={};var e=function(){var r=this;return r._self._c,r._m(0)},a=[function(){var n=this,r=n._self._c;return r("div",{staticClass:"hidden sm:block"},[r("div",{staticClass:"py-8"},[r("div",{staticClass:"border-t border-gray-200"})])])}],o=s(t,e,a,!1,null,null,null,null);const c=o.exports;export{c as J};

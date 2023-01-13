@@ -79,8 +79,8 @@
 import logoFinal from '@/../images/logofinal.png';
 import logo from '@/../images/logo-ceindetec-circle.png';
 import bg from '../../../images/computer3.jpg';
-import SpinnerComponent from '@/Components/SpinnerComponent';
-import AuthLayout from "@/Layouts/AuthLayout";
+import SpinnerComponent from '@/Components/SpinnerComponent.vue';
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 
 
 export default {

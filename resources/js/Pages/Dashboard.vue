@@ -253,8 +253,8 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout'
-import Welcome from '@/Jetstream/Welcome'
+import AppLayout from '@/Layouts/AppLayout.vue'
+import Welcome from '@/Jetstream/Welcome.vue'
 import logo from '@/../images/logo-ceindetec.png'
 
 export default {

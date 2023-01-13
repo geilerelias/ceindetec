@@ -159,7 +159,7 @@ import logoFinal from '@/../images/logofinal.png'
 import logo from '@/../images/logo-ceindetec-circle.png'
 import bg from '../../../images/computer3.jpg';
 
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 
 export default {
     name: "Register",

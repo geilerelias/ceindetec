@@ -108,16 +108,16 @@
     </app-layout>
 </template>
 <script>
-import AppLayout from '@/Layouts/AppLayout'
-import BreadCrumbs from "@/Components/BreadCrumbs";
-import loadingComponent from "@/Components/LoadingComponent";
+import AppLayout from '@/Layouts/AppLayout.vue'
+import BreadCrumbs from "@/Components/BreadCrumbs.vue";
+import loadingComponent from "@/Components/LoadingComponent.vue";
 
 loadingComponent
 export default {
     components: {
         AppLayout,
         BreadCrumbs,
-        CreateUpdate: () => import('@/Pages/Dashboard/Person/CreateEdit'),
+        CreateUpdate: () => import('@/Pages/Dashboard/Person/CreateEdit.vue'),
     },
     props: ['data', 'errors'],
     data() {

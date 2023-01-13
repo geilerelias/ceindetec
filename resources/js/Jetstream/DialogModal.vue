@@ -20,29 +20,29 @@
 </template>
 
 <script>
-    import Modal from './Modal'
+import Modal from './Modal.vue'
 
-    export default {
-        components: {
-            Modal,
+export default {
+    components: {
+        Modal,
+    },
+
+    props: {
+        show: {
+            default: false
         },
-
-        props: {
-            show: {
-                default: false
-            },
-            maxWidth: {
-                default: '2xl'
-            },
-            closeable: {
-                default: true
-            },
+        maxWidth: {
+            default: '2xl'
         },
+        closeable: {
+            default: true
+        },
+    },
 
-        methods: {
-            close() {
-                this.$emit('close')
-            },
-        }
+    methods: {
+        close() {
+            this.$emit('close')
+        },
     }
+}
 </script>

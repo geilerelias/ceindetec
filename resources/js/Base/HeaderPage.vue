@@ -1,8 +1,7 @@
 <template>
     <v-app-bar app
                class="ma-0 pa-0 "
-               :height="
-            $vuetify.breakpoint.mdAndUp
+               :height=" $vuetify.breakpoint.mdAndUp
                 ? 136
                 : $vuetify.breakpoint.xsOnly
                 ? 88
@@ -10,33 +9,37 @@
         "
     >
         <v-row
-            class="ma-0 "
+            class="ma-0"
             :style="
                 $vuetify.breakpoint.mdAndUp
                     ? 'height: 136px !important;'
                     : 'height:176px !important'
             "
         >
-            <v-col
-                v-if="$vuetify.breakpoint.mdAndUp"
-                class="primary d-flex justify-center align-center"
-                style="height: 136px;max-height: 136px;"
-                :style="
-                    $vuetify.breakpoint.mdAndDown
+            <v-col v-if="$vuetify.breakpoint.mdAndUp"
+                   class="primary d-flex justify-center align-center"
+                   style="height: 136px;max-height: 136px;"
+                   :style="$vuetify.breakpoint.mdAndDown
                         ? 'width: 170px;max-width: 170px'
                         : 'width: 260px; max-width: 260px'
                 "
             >
-                <img :src="logo" alt="" width="200px" class="float-right"/>
+                <img :src="logo" alt=""
+                     :width="$vuetify.breakpoint.mdAndDown
+                        ? '170px'
+                        : '260px'"
+                     class="float-right"/>
+                <div
+                    class="triangle-shapes"
+                    v-if="$vuetify.breakpoint.lgAndUp"
+                ></div>
+
             </v-col>
-            <div
-                class="triangle-shapes"
-                v-if="$vuetify.breakpoint.lgAndUp"
-            ></div>
-            <v-col
-                class="px-0 my-0 "
-                :class="$vuetify.breakpoint.xsOnly ? 'mt-8' : 'mt-n3'"
+
+            <v-col class="px-0 my-0 "
+                   :class="$vuetify.breakpoint.xsOnly ? 'mt-8' : 'mt-n3'"
             >
+
                 <v-toolbar
                     flat
                     :height="$vuetify.breakpoint.mdAndUp ? 48 : 88"
@@ -99,6 +102,7 @@
                     </v-container>
                     <!--</editor-fold>-->
                 </v-toolbar>
+
                 <v-toolbar
                     v-if="$vuetify.breakpoint.smAndUp"
                     flat
@@ -114,7 +118,7 @@
                             rounded
                             :class="
                                 route().current(item.route)
-                                    ? 'active secondary--text  font-weight-black white--text'
+                                    ? 'active secondary--text font-weight-black white--text'
                                     : 'accent--text link'
                             "
                             class="overline font-weight-bold v"
@@ -135,7 +139,7 @@
 <script>
 import {mapMutations, mapState} from 'vuex';
 import logo from '../../images/logo-ceindetec.png';
-import SettingsDropdown from '@/Components/SettingsDropdown'
+import SettingsDropdown from '@/Components/SettingsDropdown.vue'
 
 export default {
     components: {
@@ -177,13 +181,6 @@ export default {
     left: 259px;
 }
 
-.active {
-    border-bottom: none !important;;
-}
-
-/*.active {*/
-/*    border-bottom: solid;*/
-/*}*/
 
 /*.link {*/
 /*    transition: 0.7s ease-out !important;*/

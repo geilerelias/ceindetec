@@ -1,18 +1,20 @@
-require('./bootstrap');
-
-require('moment');
+import './bootstrap';
+//material icons
+import "@mdi/font/css/materialdesignicons.css";
+import '../css/app.css';
 
 import Vue from 'vue';
 
 //inertia
-import {InertiaApp} from '@inertiajs/inertia-vue';
+import {createInertiaApp, Head, Link} from '@inertiajs/inertia-vue'
 import {InertiaProgress} from '@inertiajs/progress'
-import {InertiaForm} from 'laravel-jetstream';
+// import {InertiaForm} from 'laravel-jetstream';
+import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import PortalVue from 'portal-vue';
 
+
 Vue.mixin({methods: {route}});
-Vue.use(InertiaApp);
-Vue.use(InertiaForm);
+// Vue.use(InertiaForm);
 Vue.use(PortalVue);
 
 //vuetify
@@ -47,30 +49,25 @@ import Permissions from '../plugins/Permissions';
 
 Vue.use(Permissions);
 
-//Vue GoogleMaps
-import * as VueGoogleMaps from "vue2-google-maps";
-
-Vue.use(VueGoogleMaps, {
-    load: {
-        key: "AIzaSyBPCugFwbeVgbxal0aJ1dHzzHAwfttNurI",
-        libraries: "places" //necessary for places input
-    }
-});
-
-
 const app = document.getElementById('app');
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-new Vue({
-    vuetify,
-    store,
-    render: (h) =>
-        h(InertiaApp, {
-            props: {
-                initialPage: JSON.parse(app.dataset.page),
-                resolveComponent: (name) => require(`./Pages/${name}`).default,
-            },
-        }),
-}).$mount(app);
+
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+
+    setup({el, App, props, plugin}) {
+        Vue.use(plugin)
+        Vue.component('InertiaHead', Head)
+        Vue.component('InertiaLink', Link)
+        new Vue({
+            vuetify,
+            store,
+            render: h => h(App, props),
+        }).$mount(el)
+    },
+})
 
 InertiaProgress.init({
     // The delay after which the progress bar will

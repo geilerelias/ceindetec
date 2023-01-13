@@ -103,11 +103,11 @@
 </template>
 
 <script>
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import QrcodeVue from 'qrcode.vue'
-import logo from "@/Components/Logo";
+import logo from "@/Components/Logo.vue";
 import colombiaJson from "@/../assets/colombia.json";
-import simpleLayout from "@/Layouts/SimpleLayout";
+import simpleLayout from "@/Layouts/SimpleLayout.vue";
 import {VueEditor} from "vue2-editor";
 
 export default {

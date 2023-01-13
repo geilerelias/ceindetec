@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import logo from "@/Components/Logo";
+import logo from "@/Components/Logo.vue";
 
 export default {
     components: {

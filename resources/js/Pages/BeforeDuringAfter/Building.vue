@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import logo from "@/Components/Logo";
-import SimpleLayout from "@/Layouts/SimpleLayout";
+import logo from "@/Components/Logo.vue";
+import SimpleLayout from "@/Layouts/SimpleLayout.vue";
 
 
 export default {

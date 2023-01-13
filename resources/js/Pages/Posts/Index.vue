@@ -87,8 +87,8 @@
 
 
 <script>
-import appLayout from "@/Layouts/AppLayout";
-import breadCrumbs from "@/Components/BreadCrumbs";
+import appLayout from "@/Layouts/AppLayout.vue";
+import breadCrumbs from "@/Components/BreadCrumbs.vue";
 
 export default {
     components: {

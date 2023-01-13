@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout';
-import BreadCrumbs from '@/Components/BreadCrumbs';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import BreadCrumbs from '@/Components/BreadCrumbs.vue';
 import colombiaJson from '@/../assets/colombia.json'
 import PictureInput from 'vue-picture-input'
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 
 export default {
     name: 'Create',

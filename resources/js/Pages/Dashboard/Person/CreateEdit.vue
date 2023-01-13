@@ -562,7 +562,7 @@
 <script>
 
 import {VueEditor} from "vue2-editor";
-import SpinnerComponent from "@/Components/SpinnerComponent";
+import SpinnerComponent from "@/Components/SpinnerComponent.vue";
 import PictureInput from 'vue-picture-input'
 import colombiaJson from "@/../assets/colombia.json";
 
