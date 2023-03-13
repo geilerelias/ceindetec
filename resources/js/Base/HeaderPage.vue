@@ -1,59 +1,59 @@
 <template>
-    <v-app-bar app
-               class="ma-0 pa-0 "
-               :height=" $vuetify.breakpoint.mdAndUp
+    <v-app-bar :height=" $vuetify.breakpoint.mdAndUp
                 ? 136
                 : $vuetify.breakpoint.xsOnly
                 ? 88
                 : 176
         "
+               app
+               class="ma-0 pa-0 "
     >
         <v-row
-            class="ma-0"
             :style="
                 $vuetify.breakpoint.mdAndUp
                     ? 'height: 136px !important;'
                     : 'height:176px !important'
             "
+            class="ma-0"
         >
             <v-col v-if="$vuetify.breakpoint.mdAndUp"
-                   class="primary d-flex justify-center align-center"
-                   style="height: 136px;max-height: 136px;"
                    :style="$vuetify.breakpoint.mdAndDown
                         ? 'width: 170px;max-width: 170px'
                         : 'width: 260px; max-width: 260px'
                 "
+                   class="primary d-flex justify-center align-center"
+                   style="height: 136px;max-height: 136px;"
             >
-                <img :src="logo" alt=""
-                     :width="$vuetify.breakpoint.mdAndDown
+                <img :src="logo" :width="$vuetify.breakpoint.mdAndDown
                         ? '170px'
                         : '260px'"
+                     alt=""
                      class="float-right"/>
                 <div
-                    class="triangle-shapes"
                     v-if="$vuetify.breakpoint.lgAndUp"
+                    class="triangle-shapes"
                 ></div>
 
             </v-col>
 
-            <v-col class="px-0 my-0 "
-                   :class="$vuetify.breakpoint.xsOnly ? 'mt-8' : 'mt-n3'"
+            <v-col :class="$vuetify.breakpoint.xsOnly ? 'mt-8' : 'mt-n3'"
+                   class="px-0 my-0 "
             >
 
                 <v-toolbar
-                    flat
-                    :height="$vuetify.breakpoint.mdAndUp ? 48 : 88"
                     :class="$vuetify.breakpoint.mdAndUp ? 'orange' : 'primary'"
+                    :height="$vuetify.breakpoint.mdAndUp ? 48 : 88"
                     class="px-md-10"
+                    flat
                 >
                     <div v-if="$vuetify.breakpoint.smAndDown">
                         <v-img
+                            id="logoimg"
+                            alt=""
+                            class="float-right"
                             contain
                             src="https://ceindetec.org.co/img/web/logofinal.png"
-                            alt=""
                             width="150"
-                            class="float-right"
-                            id="logoimg"
                         />
                     </div>
                     <v-spacer></v-spacer>
@@ -61,18 +61,18 @@
 
                     <v-btn
                         v-if="$vuetify.breakpoint.xsOnly"
-                        height="40"
-                        width="40"
-                        min-width="40"
                         color="white"
+                        height="40"
+                        min-width="40"
+                        width="40"
                         @click="drawer ? setDrawer(false) : setDrawer(true)"
                     >
                         <v-icon dark>mdi-menu</v-icon>
                     </v-btn>
 
                     <v-container
-                        class="d-flex d-none d-sm-flex justify-end"
                         v-if="$vuetify.breakpoint.smAndUp"
+                        class="d-flex d-none d-sm-flex justify-end"
                     >
                         <div class="align-self-center d-md-flex">
                             <p
@@ -80,19 +80,19 @@
                                 style="font-size: 16px;"
                             >
                                 <span class="d-none d-lg-inline ">
-                                    <v-icon size="17" dark class="mt-n1">
+                                    <v-icon class="mt-n1" dark size="17">
                                         mdi-clock-outline
                                     </v-icon>
                                     8:00am - 6:00pm |
                                 </span>
                                 <span class="ma-0 pa-0">
-                                    <v-icon size="17" dark class="mt-n1">
+                                    <v-icon class="mt-n1" dark size="17">
                                         mdi-phone-outline
                                     </v-icon>
                                     3138161 129- 3504944938 |
                                 </span>
                                 <span class="ma-0 pa-0">
-                                    <v-icon size="18" dark class="mt-n1">
+                                    <v-icon class="mt-n1" dark size="18">
                                         mdi-email-outline
                                     </v-icon>
                                     informacion@ceindetec.org.co
@@ -105,30 +105,31 @@
 
                 <v-toolbar
                     v-if="$vuetify.breakpoint.smAndUp"
+                    class="d-flex justify-center justify-md-end py-0 px-md-10"
                     flat
                     height="88"
-                    class="d-flex justify-center justify-md-end py-0 px-md-10"
                 >
                     <inertia-link
                         v-for="item in links"
                         :key="item.id"
                         :href="route(item.route)"
+                        class="text-decoration-none"
                     >
                         <v-btn
-                            rounded
                             :class="
                                 route().current(item.route)
                                     ? 'active secondary--text font-weight-black white--text'
                                     : 'accent--text link'
                             "
                             class="overline font-weight-bold v"
+                            rounded
                             text
                         >
                             {{ item.title }}
                         </v-btn>
                     </inertia-link>
 
-                    <settings-dropdown v-if="$page.user!==null"></settings-dropdown>
+                    <settings-dropdown v-if="$page.props.user!==null"></settings-dropdown>
 
                 </v-toolbar>
             </v-col>

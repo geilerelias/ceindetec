@@ -30,13 +30,7 @@ const store = new Vuex.Store({
                 icon: 'mdi-card-account-phone',
                 route: "contact-us"
             },
-            {
-                title: "Qr code",
-                icon: 'mdi-qrcode',
-                route: "qrcode.index",
-                //can: 'view permission',
-                array: null
-            },
+
             {
                 title: "Registro",
                 icon: 'mdi-add-user',
@@ -141,6 +135,13 @@ const store = new Vuex.Store({
                     title: "Asignaturas",
                     icon: 'mdi-book-open-variant',
                     route: "subject.index",
+                    //can: 'view permission',
+                    array: null
+                },
+                {
+                    title: "Qr code",
+                    icon: 'mdi-qrcode',
+                    route: "qrcode.index",
                     //can: 'view permission',
                     array: null
                 },

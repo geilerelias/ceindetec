@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\QrCodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -74,13 +75,14 @@ Route::get('/create-person', function () {
     return Inertia\Inertia::render('Dashboard/Person/Create');
 })->name('create.person');
 
-Route::get('/qrcode/print', [\App\Http\Controllers\QrCodeController::class, 'print']);
-Route::get('/qrcode/search-edit', [\App\Http\Controllers\QrCodeController::class, 'searchEdit']);
-Route::get('/qrcode/search-show', [\App\Http\Controllers\QrCodeController::class, 'searchShow']);
-Route::get('/qrcode/search/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'search']);
-Route::get('/qrcode/{consecutive}', [\App\Http\Controllers\QrCodeController::class, 'showQr']);
-Route::get('/qrcode/generate/{starts_in}/{ends_in}', [\App\Http\Controllers\QrCodeController::class, 'generate']);
-Route::resource('/qrcode', \App\Http\Controllers\QrCodeController::class);
+Route::get('/qrcode/all', [QrCodeController::class, 'getAll']);
+Route::get('/qrcode/print', [QrCodeController::class, 'print']);
+Route::get('/qrcode/search-edit', [QrCodeController::class, 'searchEdit']);
+Route::get('/qrcode/search-show', [QrCodeController::class, 'searchShow']);
+Route::get('/qrcode/search/{consecutive}', [QrCodeController::class, 'search']);
+Route::get('/qrcode/{consecutive}', [QrCodeController::class, 'showQr']);
+Route::get('/qrcode/generate/{starts_in}/{ends_in}', [QrCodeController::class, 'generate']);
+Route::resource('/qrcode', QrCodeController::class);
 
 Route::get('/contact-us', function () {
     return Inertia\Inertia::render('ContactUs');
@@ -148,7 +150,7 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
     // 'can:Ver dashboard'
 
     Route::get('/dashboard', function () {
-        return Inertia\Inertia::render('Dashboard');
+        return Inertia\Inertia::render('Dashboard/Dashboard');
     })->name('dashboard');
 
     Route::get('/dashboard/schedule', function () {
@@ -243,6 +245,10 @@ Route::get('/example', function (Request $request) {
 });
 
 Route::resource('/posts', PostController::class);
+
+Route::get('/face-identification', function () {
+    return Inertia\Inertia::render('Auth/FaceIdentification');
+})->name('auth.user.activation');
 
 Route::get('/user-activation', function () {
     return Inertia\Inertia::render('Auth/UserActivation');

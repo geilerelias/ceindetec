@@ -1,9 +1,9 @@
 <template>
     <v-navigation-drawer
         v-model="localDrawer"
-        absolute
-        temporary
+        app
         style="box-shadow: rgb(0 0 0 / 20%) -20px 1px 17px 8px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px"
+        temporary
     >
         <v-system-bar></v-system-bar>
 
@@ -12,19 +12,19 @@
                 <v-list-item-avatar>
                     <v-img
                         :aspect-ratio="1"
+                        :src="logo"
                         class="primary "
                         contain
-                        :src="logo"
                     >
                         <template v-slot:placeholder>
                             <v-row
-                                class="fill-height ma-0"
                                 align="center"
+                                class="fill-height ma-0"
                                 justify="center"
                             >
                                 <v-progress-circular
-                                    indeterminate
                                     color="grey lighten-5"
+                                    indeterminate
                                 ></v-progress-circular>
                             </v-row>
                         </template>
@@ -45,20 +45,20 @@
             </v-list-item>
         </v-list>
         <v-divider></v-divider>
-        <v-list nav dense>
+        <v-list dense nav>
             <v-list-item-group v-model="group" color="primary">
-                <inertia-link
-                    v-for="item in links"
-                    :key="item.id"
-                    :href="route(item.route)"
+                <inertia-link v-for="item in links"
+                              :key="item.id"
+                              :href="route(item.route)"
+                              class="text-decoration-none"
                 >
                     <v-list-item
-                        :dark="route().current(item.route)"
                         :class="
                             route().current(item.route)
                                 ? 'active primary  white--text'
                                 : ''
                         "
+                        :dark="route().current(item.route)"
                     >
                         <v-list-item-icon>
                             <v-icon v-text="item.icon"></v-icon>
@@ -73,14 +73,15 @@
                 </inertia-link>
                 <v-divider></v-divider>
                 <v-divider></v-divider>
-                <inertia-link :href="route('dashboard')">
+                <inertia-link :href="route('dashboard')"
+                              class="text-decoration-none">
                     <v-list-item
-                        :dark="route().current('dashboard')"
                         :class="
                             route().current('dashboard')
                                 ? 'active primary  white--text'
                                 : ''
                         "
+                        :dark="route().current('dashboard')"
                     >
                         <v-list-item-icon>
                             <v-icon v-text="'mdi-view-dashboard'"></v-icon>
@@ -135,7 +136,7 @@ export default {
             }
         }
     },
-    
+
     methods: {
         ...mapMutations([
             'setDrawer',

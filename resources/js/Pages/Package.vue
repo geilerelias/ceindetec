@@ -73,22 +73,43 @@
                                                         <template v-slot:default>
                                                             <thead class="primary rounded-b-0">
                                                             <tr>
-                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                <th colspan="1"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                    style="border: solid 1px white !important;">
+                                                                    Item
+                                                                </th>
+                                                                <th colspan="1"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0"
                                                                     style="border: solid 1px white !important;">
                                                                     Descripción
                                                                 </th>
-                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
+                                                                <th colspan="3"
+                                                                    class="text-left text-uppercase white--text text-center rounded-b-0"
                                                                     style="border: solid 1px white !important;">
-                                                                    Serial
+                                                                    Serial del Elemento
                                                                 </th>
-                                                                <th class="text-left text-uppercase white--text text-center rounded-b-0"
-                                                                    style="border: solid 1px white !important;">
-                                                                    Cantidad
-                                                                </th>
+                                                                <!--                                                                <th class="text-left text-uppercase white&#45;&#45;text text-center rounded-b-0"
+                                                                                                                                    style="border: solid 1px white !important;">
+                                                                                                                                    Cantidad
+                                                                                                                                </th>-->
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            {{ getElements }}
+
+                                                            <tr v-for="item in 8" class="b-solid-g ">
+
+                                                                <td colspan="1" class="b-solid-g " style="width: 10px">
+                                                                    <v-avatar size="30" color="primary white--text">
+                                                                        {{ item }}
+                                                                    </v-avatar>
+
+                                                                </td>
+                                                                <td style="width: 50px" colspan="1"
+                                                                    class="b-solid-g "></td>
+
+                                                                <td colspan="2" class="b-solid-g"></td>
+                                                            </tr>
+                                                            <!--                                                            {{ getElements }}-->
                                                             <!--                                                            <template v-for="(item, i) in getElements[n]"
                                                                                                                                   class=" rounded-b-0">
                                                                                                                             {{ item }}
@@ -127,17 +148,18 @@
                                                                                                                             </tr>
                                                                                                                         </template>
                                                                                                                      -->
-                                                            <tr class="primary">
-                                                                <td class="text-uppercase white--text text-center rounded-b-0"
-                                                                    colspan="2"
-                                                                    style="border: solid 1px white !important;">
-                                                                    TOTAL
-                                                                </td>
-                                                                <td class="text-uppercase white--text text-center rounded-b-0"
-                                                                    style="border: solid 1px white !important;">
-                                                                    <!--                                                                    {{ getElements[n].TOTAL }}-->
-                                                                </td>
-                                                            </tr>
+
+                                                            <!--                                                            <tr class="primary">
+                                                                                                                            <td class="text-uppercase white&#45;&#45;text text-center rounded-b-0"
+                                                                                                                                colspan="2"
+                                                                                                                                style="border: solid 1px white !important;">
+                                                                                                                                TOTAL
+                                                                                                                            </td>
+                                                                                                                            <td class="text-uppercase white&#45;&#45;text text-center rounded-b-0"
+                                                                                                                                style="border: solid 1px white !important;">
+                                                                                                                                &lt;!&ndash;                                                                    {{ getElements[n].TOTAL }}&ndash;&gt;
+                                                                                                                            </td>
+                                                                                                                        </tr>-->
                                                             </tbody>
                                                         </template>
                                                     </v-simple-table>

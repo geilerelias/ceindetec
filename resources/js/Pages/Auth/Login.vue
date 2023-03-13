@@ -53,11 +53,12 @@
                             label="E-mail"
                             clearable
                             outlined
-                            :rules="[
-                                            emailRules.required,
-                                            emailRules.valid
-                                        ]"
+                            type="email"
+                            autocomplete="email"
+                            :rules="[emailRules.required,emailRules.valid]"
                             @change="isValid=true"
+                            required
+                            autofocus
                         ></v-text-field>
 
                         <v-text-field
@@ -191,7 +192,7 @@ export default {
                         this.overlay = false;
                         this.$inertia.get('/dashboard');
                         this.$swal(
-                            'Bienvenido!',
+                            `Bienvenido!`,
                             '¡Has iniciado sesión correctamente!',
                             'success'
                         );

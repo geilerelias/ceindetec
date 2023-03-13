@@ -24,12 +24,23 @@ class QrCodeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
         $response = QrCode::all();
         return Inertia::render('CodeQr/Index', ['data' => $response]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+
+    public function getAll()
+    {
+        return QrCode::all();
     }
 
     /**

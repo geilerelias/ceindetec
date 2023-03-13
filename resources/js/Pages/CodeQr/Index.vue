@@ -90,9 +90,9 @@
                                      :style="(n+1)%36==0?'margin-bottom: 0.84cm;':''">
                                     <v-card outlined @click="showEditDialog(item)"
                                             class="d-flex justify-center pa-1 rounded-0 " max-width="5cm"
-                                            max-height="4cm" height="2.8cm">
+                                            max-height="4cm" height="2.9cm">
                                         <v-card outlined class="rounded-lg pa-1" :aspect-ratio="16/9" width="5cm"
-                                                height="2.5cm"
+                                                height="2.6cm"
                                                 style="border: 2px solid #001c47">
                                             <v-row>
                                                 <v-col cols="6">
@@ -104,16 +104,16 @@
                                                                         level="H"/>
                                                         </div>
 
-                                                        <div class="text-center" style="font-size: 8px"
+                                                        <div class="text-center mt-n1" style="font-size: 8px"
                                                              v-text="`${item.consecutive}`"></div>
                                                     </div>
                                                 </v-col>
                                                 <v-col cols="6" class="ml-0 pl-0">
                                                     <div class="d-flex justify-space-around py-1 mb-0">
                                                         <logo :tile="true" :light="false" color="primary"
-                                                              :width="80"></logo>
+                                                              :width="40"></logo>
                                                         <logo :tile="true" :light="false" color="primary"
-                                                              :width="80"
+                                                              :width="40"
                                                               src="logoAlcaldia"></logo>
                                                     </div>
                                                     <div class="text-left font-weight-black  mb-0 py-0"

@@ -5,6 +5,10 @@
         "build": "vite build"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-vue": "^0.8.0",
+        "@inertiajs/progress": "^0.2.7",
+        "@inertiajs/server": "^0.1.0",
         "animate.css": "^4.1.1",
         "date-fns": "^2.29.3",
         "file-saver": "^2.0.5",
@@ -21,13 +25,10 @@
         "vue-picture-input": "^2.4.0",
         "vue-sweetalert2": "^4.3.1",
         "vue2-editor": "^2.10.3",
-        "vuetify": "^2.6.13",
+        "vuetify": "^2.6.14",
         "vuex": "^3.6.2"
     },
     "devDependencies": {
-        "@inertiajs/inertia": "^0.11.1",
-        "@inertiajs/inertia-vue": "^0.8.0",
-        "@inertiajs/progress": "^0.2.7",
         "@mdi/font": "^6.9.96",
         "@tailwindcss/ui": "^0.6.0",
         "@vitejs/plugin-vue2": "^2.2.0",

@@ -17,4 +17,6 @@ class Notice extends Model
         'time',
         'description',
         'links'];
+
+ 
 }

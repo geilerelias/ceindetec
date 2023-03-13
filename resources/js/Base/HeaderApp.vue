@@ -26,7 +26,7 @@
 
             <settings-dropdown></settings-dropdown>
 
-            <div class="text-center" v-if="$page.user==null">
+            <div class="text-center" v-if="$page.props.user==null">
                 <v-menu
                     :close-on-content-click="false"
                     :nudge-width="200"
@@ -47,7 +47,7 @@
 
                     <v-card>
                         <v-list>
-                            <template v-if="$page.user==null">
+                            <template v-if="$page.props.user==null">
                                 <v-subheader>Authentication</v-subheader>
                                 <v-divider></v-divider>
                                 <v-list-item
@@ -214,7 +214,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .active {
     border-bottom: solid;
 }

@@ -3,12 +3,16 @@
         <header-component></header-component>
         <drawer-component></drawer-component>
 
-        <v-main class="bg-gray-100">
-            <div class="min-h-screen">
+
+        <v-main class="d-flex  flex-column align-content-space-between ">
+            <div class="min-h-screen fill-height">
                 <slot></slot>
             </div>
+
             <footer-component></footer-component>
+
         </v-main>
+
     </v-app>
 </template>
 
@@ -62,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .v-btn {
     outline: none !important;
 }
@@ -76,3 +80,4 @@ export default {
     font-family: "Roboto", sans-serif !important;
 }
 </style>
+

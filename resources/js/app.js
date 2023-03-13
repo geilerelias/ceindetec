@@ -24,7 +24,7 @@ import vuetify from '../plugins/vuetify'
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
 //store
-import store from "./store";
+import store from "../plugins/store";
 
 //VueSweetalert2
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -49,7 +49,7 @@ import Permissions from '../plugins/Permissions';
 
 Vue.use(Permissions);
 
-const app = document.getElementById('app');
+// const app = document.getElementById('app');
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 

@@ -97,13 +97,12 @@
                 </v-col>
 
                 <v-col class="col-sm-12 col-lg-8 col-12">
-                    <v-card class="mb-7 w-100 v-card v-card--flat v-sheet theme--light">
+                    <v-card class="mb-7 w-100  theme--light">
                         <v-card-text class="v-card__text pa-5">
-                            <div class="d-md-flex align-start">
-                                <h3 class="title font-weight-regular">
+                            <div>
+                                <h3 class="title font-weight-bold mb-4 text-center text-uppercase">
                                     Areas y Asignaturas
                                 </h3>
-                                <v-spacer class="spacer"></v-spacer>
 
                             </div>
                             <v-simple-table>
@@ -172,34 +171,36 @@
                 </v-col>
 
                 <v-col class="col-sm-12 col-lg-4 col-12">
-                    <v-card flat light class="mb-7 rounded-b-0">
+                    <v-card light class="mb-7 rounded-b-0">
                         <v-card-text class="pa-0 rounded-b-0">
                             <div class="primary rounded rounded-b-0" style="z-index: 1 !important;">
                                 <v-img
                                     style="z-index: 1 !important;"
                                     :src="logo"
-                                    height="100"
+                                    height="160"
                                     contain
                                     class="img-fluid rounded-top bt4 w-100 rounded-b-0"/>
                             </div>
                             <div class="pa-4 mt-n12 text-center">
                                 <div class="d-flex justify-center mt-n5">
-                                    <img class="rounded-full h-20 w-20"
-                                         style="z-index: 2 !important;"
-                                         :src="$page.user.profile_photo_url"
-                                         :alt="$page.user.name"
-                                         height="128"
-                                         width="128"
-                                    >
+                                    <v-avatar size="90">
+                                        <img class="rounded-full h-20 w-20"
+                                             style="z-index: 2 !important;"
+                                             :src="$page.props.user.profile_photo_url"
+                                             :alt="$page.props.user.name"
+                                             height="128"
+                                             width="128"
+                                        />
+                                    </v-avatar>
                                 </div>
-                                <h2 class="mb-0 mt-4 font-weight-regular">{{ $page.user.name }}</h2>
-                                <p class="font-weight-light subtitle-2">{{ $page.user.email }}</p>
+                                <h2 class="mb-0 mt-4 font-weight-regular">{{ $page.props.user.name }}</h2>
+                                <p class="font-weight-light subtitle-2">{{ $page.props.user.email }}</p>
 
                                 <p class="font-weight-regular px-7 primary accent-2 text--white  white--text rounded-pill">
                                     Rol en el sistema
                                 </p>
                                 <v-row class="mt-3">
-                                    <v-col class="col col-4" v-for="item in $page.auth.roles" :key="item.id">
+                                    <v-col class="col col-4" v-for="item in $page.props.auth.roles" :key="item.id">
                                         <h2 class="mb-0 font-weight-light text--primary font-weight-bold uppercase">
                                             {{ item }}
                                         </h2>
@@ -217,7 +218,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <template>
-                        <div v-if="$page.user!==null" dense>
+                        <div v-if="$page.props.user!==null" dense>
                             <div v-permission="'Ver dashboard'">
                                 puedo ver el dashboard
                             </div>
@@ -239,11 +240,11 @@
                             </div>
                         </div>
                         <div>
-                            {{ $page.auth.roles[0] === 'Admin' ? true : false }}
+                            {{ $page.props.auth.roles[0] === 'Admin' ? true : false }}
                             <br>
-                            {{ $page.auth.permissions[0] === 'view dashboard' ? true : false }}
+                            {{ $page.props.auth.permissions[0] === 'view dashboard' ? true : false }}
                             <br>
-                            {{ $page.auth }}
+                            {{ $page.props.auth }}
                         </div>
                     </template>
                 </div>

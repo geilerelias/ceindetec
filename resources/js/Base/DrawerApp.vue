@@ -29,19 +29,19 @@
 
         <v-divider></v-divider>
 
-        <template v-if="$page.user !== null">
+        <template v-if="$page.props.user !== null">
             <v-list-item two-line>
                 <v-list-item-avatar>
                     <img
-                        :src="$page.user.profile_photo_url"
-                        :alt="$page.user.name"
+                        :src="$page.props.user.profile_photo_url"
+                        :alt="$page.props.user.name"
                     />
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-title>{{ $page.user.name }}</v-list-item-title>
+                    <v-list-item-title>{{ $page.props.user.name }}</v-list-item-title>
                     <v-list-item-subtitle>
-                        {{ $page.user.email }}
+                        {{ $page.props.user.email }}
                     </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
@@ -51,13 +51,14 @@
         <v-list nav dense shaped>
             <v-list-item-group v-model="group" color="primary">
 
-                <template v-if="$page.user == null">
+                <template v-if="$page.props.user == null">
                     <v-divider></v-divider>
                     <v-subheader>Authentication</v-subheader>
                     <inertia-link
                         v-for="item in items"
                         :key="item.title"
                         :href="item.route"
+                        class="text-decoration-none"
                     >
                         <v-list-item>
                             <v-list-item-icon>
@@ -74,13 +75,14 @@
                 </template>
 
                 <!-- Responsive Settings Options -->
-                <template v-if="$page.user !== null" dense>
+                <template v-if="$page.props.user !== null" dense>
 
                     <template v-for="item in linksWithAuth">
                         <inertia-link
                             :key="item.id"
                             :href="route(item.route)"
                             v-if="!Array.isArray(item)"
+                            class="text-decoration-none"
                         >
                             <v-list-item
                                 :dark="isActive(item.route)"
@@ -133,7 +135,9 @@
                     <v-divider></v-divider>
                     <v-subheader>Settings Options</v-subheader>
 
-                    <inertia-link :href="route('profile.show')">
+                    <inertia-link :href="route('profile.show')"
+                                  class="text-decoration-none"
+                    >
                         <v-list-item
                             :dark="route().current('profile.show')"
                             :class="
@@ -152,7 +156,8 @@
                     </inertia-link>
                     <inertia-link
                         :href="route('api-tokens.index')"
-                        v-if="$page.jetstream.hasApiFeatures"
+                        v-if="$page.props.jetstream.hasApiFeatures"
+                        class="text-decoration-none"
                     >
                         <v-list-item
                             :dark="route().current('api-tokens.index')"
@@ -183,10 +188,11 @@
                             <v-list-item-title>Logout</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <template v-if="$page.jetstream.hasTeamFeatures">
+                    <template v-if="$page.props.jetstream.hasTeamFeatures">
                         <v-subheader>Manage Team</v-subheader>
                         <inertia-link
-                            :href="route('teams.show', $page.user.current_team)"
+                            :href="route('teams.show', $page.props.user.current_team)"
+                            class="text-decoration-none"
                         >
                             <v-list-item
                                 :dark="route().current('teams.show')"
@@ -206,7 +212,8 @@
                                 </v-list-item-content>
                             </v-list-item>
                         </inertia-link>
-                        <inertia-link :href="route('teams.create')">
+                        <inertia-link :href="route('teams.create')"
+                        >
                             <v-list-item
                                 :dark="route().current('teams.create')"
                                 :class="
@@ -230,18 +237,18 @@
             </v-list-item-group>
         </v-list>
         <div
-            v-if="$page.user !== null"
+            v-if="$page.props.user !== null"
             class="pt-4 pb-1 border-t border-gray-200"
         >
             <div class="mt-3 space-y-1">
                 <!-- Team Management -->
-                <template v-if="$page.jetstream.hasTeamFeatures">
+                <template v-if="$page.props.jetstream.hasTeamFeatures">
                     <!-- Team Switcher -->
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         Switch Teams
                     </div>
 
-                    <template v-for="team in $page.user.all_teams">
+                    <template v-for="team in $page.props.user.all_teams">
                         <form
                             @submit.prevent="switchToTeam(team)"
                             :key="team.id"
@@ -251,7 +258,7 @@
                                     <svg
                                         v-if="
                                             team.id ==
-                                                $page.user.current_team_id
+                                                $page.props.user.current_team_id
                                         "
                                         class="mr-2 h-5 w-5 text-green-400"
                                         fill="none"
