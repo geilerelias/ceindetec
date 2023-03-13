@@ -223,10 +223,10 @@ export default {
         ],
         valid: false,
         mail: {
-            name: "Geiler Elias Radillo Sarmiento",
-            email: "geilerelias@gmail.com",
-            subject: "Example",
-            content: "This is a example of send mail"
+            name: "",
+            email: "",
+            subject: "",
+            content: ""
         },
         overlay: false,
     }),
