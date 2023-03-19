@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <bread-crumbs name="Categoría de tickets" :items="items"></bread-crumbs>
+        <bread-crumbs :items="items" name="Categoría de tickets"></bread-crumbs>
         <v-container class="py-12">
             <v-row class="ma-0">
                 <v-col>
@@ -9,8 +9,8 @@
                             <v-row class=" no-gutters">
                                 <div class="d-flex justify-space-between justify-md-start col-md-6 col-12">
                                     <v-btn
-                                        @click="isOpen = !isOpen"
-                                        class="mr-3 success">
+                                        class="mr-3 success"
+                                        @click="isOpen = !isOpen">
                                         <v-icon class="notranslate mr-2">
                                             mdi-plus
                                         </v-icon>
@@ -20,11 +20,11 @@
 
                                 <v-spacer></v-spacer>
 
-                                <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
-                                    <v-text-field hide-details dense enclosed outlined
-                                                  append-icon="mdi-magnify"
+                                <div class="mx-auto mt-4 mt-md-0" style="max-width: 250px;">
+                                    <v-text-field v-model="search" append-icon="mdi-magnify" dense enclosed
+                                                  hide-details
+                                                  outlined
                                                   placeholder="Consultar"
-                                                  v-model="search"
                                     ></v-text-field>
                                 </div>
                             </v-row>
@@ -39,14 +39,14 @@
                         <v-data-table
                             :headers="headers"
                             :items="data"
-                            sort-by="calories"
                             :search="search"
                             class="elevation-1"
+                            sort-by="calories"
                         >
                             <template v-slot:item.actions="{ item }">
                                 <v-icon
-                                    small
                                     class="mr-2"
+                                    small
                                     @click="edit(item)"
                                 >
                                     mdi-pencil-outline
@@ -84,8 +84,8 @@
                         label="Nombre"
                         required
                     ></v-text-field>
-                    <div v-if="$page.errors.name" class="text-red-500">{{
-                            $page.errors.name[0]
+                    <div v-if="$page.props.errors.name" class="text-red-500">{{
+                            $page.props.errors.name[0]
                         }}
                     </div>
 
@@ -95,25 +95,25 @@
                         required
                     ></v-textarea>
 
-                    <div v-if="$page.errors.description" class="text-red-500">{{
-                            $page.errors.description[0]
+                    <div v-if="$page.props.errors.description" class="text-red-500">{{
+                            $page.props.errors.description[0]
                         }}
                     </div>
                     <div class="d-flex justify-end">
-                        <v-btn wire:click.prevent="store()" type="button"
-                               v-show="!editMode" @click="save(form)"
-                               class="primary mx-1" dark>
+                        <v-btn v-show="!editMode" class="primary mx-1"
+                               dark type="button"
+                               wire:click.prevent="store()" @click="save(form)">
                             Guardar
                         </v-btn>
 
-                        <v-btn wire:click.prevent="store()" type="button"
-                               v-show="editMode" @click="update(form)"
-                               class="primary x-1" dark>
+                        <v-btn v-show="editMode" class="primary x-1"
+                               dark type="button"
+                               wire:click.prevent="store()" @click="update(form)">
                             Actualizar
                         </v-btn>
 
-                        <v-btn @click="closeModal()" type="button"
-                               class="secondary mx-1" dark>
+                        <v-btn class="secondary mx-1" dark
+                               type="button" @click="closeModal()">
                             Cancelar
                         </v-btn>
                     </div>
@@ -191,10 +191,9 @@ export default {
         save: function (data) {
             this.$inertia.post('ticket-category', data, {
                 onSuccess: page => {
-                    console.log('this is page =>', page)
                     this.$swal(
                         'Buen trabajo!',
-                        this.$page.flash.message,
+                        page.props.flash.message,
                         'success'
                     )
                     this.reset();
@@ -225,7 +224,7 @@ export default {
                 onSuccess: page => {
                     this.$swal(
                         'Buen trabajo!',
-                        this.$page.flash.message,
+                        page.props.flash.message,
                         'success'
                     )
                     this.reset();

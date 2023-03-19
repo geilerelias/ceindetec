@@ -1,21 +1,23 @@
 <?php
 
 
-use App\Http\Controllers\QrCodeController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\EstablishmentController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\HeadquartersController;
-use App\Http\Controllers\PensumController;
-use App\Http\Controllers\YearController;
-use App\Http\Controllers\StudyPlanController;
-use App\Http\Controllers\PersonController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PensumController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudyPlanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\YearController;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 
 /*
@@ -28,6 +30,14 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/notification', function () {
+    $user = User::find(1);
+    $user->notify(new \App\Notifications\SupportTickets($user));
+    /* Notification::route('mail', 'geilerelias@gmail.com')
+         ->notify(new \App\Notifications\SupportTickets());*/
+    return view('welcome');
+});
 
 Route::get('/welcome', function () {
     return view('welcome');

@@ -16,10 +16,10 @@
             </div>
         </template>
 
-        <template v-slot:extension>
-            <v-tabs
-                v-model="tab"
-                align-with-title
+        <template v-slot:extension class="d-print-none">
+            <v-tabs v-model="tab"
+                    align-with-title
+                    class="d-print-none"
             >
                 <v-tabs-slider color="white"></v-tabs-slider>
                 <v-tab
@@ -33,7 +33,7 @@
 
         <v-main class="transparent pt-6 bg" style="min-height: 90vh">
             <v-container>
-                <v-tabs-items class="transparent fill-height pa-2" style="min-height: 70vh" v-model="tab">
+                <v-tabs-items v-model="tab" class="transparent fill-height pa-2" style="min-height: 70vh">
                     <v-tab-item
                         v-for="(item,k) in records"
                         :key="item.folder"
@@ -51,27 +51,16 @@
                                     v-slot="{ hover }"
                                     open-delay="200"
                                 >
-                                    <v-card color="transparent"
-                                            :elevation="hover ? 16 : 0"
-                                            flat
+                                    <v-card :elevation="hover ? 16 : 0"
                                             class="ma-0 pa-0 transparent"
+                                            color="transparent"
+                                            flat
                                             @click="showImage(`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`)">
-                                        <v-img
-                                            :src="`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`"
-                                            :aspect-ratio="16/9"
-                                            :elevation="5"
-                                            class="grey lighten-2 rounded "
-                                        >
-                                            <template v-slot:placeholder>
-                                                <v-row
-                                                    class="fill-height ma-0"
-                                                    align="center"
-                                                    justify="center"
-                                                >
-                                                    <loading-component/>
-                                                </v-row>
-                                            </template>
-                                        </v-img>
+
+                                        <img-placeholder :establishments="establishments"
+                                                         :headquarters="headquarters"
+                                                         :item="item" :municipality="municipality" :src="src"/>
+
                                     </v-card>
                                 </v-hover>
                             </v-col>
@@ -81,19 +70,19 @@
             </v-container>
         </v-main>
 
-        <preview-image :dialog="dialog" :selectedImage="selectedImage" :close="closePreviewImage"></preview-image>
+        <preview-image :close="closePreviewImage" :dialog="dialog" :selectedImage="selectedImage"></preview-image>
     </simple-layout>
 </template>
 
 <script>
 import SimpleLayout from "@/Layouts/SimpleLayout.vue";
-import loadingComponent from "@/Components/LoadingComponent.vue";
 import previewImage from "@/Components/PreviewImage.vue";
+import ImgPlaceholder from "@/Pages/Benefited/ImgPlaceholder.vue";
 
 
 export default {
     name: "FollowDetail",
-    components: {SimpleLayout, loadingComponent, previewImage},
+    components: {ImgPlaceholder, SimpleLayout, previewImage},
     props: ["municipality", "establishments", "headquarters"],
     data: () => ({
         tab: null,
@@ -109,7 +98,7 @@ export default {
             .get(url)
             .then(response => {
                 this.records = response.data
-                console.log('this is response in records data ==>', response.data)
+                // console.log('this is response in records data ==>', response.data)
             });
     },
 
@@ -125,6 +114,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>

@@ -23,10 +23,10 @@
                                             transition="scale-transition"
                                         >
                                             <template v-slot:activator="{ on, attrs }">
-                                                <v-btn v-bind="attrs"
-                                                       v-on="on"
+                                                <v-btn class="button-shadow primary--text"
                                                        outlined
-                                                       class="button-shadow primary--text">
+                                                       v-bind="attrs"
+                                                       v-on="on">
                                                     <v-icon aria-hidden="true"
                                                             class="notranslate mr-2">
                                                         mdi-filter-variant
@@ -131,12 +131,12 @@
 
                                     <v-spacer></v-spacer>
 
-                                    <div style="max-width: 250px;" class="mx-auto mt-4 mt-md-0">
-                                        <v-text-field hide-details dense enclosed outlined
-                                                      prepend-inner-icon="mdi-magnify"
+                                    <div class="mx-auto mt-4 mt-md-0" style="max-width: 250px;">
+                                        <v-text-field v-model="search" clearable dense enclosed
+                                                      hide-details
+                                                      outlined
                                                       placeholder="Buscar"
-                                                      v-model="search"
-                                                      clearable
+                                                      prepend-inner-icon="mdi-magnify"
                                         ></v-text-field>
                                     </div>
                                 </v-row>
@@ -147,18 +147,18 @@
 
                 <v-row class="ma-0">
                     <v-col>
-                        <v-sheet min-height="70vh" rounded="lg" class="pa-8">
+                        <v-sheet class="pa-8" min-height="70vh" rounded="lg">
                             <div v-for="(info, n) in getData">
                                 <v-list two-line>
                                     <v-subheader>
                                         <div v-if="group==null">
                                             Todos
                                         </div>
-                                        <div class="text-uppercase font-weight-bold"
-                                             v-else-if="group=='establishments_id'">
+                                        <div v-else-if="group=='establishments_id'"
+                                             class="text-uppercase font-weight-bold">
                                             {{ getEstablishment(n) }}
                                         </div>
-                                        <div class="text-uppercase font-weight-bold" v-else>
+                                        <div v-else class="text-uppercase font-weight-bold">
                                             {{ n }}
                                         </div>
                                         <v-spacer></v-spacer>
@@ -168,20 +168,22 @@
                                     <v-divider></v-divider>
 
                                     <v-row class="mt-2">
-                                        <v-col cols="12" md="6" lg="4" v-for="(item, j) in info" :key="item.id">
+                                        <v-col v-for="(item, j) in info" :key="item.id" cols="12" lg="4" md="6">
 
 
                                             <inertia-link
                                                 :href="`/benefited-detail/${getDirectory(item)}`"
                                                 class="text-decoration-none">
                                                 <v-hover v-slot="{ hover }">
-                                                    <v-card class="pa-0 rounded-b-0"
-                                                            @click="getFolder(item.municipality,getEstablishment(item.establishment_id),item.name)">
-                                                        <v-img cover
-                                                               :aspect-ratio="16/9"
-                                                               style="transition: all 0.5s;"
+                                                    <v-card class="pa-0 rounded-b-0">
+                                                        <!--
+                                                         @click="getFolder(item.municipality,getEstablishment(item.establishment_id),item.name)"
+                                                        -->
+                                                        <v-img :aspect-ratio="16/9"
                                                                :class="hover ? 'zoom' : ''"
-                                                               :src="`/get/img/${getDirectory(item)}/Img aula/`"
+                                                               :src="getImgPrincipal(item)"
+                                                               cover
+                                                               style="transition: all 0.5s;"
                                                         >
                                                             <v-expand-transition>
                                                                 <div
@@ -212,8 +214,8 @@
 
                                                             <template v-slot:placeholder>
                                                                 <v-row
-                                                                    class="fill-height ma-0"
                                                                     align="center"
+                                                                    class="fill-height ma-0"
                                                                     justify="center"
                                                                 >
                                                                     <loading-component/>
@@ -232,8 +234,9 @@
                                                 <v-list-item>
                                                     <template v-slot:default="{ active }">
                                                         <v-list-item-avatar color="grey lighten-2">
-                                                            <v-icon class="text--white" color='orange'
-                                                                    v-if="item.work_type=='Construcción'"
+                                                            <v-icon v-if="item.work_type=='Construcción'"
+                                                                    class="text--white"
+                                                                    color='orange'
                                                                     v-text="'mdi-account-hard-hat'">
                                                             </v-icon>
                                                             <v-icon v-else color='green'
@@ -245,9 +248,9 @@
                                                             <v-tooltip top>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <v-list-item-title
+                                                                        class="text-uppercase"
                                                                         v-bind="attrs"
                                                                         v-on="on"
-                                                                        class="text-uppercase"
                                                                         v-text="getHeadquarters(item.headquarters_id)">
                                                                     </v-list-item-title>
                                                                 </template>
@@ -257,10 +260,11 @@
                                                             </v-tooltip>
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
-                                                                    <v-list-item-subtitle v-bind="attrs"
-                                                                                          v-on="on"
-                                                                                          class="text--primary text-uppercase"
-                                                                                          v-text="getEstablishment(item.establishments_id)">
+                                                                    <v-list-item-subtitle
+                                                                        class="text--primary text-uppercase"
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                        v-text="getEstablishment(item.establishments_id)">
                                                                     </v-list-item-subtitle>
                                                                 </template>
                                                                 <span class="white--text text-uppercase">
@@ -279,8 +283,8 @@
 
                                                             <v-tooltip top>
                                                                 <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn icon @click="openDialog(item)"
-                                                                           v-bind="attrs"
+                                                                    <v-btn icon v-bind="attrs"
+                                                                           @click="openDialog(item)"
                                                                            v-on="on">
                                                                         <v-icon color="grey lighten-1">
                                                                             mdi-map-marker-path
@@ -291,11 +295,11 @@
                                                             </v-tooltip>
                                                             <v-tooltip bottom>
                                                                 <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn icon @click="dailyRecords(item)"
-                                                                           v-bind="attrs"
+                                                                    <v-btn icon v-bind="attrs"
+                                                                           @click="dailyRecords(item)"
                                                                            v-on="on">
-                                                                        <v-icon color="grey lighten-1"
-                                                                                class="mr-1">
+                                                                        <v-icon class="mr-1"
+                                                                                color="grey lighten-1">
                                                                             mdi-chart-timeline
                                                                         </v-icon>
                                                                     </v-btn>
@@ -312,10 +316,10 @@
                             </div>
                             <div v-if="Object.keys(information).length<=0">
                                 <v-row class="mt-2">
-                                    <v-col cols="12" md="6" lg="4" v-for="item in 10" :key="item.id">
+                                    <v-col v-for="item in 10" :key="item.id" cols="12" lg="4" md="6">
                                         <v-skeleton-loader
-                                            v-bind="attrs"
                                             type="image,list-item-avatar-three-line"
+                                            v-bind="attrs"
                                         ></v-skeleton-loader>
                                     </v-col>
                                 </v-row>
@@ -331,8 +335,8 @@
                 <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                     <v-card>
 
-                        <v-toolbar dark color="primary">
-                            <v-btn icon dark @click="dialog = false">
+                        <v-toolbar color="primary" dark>
+                            <v-btn dark icon @click="dialog = false">
                                 <v-icon>mdi-close</v-icon>
                             </v-btn>
                             <v-toolbar-title> {{ sede }}</v-toolbar-title>
@@ -347,9 +351,9 @@
                         <v-container style="height: 100vh;">
                             <v-sheet class="gray" min-height="70vh" rounded="lg">
                                 <div class="iframe-container mx-auto rounded-lg" elevation="12">
-                                    <iframe class="rounded-lg" :src="ruta" style="border: 0px; display: block;"
-                                            allowfullscreen=""
-                                            loading="lazy">
+                                    <iframe :src="ruta" allowfullscreen="" class="rounded-lg"
+                                            loading="lazy"
+                                            style="border: 0px; display: block;">
                                     </iframe>
                                 </div>
                             </v-sheet>
@@ -453,7 +457,7 @@ export default {
         getData() {
             try {
                 let search = this.search.toLowerCase()
-                console.log('this is information => ', this.information, ' type => ', typeof this.information)
+                //console.log('this is information => ', this.information, ' type => ', typeof this.information)
 
                 let data = new Array();
 
@@ -461,15 +465,15 @@ export default {
                     // console.log(this.information[key])
 
                     let values = this.information[key].filter(item => {
-                        console.log('this item =>', item)
+                        // console.log('this item =>', item)
                         const municipio = item.municipality.toLowerCase()
-                        console.log("municipio")
+                        //console.log("municipio")
 
-                        console.log('establecimiento')
+                        //console.log('establecimiento')
                         const establecimiento = this.getEstablishment(item.establishments_id).toLowerCase()
-                        console.log("sede")
+                        //console.log("sede")
                         const sede = this.getHeadquarters(item.headquarters_id).toLowerCase()
-                        console.log("tipo")
+                        //console.log("tipo")
                         const tipo = item.work_type.toLowerCase()
                         if (this.isMunicipality && !this.isWorkType && !this.isEstablishments) {
                             return municipio.indexOf(search) > -1
@@ -496,7 +500,7 @@ export default {
                     // console.log('this is values  => ', values);
                 }
 
-                console.log('this is data => ', data)
+                //console.log('this is data => ', data)
                 return Object.assign({}, data);
 
             } catch (e) {
@@ -508,7 +512,7 @@ export default {
     methods: {
         async dailyRecords(item) {
             try {
-                console.log('daily Records', item)
+                //console.log('daily Records', item)
                 let municipality = item.municipality
                 let establishments = await this.getEstablishment(item.establishments_id)
                 let headquarters = await this.getHeadquarters(item.headquarters_id)
@@ -544,7 +548,7 @@ export default {
 
         },
         openDialog(item) {
-            console.log(item)
+            //console.log(item)
             this.element = item
             this.sede = this.getHeadquarters(item.headquarters_id);
             this.ruta = item.coordinates;
@@ -601,14 +605,14 @@ export default {
 
 
         applyChanges() {
-            console.log('se ejecuta apply changes')
+            //console.log('se ejecuta apply changes')
             const headers = {
                 'Access-Control-Allow-Origin': 'http://127.0.0.1:8000/',
                 'Access-Control-Allow-Credentials': 'true'
             }
             axios.get(`/dashboard/work/group-by/${this.group}`, headers)
                 .then((response) => {
-                    console.log(response.data)
+                    //console.log(response.data)
                     this.information = response.data
                 })
                 .catch((error) => {
@@ -616,7 +620,18 @@ export default {
                 })
         },
         getDirectory(item) {
-            return encodeURIComponent(item.municipality + '/' + this.getEstablishment(item.establishments_id) + '/' + this.getHeadquarters(item.headquarters_id))
+            try {
+                return encodeURIComponent(item.municipality + '/' + this.getEstablishment(item.establishments_id) + '/' + this.getHeadquarters(item.headquarters_id))
+            } catch (e) {
+
+            }
+        },
+        getImgPrincipal(item) {
+            try {
+                return `/get/img/${this.getDirectory(item)}/Img aula/`
+            } catch (e) {
+
+            }
         }
     }
 }

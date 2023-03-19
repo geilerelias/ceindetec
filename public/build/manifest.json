@@ -11,21 +11,21 @@
     "file": "assets/logo-ceindetec-circle.494a5138.png",
     "src": "resources/images/logo-ceindetec-circle.png"
   },
-  "resources/images/errorcurva.png": {
-    "file": "assets/errorcurva.1564b98a.png",
-    "src": "resources/images/errorcurva.png"
-  },
-  "resources/images/infantes_guajiros.jpg": {
-    "file": "assets/infantes_guajiros.2da255e1.jpg",
-    "src": "resources/images/infantes_guajiros.jpg"
+  "resources/images/infantes_guajiros_lazy.jpg": {
+    "file": "assets/infantes_guajiros_lazy.4b0edcc9.jpg",
+    "src": "resources/images/infantes_guajiros_lazy.jpg"
   },
   "resources/images/gers.jpg": {
     "file": "assets/gers.9b25b344.jpg",
     "src": "resources/images/gers.jpg"
   },
-  "resources/images/infantes_guajiros_lazy.jpg": {
-    "file": "assets/infantes_guajiros_lazy.4b0edcc9.jpg",
-    "src": "resources/images/infantes_guajiros_lazy.jpg"
+  "resources/images/infantes_guajiros.jpg": {
+    "file": "assets/infantes_guajiros.2da255e1.jpg",
+    "src": "resources/images/infantes_guajiros.jpg"
+  },
+  "resources/images/errorcurva.png": {
+    "file": "assets/errorcurva.1564b98a.png",
+    "src": "resources/images/errorcurva.png"
   },
   "resources/images/logodark.png": {
     "file": "assets/logodark.2542798b.png",
@@ -60,7 +60,7 @@
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.8bbe0a1c.js",
+    "file": "assets/app.386f4fb4.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -85,6 +85,7 @@
       "resources/js/Pages/Benefited/Building.vue",
       "resources/js/Pages/Benefited/Follow.vue",
       "resources/js/Pages/Benefited/FollowDetail.vue",
+      "resources/js/Pages/Benefited/ImgPlaceholder.vue",
       "resources/js/Pages/Blog.vue",
       "resources/js/Pages/CodeQr/Edit.vue",
       "resources/js/Pages/CodeQr/Index.vue",
@@ -120,6 +121,7 @@
       "resources/js/Pages/Dashboard/Schedule/Index.vue",
       "resources/js/Pages/Dashboard/StudyPlan/Index.vue",
       "resources/js/Pages/Dashboard/Subject/Index.vue",
+      "resources/js/Pages/Dashboard/Ticket/CreateTicket.vue",
       "resources/js/Pages/Dashboard/Ticket/Index.vue",
       "resources/js/Pages/Dashboard/Ticket/TicketCategory.vue",
       "resources/js/Pages/Dashboard/Tracing/Tracing.vue",
@@ -249,12 +251,12 @@
     ]
   },
   "resources/js/Pages/API/Index.vue": {
-    "file": "assets/Index.2ce4654d.js",
+    "file": "assets/Index.b39e1d4f.js",
     "src": "resources/js/Pages/API/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/Pages/API/ApiTokenManager.vue",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_SectionBorder.bc488d31.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_ActionMessage.8be8edc5.js",
@@ -267,17 +269,17 @@
       "_Label.cc2c2b6e.js",
       "_InputError.e00842e5.js",
       "_SecondaryButton.c6e6eeac.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
     ]
   },
-  "_AppLayout.83401602.js": {
-    "file": "assets/AppLayout.83401602.js",
+  "_AppLayout.06bc91b5.js": {
+    "file": "assets/AppLayout.06bc91b5.js",
     "imports": [
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_Logo.5a18e3f9.js",
@@ -288,8 +290,8 @@
       "assets/AppLayout.fc27f04b.css"
     ]
   },
-  "_Footer.c2e27410.js": {
-    "file": "assets/Footer.c2e27410.js",
+  "_Footer.30133124.js": {
+    "file": "assets/Footer.30133124.js",
     "imports": [
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
@@ -333,30 +335,30 @@
     ]
   },
   "resources/js/Pages/AboutUs.vue": {
-    "file": "assets/AboutUs.6073cc23.js",
+    "file": "assets/AboutUs.4975df0e.js",
     "src": "resources/js/Pages/AboutUs.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_computer3.c302f3b5.js",
       "_LoadingComponent.0c59c49a.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ],
     "css": [
       "assets/AboutUs.c49bf720.css",
       "assets/LoadingComponent.19a70203.css"
     ]
   },
-  "_PageLayout.655606f3.js": {
-    "file": "assets/PageLayout.655606f3.js",
+  "_PageLayout.c7dd14da.js": {
+    "file": "assets/PageLayout.c7dd14da.js",
     "imports": [
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
-      "_Footer.c2e27410.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
+      "_Footer.30133124.js",
       "__plugin-vue2_normalizer.358ffe07.js"
     ]
   },
@@ -375,8 +377,8 @@
       "assets/LoadingComponent.19a70203.css"
     ]
   },
-  "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js": {
-    "file": "assets/PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+  "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js": {
+    "file": "assets/PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
     "imports": [
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
@@ -388,17 +390,17 @@
     ]
   },
   "resources/js/Pages/AddInformation.vue": {
-    "file": "assets/AddInformation.bece585d.js",
+    "file": "assets/AddInformation.e756d658.js",
     "src": "resources/js/Pages/AddInformation.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "resources/js/Pages/Dashboard/Person/CreateEdit.vue",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_Logo.5a18e3f9.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "resources/js/app.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_PictureInput.1e25d6a4.js",
@@ -408,8 +410,8 @@
       "assets/AddInformation.e3b0c442.css"
     ]
   },
-  "_SimpleLayout.903ef5f3.js": {
-    "file": "assets/SimpleLayout.903ef5f3.js",
+  "_SimpleLayout.a6230f03.js": {
+    "file": "assets/SimpleLayout.a6230f03.js",
     "imports": [
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js",
@@ -420,11 +422,11 @@
     ]
   },
   "resources/js/Pages/Dashboard/Person/CreateEdit.vue": {
-    "file": "assets/CreateEdit.16f11df5.js",
+    "file": "assets/CreateEdit.616066ef.js",
     "src": "resources/js/Pages/Dashboard/Person/CreateEdit.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_PictureInput.1e25d6a4.js",
       "_colombia.89799eca.js",
@@ -435,8 +437,8 @@
       "assets/CreateEdit.3881e8ea.css"
     ]
   },
-  "_vue2-editor.esm.02e33a23.js": {
-    "file": "assets/vue2-editor.esm.02e33a23.js",
+  "_vue2-editor.esm.505493ae.js": {
+    "file": "assets/vue2-editor.esm.505493ae.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -463,19 +465,19 @@
     "file": "assets/colombia.89799eca.js"
   },
   "resources/js/Pages/Agreements.vue": {
-    "file": "assets/Agreements.9fe910de.js",
+    "file": "assets/Agreements.8a2d9942.js",
     "src": "resources/js/Pages/Agreements.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_computer3.c302f3b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ]
   },
   "_BreadCrumbs.14245490.js": {
@@ -488,27 +490,27 @@
     ]
   },
   "resources/js/Pages/Allies.vue": {
-    "file": "assets/Allies.3faa3009.js",
+    "file": "assets/Allies.e76e5bc0.js",
     "src": "resources/js/Pages/Allies.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_computer3.c302f3b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ]
   },
   "resources/js/Pages/Auth/FaceIdentification.vue": {
-    "file": "assets/FaceIdentification.7e07abf8.js",
+    "file": "assets/FaceIdentification.4c6e4aa4.js",
     "src": "resources/js/Pages/Auth/FaceIdentification.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_Logo.5a18e3f9.js",
       "_logo-ceindetec.0997e866.js",
@@ -634,12 +636,12 @@
     ]
   },
   "resources/js/Pages/BeforeDuringAfter/Adequacy.vue": {
-    "file": "assets/Adequacy.ce0e47ed.js",
+    "file": "assets/Adequacy.1f330dc9.js",
     "src": "resources/js/Pages/BeforeDuringAfter/Adequacy.vue",
     "isDynamicEntry": true,
     "imports": [
       "_Logo.5a18e3f9.js",
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js"
@@ -649,12 +651,12 @@
     ]
   },
   "resources/js/Pages/BeforeDuringAfter/Building.vue": {
-    "file": "assets/Building.8afcb14c.js",
+    "file": "assets/Building.4cb583ce.js",
     "src": "resources/js/Pages/BeforeDuringAfter/Building.vue",
     "isDynamicEntry": true,
     "imports": [
       "_Logo.5a18e3f9.js",
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js"
@@ -677,13 +679,13 @@
     ]
   },
   "resources/js/Pages/Benefited/Adequacy.vue": {
-    "file": "assets/Adequacy.673f6685.js",
+    "file": "assets/Adequacy.82822fde.js",
     "src": "resources/js/Pages/Benefited/Adequacy.vue",
     "isDynamicEntry": true,
     "imports": [
       "_Logo.5a18e3f9.js",
       "_ShowDataFile.95011c86.js",
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "_PreviewImage.765c0dde.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
@@ -726,19 +728,19 @@
     ]
   },
   "resources/js/Pages/Benefited/Follow.vue": {
-    "file": "assets/Follow.32e6122a.js",
+    "file": "assets/Follow.090e3405.js",
     "src": "resources/js/Pages/Benefited/Follow.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_LoadingComponent.0c59c49a.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ],
     "css": [
       "assets/Follow.54d02b14.css",
@@ -746,41 +748,53 @@
     ]
   },
   "resources/js/Pages/Benefited/FollowDetail.vue": {
-    "file": "assets/FollowDetail.370f8d3d.js",
+    "file": "assets/FollowDetail.e9f1ff09.js",
     "src": "resources/js/Pages/Benefited/FollowDetail.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
-      "_LoadingComponent.0c59c49a.js",
+      "_SimpleLayout.a6230f03.js",
       "_PreviewImage.765c0dde.js",
+      "resources/js/Pages/Benefited/ImgPlaceholder.vue",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_Logo.5a18e3f9.js",
       "_logo-ceindetec.0997e866.js",
-      "_SettingsDropdown.da80baee.js"
+      "_SettingsDropdown.da80baee.js",
+      "_LoadingComponent.0c59c49a.js"
     ],
     "css": [
-      "assets/FollowDetail.e3b0c442.css",
+      "assets/LoadingComponent.19a70203.css"
+    ]
+  },
+  "resources/js/Pages/Benefited/ImgPlaceholder.vue": {
+    "file": "assets/ImgPlaceholder.5458ddd8.js",
+    "src": "resources/js/Pages/Benefited/ImgPlaceholder.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_LoadingComponent.0c59c49a.js",
+      "__plugin-vue2_normalizer.358ffe07.js"
+    ],
+    "css": [
       "assets/LoadingComponent.19a70203.css"
     ]
   },
   "resources/js/Pages/Blog.vue": {
-    "file": "assets/Blog.6eda1067.js",
+    "file": "assets/Blog.f9495db4.js",
     "src": "resources/js/Pages/Blog.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_computer3.c302f3b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ]
   },
   "resources/js/Pages/CodeQr/Edit.vue": {
-    "file": "assets/Edit.9b2cf16e.js",
+    "file": "assets/Edit.b7983918.js",
     "src": "resources/js/Pages/CodeQr/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -788,8 +802,8 @@
       "_qrcode.vue.esm.d2f69042.js",
       "_Logo.5a18e3f9.js",
       "_colombia.89799eca.js",
-      "_SimpleLayout.903ef5f3.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_SimpleLayout.a6230f03.js",
+      "_vue2-editor.esm.505493ae.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
@@ -803,34 +817,34 @@
     "file": "assets/qrcode.vue.esm.d2f69042.js"
   },
   "resources/js/Pages/CodeQr/Index.vue": {
-    "file": "assets/Index.cf621925.js",
+    "file": "assets/Index.38bcabd7.js",
     "src": "resources/js/Pages/CodeQr/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
-      "_Footer.c2e27410.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
+      "_Footer.30133124.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_qrcode.vue.esm.d2f69042.js",
       "_Logo.5a18e3f9.js",
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "resources/js/Pages/CodeQr/Edit.vue",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
       "_colombia.89799eca.js",
-      "_vue2-editor.esm.02e33a23.js"
+      "_vue2-editor.esm.505493ae.js"
     ],
     "css": [
       "assets/Index.1134c2ba.css"
     ]
   },
   "resources/js/Pages/CodeQr/Print.vue": {
-    "file": "assets/Print.5545b763.js",
+    "file": "assets/Print.a5964fce.js",
     "src": "resources/js/Pages/CodeQr/Print.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "_Logo.5a18e3f9.js",
       "_qrcode.vue.esm.d2f69042.js",
       "__plugin-vue2_normalizer.358ffe07.js",
@@ -842,11 +856,11 @@
     ]
   },
   "resources/js/Pages/CodeQr/SearchEdit.vue": {
-    "file": "assets/SearchEdit.57273b28.js",
+    "file": "assets/SearchEdit.49cf00d2.js",
     "src": "resources/js/Pages/CodeQr/SearchEdit.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "resources/js/Pages/CodeQr/Edit.vue",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_Logo.5a18e3f9.js",
@@ -855,7 +869,7 @@
       "_SpinnerComponent.6d0b39d4.js",
       "_qrcode.vue.esm.d2f69042.js",
       "_colombia.89799eca.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "resources/js/app.js"
     ],
     "css": [
@@ -863,11 +877,11 @@
     ]
   },
   "resources/js/Pages/CodeQr/SearchShow.vue": {
-    "file": "assets/SearchShow.c5c41f23.js",
+    "file": "assets/SearchShow.8fc9e581.js",
     "src": "resources/js/Pages/CodeQr/SearchShow.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_qrcode.vue.esm.d2f69042.js",
       "_Logo.5a18e3f9.js",
@@ -876,7 +890,7 @@
       "_SettingsDropdown.da80baee.js",
       "_logo-ceindetec.0997e866.js",
       "_colombia.89799eca.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "resources/js/app.js"
     ],
     "css": [
@@ -884,20 +898,20 @@
     ]
   },
   "resources/js/Pages/CodeQr/Show.vue": {
-    "file": "assets/Show.e6d6ed3b.js",
+    "file": "assets/Show.149bfa71.js",
     "src": "resources/js/Pages/CodeQr/Show.vue",
     "isDynamicEntry": true,
     "imports": [
       "_SpinnerComponent.6d0b39d4.js",
       "_qrcode.vue.esm.d2f69042.js",
       "_Logo.5a18e3f9.js",
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "resources/js/Pages/CodeQr/Edit.vue",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
       "_colombia.89799eca.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "resources/js/app.js"
     ],
     "css": [
@@ -905,44 +919,44 @@
     ]
   },
   "resources/js/Pages/ContactUs.vue": {
-    "file": "assets/ContactUs.86c9f20f.js",
+    "file": "assets/ContactUs.405599b4.js",
     "src": "resources/js/Pages/ContactUs.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_computer3.c302f3b5.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ]
   },
   "resources/js/Pages/Customers.vue": {
-    "file": "assets/Customers.7f9ca2e9.js",
+    "file": "assets/Customers.4459416a.js",
     "src": "resources/js/Pages/Customers.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_computer3.c302f3b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ]
   },
   "resources/js/Pages/Dashboard/Area/CreateUpdate.vue": {
-    "file": "assets/CreateUpdate.ec4e0202.js",
+    "file": "assets/CreateUpdate.a2fb7b8d.js",
     "src": "resources/js/Pages/Dashboard/Area/CreateUpdate.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "resources/js/app.js"
@@ -952,15 +966,15 @@
     ]
   },
   "resources/js/Pages/Dashboard/Area/Index.vue": {
-    "file": "assets/Index.f8a9443b.js",
+    "file": "assets/Index.2e91929a.js",
     "src": "resources/js/Pages/Dashboard/Area/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
@@ -970,14 +984,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/AreaPlans/Index.vue": {
-    "file": "assets/Index.47632c87.js",
+    "file": "assets/Index.d03d9253.js",
     "src": "resources/js/Pages/Dashboard/AreaPlans/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -985,14 +999,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Dashboard.vue": {
-    "file": "assets/Dashboard.3675affb.js",
+    "file": "assets/Dashboard.fd0938c2.js",
     "src": "resources/js/Pages/Dashboard/Dashboard.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_logo-ceindetec.0997e866.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
@@ -1002,17 +1016,17 @@
     ]
   },
   "resources/js/Pages/Dashboard/Establishment/Create.vue": {
-    "file": "assets/Create.499c6d8d.js",
+    "file": "assets/Create.9554a860.js",
     "src": "resources/js/Pages/Dashboard/Establishment/Create.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "_colombia.89799eca.js",
       "_PictureInput.1e25d6a4.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1020,17 +1034,17 @@
     ]
   },
   "resources/js/Pages/Dashboard/Establishment/Edit.vue": {
-    "file": "assets/Edit.01d3ddcb.js",
+    "file": "assets/Edit.47722762.js",
     "src": "resources/js/Pages/Dashboard/Establishment/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "_colombia.89799eca.js",
       "_PictureInput.1e25d6a4.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1038,14 +1052,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Establishment/Index.vue": {
-    "file": "assets/Index.343b4653.js",
+    "file": "assets/Index.fd73f86d.js",
     "src": "resources/js/Pages/Dashboard/Establishment/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1056,14 +1070,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Establishment/Show.vue": {
-    "file": "assets/Show.72697d98.js",
+    "file": "assets/Show.9c7c60f0.js",
     "src": "resources/js/Pages/Dashboard/Establishment/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1074,17 +1088,17 @@
     ]
   },
   "resources/js/Pages/Dashboard/Headquarters/Create.vue": {
-    "file": "assets/Create.e4753d92.js",
+    "file": "assets/Create.1c89d14d.js",
     "src": "resources/js/Pages/Dashboard/Headquarters/Create.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "_colombia.89799eca.js",
       "_PictureInput.1e25d6a4.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1092,17 +1106,17 @@
     ]
   },
   "resources/js/Pages/Dashboard/Headquarters/Edit.vue": {
-    "file": "assets/Edit.1904475d.js",
+    "file": "assets/Edit.23b12658.js",
     "src": "resources/js/Pages/Dashboard/Headquarters/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "_colombia.89799eca.js",
       "_PictureInput.1e25d6a4.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1110,14 +1124,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Headquarters/Index.vue": {
-    "file": "assets/Index.a2d76af7.js",
+    "file": "assets/Index.c3b767fd.js",
     "src": "resources/js/Pages/Dashboard/Headquarters/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1128,14 +1142,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Notices/AddNotice.vue": {
-    "file": "assets/AddNotice.5a89dc9d.js",
+    "file": "assets/AddNotice.acc011ed.js",
     "src": "resources/js/Pages/Dashboard/Notices/AddNotice.vue",
     "isDynamicEntry": true,
     "imports": [
       "_PictureInput.1e25d6a4.js",
       "_moment.9709ab41.js",
       "resources/js/Pages/Dashboard/Notices/Links.vue",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "resources/js/app.js"
     ],
@@ -1155,15 +1169,15 @@
     ]
   },
   "resources/js/Pages/Dashboard/Notices/AllNotice.vue": {
-    "file": "assets/AllNotice.c1b8068c.js",
+    "file": "assets/AllNotice.114d2bce.js",
     "src": "resources/js/Pages/Dashboard/Notices/AllNotice.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "resources/js/Pages/Dashboard/Notices/AddNotice.vue",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1171,19 +1185,19 @@
       "_PictureInput.1e25d6a4.js",
       "_moment.9709ab41.js",
       "resources/js/Pages/Dashboard/Notices/Links.vue",
-      "_vue2-editor.esm.02e33a23.js"
+      "_vue2-editor.esm.505493ae.js"
     ]
   },
   "resources/js/Pages/Dashboard/Notices/DeleteNotice.vue": {
-    "file": "assets/DeleteNotice.b70b6c17.js",
+    "file": "assets/DeleteNotice.9d47198d.js",
     "src": "resources/js/Pages/Dashboard/Notices/DeleteNotice.vue",
     "isDynamicEntry": true,
     "imports": [
       "_moment.9709ab41.js",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1191,18 +1205,18 @@
     ]
   },
   "resources/js/Pages/Dashboard/Notices/EditNotice.vue": {
-    "file": "assets/EditNotice.7b1d1968.js",
+    "file": "assets/EditNotice.451b894a.js",
     "src": "resources/js/Pages/Dashboard/Notices/EditNotice.vue",
     "isDynamicEntry": true,
     "imports": [
       "_PictureInput.1e25d6a4.js",
       "_moment.9709ab41.js",
       "resources/js/Pages/Dashboard/Notices/Links.vue",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1213,14 +1227,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Permission/Permission.vue": {
-    "file": "assets/Permission.2cc526b6.js",
+    "file": "assets/Permission.fce06769.js",
     "src": "resources/js/Pages/Dashboard/Permission/Permission.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1228,14 +1242,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Permission/Role.vue": {
-    "file": "assets/Role.4c80d3e9.js",
+    "file": "assets/Role.0a7f0e28.js",
     "src": "resources/js/Pages/Dashboard/Permission/Role.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1243,11 +1257,11 @@
     ]
   },
   "resources/js/Pages/Dashboard/Person/Create.vue": {
-    "file": "assets/Create.af9a2ba0.js",
+    "file": "assets/Create.2703fa60.js",
     "src": "resources/js/Pages/Dashboard/Person/Create.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "_SpinnerComponent.6d0b39d4.js",
       "_PictureInput.1e25d6a4.js",
       "_colombia.89799eca.js",
@@ -1259,15 +1273,15 @@
     ]
   },
   "resources/js/Pages/Dashboard/Person/Index.vue": {
-    "file": "assets/Index.76d9e33f.js",
+    "file": "assets/Index.87e23690.js",
     "src": "resources/js/Pages/Dashboard/Person/Index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
@@ -1280,14 +1294,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Person/Show.vue": {
-    "file": "assets/Show.6c687ea1.js",
+    "file": "assets/Show.5cc84303.js",
     "src": "resources/js/Pages/Dashboard/Person/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1298,14 +1312,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Reports/Index.vue": {
-    "file": "assets/Index.2ffc5c83.js",
+    "file": "assets/Index.dbb4242e.js",
     "src": "resources/js/Pages/Dashboard/Reports/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1313,14 +1327,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Schedule/Index.vue": {
-    "file": "assets/Index.21523762.js",
+    "file": "assets/Index.976ee31b.js",
     "src": "resources/js/Pages/Dashboard/Schedule/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1328,14 +1342,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/StudyPlan/Index.vue": {
-    "file": "assets/Index.67114390.js",
+    "file": "assets/Index.bff51f98.js",
     "src": "resources/js/Pages/Dashboard/StudyPlan/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1343,30 +1357,49 @@
     ]
   },
   "resources/js/Pages/Dashboard/Subject/Index.vue": {
-    "file": "assets/Index.14a08825.js",
+    "file": "assets/Index.dc1cc7e0.js",
     "src": "resources/js/Pages/Dashboard/Subject/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_vue2-editor.esm.505493ae.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
     ]
   },
+  "resources/js/Pages/Dashboard/Ticket/CreateTicket.vue": {
+    "file": "assets/CreateTicket.37c00ed0.js",
+    "src": "resources/js/Pages/Dashboard/Ticket/CreateTicket.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_AppLayout.06bc91b5.js",
+      "_BreadCrumbs.14245490.js",
+      "_vue2-editor.esm.505493ae.js",
+      "__plugin-vue2_normalizer.358ffe07.js",
+      "_Footer.30133124.js",
+      "resources/js/app.js",
+      "_logo-ceindetec.0997e866.js",
+      "_Logo.5a18e3f9.js",
+      "_SettingsDropdown.da80baee.js"
+    ],
+    "css": [
+      "assets/CreateTicket.e3b0c442.css"
+    ]
+  },
   "resources/js/Pages/Dashboard/Ticket/Index.vue": {
-    "file": "assets/Index.b2c77176.js",
+    "file": "assets/Index.89ce45fb.js",
     "src": "resources/js/Pages/Dashboard/Ticket/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
-      "_vue2-editor.esm.02e33a23.js",
+      "_AppLayout.06bc91b5.js",
+      "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1377,14 +1410,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Ticket/TicketCategory.vue": {
-    "file": "assets/TicketCategory.5860fe73.js",
+    "file": "assets/TicketCategory.327fb7ee.js",
     "src": "resources/js/Pages/Dashboard/Ticket/TicketCategory.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1392,14 +1425,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Tracing/Tracing.vue": {
-    "file": "assets/Tracing.f31f44a3.js",
+    "file": "assets/Tracing.a683a3c2.js",
     "src": "resources/js/Pages/Dashboard/Tracing/Tracing.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1407,15 +1440,15 @@
     ]
   },
   "resources/js/Pages/Dashboard/Tracing/Work.vue": {
-    "file": "assets/Work.a04a1331.js",
+    "file": "assets/Work.623504b4.js",
     "src": "resources/js/Pages/Dashboard/Tracing/Work.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "_SpinnerComponent.6d0b39d4.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1423,14 +1456,14 @@
     ]
   },
   "resources/js/Pages/Dashboard/Year/Index.vue": {
-    "file": "assets/Index.02bc18f2.js",
+    "file": "assets/Index.adffe612.js",
     "src": "resources/js/Pages/Dashboard/Year/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1468,19 +1501,19 @@
     ]
   },
   "resources/js/Pages/Home.vue": {
-    "file": "assets/Home.342610d8.js",
+    "file": "assets/Home.ad383d16.js",
     "src": "resources/js/Pages/Home.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_PageLayout.655606f3.js",
+      "_PageLayout.c7dd14da.js",
       "_BreadCrumbs.14245490.js",
       "_LoadingComponent.0c59c49a.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.ec646453.js",
+      "_PageLayout.vue_vue_type_style_index_0_scoped_c322193c_lang.cd6d80c2.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_SettingsDropdown.da80baee.js",
-      "_Footer.c2e27410.js"
+      "_Footer.30133124.js"
     ],
     "css": [
       "assets/Home.989293b7.css",
@@ -1492,11 +1525,11 @@
     ]
   },
   "resources/js/Pages/Package.vue": {
-    "file": "assets/Package.d2036ba8.js",
+    "file": "assets/Package.d7da1c8d.js",
     "src": "resources/js/Pages/Package.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_SimpleLayout.903ef5f3.js",
+      "_SimpleLayout.a6230f03.js",
       "_Logo.5a18e3f9.js",
       "__plugin-vue2_normalizer.358ffe07.js",
       "_SettingsDropdown.da80baee.js",
@@ -1507,14 +1540,14 @@
     ]
   },
   "resources/js/Pages/Posts/Index.vue": {
-    "file": "assets/Index.b73e2de1.js",
+    "file": "assets/Index.eeecd4f2.js",
     "src": "resources/js/Pages/Posts/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1522,14 +1555,14 @@
     ]
   },
   "resources/js/Pages/Posts/Posts.vue": {
-    "file": "assets/Posts.6b2ed0d8.js",
+    "file": "assets/Posts.7a4ea820.js",
     "src": "resources/js/Pages/Posts/Posts.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1566,11 +1599,11 @@
     ]
   },
   "resources/js/Pages/Profile/Show.vue": {
-    "file": "assets/Show.39b9bb4b.js",
+    "file": "assets/Show.5a65f71e.js",
     "src": "resources/js/Pages/Profile/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "resources/js/Pages/Profile/DeleteUserForm.vue",
       "_SectionBorder.bc488d31.js",
       "resources/js/Pages/Profile/LogoutOtherBrowserSessionsForm.vue",
@@ -1579,7 +1612,7 @@
       "resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1638,15 +1671,15 @@
     ]
   },
   "resources/js/Pages/Teams/Create.vue": {
-    "file": "assets/Create.314a55b2.js",
+    "file": "assets/Create.a0d771c8.js",
     "src": "resources/js/Pages/Teams/Create.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "resources/js/Pages/Teams/CreateTeamForm.vue",
       "_SectionBorder.bc488d31.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1686,12 +1719,12 @@
     ]
   },
   "resources/js/Pages/Teams/Show.vue": {
-    "file": "assets/Show.73865765.js",
+    "file": "assets/Show.ccf3dbf9.js",
     "src": "resources/js/Pages/Teams/Show.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/Pages/Teams/TeamMemberManager.vue",
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "resources/js/Pages/Teams/DeleteTeamForm.vue",
       "_SectionBorder.bc488d31.js",
       "resources/js/Pages/Teams/UpdateTeamNameForm.vue",
@@ -1706,7 +1739,7 @@
       "_Label.cc2c2b6e.js",
       "_InputError.e00842e5.js",
       "_SecondaryButton.c6e6eeac.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1746,13 +1779,13 @@
     ]
   },
   "resources/js/Pages/User/Create.vue": {
-    "file": "assets/Create.eb8e14ab.js",
+    "file": "assets/Create.32323fd0.js",
     "src": "resources/js/Pages/User/Create.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1760,14 +1793,14 @@
     ]
   },
   "resources/js/Pages/User/Index.vue": {
-    "file": "assets/Index.fae747ac.js",
+    "file": "assets/Index.5a227478.js",
     "src": "resources/js/Pages/User/Index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AppLayout.83401602.js",
+      "_AppLayout.06bc91b5.js",
       "_BreadCrumbs.14245490.js",
       "__plugin-vue2_normalizer.358ffe07.js",
-      "_Footer.c2e27410.js",
+      "_Footer.30133124.js",
       "resources/js/app.js",
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
@@ -1782,49 +1815,37 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
-  "Logo.css": {
-    "file": "assets/Logo.e3b0c442.css",
-    "src": "Logo.css"
-  },
-  "SettingsDropdown.css": {
-    "file": "assets/SettingsDropdown.e3b0c442.css",
-    "src": "SettingsDropdown.css"
-  },
-  "Footer.css": {
-    "file": "assets/Footer.03b148ea.css",
-    "src": "Footer.css"
-  },
-  "resources/js/Pages/Auth/Register.css": {
-    "file": "assets/Register.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/Register.css"
-  },
-  "PageLayout.css": {
-    "file": "assets/PageLayout.5c3b464e.css",
-    "src": "PageLayout.css"
-  },
-  "BreadCrumbs.css": {
-    "file": "assets/BreadCrumbs.e3b0c442.css",
-    "src": "BreadCrumbs.css"
-  },
-  "resources/js/Pages/AddInformation.css": {
-    "file": "assets/AddInformation.e3b0c442.css",
-    "src": "resources/js/Pages/AddInformation.css"
-  },
-  "resources/js/Pages/AboutUs.css": {
-    "file": "assets/AboutUs.c49bf720.css",
-    "src": "resources/js/Pages/AboutUs.css"
-  },
-  "resources/js/Pages/Dashboard/Headquarters/Index.css": {
+  "resources/js/Pages/User/Index.css": {
     "file": "assets/Index.e3b0c442.css",
-    "src": "resources/js/Pages/Dashboard/Headquarters/Index.css"
+    "src": "resources/js/Pages/User/Index.css"
   },
-  "resources/js/Pages/Benefited/Follow.css": {
-    "file": "assets/Follow.54d02b14.css",
-    "src": "resources/js/Pages/Benefited/Follow.css"
+  "resources/js/Pages/CodeQr/Print.css": {
+    "file": "assets/Print.b4b55eb8.css",
+    "src": "resources/js/Pages/CodeQr/Print.css"
   },
-  "resources/js/Pages/CodeQr/SearchShow.css": {
-    "file": "assets/SearchShow.a8824a42.css",
-    "src": "resources/js/Pages/CodeQr/SearchShow.css"
+  "resources/js/Pages/Dashboard/Notices/AddNotice.css": {
+    "file": "assets/AddNotice.3735e6a4.css",
+    "src": "resources/js/Pages/Dashboard/Notices/AddNotice.css"
+  },
+  "resources/js/Pages/CodeQr/SearchEdit.css": {
+    "file": "assets/SearchEdit.ad9ce037.css",
+    "src": "resources/js/Pages/CodeQr/SearchEdit.css"
+  },
+  "resources/js/Pages/Dashboard/Person/Create.css": {
+    "file": "assets/Create.3881e8ea.css",
+    "src": "resources/js/Pages/Dashboard/Person/Create.css"
+  },
+  "resources/js/Pages/Auth/FaceIdentification.css": {
+    "file": "assets/FaceIdentification.d8075894.css",
+    "src": "resources/js/Pages/Auth/FaceIdentification.css"
+  },
+  "PreviewImage.css": {
+    "file": "assets/PreviewImage.0362df0a.css",
+    "src": "PreviewImage.css"
+  },
+  "resources/js/Pages/BeforeDuringAfter/Building.css": {
+    "file": "assets/Building.63e466b7.css",
+    "src": "resources/js/Pages/BeforeDuringAfter/Building.css"
   },
   "resources/js/Pages/Dashboard/Establishment/Show.css": {
     "file": "assets/Show.e3b0c442.css",
@@ -1834,129 +1855,141 @@
     "file": "assets/Show.be066e45.css",
     "src": "resources/js/Pages/CodeQr/Show.css"
   },
-  "PictureInput.css": {
-    "file": "assets/PictureInput.e336a72f.css",
-    "src": "PictureInput.css"
-  },
-  "resources/js/Pages/CodeQr/SearchEdit.css": {
-    "file": "assets/SearchEdit.ad9ce037.css",
-    "src": "resources/js/Pages/CodeQr/SearchEdit.css"
-  },
-  "LoadingComponent.css": {
-    "file": "assets/LoadingComponent.19a70203.css",
-    "src": "LoadingComponent.css"
+  "resources/js/Pages/Dashboard/Dashboard.css": {
+    "file": "assets/Dashboard.45983384.css",
+    "src": "resources/js/Pages/Dashboard/Dashboard.css"
   },
   "AuthLayout.css": {
     "file": "assets/AuthLayout.e3b0c442.css",
     "src": "AuthLayout.css"
   },
-  "resources/js/Pages/Auth/TwoFactorChallenge.css": {
-    "file": "assets/TwoFactorChallenge.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/TwoFactorChallenge.css"
+  "SettingsDropdown.css": {
+    "file": "assets/SettingsDropdown.e3b0c442.css",
+    "src": "SettingsDropdown.css"
   },
-  "resources/js/Pages/Auth/FaceIdentification.css": {
-    "file": "assets/FaceIdentification.d8075894.css",
-    "src": "resources/js/Pages/Auth/FaceIdentification.css"
-  },
-  "resources/js/Pages/Dashboard/Person/CreateEdit.css": {
-    "file": "assets/CreateEdit.3881e8ea.css",
-    "src": "resources/js/Pages/Dashboard/Person/CreateEdit.css"
-  },
-  "resources/js/Pages/CodeQr/Edit.css": {
-    "file": "assets/Edit.e3b0c442.css",
-    "src": "resources/js/Pages/CodeQr/Edit.css"
-  },
-  "resources/js/Pages/Dashboard/Notices/EditNotice.css": {
-    "file": "assets/EditNotice.3735e6a4.css",
-    "src": "resources/js/Pages/Dashboard/Notices/EditNotice.css"
-  },
-  "SpinnerComponent.css": {
-    "file": "assets/SpinnerComponent.f23de6b6.css",
-    "src": "SpinnerComponent.css"
-  },
-  "PreviewImage.css": {
-    "file": "assets/PreviewImage.0362df0a.css",
-    "src": "PreviewImage.css"
-  },
-  "resources/js/Pages/CodeQr/Index.css": {
-    "file": "assets/Index.1134c2ba.css",
-    "src": "resources/js/Pages/CodeQr/Index.css"
-  },
-  "resources/js/Pages/Auth/VerifyEmail.css": {
-    "file": "assets/VerifyEmail.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/VerifyEmail.css"
-  },
-  "resources/js/Pages/BeforeDuringAfter/Adequacy.css": {
-    "file": "assets/Adequacy.5093cfff.css",
-    "src": "resources/js/Pages/BeforeDuringAfter/Adequacy.css"
-  },
-  "resources/js/Pages/BeforeDuringAfter/Building.css": {
-    "file": "assets/Building.63e466b7.css",
-    "src": "resources/js/Pages/BeforeDuringAfter/Building.css"
-  },
-  "resources/js/Pages/Benefited/Building.css": {
-    "file": "assets/Building.9d8e9a1c.css",
-    "src": "resources/js/Pages/Benefited/Building.css"
+  "LoadingComponent.css": {
+    "file": "assets/LoadingComponent.19a70203.css",
+    "src": "LoadingComponent.css"
   },
   "resources/js/Pages/Benefited/Adequacy.css": {
     "file": "assets/Adequacy.da6be8fa.css",
     "src": "resources/js/Pages/Benefited/Adequacy.css"
   },
-  "resources/js/Pages/Dashboard/Area/CreateUpdate.css": {
-    "file": "assets/CreateUpdate.e3b0c442.css",
-    "src": "resources/js/Pages/Dashboard/Area/CreateUpdate.css"
+  "resources/js/Pages/Dashboard/Ticket/CreateTicket.css": {
+    "file": "assets/CreateTicket.e3b0c442.css",
+    "src": "resources/js/Pages/Dashboard/Ticket/CreateTicket.css"
   },
-  "AppLayout.css": {
-    "file": "assets/AppLayout.fc27f04b.css",
-    "src": "AppLayout.css"
+  "PictureInput.css": {
+    "file": "assets/PictureInput.e336a72f.css",
+    "src": "PictureInput.css"
   },
-  "resources/js/Pages/Dashboard/Dashboard.css": {
-    "file": "assets/Dashboard.45983384.css",
-    "src": "resources/js/Pages/Dashboard/Dashboard.css"
-  },
-  "resources/js/Pages/Dashboard/Notices/AddNotice.css": {
-    "file": "assets/AddNotice.3735e6a4.css",
-    "src": "resources/js/Pages/Dashboard/Notices/AddNotice.css"
-  },
-  "resources/js/Pages/Dashboard/Person/Create.css": {
-    "file": "assets/Create.3881e8ea.css",
-    "src": "resources/js/Pages/Dashboard/Person/Create.css"
-  },
-  "resources/js/Pages/BeforeDuringAfter/Index.css": {
-    "file": "assets/Index.017edcb6.css",
-    "src": "resources/js/Pages/BeforeDuringAfter/Index.css"
-  },
-  "resources/js/Pages/CodeQr/Print.css": {
-    "file": "assets/Print.b4b55eb8.css",
-    "src": "resources/js/Pages/CodeQr/Print.css"
-  },
-  "resources/js/Pages/Gers.css": {
-    "file": "assets/Gers.e3b0c442.css",
-    "src": "resources/js/Pages/Gers.css"
-  },
-  "resources/js/Pages/Home.css": {
-    "file": "assets/Home.989293b7.css",
-    "src": "resources/js/Pages/Home.css"
+  "resources/js/Pages/Dashboard/Notices/EditNotice.css": {
+    "file": "assets/EditNotice.3735e6a4.css",
+    "src": "resources/js/Pages/Dashboard/Notices/EditNotice.css"
   },
   "SimpleLayout.css": {
     "file": "assets/SimpleLayout.8a85815f.css",
     "src": "SimpleLayout.css"
   },
-  "resources/js/Pages/Package.css": {
-    "file": "assets/Package.b020efc7.css",
-    "src": "resources/js/Pages/Package.css"
+  "resources/js/Pages/BeforeDuringAfter/Adequacy.css": {
+    "file": "assets/Adequacy.5093cfff.css",
+    "src": "resources/js/Pages/BeforeDuringAfter/Adequacy.css"
   },
-  "resources/js/Pages/Error/Error.css": {
-    "file": "assets/Error.a461f76b.css",
-    "src": "resources/js/Pages/Error/Error.css"
+  "resources/js/Pages/CodeQr/Index.css": {
+    "file": "assets/Index.1134c2ba.css",
+    "src": "resources/js/Pages/CodeQr/Index.css"
+  },
+  "resources/js/Pages/CodeQr/SearchShow.css": {
+    "file": "assets/SearchShow.a8824a42.css",
+    "src": "resources/js/Pages/CodeQr/SearchShow.css"
+  },
+  "resources/js/Pages/Auth/VerifyEmail.css": {
+    "file": "assets/VerifyEmail.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/VerifyEmail.css"
+  },
+  "Logo.css": {
+    "file": "assets/Logo.e3b0c442.css",
+    "src": "Logo.css"
+  },
+  "resources/js/Pages/Gers.css": {
+    "file": "assets/Gers.e3b0c442.css",
+    "src": "resources/js/Pages/Gers.css"
+  },
+  "resources/js/Pages/Benefited/Follow.css": {
+    "file": "assets/Follow.54d02b14.css",
+    "src": "resources/js/Pages/Benefited/Follow.css"
+  },
+  "resources/js/Pages/Dashboard/Person/CreateEdit.css": {
+    "file": "assets/CreateEdit.3881e8ea.css",
+    "src": "resources/js/Pages/Dashboard/Person/CreateEdit.css"
+  },
+  "Footer.css": {
+    "file": "assets/Footer.03b148ea.css",
+    "src": "Footer.css"
+  },
+  "resources/js/Pages/AboutUs.css": {
+    "file": "assets/AboutUs.c49bf720.css",
+    "src": "resources/js/Pages/AboutUs.css"
+  },
+  "resources/js/Pages/CodeQr/Edit.css": {
+    "file": "assets/Edit.e3b0c442.css",
+    "src": "resources/js/Pages/CodeQr/Edit.css"
+  },
+  "resources/js/Pages/Dashboard/Area/CreateUpdate.css": {
+    "file": "assets/CreateUpdate.e3b0c442.css",
+    "src": "resources/js/Pages/Dashboard/Area/CreateUpdate.css"
+  },
+  "BreadCrumbs.css": {
+    "file": "assets/BreadCrumbs.e3b0c442.css",
+    "src": "BreadCrumbs.css"
+  },
+  "AppLayout.css": {
+    "file": "assets/AppLayout.fc27f04b.css",
+    "src": "AppLayout.css"
   },
   "ShowDataFile.css": {
     "file": "assets/ShowDataFile.a5da70da.css",
     "src": "ShowDataFile.css"
   },
-  "resources/js/Pages/Benefited/FollowDetail.css": {
-    "file": "assets/FollowDetail.e3b0c442.css",
-    "src": "resources/js/Pages/Benefited/FollowDetail.css"
+  "resources/js/Pages/BeforeDuringAfter/Index.css": {
+    "file": "assets/Index.017edcb6.css",
+    "src": "resources/js/Pages/BeforeDuringAfter/Index.css"
+  },
+  "resources/js/Pages/Auth/Register.css": {
+    "file": "assets/Register.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/Register.css"
+  },
+  "resources/js/Pages/AddInformation.css": {
+    "file": "assets/AddInformation.e3b0c442.css",
+    "src": "resources/js/Pages/AddInformation.css"
+  },
+  "SpinnerComponent.css": {
+    "file": "assets/SpinnerComponent.f23de6b6.css",
+    "src": "SpinnerComponent.css"
+  },
+  "resources/js/Pages/Home.css": {
+    "file": "assets/Home.989293b7.css",
+    "src": "resources/js/Pages/Home.css"
+  },
+  "resources/js/Pages/Package.css": {
+    "file": "assets/Package.b020efc7.css",
+    "src": "resources/js/Pages/Package.css"
+  },
+  "resources/js/Pages/Auth/TwoFactorChallenge.css": {
+    "file": "assets/TwoFactorChallenge.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/TwoFactorChallenge.css"
+  },
+  "resources/js/Pages/Error/Error.css": {
+    "file": "assets/Error.a461f76b.css",
+    "src": "resources/js/Pages/Error/Error.css"
+  },
+  "PageLayout.css": {
+    "file": "assets/PageLayout.5c3b464e.css",
+    "src": "PageLayout.css"
+  },
+  "resources/js/Pages/Benefited/Building.css": {
+    "file": "assets/Building.9d8e9a1c.css",
+    "src": "resources/js/Pages/Benefited/Building.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.3815f79d.css",

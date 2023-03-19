@@ -6,7 +6,7 @@
                 dark
                 height="100"
             >
-                <v-btn icon @click="back()" v-if="elements">
+                <v-btn class="d-print-none" icon @click="back()" v-if="elements">
                     <v-icon color="white">
                         mdi-arrow-left
                     </v-icon>
@@ -17,10 +17,10 @@
                     <div class="text-right mr-sm-2 fill-height d-flex justify-space-around align-center">
                         <slot name="header"></slot>
                     </div>
-                    <settings-dropdown v-if="elements==true"></settings-dropdown>
+                    <settings-dropdown class="d-print-none" v-if="elements===true"></settings-dropdown>
                 </div>
-                <template v-slot:extension v-if="extension==true">
-                    <slot name="extension"></slot>
+                <template class="d-print-none" v-slot:extension v-if="extension===true">
+                    <slot class="d-print-none" name="extension"></slot>
                 </template>
             </v-toolbar>
             <v-toolbar dense class="secondary" max-height="10"></v-toolbar>

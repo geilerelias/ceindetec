@@ -19,6 +19,7 @@
         "pptxgenjs": "^3.10.0",
         "qrcode.vue": "1.7",
         "register-service-worker": "^1.7.2",
+        "rich-text-editor-vuetify": "^1.1.6",
         "v-animate-css": "0.0.3",
         "vite-plugin-vue2": "^2.0.2",
         "vue-gates": "^2.1.2",
