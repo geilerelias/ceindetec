@@ -15,7 +15,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -112,13 +111,20 @@ Route::get('/benefited-detail/{municipality}/{establishments}/{headquarters}', f
 
 Route::get('/dashboard/work/adequacy/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
     # [\App\Http\Controllers\WorkController::class, 'adequacy'])
-    return Inertia\Inertia::render('Benefited/Adequacy',
-        ['data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]
+    return Inertia\Inertia::render('Benefited/DailyFollow',
+        ['work_type' => 'Adecuación', 'data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]
     );
 })->name('work.adequacy');
 
-Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}',
-    [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');
+Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}', function ($municipality, $establishments, $headquarters) {
+    # [\App\Http\Controllers\WorkController::class, 'adequacy'])
+    return Inertia\Inertia::render('Benefited/DailyFollow',
+        ['work_type' => 'Construcción', 'data' => ["municipality" => $municipality, "headquarters" => $headquarters, "establishments" => $establishments]]
+    );
+})->name('work.building');
+
+/*Route::get('/dashboard/work/building/{municipality}/{establishments}/{headquarters}',
+    [\App\Http\Controllers\WorkController::class, 'building'])->name('work.building');*/
 
 
 Route::get('/back', function () {

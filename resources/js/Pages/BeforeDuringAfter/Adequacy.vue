@@ -1,6 +1,6 @@
 <template>
     <div>
-        <simple-layout v-for="(item, pag) in allSedes" :key="item.id" id="inspire" class="bg">
+        <simple-layout v-for="(item, pag) in allSedes" id="inspire" :key="item.id" class="bg">
             <template v-slot:header>
                 <p class="text-h5 white--text font-weight-bold text-uppercase text-center ma-12">
                     {{ item.sede }}
@@ -9,14 +9,14 @@
             <v-main class="bg pt-6 fill-height">
                 <v-container fluid>
                     <v-row>
-                        <v-col :style="i!==0?'border-left: solid 3px rgba(158,158,158,1)':''" class="d-flex"
-                               v-for="(elemento, i) in item.items" :key="item.id">
+                        <v-col v-for="(elemento, i) in item.items" :key="item.id"
+                               :style="i!==0?'border-left: solid 3px rgba(158,158,158,1)':''" class="d-flex">
                             <v-card color="transparent" flat width="100%">
                                 <v-card-title class="d-flex justify-center align-center">
                                     <v-card
+                                        :color="getColor(elemento.title)"
                                         class=" white--text font-weight-bold text-center text-h6 white--text font-weight-bold"
-                                        width="150"
-                                        :color="getColor(elemento.title)">
+                                        width="150">
                                         {{ elemento.title }}
                                     </v-card>
                                 </v-card-title>
@@ -30,21 +30,21 @@
                                         >
 
                                             <v-img
-                                                @click="showImage(src)"
-                                                :src="src"
                                                 :aspect-ratio="16/9"
                                                 :elevation="5"
+                                                :src="src"
                                                 class="grey lighten-2 rounded"
+                                                @click="showImage(src)"
                                             >
                                                 <template v-slot:placeholder>
                                                     <v-row
-                                                        class="fill-height ma-0"
                                                         align="center"
+                                                        class="fill-height ma-0"
                                                         justify="center"
                                                     >
                                                         <v-progress-circular
-                                                            indeterminate
                                                             color="grey lighten-5"
+                                                            indeterminate
                                                         ></v-progress-circular>
                                                     </v-row>
                                                 </template>
@@ -56,7 +56,7 @@
                         </v-col>
                     </v-row>
                 </v-container>
-                <v-footer padless color="transparent">
+                <v-footer color="transparent" padless>
 
                     <v-col
                         class="px-8"
@@ -83,12 +83,12 @@
                 >
                     <v-card>
                         <v-toolbar
-                            dark
                             color="primary"
+                            dark
                         >
                             <v-btn
-                                icon
                                 dark
+                                icon
                                 @click="dialog = false"
                             >
                                 <v-icon>mdi-close</v-icon>
@@ -106,20 +106,20 @@
                             </v-toolbar-items>
                         </v-toolbar>
                         <v-img
-                            :src="pathImage"
                             :aspect-ratio="16/9"
-                            contain
+                            :src="pathImage"
                             class="grey lighten-2 rounded"
+                            contain
                         >
                             <template v-slot:placeholder>
                                 <v-row
-                                    class="fill-height ma-0"
                                     align="center"
+                                    class="fill-height ma-0"
                                     justify="center"
                                 >
                                     <v-progress-circular
-                                        indeterminate
                                         color="grey lighten-5"
+                                        indeterminate
                                     ></v-progress-circular>
                                 </v-row>
                             </template>
@@ -463,11 +463,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .bg {
     background: rgb(255, 255, 255);
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 10%, rgba(206, 206, 206, 1) 100%);
 }
-
 
 </style>

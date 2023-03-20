@@ -314,7 +314,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .bg {
     background: rgb(255, 255, 255);
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 10%, rgba(206, 206, 206, 1) 100%);

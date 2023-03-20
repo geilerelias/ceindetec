@@ -1,5 +1,9 @@
 <template>
     <page-layout class="bg">
+        <inertia-head>
+            <title>Beneficiados</title>
+            <meta content="pagina principal del sistema de gestión académica" name="description">
+        </inertia-head>
         <div class="bg">
             <v-container class="mb-6">
                 <v-row class="ma-0">
@@ -154,7 +158,7 @@
                                         <div v-if="group==null">
                                             Todos
                                         </div>
-                                        <div v-else-if="group=='establishments_id'"
+                                        <div v-else-if="group==='establishments_id'"
                                              class="text-uppercase font-weight-bold">
                                             {{ getEstablishment(n) }}
                                         </div>
@@ -169,7 +173,6 @@
 
                                     <v-row class="mt-2">
                                         <v-col v-for="(item, j) in info" :key="item.id" cols="12" lg="4" md="6">
-
 
                                             <inertia-link
                                                 :href="`/benefited-detail/${getDirectory(item)}`"
@@ -234,7 +237,7 @@
                                                 <v-list-item>
                                                     <template v-slot:default="{ active }">
                                                         <v-list-item-avatar color="grey lighten-2">
-                                                            <v-icon v-if="item.work_type=='Construcción'"
+                                                            <v-icon v-if="item.work_type==='Construcción'"
                                                                     class="text--white"
                                                                     color='orange'
                                                                     v-text="'mdi-account-hard-hat'">
@@ -278,9 +281,8 @@
                                                                                   v-text="item.municipality">
                                                             </v-list-item-subtitle>
                                                         </v-list-item-content>
+
                                                         <v-list-item-action>
-
-
                                                             <v-tooltip top>
                                                                 <template v-slot:activator="{ on, attrs }">
                                                                     <v-btn icon v-bind="attrs"
@@ -518,28 +520,43 @@ export default {
                 let headquarters = await this.getHeadquarters(item.headquarters_id)
                 let work_type = item.work_type
 
+
                 if (work_type === "Adecuación") {
+                    try {
+                        let options = {
+                            target: "_blank"
+                        }
+
+                        this.$inertia.get(route('work.adequacy', {
+                            municipality,
+                            establishments,
+                            headquarters
+                        }), options);
+
+                        /*window.open(route('work.adequacy', {
+                            municipality,
+                            establishments,
+                            headquarters
+                        }), '_blank');*/
+                    } catch (e) {
+                        console.log(e)
+                    }
+                } else {
                     let options = {
                         target: "_blank"
                     }
-                    this.$inertia.get(route('work.adequacy', {
-                        municipality,
-                        establishments,
-                        headquarters
-                    }), null, options);
 
-                    /*window.open(route('work.adequacy', {
+                    this.$inertia.get(route('work.building', {
                         municipality,
                         establishments,
                         headquarters
-                    }), '_blank');*/
+                    }), options);
 
-                } else {
-                    window.open(route('work.building', {
-                        municipality,
-                        establishments,
-                        headquarters
-                    }), '_blank');
+                    /* window.open(route('work.building', {
+                         municipality,
+                         establishments,
+                         headquarters
+                     }), '_blank');*/
                 }
 
             } catch (e) {
