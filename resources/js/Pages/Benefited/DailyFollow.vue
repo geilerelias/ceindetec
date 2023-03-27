@@ -217,27 +217,13 @@
                                                 color="transparent"
                                                 flat
                                                 @click="showImage(`/get/src/seguimiento/${work_type}/`+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src))">
+                                            <img-placeholder></img-placeholder>
+                                            <img-placeholder v-if="src!=='actividades.txt'"
+                                                             :path="`/get/src/seguimiento/${work_type}/`"
+                                                             :establishments="data.establishments"
+                                                             :headquarters="data.headquarters"
+                                                             :item="item" :municipality="data.municipality" :src="src"/>
 
-                                            <v-img
-                                                v-if="src!=='actividades.txt'"
-                                                :aspect-ratio="16/9"
-                                                :elevation="5"
-                                                :src="`/get/src/seguimiento/${work_type}/`+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src)"
-                                                class="grey lighten-2 rounded "
-                                            >
-                                                <template v-slot:placeholder>
-                                                    <v-row
-                                                        align="center"
-                                                        class="fill-height ma-0"
-                                                        justify="center"
-                                                    >
-                                                        <v-progress-circular
-                                                            color="grey lighten-5"
-                                                            indeterminate
-                                                        ></v-progress-circular>
-                                                    </v-row>
-                                                </template>
-                                            </v-img>
                                         </v-card>
                                     </v-hover>
                                 </v-col>
@@ -287,10 +273,12 @@ import showDataFile from "@/Components/ShowDataFile.vue";
 import SimpleLayout from "@/Layouts/SimpleLayout.vue";
 import previewImage from "@/Components/PreviewImage.vue";
 import weather_conditions from '@/../assets/weather_conditions.json'
+import ImgPlaceholder from "@/Pages/Benefited/ImgPlaceholder.vue";
 
 export default {
     name: "Index",
     components: {
+        ImgPlaceholder,
         SimpleLayout,
         logo,
         showDataFile,

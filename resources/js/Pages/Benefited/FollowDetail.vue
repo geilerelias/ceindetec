@@ -57,7 +57,7 @@
                                             flat
                                             @click="showImage(`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`)">
 
-                                        <img-placeholder :establishments="establishments"
+                                        <img-placeholder path="/get/img/" :establishments="establishments"
                                                          :headquarters="headquarters"
                                                          :item="item" :municipality="municipality" :src="src"/>
 

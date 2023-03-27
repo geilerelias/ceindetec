@@ -2,23 +2,36 @@
     <v-sheet :aspect-ratio="16/9"
              :elevation="5" class="fill-height rounded">
         <img v-show="ready"
-             :src="`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`"
+
+             :src="`${path}${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`"
              alt=""
+             class="rounded"
              height="100%"
-             style="object-fit: cover;"
+             style="object-fit: cover; aspect-ratio: 16 / 9;"
              width="100%"
              @load="ready = true"/>
-        <v-row v-if="!ready"
-               align="center"
-               class="fill-height ma-0"
-               justify="center"
+        <v-img
+            class="mx-auto"
+            height="100%"
+            :lazy-src="infantesGuajirosLazy"
+            max-width="500"
+            src="https://bad.src/not/valid"
+            v-if="!ready"
+
         >
-            <loading-component/>
-        </v-row>
+            <v-row
+                align="center"
+                class="fill-height mx-auto "
+                justify="center"
+            >
+                <loading-component/>
+            </v-row>
+        </v-img>
     </v-sheet>
 </template>
 <script>
 import LoadingComponent from "@/Components/LoadingComponent.vue"
+import infantesGuajirosLazy from '../../../images/infantes_guajiros_lazy.jpg'
 
 export default {
     name: 'imgPlaceholder',
@@ -28,10 +41,12 @@ export default {
         headquarters: {},
         item: {},
         municipality: {},
-        src: {}
+        src: {},
+        path: {type: String, default: null, required: true}
     },
     data: () => ({
-        ready: false
+        ready: false,
+        infantesGuajirosLazy
     }),
     watch: {
         src() {

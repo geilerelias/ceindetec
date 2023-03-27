@@ -26,24 +26,13 @@
 
 
                     <v-card class="transparent" flat>
-                        <v-img :src="selectedImage"
-                               style="height: calc(90vh - 10px);max-height: calc(90vh - 10px);z-index: 0 !important;"
-                               aspect-ratio="2"
-                               :style="getImageStyle"
-                               contain>
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-progress-circular
-                                        indeterminate
-                                        color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
+                        <img :src="selectedImage"
+                             style="height: calc(90vh - 10px);max-height: calc(90vh - 10px);
+                               aspect-ratio:2;
+                               object-fit: contain;
+                               z-index: 0 !important;"
+                             :style="getImageStyle"
+                             alt="">
                     </v-card>
 
                     <div class="mt-n8 d-flex justify-center align-end" style="z-index: 10 !important;">

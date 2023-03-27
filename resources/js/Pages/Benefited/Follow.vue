@@ -174,9 +174,10 @@
                                     <v-row class="mt-2">
                                         <v-col v-for="(item, j) in info" :key="item.id" cols="12" lg="4" md="6">
 
-                                            <inertia-link
+                                            <a
                                                 :href="`/benefited-detail/${getDirectory(item)}`"
-                                                class="text-decoration-none">
+                                                class="text-decoration-none"
+                                                target="_blank">
                                                 <v-hover v-slot="{ hover }">
                                                     <v-card class="pa-0 rounded-b-0">
                                                         <!--
@@ -230,7 +231,7 @@
 
                                                 </v-hover>
 
-                                            </inertia-link>
+                                            </a>
 
                                             <v-card class="rounded-t-0">
 
@@ -524,14 +525,20 @@ export default {
                 if (work_type === "Adecuación") {
                     try {
                         let options = {
-                            target: "_blank"
+                            target: "_blank",
+                            rel: "noopener noreferrer",
                         }
-
+                        window.open(route('work.adequacy', {
+                            municipality,
+                            establishments,
+                            headquarters
+                        }), '_blank');
+                        /*
                         this.$inertia.get(route('work.adequacy', {
                             municipality,
                             establishments,
                             headquarters
-                        }), options);
+                        }), options);*/
 
                         /*window.open(route('work.adequacy', {
                             municipality,
@@ -543,14 +550,20 @@ export default {
                     }
                 } else {
                     let options = {
-                        target: "_blank"
+                        target: "_blank",
+                        rel: "noopener noreferrer",
                     }
 
-                    this.$inertia.get(route('work.building', {
+                    window.open(route('work.building', {
                         municipality,
                         establishments,
                         headquarters
-                    }), options);
+                    }), '_blank');
+                    /*  this.$inertia.get(route('work.building', {
+                        municipality,
+                        establishments,
+                        headquarters
+                    }), options);*/
 
                     /* window.open(route('work.building', {
                          municipality,
