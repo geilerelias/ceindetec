@@ -1,5 +1,5 @@
 <template class="bg">
-    <simple-layout>
+    <simple-layout :title="`${data.headquarters} - ${data.establishments}`">
         <template v-slot:header>
             <div class="text-right">
                 <div class="text-h6 white--text font-weight-bold text-uppercase py-0 my-0">
@@ -13,10 +13,12 @@
                 <div class="text-subtitle-2 white--text font-weight-bold py-0 my-0">
                     {{ data.municipality }}
                 </div>
+
             </div>
         </template>
 
         <template v-slot:extension>
+
             <v-tabs
                 v-model="tab"
                 align-with-title
@@ -207,25 +209,22 @@
                                     v-for="(src, h) in item.sub" :key="`${item.folder}${k}${h}`"
                                     class="d-flex child-flex"
                                     cols="4"
+                                    md="3"
                                 >
-                                    <v-hover
-                                        v-slot="{ hover }"
-                                        open-delay="200"
-                                    >
-                                        <v-card :elevation="hover ? 16 : 0"
-                                                class="ma-0 pa-0 transparent"
-                                                color="transparent"
-                                                flat
-                                                @click="showImage(`/get/src/seguimiento/${work_type}/`+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src))">
-                                            <img-placeholder></img-placeholder>
-                                            <img-placeholder v-if="src!=='actividades.txt'"
-                                                             :path="`/get/src/seguimiento/${work_type}/`"
-                                                             :establishments="data.establishments"
-                                                             :headquarters="data.headquarters"
-                                                             :item="item" :municipality="data.municipality" :src="src"/>
 
-                                        </v-card>
-                                    </v-hover>
+                                    <v-card
+                                        class="ma-0 pa-0 transparent"
+                                        color="transparent"
+                                        flat
+                                        @click="showImage(`/get/src/seguimiento/${work_type}/`+getSrcUrl(data.municipality,data.establishments,data.headquarters,item.folder,src))">
+
+                                        <img-placeholder v-if="src!=='actividades.txt'"
+                                                         :path="`/get/src/seguimiento/${work_type}/`"
+                                                         :establishments="data.establishments"
+                                                         :headquarters="data.headquarters"
+                                                         :item="item" :municipality="data.municipality" :src="src"/>
+
+                                    </v-card>
                                 </v-col>
                             </v-row>
                         </v-card>

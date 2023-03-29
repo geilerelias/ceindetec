@@ -1,5 +1,5 @@
 <template>
-    <simple-layout>
+    <simple-layout :title="`${headquarters} - ${establishments}`">
         <template v-slot:header>
             <div class="text-right">
                 <div class="text-h6 white--text font-weight-bold text-uppercase py-0 my-0">
@@ -45,24 +45,22 @@
                                 v-for="(src, h) in item.sub" :key="`${item.folder}${k}${h}`"
                                 class="d-flex child-flex"
                                 cols="4"
+                                md="3"
                             >
 
-                                <v-hover
-                                    v-slot="{ hover }"
-                                    open-delay="200"
-                                >
-                                    <v-card :elevation="hover ? 16 : 0"
-                                            class="ma-0 pa-0 transparent"
-                                            color="transparent"
-                                            flat
-                                            @click="showImage(`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`)">
 
-                                        <img-placeholder path="/get/img/" :establishments="establishments"
-                                                         :headquarters="headquarters"
-                                                         :item="item" :municipality="municipality" :src="src"/>
+                                <v-card
+                                    class="ma-0 pa-0 transparent"
+                                    color="transparent"
+                                    flat
+                                    @click="showImage(`/get/img/${encodeURIComponent(municipality+'/'+establishments+'/'+headquarters)}/${item.folder}/${src}`)">
 
-                                    </v-card>
-                                </v-hover>
+                                    <img-placeholder path="/get/img/" :establishments="establishments"
+                                                     :headquarters="headquarters"
+                                                     :item="item" :municipality="municipality" :src="src"/>
+
+                                </v-card>
+
                             </v-col>
                         </v-row>
                     </v-tab-item>
