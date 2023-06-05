@@ -29,7 +29,7 @@ class PostController extends Controller
     public function create()
     {
         $data = Post::all();
-        return Inertia::render('Posts/Posts', ['data' => $data]);
+        return Inertia::render('Posts/Create', ['data' => $data]);
     }
 
     /**

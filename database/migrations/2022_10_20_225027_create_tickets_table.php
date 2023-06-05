@@ -17,10 +17,17 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('ticket_categories');
             $table->string('title');
+
             $table->string('priority');
             $table->text('message');
             $table->string('status');
             $table->string('resource')->nullable();
+            $table->string('line');
+            $table->dateTime('published_at')->nullable();
+            $table->dateTime('archived_at')->nullable();
+            $table->foreignId('establishment_id')->constrained('establishments');
+            $table->foreignId('headquarter_id')->constrained('headquarters');
+
             $table->timestamps();
         });
     }

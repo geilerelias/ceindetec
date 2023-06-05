@@ -22,13 +22,12 @@ class Directors extends Model
         'ethnic_group',
         'email',
         'phone',
-        'person_type',
+        'director_type',
         'department',
         'municipality',
         'direction',
         'profile_photo_path',
         'headquarters_id',
-        'establishments_id',
     ];
 
 

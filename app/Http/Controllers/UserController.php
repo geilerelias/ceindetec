@@ -89,6 +89,25 @@ class UserController extends Controller
             ->with('message', 'Role successfully removed.');
     }
 
+    public function getUserNameById($userId)
+    {
+        $user = User::find($userId); // Busca el usuario por su id utilizando Eloquent
+
+        if ($user) {
+            return $user->name; // Retorna el nombre del usuario encontrado
+        } else {
+            return 'Usuario no encontrado'; // Mensaje de error si el usuario no es encontrado
+        }
+    }
+
+    public function getAllUserNamesById($id)
+    {
+        // Lógica para obtener los nombres de usuario por su id
+        $users = User::where('id', $id)->get();
+        $userNames = $users->pluck('name');
+        return response()->json(['names' => $userNames]);
+    }
+
     /**
      * Display the specified resource.
      *

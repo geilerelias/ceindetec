@@ -62,7 +62,6 @@ export default {
     components: {
         logo,
         SettingsDropdown,
-
     },
     data() {
         return {

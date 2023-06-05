@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 4.9.11
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 18-08-2022 a las 16:03:41
--- Versión del servidor: 10.5.16-MariaDB-cll-lve
--- Versión de PHP: 7.4.30
+-- Host: localhost:3306
+-- Generation Time: Apr 11, 2023 at 03:57 PM
+-- Server version: 10.5.19-MariaDB-cll-lve
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,19 +19,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `almaguaj_sigacdb`
+-- Database: `almaguaj_sigacdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `areas`
+-- Table structure for table `areas`
 --
 
 CREATE TABLE `areas` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
   `establishments_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -40,7 +40,7 @@ CREATE TABLE `areas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `area_plans`
+-- Table structure for table `area_plans`
 --
 
 CREATE TABLE `area_plans` (
@@ -52,26 +52,26 @@ CREATE TABLE `area_plans` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `establishments`
+-- Table structure for table `establishments`
 --
 
 CREATE TABLE `establishments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `municipality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `nit` varchar(255) DEFAULT NULL,
+  `municipality` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `establishments`
+-- Dumping data for table `establishments`
 --
 
 INSERT INTO `establishments` (`id`, `name`, `nit`, `municipality`, `department`, `created_at`, `updated_at`) VALUES
 (1, 'Centro Educativo Eduardo Pinto Aragón de Porciosa', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(2, 'Centro Etnoeducativo Rural Utpurai	', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(2, 'Centro Etnoeducativo Rural Utpurai', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (3, 'Institución Etnoeducativa Rural Akuaipa Internado Indígena de Albania', '0000', 'Albania', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (4, 'Centro Educativo luis A. Brito de San Pedro', '0000', 'Barrancas', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (5, 'Institución educativa técnica rural agropecuaria de mingueo', '0000', 'Dibulla', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
@@ -87,54 +87,54 @@ INSERT INTO `establishments` (`id`, `name`, `nit`, `municipality`, `department`,
 (15, 'Institución etnoducativa rural internado laachon mayapo', '0000', 'Manaure', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (16, 'Institución etnoeducativa nuestra señora de Fátima', '0000', 'Manaure', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (17, 'Institución etnoeducativa de maracari', '0000', 'Manaure', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(18, 'Centro etnoeducativo #17 (kousachon)', '0000', 'Riohacha-1', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(19, 'Centro etnoeducativo #4', '0000', 'Riohacha-1', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(20, 'Centro etnoeducativo #8 (paraver)', '0000', 'Riohacha-1', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(21, 'Centro etnoeducativo #9 (mañature)', '0000', 'Riohacha-1', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07');
+(18, 'Centro etnoeducativo #17 (kousachon)', '0000', 'Riohacha', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(19, 'Centro etnoeducativo #4', '0000', 'Riohacha', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(20, 'Centro etnoeducativo #8 (paraver)', '0000', 'Riohacha', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(21, 'Centro etnoeducativo #9 (mañature)', '0000', 'Riohacha', 'La Guajira', '2022-08-05 19:19:07', '2022-08-05 19:19:07');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `headquarters`
+-- Table structure for table `headquarters`
 --
 
 CREATE TABLE `headquarters` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dane_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `municipality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `dane_code` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `municipality` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `establishment_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `headquarters`
+-- Dumping data for table `headquarters`
 --
 
 INSERT INTO `headquarters` (`id`, `name`, `dane_code`, `address`, `municipality`, `department`, `email`, `phone`, `establishment_id`, `created_at`, `updated_at`) VALUES
 (1, 'Escuela Rural de Santa Fe', '244035003360', 'Resguardo Pitulumani', 'Albania', 'La Guajira', 'mail@mail.com', '3145053111', 1, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(2, 'Escuela Indígena Itaka', '244035003432', 'Km 41 Via Riohacha-1', 'Albania', 'La Guajira', 'mail@mail.com', '3133782458', 2, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(2, 'Escuela Indígena Itaka', '244035003432', 'Km 41 Via Riohacha', 'Albania', 'La Guajira', 'mail@mail.com', '3133782458', 2, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (3, 'Escuela Indígena Almirante Padilla', '2443000086', 'Zona Rural de Albania', 'Albania', 'La Guajira', 'mail@mail.com', '3145517794', 3, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (4, 'Escuela Rural de La Granjita', '244078001484', 'Rancheria La Granjita', 'Barrancas', 'La Guajira', 'mail@mail.com', '3008052296', 4, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (5, 'Escuela Rural Siete de Junio', '244001000515', 'Barrio Campo Alegre', 'Dibulla', 'La Guajira', 'mail@mail.com', '3145517794', 5, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
@@ -156,25 +156,25 @@ INSERT INTO `headquarters` (`id`, `name`, `dane_code`, `address`, `municipality`
 (21, 'Escuela Rural Indígena Iyospa', '244560002196', 'Ranchería Fatima', 'Manaure', 'La Guajira', 'mail@mail.com', '3163849660', 16, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (22, 'Escuela Rural Indígena Ricardo Gomez', '244560000681', 'Caraca Ruleya', 'Manaure', 'La Guajira', 'mail@mail.com', '3135618416', 16, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
 (23, 'Sede Principal', '244560003834', 'Ranchería Maracari', 'Manaure', 'La Guajira', 'mail@mail.com', '3135905197', 17, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(24, 'Sede El pasito', '3004215140', 'Comunidad El Pasito', 'Riohacha-1', 'La Guajira', 'mail@mail.com', '3004215140', 19, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(25, 'Sede Paraver', '244001003514', 'Comunidad Paraver', 'Riohacha-1', 'La Guajira', 'mail@mail.com', '3106120762', 20, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(26, 'Sede Kousachon', '24400001005011', 'Comunidad Kousachon', 'Riohacha-1', 'La Guajira', 'mail@mail.com', '3008052296', 18, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
-(27, 'Sede Mañature', '244001004529', 'Resguardo Mañature', 'Riohacha-1', 'La Guajira', 'mail@mail.com', '0000000000', 21, '2022-08-05 19:19:07', '2022-08-05 19:19:07');
+(24, 'Sede El pasito', '3004215140', 'Comunidad El Pasito', 'Riohacha', 'La Guajira', 'mail@mail.com', '3004215140', 19, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(25, 'Sede Paraver', '244001003514', 'Comunidad Paraver', 'Riohacha', 'La Guajira', 'mail@mail.com', '3106120762', 20, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(26, 'Sede Kousachon', '24400001005011', 'Comunidad Kousachon', 'Riohacha', 'La Guajira', 'mail@mail.com', '3008052296', 18, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(27, 'Sede Mañature', '244001004529', 'Resguardo Mañature', 'Riohacha', 'La Guajira', 'mail@mail.com', '0000000000', 21, '2022-08-05 19:19:07', '2022-08-05 19:19:07');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -205,29 +205,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `model_has_permissions`
+-- Table structure for table `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `model_has_roles`
+-- Table structure for table `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `model_has_roles`
+-- Dumping data for table `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
@@ -237,57 +237,94 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `people`
+-- Table structure for table `people`
 --
 
 CREATE TABLE `people` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `identification_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `identification_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birthday_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ethnic_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `person_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `municipality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `direction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profile_photo_path` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) NOT NULL,
+  `identification_type` varchar(255) DEFAULT NULL,
+  `identification_number` varchar(255) DEFAULT NULL,
+  `birthday_date` varchar(255) DEFAULT NULL,
+  `ethnic_group` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `blood_type` varchar(255) DEFAULT NULL,
+  `person_type` varchar(255) NOT NULL,
+  `attended_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `relationship` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `municipality` varchar(255) DEFAULT NULL,
+  `direction` varchar(255) DEFAULT NULL,
+  `profile_photo_path` text DEFAULT NULL,
+  `establishment_id` bigint(20) UNSIGNED NOT NULL,
+  `headquarter_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `people`
+--
+
+INSERT INTO `people` (`id`, `name`, `surname`, `gender`, `identification_type`, `identification_number`, `birthday_date`, `ethnic_group`, `email`, `phone`, `blood_type`, `person_type`, `attended_by`, `relationship`, `department`, `municipality`, `direction`, `profile_photo_path`, `establishment_id`, `headquarter_id`, `created_at`, `updated_at`) VALUES
+(9, 'luis elisander', 'cotes pushaina', 'Masculino', 'CC', '84035273', '1969-08-03', 'Comunidades indígenas', 'eliyei2012@hotmail.com', '3133213066', 'B+', 'Director', NULL, NULL, 'La Guajira', 'Riohacha', 'calle 3A N° 6 ESTE 43', NULL, 19, 24, '2022-10-10 21:02:44', '2022-10-10 21:02:44'),
+(10, 'omar enrique', 'López Iguaran', 'Masculino', 'CC', '84077526', '1976-10-25', 'Comunidades indígenas', 'oelopez21@hotmail.com', '3226497319', 'A+', 'Coordinador', NULL, NULL, 'La Guajira', 'Riohacha', 'carrera 7A # 17- 45', NULL, 19, 24, '2022-10-10 21:45:07', '2022-10-10 21:45:07'),
+(11, 'Jhon Jairo', 'Rodríguez', 'Masculino', 'CC', '17858544', '1973-05-22', 'Comunidades indígenas', 'sanrafaeldelpajaro@yahoo.com', '3135587488', 'O+', 'Rector', NULL, NULL, 'La Guajira', 'Manaure', 'Rancheria la Paz', 'person/person-image-1665420456.jpeg', 10, 11, '2022-10-10 21:47:37', '2022-10-10 21:47:37'),
+(12, 'Celso', 'Hernández', 'Masculino', 'CC', '84029922', '2008-12-16', 'Comunidades indígenas', 'herespelta2709@gmail.com', '3164567155', 'O+', 'Director', NULL, NULL, 'La Guajira', 'Riohacha', 'Calle 17 N 1 143', NULL, 20, 25, '2022-10-10 23:46:43', '2022-10-10 23:46:43'),
+(13, 'luisa maría', 'socarras Mendoza', 'Femenino', 'CC', '40931864', '1972-12-08', 'Comunidades indígenas', 'lumasome2013@hotmail.com', '3205688024', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Riohacha', 'carrera 12B # 33-50', NULL, 19, 24, '2022-10-11 00:35:39', '2022-10-11 00:35:39'),
+(14, 'dulce maria', 'Mendoza', 'Femenino', 'CC', '40929954', '1975-04-28', 'Comunidades indígenas', 'dulcemendoza@uniguajira.edu.co', '3126626876', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Riohacha', 'carrera 8 # 34B-66', NULL, 19, 24, '2022-10-11 00:42:00', '2022-10-11 00:42:00'),
+(15, 'Edilberto Manuel', 'Prasca Uriana', 'Masculino', 'CC', '84078862', '1973-04-05', 'Comunidades indígenas', 'Edilbertoprasca@yahoo.com', '3002781670', 'O+', 'Rector', NULL, NULL, 'La Guajira', 'Manaure', 'Calle 6 N.8-85', 'person/person-image-1665439142.jpg', 14, 18, '2022-10-11 02:59:02', '2022-10-11 02:59:02'),
+(16, 'Over', 'Cárdenas Gutiérrez', 'Masculino', 'CC', '1124414347', '1996-09-09', 'Comunidades indígenas', 'overcardenasgutierrez@gmail.com', '3004048823', 'B+', 'Docente', NULL, NULL, 'La Guajira', 'Manaure', 'Calle 1 número 12-72', 'person/person-image-1665494886.jpg', 14, 18, '2022-10-11 18:28:06', '2022-10-11 18:28:06'),
+(17, 'Eider', 'Castellar', 'Masculino', 'CC', '1143341656', '1990-03-27', 'Comunidades indígenas', 'eidercastellar48@gmail.com', '3005691513', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Manaure', 'carrera 2 # 9-57', 'person/person-image-1665495034.jpg', 14, 18, '2022-10-11 18:30:34', '2022-10-11 18:30:34'),
+(18, 'Francisco Javier', 'Restrepo Arroyave', 'Masculino', 'CC', '14795987', '1982-11-02', 'Comunidad Raizal', 'cerba.campana@gmail.com', '3104113246', 'O+', 'Director', NULL, NULL, 'La Guajira', 'Dibulla', 'Carrera 4 # 3-48', NULL, 6, 6, '2022-10-11 18:35:59', '2022-10-11 18:35:59'),
+(19, 'GUILLERMO', 'SOTO TORRES', 'Masculino', 'CC', '79718762', '1975-07-22', 'Comunidad Raizal', 'guillermosototorres@yahoo.es', '3233215245', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Dibulla', 'Calle 3 # 3 - 11', 'person/person-image-1665499057.jpg', 6, 6, '2022-10-11 19:37:37', '2022-10-11 19:37:37'),
+(20, 'Leydis Dallana', 'Julio González', 'Femenino', 'CC', '1094249317', '1990-03-06', 'Comunidades afrocolombianas', 'leydisdayana@hotmail.com', '3008604562', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Riohacha', 'Cr 28#27a-55', NULL, 6, 6, '2022-10-12 02:08:48', '2022-10-12 02:08:48'),
+(21, 'amilkar de jesus', 'gamez ipuana', 'Masculino', 'CC', '1124370560', '1987-11-04', 'Comunidades indígenas', 'amilkargamez11|@hotmail.es', '3214537196', 'O+', 'Director', NULL, NULL, 'La Guajira', 'Manaure', 'comunidad lamana', NULL, 12, 15, '2022-10-12 04:11:03', '2022-10-12 04:11:03'),
+(22, 'sofi', 'marin ipuana', 'Femenino', 'CC', '1118834369', '1990-11-24', 'Comunidades indígenas', 'sofimarin24@gmail.com', '3205715813', 'O+', 'Coordinador', NULL, NULL, 'La Guajira', 'Manaure', 'comunidad de lamana', NULL, 12, 15, '2022-10-12 04:38:10', '2022-10-12 04:38:10'),
+(23, 'diba patricia', 'jusayu zambrano', 'Femenino', 'CC', '1124369505', '1987-08-17', 'Comunidades indígenas', 'bjusayusambaramo@gmail.com', '3127381925', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Manaure', 'comunidad de lamana', NULL, 12, 15, '2022-10-12 04:44:34', '2022-10-12 04:44:34'),
+(24, 'keider', 'ipuana epinayu', 'Masculino', 'CC', '1124382764', '1989-12-06', 'Comunidades indígenas', 'keideripu@gmail.com', '3157395617', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Manaure', 'comunidad de lamana', NULL, 12, 15, '2022-10-12 04:47:18', '2022-10-12 04:47:18'),
+(25, 'Romelia María', 'Floriano Jiménez', 'Femenino', 'CC', '60395182', '1978-12-26', 'Comunidades afrocolombianas', 'janckerandrey@hotmail.com', '3043875778', 'B+', 'Docente', NULL, NULL, 'La Guajira', 'Riohacha', 'Carrera 6 A # 20 A 23', 'person/person-image-1665577193.jpg', 6, 6, '2022-10-12 17:19:53', '2022-10-12 17:19:53'),
+(26, 'yakelina', 'benjumea', 'Femenino', 'CC', '1118817335', '1981-07-25', 'Comunidades indígenas', 'benjumeayakelina@gmail.com', '3207643627', 'B+', 'Acudiente', NULL, NULL, 'La Guajira', 'Riohacha', 'barrio villa Fátima', NULL, 19, 24, '2022-10-12 18:30:02', '2022-10-12 18:30:02'),
+(27, 'elizabeht', 'cotes larrada', 'Femenino', 'CC', '1006617521', '1980-05-29', 'Comunidades indígenas', 'nicolbonivento123@gmail.com', '3208166804', 'B+', 'Acudiente', NULL, NULL, 'La Guajira', 'Riohacha', 'calle 20 # 5B-20', NULL, 19, 24, '2022-10-12 18:32:58', '2022-10-12 18:32:58'),
+(28, 'claudia maria', 'cotes pusahina', 'Femenino', 'CC', '40944743', '1985-02-14', 'Comunidades indígenas', 'ccotes@uniguajira.edu.com', '3042151402', 'B+', 'Acudiente', NULL, NULL, 'La Guajira', 'Riohacha', 'comunidad indigena el pasito', NULL, 19, 24, '2022-10-12 18:37:38', '2022-10-12 18:37:38'),
+(29, 'amis daniela', 'gouriyu benjumea', 'Femenino', 'TI', '1118838238', '2009-08-24', 'Comunidades indígenas', 'benjumeayakelin@gmail.com', '3207643627', 'B+', 'Estudiante', 26, 'Madre', 'La Guajira', 'Riohacha', 'barrio villa fatima', NULL, 19, 24, '2022-10-12 18:41:29', '2022-10-12 18:41:29'),
+(30, 'antonela maria', 'jimenez cotes', 'Femenino', 'TI', '1119396370', '2010-03-18', 'Comunidades indígenas', 'anbonivento@uniguajira.edu.co', '3208166804', 'B+', 'Estudiante', 27, 'Madre', 'La Guajira', 'Riohacha', 'calle 20 #5B-20', NULL, 19, 24, '2022-10-12 18:50:33', '2022-10-12 18:50:33'),
+(31, 'Luna  Talhietg', 'Cotes Cotes', 'Femenino', 'TI', '1139325527', '2012-05-22', 'Comunidades indígenas', 'ccotes@uniguajira.edu.co', '3042151402', 'B+', 'Acudiente', NULL, NULL, 'La Guajira', 'Riohacha', 'comunidad el pasito', NULL, 19, 24, '2022-10-12 18:57:02', '2022-10-12 18:57:02'),
+(32, 'orlys ademir', 'cotes epiayu', 'Masculino', 'CC', '1118850277', '1996-04-07', 'Comunidades indígenas', 'orlytronik@gmail.com', '3172447452', 'B+', 'Administrativo', NULL, NULL, 'La Guajira', 'Riohacha', 'calle 3A # 6 ESTE 43', NULL, 19, 24, '2022-10-12 19:16:33', '2022-10-12 19:16:33'),
+(33, 'César Hernando', 'Benítez Pérez', 'Masculino', 'CC', '92533226', '1979-02-04', 'Comunidades afrocolombianas', 'cbenitezp@uniguajira.edu.co', '3114292269', 'A+', 'Coordinador', NULL, NULL, 'La Guajira', 'Dibulla', 'Cra 3A # 15A - 20', NULL, 5, 5, '2022-10-14 00:09:43', '2022-10-14 00:09:43'),
+(34, 'Franklin Omar', 'Alarcón Mengual', 'Masculino', 'CC', '84035910', '1971-10-22', 'Comunidades indígenas', 'falarconmengual@yahoo.es', '3213516548', 'O+', 'Docente', NULL, NULL, 'La Guajira', 'Manaure', 'Calle 2#1~105 el Pájaro', NULL, 10, 11, '2022-10-14 22:10:18', '2022-10-14 22:10:18');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -313,16 +350,16 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -331,13 +368,13 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -345,13 +382,13 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `detail` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -359,15 +396,15 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `qr_codes`
+-- Table structure for table `qr_codes`
 --
 
 CREATE TABLE `qr_codes` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `consecutive` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo_path` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consecutive` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'inactive',
+  `description` varchar(255) DEFAULT NULL,
+  `photo_path` text DEFAULT NULL,
   `establishment_id` bigint(20) UNSIGNED DEFAULT NULL,
   `headquarters_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -375,7 +412,7 @@ CREATE TABLE `qr_codes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `qr_codes`
+-- Dumping data for table `qr_codes`
 --
 
 INSERT INTO `qr_codes` (`id`, `consecutive`, `status`, `description`, `photo_path`, `establishment_id`, `headquarters_id`, `created_at`, `updated_at`) VALUES
@@ -2916,19 +2953,19 @@ INSERT INTO `qr_codes` (`id`, `consecutive`, `status`, `description`, `photo_pat
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -2943,7 +2980,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `role_has_permissions`
+-- Table structure for table `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -2952,7 +2989,7 @@ CREATE TABLE `role_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `role_has_permissions`
+-- Dumping data for table `role_has_permissions`
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
@@ -2981,38 +3018,35 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` text NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `sessions`
+-- Dumping data for table `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4goxlHn9w8Z9L39eiWnkUCmMQhCbCtlcni8nqOZm', 1, '190.60.39.62', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSDBzTkl5SDN5OEVoMmlWR2dLQkx0N2ZVRDQzc2RrSVF0M29YYVhuMCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1660856341),
-('fjiRIkzbQsBBMAFsa2OgNXy1wRLfPnjbHq6tdwt7', 1, '190.60.39.62', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNzhzakNjbFNJZ2tST05xYmdVQTl1Vmx4UVNhQ0xUYzVQeEZBWjdUayI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9zaWdhYy5hbG1hZ3VhamlyYS5jb20vc3JjL251bGwvbnVsbC9udWxsL2NvbnN0cnVjY2lvbmVzLmpwZWciO31zOjM6InVybCI7YToxOntzOjg6ImludGVuZGVkIjtzOjM4OiJodHRwOi8vc2lnYWMuYWxtYWd1YWppcmEuY29tL2Rhc2hib2FyZCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1660856064),
-('kOVztqsUsP16wbKGyjMXM5owoz3aSBKYWPK3ISLk', NULL, '190.60.39.62', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWEdUeDRXc3NxQW5pNnhEcWNTSFRsZWZHdTVKVXBkTFJOSEI1aktOMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly92MS5hbG1hZ3VhamlyYS5jb20vanMvZXMuanMubWFwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1660855293),
-('XIFwLz1QJxAW9QTQeAmSgBBP5kv3zwHt9RBX9z46', NULL, '190.146.216.224', 'Mozilla/5.0 (Linux; Android 11; Redmi Note 9S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnl6ekdPWW1pNVR6SUJVUjM4aW9TZ2lEd2Z0N3pFa29lMjN0bjZxMyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly92MS5hbG1hZ3VhamlyYS5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1660855141),
-('YfarOs0GO11CFNB6G0gGj14NNvLjQ3foUo3CgJtS', NULL, '190.60.39.62', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidjlSenRvVHpRS1ZzU1pMSGNLVWlqVWlRNFdZcnBjYjFralJFdlJiSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vYWxtYWd1YWppcmEuY29tL2pzL2VzLmpzLm1hcCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1660855530);
+('awT93HHpMGxI1V9lDTFEALGPDZSoUOYnsTNsxsBc', NULL, '181.78.85.33', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicjdzV2xmbzdlRHJNYXJaTThyVGxPY3JmY1hXY0ZKbHZwalNXWlR1WCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9zaWdhYy5hbG1hZ3VhamlyYS5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1681232960),
+('Yrx46Dn1zhdKtNJxsaJ60fs4UFQ5HRfw7NLFjSmQ', NULL, '181.78.85.33', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiR2JKaXJ2VlMwcFZWTlZWS0V2a2p1bjJsWUsyZ0w4MGVsSVZTV1JvYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly9zaWdhYy5hbG1hZ3VhamlyYS5jb20vYWRkLWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1681246558);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `study_plans`
+-- Table structure for table `study_plans`
 --
 
 CREATE TABLE `study_plans` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `establishments_id` bigint(20) UNSIGNED NOT NULL,
   `year_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3022,13 +3056,13 @@ CREATE TABLE `study_plans` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subjects`
+-- Table structure for table `subjects`
 --
 
 CREATE TABLE `subjects` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
   `establishments_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -3037,7 +3071,7 @@ CREATE TABLE `subjects` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subject_teachers`
+-- Table structure for table `subject_teachers`
 --
 
 CREATE TABLE `subject_teachers` (
@@ -3049,29 +3083,38 @@ CREATE TABLE `subject_teachers` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `teams`
+-- Table structure for table `teams`
 --
 
 CREATE TABLE `teams` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `personal_team` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`id`, `user_id`, `name`, `personal_team`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Luis\'s Team', 1, '2022-10-25 23:01:42', '2022-10-25 23:01:42'),
+(2, 4, 'CARMEN\'s Team', 1, '2022-10-26 01:28:09', '2022-10-26 01:28:09'),
+(3, 5, 'Geiler\'s Team', 1, '2022-10-27 14:39:32', '2022-10-27 14:39:32');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `team_user`
+-- Table structure for table `team_user`
 --
 
 CREATE TABLE `team_user` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `team_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -3079,13 +3122,13 @@ CREATE TABLE `team_user` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tracings`
+-- Table structure for table `tracings`
 --
 
 CREATE TABLE `tracings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path_route` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `path_route` text DEFAULT NULL,
   `work_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -3094,49 +3137,52 @@ CREATE TABLE `tracings` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `two_factor_secret` text DEFAULT NULL,
+  `two_factor_recovery_codes` text DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `current_team_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `profile_photo_path` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_photo_path` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Geiler Elias Radillo Sarmiento', 'geilerelias@gmail.com', NULL, '$2y$10$Cs.Dmu3lFNBDtbIZDfIvveiTwSN/g9iknfvFfpepIDwEMk2ZBVx4m', NULL, NULL, 'eGjPlIlkNJi2NLDwtSjLQr83oHuGFGBw6PuehbewQK9BGkEGcZEvh5HUKEpz', NULL, NULL, '2022-08-05 19:19:06', '2022-08-05 19:19:06'),
-(2, 'Ledis Beatriz Sarmiento', 'ledisbersage@gmail.com', NULL, '$2y$10$bQB0slBFv7OWlzWJWEg97uyN84bkNoDe.LX25M1jKjqcQiGJ7XM8q', NULL, NULL, '2FKzbjtgNuDpl5t1miE1Eup9L2Aj6qUv3VNpmu07Hxs2HH6PGCRbv6p0SdO1', NULL, NULL, '2022-08-05 19:19:07', '2022-08-05 19:19:07');
+(1, 'Geiler Elias Radillo Sarmiento', 'geilerelias@gmail.com', '2022-08-05 19:19:06', '$2y$10$Cs.Dmu3lFNBDtbIZDfIvveiTwSN/g9iknfvFfpepIDwEMk2ZBVx4m', NULL, NULL, '30Sq47WQLKA7LVpCk9648RpVNGsafh08agkj4o8QtgsXpU2lvBlIvatQFZJ1', NULL, NULL, '2022-08-05 19:19:06', '2022-08-05 19:19:06'),
+(2, 'Ledis Beatriz Sarmiento', 'ledisbersage@gmail.com', NULL, '$2y$10$bQB0slBFv7OWlzWJWEg97uyN84bkNoDe.LX25M1jKjqcQiGJ7XM8q', NULL, NULL, '2FKzbjtgNuDpl5t1miE1Eup9L2Aj6qUv3VNpmu07Hxs2HH6PGCRbv6p0SdO1', NULL, NULL, '2022-08-05 19:19:07', '2022-08-05 19:19:07'),
+(3, 'Luis Fernando Pertuz Gómez', 'apoyosupereducacion@gmail.com', NULL, '$2y$10$k2MzlWRneaZjsh4omwcJhOSbcUvzkYkgNCHmHQPfuOfEpXPi7vgZa', NULL, NULL, NULL, NULL, NULL, '2022-10-25 23:01:42', '2022-10-25 23:01:42'),
+(4, 'CARMEN ANGELICA BARROS', 'cangbarros@gmail.com', NULL, '$2y$10$2my26iQCOgqzevbKgFy/S.D4JXMO8.xdvi1HkNUOZdlPPNUmhWPDG', NULL, NULL, NULL, NULL, NULL, '2022-10-26 01:28:09', '2022-10-26 01:28:09'),
+(5, 'Geiler Elias Radillo Sarmiento', 'gradillo@unicesar.edu.co', NULL, '$2y$10$b7te/5ESLvsbYb4OHcLSTeabupXVHacBL1yZZx2STGkFoDTWfo7ri', NULL, NULL, NULL, NULL, NULL, '2022-10-27 14:39:32', '2022-10-27 14:39:32');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `works`
+-- Table structure for table `works`
 --
 
 CREATE TABLE `works` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `work_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `coordinates` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `distance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `travel_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `has_electricity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `municipality` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `work_type` varchar(255) NOT NULL,
+  `coordinates` text DEFAULT NULL,
+  `latitude` varchar(255) DEFAULT NULL,
+  `longitude` varchar(255) DEFAULT NULL,
+  `distance` varchar(255) DEFAULT NULL,
+  `travel_time` varchar(255) DEFAULT NULL,
+  `has_electricity` varchar(255) DEFAULT NULL,
+  `municipality` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
   `establishments_id` bigint(20) UNSIGNED NOT NULL,
   `headquarters_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3144,7 +3190,7 @@ CREATE TABLE `works` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `works`
+-- Dumping data for table `works`
 --
 
 INSERT INTO `works` (`id`, `work_type`, `coordinates`, `latitude`, `longitude`, `distance`, `travel_time`, `has_electricity`, `municipality`, `department`, `establishments_id`, `headquarters_id`, `created_at`, `updated_at`) VALUES
@@ -3171,20 +3217,20 @@ INSERT INTO `works` (`id`, `work_type`, `coordinates`, `latitude`, `longitude`, 
 (21, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226407.33141408785!2d-72.86916477540194!3d11.538128402237584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.500995%2C-72.72731!3m2!1d11.500995!2d-72.72731!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438494714!5m2!1ses-419!2sco', '11.500995', '-72.72731', '19,70', '20min', 'SI', 'Manaure', 'LaGuajira', 16, 21, '2022-06-08 21:08:54', '2022-06-08 21:08:54'),
 (22, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d134628.2484406037!2d-72.80562223399302!3d11.526356397292272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.456995%2C-72.593854!3m2!1d11.456995!2d-72.593854!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438554803!5m2!1ses-419!2sco', '11.456995', '-72.593854', '36,10', '30min', 'NO', 'Manaure', 'LaGuajira', 16, 22, '2022-06-08 21:11:02', '2022-06-08 21:11:02'),
 (23, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d100780.76041450801!2d-72.63768217063013!3d11.737462251268678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.727780399361727%2C%20-72.54535969501318!3m2!1d11.7277804!2d-72.54535969999999!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438899693!5m2!1ses-419!2sco', '11.69489-', '72.593494', '60,10', '1h6min', 'NO', 'Manaure', 'LaGuajira', 17, 23, '2022-06-08 21:11:42', '2022-06-08 21:11:42'),
-(24, 'Adecuación', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226503.79593759868!2d-73.0817059291327!3d11.417930276400913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.406357%2C-72.893086!3m2!1d11.406357!2d-72.893086!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438952486!5m2!1ses-419!2sco', '11.406357', '-72.893086', '17,20', '22min', 'NO', 'Riohacha-1', 'LaGuajira', 18, 26, '2022-06-08 21:12:19', '2022-06-08 21:12:19'),
-(25, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d14150.056889581347!2d-72.90380577778105!3d11.546085592401614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.549558%2C-72.886662!3m2!1d11.549558!2d-72.886662!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438993544!5m2!1ses-419!2sco', '11.549558', '-72.886662', '6,10', '17min', 'SI', 'Riohacha-1', 'LaGuajira', 19, 24, '2022-06-08 21:13:38', '2022-06-08 21:13:38'),
-(26, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226532.86121415882!2d-72.98689938025315!3d11.38146842006052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.244123%2C-72.788764!3m2!1d11.244123!2d-72.788764!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647439045934!5m2!1ses-419!2sco', '11.244123', '-72.788764', '49,90', '58min', 'NO', 'Riohacha-1', 'LaGuajira', 20, 25, '2022-06-08 21:14:22', '2022-06-08 21:14:22'),
-(27, 'Adecuación', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226547.64570870326!2d-72.98429203082237!3d11.362877243277888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.185394%2C-72.695154!3m2!1d11.185393999999999!2d-72.695154!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647439083135!5m2!1ses-419!2sco', '11.185394', '-72.695154', '59,2', '1h4min', 'SI', 'Riohacha-1', 'LaGuajira', 21, 27, '2022-06-08 21:14:54', '2022-06-08 21:14:54');
+(24, 'Adecuación', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226503.79593759868!2d-73.0817059291327!3d11.417930276400913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.406357%2C-72.893086!3m2!1d11.406357!2d-72.893086!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438952486!5m2!1ses-419!2sco', '11.406357', '-72.893086', '17,20', '22min', 'NO', 'Riohacha', 'LaGuajira', 18, 26, '2022-06-08 21:12:19', '2022-06-08 21:12:19'),
+(25, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d14150.056889581347!2d-72.90380577778105!3d11.546085592401614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.549558%2C-72.886662!3m2!1d11.549558!2d-72.886662!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647438993544!5m2!1ses-419!2sco', '11.549558', '-72.886662', '6,10', '17min', 'SI', 'Riohacha', 'LaGuajira', 19, 24, '2022-06-08 21:13:38', '2022-06-08 21:13:38'),
+(26, 'Construcción', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226532.86121415882!2d-72.98689938025315!3d11.38146842006052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.244123%2C-72.788764!3m2!1d11.244123!2d-72.788764!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647439045934!5m2!1ses-419!2sco', '11.244123', '-72.788764', '49,90', '58min', 'NO', 'Riohacha', 'LaGuajira', 20, 25, '2022-06-08 21:14:22', '2022-06-08 21:14:22'),
+(27, 'Adecuación', 'https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d226547.64570870326!2d-72.98429203082237!3d11.362877243277888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m4!2s11.185394%2C-72.695154!3m2!1d11.185393999999999!2d-72.695154!4m5!1s0x8e8b7df3fe76799f%3A0xcb812d3361e7849a!2sTransportes%20Relaturg%2C%20Maicao-Rioacha%2C%20Riohacha%2C%20La%20Guajira!3m2!1d11.535363!2d-72.88996569999999!5e1!3m2!1ses-419!2sco!4v1647439083135!5m2!1ses-419!2sco', '11.185394', '-72.695154', '59,2', '1h4min', 'SI', 'Riohacha', 'LaGuajira', 21, 27, '2022-06-08 21:14:54', '2022-06-08 21:14:54');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `years`
+-- Table structure for table `years`
 --
 
 CREATE TABLE `years` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `starts_at` date NOT NULL,
   `ends_at` date NOT NULL,
   `establishments_id` bigint(20) UNSIGNED NOT NULL,
@@ -3193,84 +3239,87 @@ CREATE TABLE `years` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `areas`
+-- Indexes for table `areas`
 --
 ALTER TABLE `areas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `areas_establishments_id_foreign` (`establishments_id`);
 
 --
--- Indices de la tabla `area_plans`
+-- Indexes for table `area_plans`
 --
 ALTER TABLE `area_plans`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `establishments`
+-- Indexes for table `establishments`
 --
 ALTER TABLE `establishments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indices de la tabla `headquarters`
+-- Indexes for table `headquarters`
 --
 ALTER TABLE `headquarters`
   ADD PRIMARY KEY (`id`),
   ADD KEY `headquarters_establishment_id_foreign` (`establishment_id`);
 
 --
--- Indices de la tabla `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `model_has_permissions`
+-- Indexes for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indices de la tabla `model_has_roles`
+-- Indexes for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indices de la tabla `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indices de la tabla `people`
+-- Indexes for table `people`
 --
 ALTER TABLE `people`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `people_email_unique` (`email`);
+  ADD UNIQUE KEY `people_email_unique` (`email`),
+  ADD KEY `people_establishment_id_foreign` (`establishment_id`),
+  ADD KEY `people_headquarter_id_foreign` (`headquarter_id`),
+  ADD KEY `people_attended_by_foreign` (`attended_by`);
 
 --
--- Indices de la tabla `permissions`
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indices de la tabla `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -3278,19 +3327,19 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indices de la tabla `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `qr_codes`
+-- Indexes for table `qr_codes`
 --
 ALTER TABLE `qr_codes`
   ADD PRIMARY KEY (`id`),
@@ -3299,21 +3348,21 @@ ALTER TABLE `qr_codes`
   ADD KEY `qr_codes_headquarters_id_foreign` (`headquarters_id`);
 
 --
--- Indices de la tabla `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indices de la tabla `role_has_permissions`
+-- Indexes for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indices de la tabla `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -3321,7 +3370,7 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indices de la tabla `study_plans`
+-- Indexes for table `study_plans`
 --
 ALTER TABLE `study_plans`
   ADD PRIMARY KEY (`id`),
@@ -3329,48 +3378,48 @@ ALTER TABLE `study_plans`
   ADD KEY `study_plans_year_id_foreign` (`year_id`);
 
 --
--- Indices de la tabla `subjects`
+-- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subjects_establishments_id_foreign` (`establishments_id`);
 
 --
--- Indices de la tabla `subject_teachers`
+-- Indexes for table `subject_teachers`
 --
 ALTER TABLE `subject_teachers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `teams`
+-- Indexes for table `teams`
 --
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`),
   ADD KEY `teams_user_id_index` (`user_id`);
 
 --
--- Indices de la tabla `team_user`
+-- Indexes for table `team_user`
 --
 ALTER TABLE `team_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `team_user_team_id_user_id_unique` (`team_id`,`user_id`);
 
 --
--- Indices de la tabla `tracings`
+-- Indexes for table `tracings`
 --
 ALTER TABLE `tracings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tracings_work_id_foreign` (`work_id`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indices de la tabla `works`
+-- Indexes for table `works`
 --
 ALTER TABLE `works`
   ADD PRIMARY KEY (`id`),
@@ -3378,218 +3427,226 @@ ALTER TABLE `works`
   ADD KEY `works_headquarters_id_foreign` (`headquarters_id`);
 
 --
--- Indices de la tabla `years`
+-- Indexes for table `years`
 --
 ALTER TABLE `years`
   ADD PRIMARY KEY (`id`),
   ADD KEY `years_establishments_id_foreign` (`establishments_id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `areas`
+-- AUTO_INCREMENT for table `areas`
 --
 ALTER TABLE `areas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `area_plans`
+-- AUTO_INCREMENT for table `area_plans`
 --
 ALTER TABLE `area_plans`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `establishments`
+-- AUTO_INCREMENT for table `establishments`
 --
 ALTER TABLE `establishments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT de la tabla `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `headquarters`
+-- AUTO_INCREMENT for table `headquarters`
 --
 ALTER TABLE `headquarters`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT de la tabla `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT de la tabla `people`
+-- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT de la tabla `permissions`
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de la tabla `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `qr_codes`
+-- AUTO_INCREMENT for table `qr_codes`
 --
 ALTER TABLE `qr_codes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2529;
 
 --
--- AUTO_INCREMENT de la tabla `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `study_plans`
+-- AUTO_INCREMENT for table `study_plans`
 --
 ALTER TABLE `study_plans`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `subjects`
+-- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `subject_teachers`
+-- AUTO_INCREMENT for table `subject_teachers`
 --
 ALTER TABLE `subject_teachers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `teams`
+-- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `team_user`
+-- AUTO_INCREMENT for table `team_user`
 --
 ALTER TABLE `team_user`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tracings`
+-- AUTO_INCREMENT for table `tracings`
 --
 ALTER TABLE `tracings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `works`
+-- AUTO_INCREMENT for table `works`
 --
 ALTER TABLE `works`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT de la tabla `years`
+-- AUTO_INCREMENT for table `years`
 --
 ALTER TABLE `years`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `areas`
+-- Constraints for table `areas`
 --
 ALTER TABLE `areas`
   ADD CONSTRAINT `areas_establishments_id_foreign` FOREIGN KEY (`establishments_id`) REFERENCES `establishments` (`id`);
 
 --
--- Filtros para la tabla `headquarters`
+-- Constraints for table `headquarters`
 --
 ALTER TABLE `headquarters`
   ADD CONSTRAINT `headquarters_establishment_id_foreign` FOREIGN KEY (`establishment_id`) REFERENCES `establishments` (`id`);
 
 --
--- Filtros para la tabla `model_has_permissions`
+-- Constraints for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `model_has_roles`
+-- Constraints for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `qr_codes`
+-- Constraints for table `people`
+--
+ALTER TABLE `people`
+  ADD CONSTRAINT `people_attended_by_foreign` FOREIGN KEY (`attended_by`) REFERENCES `people` (`id`),
+  ADD CONSTRAINT `people_establishment_id_foreign` FOREIGN KEY (`establishment_id`) REFERENCES `establishments` (`id`),
+  ADD CONSTRAINT `people_headquarter_id_foreign` FOREIGN KEY (`headquarter_id`) REFERENCES `headquarters` (`id`);
+
+--
+-- Constraints for table `qr_codes`
 --
 ALTER TABLE `qr_codes`
   ADD CONSTRAINT `qr_codes_establishment_id_foreign` FOREIGN KEY (`establishment_id`) REFERENCES `establishments` (`id`),
   ADD CONSTRAINT `qr_codes_headquarters_id_foreign` FOREIGN KEY (`headquarters_id`) REFERENCES `headquarters` (`id`);
 
 --
--- Filtros para la tabla `role_has_permissions`
+-- Constraints for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `study_plans`
+-- Constraints for table `study_plans`
 --
 ALTER TABLE `study_plans`
   ADD CONSTRAINT `study_plans_establishments_id_foreign` FOREIGN KEY (`establishments_id`) REFERENCES `establishments` (`id`),
   ADD CONSTRAINT `study_plans_year_id_foreign` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`);
 
 --
--- Filtros para la tabla `subjects`
+-- Constraints for table `subjects`
 --
 ALTER TABLE `subjects`
   ADD CONSTRAINT `subjects_establishments_id_foreign` FOREIGN KEY (`establishments_id`) REFERENCES `establishments` (`id`);
 
 --
--- Filtros para la tabla `tracings`
+-- Constraints for table `tracings`
 --
 ALTER TABLE `tracings`
   ADD CONSTRAINT `tracings_work_id_foreign` FOREIGN KEY (`work_id`) REFERENCES `works` (`id`);
 
 --
--- Filtros para la tabla `works`
+-- Constraints for table `works`
 --
 ALTER TABLE `works`
   ADD CONSTRAINT `works_establishments_id_foreign` FOREIGN KEY (`establishments_id`) REFERENCES `establishments` (`id`),
   ADD CONSTRAINT `works_headquarters_id_foreign` FOREIGN KEY (`headquarters_id`) REFERENCES `headquarters` (`id`);
 
 --
--- Filtros para la tabla `years`
+-- Constraints for table `years`
 --
 ALTER TABLE `years`
   ADD CONSTRAINT `years_establishments_id_foreign` FOREIGN KEY (`establishments_id`) REFERENCES `establishments` (`id`);

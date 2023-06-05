@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\EstablishmentController;
 use App\Http\Controllers\HeadquartersController;
+use App\Http\Controllers\IncomesExpensesController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PensumController;
 use App\Http\Controllers\PermissionController;
@@ -11,12 +12,13 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudyPlanController;
+use App\Http\Controllers\TicketCategoryController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
 
 
 /*
@@ -79,6 +81,14 @@ Route::get('/blog', function () {
 Route::get('/about-us', function () {
     return Inertia\Inertia::render('AboutUs');
 })->name('about-us');
+
+Route::get('/example-respaldo', function () {
+    return Inertia\Inertia::render('ExampleRespaldo');
+})->name('aexample-respaldo');
+
+Route::get('/example-list', function () {
+    return Inertia\Inertia::render('ExampleList');
+})->name('example-list');
 
 Route::get('/create-person', function () {
     return Inertia\Inertia::render('Dashboard/Person/Create');
@@ -157,10 +167,18 @@ Route::get('/dashboard/establishment/{id}/headquarters', [EstablishmentControlle
 Route::get('/dashboard/work/all', [\App\Http\Controllers\WorkController::class, 'all']);
 Route::get('/dashboard/work/group-by/{group}', [\App\Http\Controllers\WorkController::class, 'groupBy']);
 
+
+//personas
+
 Route::get('/dashboard/person/get/{id}', [PersonController::class, 'getById']);
 Route::get('/dashboard/person/{headquarter_id}/{type}/all', [PersonController::class, 'getByHeadquartersAndPersonType']);
 Route::get('/dashboard/person/{headquarter_id}/all', [PersonController::class, 'getByHeadquarters']);
+Route::get('/dashboard/person/all/{establishments_id}/{headquarter_id}', [PersonController::class, 'getByEstablishmentAndHeadquarters']);
 Route::post('/dashboard/person/add', [PersonController::class, 'store']);
+Route::put('/dashboard/person/update/{id}', [PersonController::class, 'update']);
+Route::post('/dashboard/person/add/attendant', [PersonController::class, 'storeAttendantForStudents']);
+Route::resource('/dashboard/person', PersonController::class);
+
 
 Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(function () {
     // 'can:Ver dashboard'
@@ -192,13 +210,6 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
 
     //sedes de establecimientos
     Route::resource('/dashboard/headquarters', HeadquartersController::class);
-
-    //personas
-    Route::get('/dashboard/person/student/create', [PersonController::class, 'createStudent'])->name('person.create.student');
-    Route::get('/dashboard/person/student', [PersonController::class, 'indexStudent'])->name('person.index.student');
-    Route::get('/dashboard/person/teacher', [PersonController::class, 'createTeacher'])->name('person.create.teacher');
-    Route::get('/dashboard/person/attendant', [PersonController::class, 'createAttendant'])->name('person.create.attendant');
-    Route::resource('/dashboard/person', PersonController::class);
 
     //años académicos
     Route::get('/dashboard/year/all', [YearController::class, 'all']);
@@ -238,6 +249,9 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
     Route::middleware(['auth:sanctum', 'verified',])
         ->resource('permission', PermissionController::class);
 
+    Route::get('/user/by/{id}', [UserController::class, 'getUserNameById']);
+    Route::get('/users/{id}/names', [UserController::class, 'getAllUserNamesById'])->name('users.names');
+
     Route::middleware(['auth:sanctum', 'verified'])
         ->post('/user/assign/roles', [UserController::class, 'assignRole']);
 
@@ -250,15 +264,21 @@ Route::middleware(['auth:sanctum', 'verified', 'can:Ver dashboard'])->group(func
     Route::middleware(['auth:sanctum', 'verified'])->resource('user', UserController::class);
 
     //Ticket
-    Route::resource('/dashboard/ticket-category', \App\Http\Controllers\TicketCategoryController::class);
-    Route::resource('/dashboard/ticket', \App\Http\Controllers\TicketController::class);
+    Route::get('/dashboard/ticket-category/all', [TicketCategoryController::class, 'getAllCategories'])->name('ticket-category.all');
+    Route::resource('/dashboard/ticket-category', TicketCategoryController::class);
+    Route::get('/dashboard/ticket/by/user', [TicketController::class, 'ticketsByUsers']);
+    Route::resource('/dashboard/ticket', TicketController::class);
+    Route::get('/dashboard/tickets/all', [TicketController::class, 'getAll'])->name('dashboard.tickets.getAll');
 
 });
 
 Route::get('/example', function (Request $request) {
-    $role = Role::find('admin');
-    dd($role);
+    return Inertia\Inertia::render('Example');
 });
+
+Route::get('/faceapi', function (Request $request) {
+    return Inertia\Inertia::render('FaceApi/Index');
+})->name('faceapi');
 
 Route::resource('/posts', PostController::class);
 
@@ -310,11 +330,35 @@ Route::get('/storage/{folder}/{filename}', function ($folder, $filename) {
 
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
+
         return $response;
     } catch (\Throwable $th) {
         return $th->getMessage();
     }
 });
+
+Route::get('/download/{folder}/{filename}', function ($folder, $filename) {
+    try {
+        $path = storage_path() . '/app/' . $folder . '/' . $filename;
+
+        // Si el archivo no existe, lanzamos un error 404
+        if (!Storage::exists($folder . '/' . $filename)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        // Configuramos la respuesta HTTP para descargar el archivo
+        $response = Response::make($file, 200);
+        $response->header('Content-Type', $type);
+        $response->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+
+        return $response;
+    } catch (\Throwable $th) {
+        return $th->getMessage();
+    }
+})->name('downloadFile');
 
 Route::get('/src/{page?}/{folder?}/{sub?}/{filename}', function ($page = "null", $folder = "null", $sub = "null", $filename) {
     try {
@@ -357,6 +401,24 @@ Route::get('/get/route/seguimiento/{type}/{municipality}/{establishments}/{headq
     }
     return $directory;
 });
+
+Route::get('/face-api/models/{file}', function ($file) {
+    $directory = base_path() . '/resources/Pages/FaceApi/models/' . $file;
+    try {
+
+        $file = File::get($directory);
+        $type = File::mimeType($directory);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ', $e->getMessage(), "\n";
+    }
+    return $directory;
+});
+
 
 Route::get('/get/src/seguimiento/{type}/{municipality}/{establishments}/{headquarters}/{folder}/{file}', function ($type, $municipality, $establishments, $headquarters, $folder, $file) {
     $directory = base_path() . '/resources/seguimiento/' . $type . '/' . $municipality . '/' . trim($establishments, " ") . '/' . trim($headquarters, " ") . '/EVIDENCIAS FOTOGRAFICAS/' . trim($folder, " ") . '/' . trim($file, " ");
@@ -417,6 +479,12 @@ function listadoDirectorio($directorio)
 
     return $folder;
 }
+
+
+//Incomes and Expenses- Ingresos y Egresos
+Route::resource('incomes-expenses', IncomesExpensesController::class);
+Route::get('/incomes-expenses-by-month', [IncomesExpensesController::class, 'getIncomeExpensesByMonth']);
+Route::get('/incomes-expenses-from/{id}', [IncomesExpensesController::class, 'showIncomeExpensesFrom'])->name('incomes-expenses.from'); //can: 'view permission',
 
 
 Route::get('/developer/gers', function () {

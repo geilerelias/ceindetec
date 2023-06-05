@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue2';
 export default defineConfig({
     resolve: {
         alias: {
-            '@': '/resources/js'
+            '@': '/resources/js',
         }
     },
     plugins: [

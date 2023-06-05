@@ -22,7 +22,6 @@ class Teacher extends Model
         'ethnic_group',
         'email',
         'phone',
-        'person_type',
         'department',
         'municipality',
         'direction',

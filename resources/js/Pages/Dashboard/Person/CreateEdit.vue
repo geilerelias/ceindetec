@@ -121,6 +121,7 @@
                                                         <v-col cols="12" md="6">
                                                             <v-text-field
                                                                 v-model="person.name"
+                                                                :error-messages="person.errors?.name ? [person.errors.name[0]] : []"
                                                                 :rules="[rules.required,rules.text(person.name,'nombre')]"
                                                                 label="Nombres"
                                                                 outlined
@@ -129,6 +130,8 @@
                                                         <v-col cols="12" md="6">
                                                             <v-text-field
                                                                 v-model="person.surname"
+                                                                :error-messages="person.errors?.surname ? [person.errors.surname[0]] : []"
+
                                                                 :rules="[rules.required,rules.text(person.surname,'Apellido')]"
                                                                 label="Apellidos"
                                                                 outlined
@@ -138,6 +141,7 @@
                                                         <v-col class="col-12 col-sm-4">
                                                             <v-autocomplete
                                                                 v-model="person.gender"
+                                                                :error-messages="person.errors?.gender ? [person.errors.gender[0]] : []"
                                                                 :items="['Femenino','Masculino','Prefiero no decirlo']"
                                                                 :rules="[rules.required]"
                                                                 label="Género"
@@ -148,6 +152,7 @@
                                                         <v-col class="col-12 col-sm-4">
                                                             <v-autocomplete
                                                                 v-model="person.identification_type"
+                                                                :error-messages="person.errors?.identification_type ? [person.errors.identification_type[0]] : []"
                                                                 :items="tiposDocumentos"
                                                                 :rules="[rules.required]"
                                                                 item-text="text"
@@ -160,15 +165,17 @@
                                                         <v-col class="col-12 col-sm-4">
                                                             <v-text-field
                                                                 v-model="person.identification_number"
+                                                                :error-messages="person.errors?.identification_number ? [person.errors.identification_number[0]] : []"
                                                                 :rules="[rules.required,rules.number]"
                                                                 label="Numero de identificación"
                                                                 outlined
                                                             ></v-text-field>
                                                         </v-col>
-                                                        <v-col class="col-12 col-sm-2">
-                                                            <v-autocomplete label="Tipo de sangre"
-                                                                            v-model="person.blood_type"
+                                                        <v-col class="col-12 col-sm-3">
+                                                            <v-autocomplete v-model="person.blood_type"
+                                                                            :error-messages="person.errors?.blood_type ? [person.errors.blood_type[0]] : []"
                                                                             :items="blood_types"
+                                                                            label="Tipo de sangre"
                                                                             outlined>
 
                                                             </v-autocomplete>
@@ -196,18 +203,18 @@
                                                                 </template>
                                                                 <v-date-picker
                                                                     v-model="person.birthday_date"
-                                                                    @input="menu1 = false"
                                                                     :max="getMaxDate()"
                                                                     :min="getMinDate()"
+                                                                    @input="menu1 = false"
                                                                 ></v-date-picker>
                                                             </v-menu>
-                                                            <div v-if="$page.errors.starts_at" class="text-red-500">{{
-                                                                    $page.errors.starts_at[0]
-                                                                }}
-                                                            </div>
+                                                            <!--                                                            <div v-if="$page.errors.starts_at" class="text-red-500">{{
+                                                                                                                                $page.errors.starts_at[0]
+                                                                                                                            }}
+                                                                                                                        </div>-->
                                                         </v-col>
 
-                                                        <v-col class="col-12 col-sm-6">
+                                                        <v-col class="col-12 col-sm-5">
                                                             <v-autocomplete
                                                                 v-model="person.ethnic_group"
                                                                 :items="gruposEtnicos"
@@ -257,6 +264,7 @@
                                                 <v-col class="col-12 col-sm-3">
                                                     <v-autocomplete
                                                         v-model="person.department"
+                                                        :error-messages="person.errors?.department ? [person.errors.department[0]] : []"
                                                         :items="departments"
                                                         :rules="[rules.required]"
                                                         label="Departamento *"
@@ -267,6 +275,7 @@
                                                 <v-col class="col-12 col-sm-3">
                                                     <v-autocomplete
                                                         v-model="person.municipality"
+                                                        :error-messages="person.errors?.municipality ? [person.errors.municipality[0]] : []"
                                                         :disabled="person.department===null || person.department===''"
                                                         :items="getCities(person.department)"
                                                         :rules="[rules.required]"
@@ -278,6 +287,7 @@
                                                 <v-col class="col-12 col-sm-6">
                                                     <v-text-field
                                                         v-model="person.direction"
+                                                        :error-messages="person.errors?.direction ? [person.errors.direction[0]] : []"
                                                         :rules="[rules.required]"
                                                         label="Dirección de residencia"
                                                         outlined
@@ -286,27 +296,29 @@
 
                                                 <v-col class="col-12 col-sm-6">
                                                     <v-autocomplete
-                                                        :readonly="establishment_id > -1"
                                                         v-model="person.establishment_id"
+                                                        :error-messages="person.errors?.establishment_id ? [person.errors.establishment_id[0]] : []"
                                                         :items="establishments"
+                                                        :readonly="establishment_id > -1"
+                                                        :rules="[rules.required]"
                                                         item-text="name"
                                                         item-value="id"
                                                         label="Establecimiento al que pertenece"
-                                                        @change="getAllHeadquarters"
-                                                        :rules="[rules.required]"
-                                                        outlined>
+                                                        outlined
+                                                        @change="getAllHeadquarters">
                                                     </v-autocomplete>
                                                 </v-col>
                                                 <v-col class="col-12 col-sm-6">
                                                     <v-autocomplete
-                                                        :readonly="headquarter_id > -1"
-                                                        :disabled="person.establishment_id===null || person.establishment_id===''"
                                                         v-model="person.headquarter_id"
+                                                        :error-messages="person.errors?.headquarter_id ? [person.errors.headquarter_id[0]] : []"
+                                                        :disabled="person.establishment_id===null || person.establishment_id===''"
                                                         :items="headquarters"
+                                                        :readonly="headquarter_id > -1"
+                                                        :rules="[rules.required]"
                                                         item-text="name"
                                                         item-value="id"
                                                         label="Sede a la que pertenece"
-                                                        :rules="[rules.required]"
                                                         outlined>
                                                     </v-autocomplete>
                                                 </v-col>
@@ -314,7 +326,7 @@
                                             </v-row>
 
                                         </section>
-
+                                        errror {{ person }}
                                         <section id="info-contacto">
                                             <v-row class="text-left">
                                                 <v-col class="col-10">
@@ -329,27 +341,30 @@
                                             </v-row>
                                             <v-row class="mb-5">
 
-                                                <v-col cols="12" sm="6" md="4">
+                                                <v-col cols="12" md="4" sm="6">
                                                     <v-text-field
                                                         v-model="person.email"
+                                                        :error-messages="person.errors?.email ? [person.errors.email[0]] : []"
                                                         :rules="[rules.required,rules.email]"
                                                         label="Correo electrónico"
                                                         outlined
                                                     ></v-text-field>
                                                 </v-col>
 
-                                                <v-col cols="12" sm="6" md="4">
+                                                <v-col cols="12" md="4" sm="6">
                                                     <v-text-field
                                                         v-model="person.phone"
+                                                        :error-messages="person.errors?.phone ? [person.errors.phone[0]] : []"
                                                         :rules="[rules.required,rules.number]"
                                                         label="Numero telefónico"
                                                         outlined
                                                     ></v-text-field>
                                                 </v-col>
-                                                <v-col cols="12" sm="6" md="4">
+                                                <v-col cols="12" md="4" sm="6">
                                                     <v-autocomplete
-                                                        :disabled="person.headquarter_id===''"
                                                         v-model="person.person_type"
+                                                        :error-messages="person.errors?.person_type ? [person.errors.person_type[0]] : []"
+                                                        :disabled="person.headquarter_id===''"
                                                         :items="typePeople"
                                                         :rules="[rules.required]"
                                                         label="Rol en la comunidad educativa"
@@ -379,15 +394,15 @@
 
                                                     <v-row class="mb-5">
 
-                                                        <v-col cols="12" sm="6" md="4">
+                                                        <v-col cols="12" md="4" sm="6">
                                                             <v-autocomplete
-                                                                v-model="person.attended_by"
+                                                                v-model="attendant_student.attendant_id"
                                                                 :items="people"
                                                                 :loading="isLoading"
-                                                                :search-input.sync="search"
-                                                                item-value="id"
-                                                                item-text="name"
                                                                 :rules="[rules.required]"
+                                                                :search-input.sync="search"
+                                                                item-text="name"
+                                                                item-value="id"
                                                                 label="Acudido por"
                                                                 outlined
                                                             >
@@ -403,10 +418,10 @@
                                                                 <template
                                                                     v-slot:selection="{ attr, on, item, selected }">
                                                                     <v-chip
-                                                                        v-bind="attr"
                                                                         :input-value="selected"
-                                                                        color="blue-grey"
                                                                         class="white--text"
+                                                                        color="blue-grey"
+                                                                        v-bind="attr"
                                                                         v-on="on"
                                                                     >
                                                                         <v-icon left>
@@ -417,8 +432,8 @@
                                                                 </template>
                                                                 <template v-slot:item="{ item }">
                                                                     <v-list-item-avatar
-                                                                        color="indigo"
                                                                         class="font-weight-light white--text"
+                                                                        color="indigo"
                                                                     >
                                                                         {{ item.name.charAt(0) }}
                                                                         {{ item.surname.charAt(0) }}
@@ -438,9 +453,9 @@
                                                             </v-autocomplete>
                                                         </v-col>
 
-                                                        <v-col cols="12" sm="6" md="4">
+                                                        <v-col cols="12" md="4" sm="6">
                                                             <v-autocomplete
-                                                                v-model="person.relationship"
+                                                                v-model="attendant_student.relationship"
                                                                 :items="relations"
                                                                 :rules="[rules.required]"
                                                                 label="Parentesco con el estudiante"
@@ -448,9 +463,15 @@
                                                             ></v-autocomplete>
                                                         </v-col>
 
-
+                                                        <v-col cols="12" md="4" sm="6">
+                                                            <v-text-field
+                                                                v-if="attendant_student.relationship === 'Otro'"
+                                                                v-model="attendant_student.other_relationship"
+                                                                label="Otro parentesco"
+                                                                outlined
+                                                            ></v-text-field>
+                                                        </v-col>
                                                     </v-row>
-
                                                 </div>
                                             </v-expand-transition>
 
@@ -472,8 +493,8 @@
                                 <div class="d-flex justify-end">
 
                                     <v-btn v-if="!edit"
-                                           class="primary mx-1"
                                            :disabled="!valid || !habeasData"
+                                           class="primary mx-1"
                                            @click="save(person)">
                                         Guardar
                                     </v-btn>
@@ -593,186 +614,189 @@ export default {
 
 
     },
-    data: () => ({
-        saving: false,
-        gruposEtnicos: [
-            'Comunidades indígenas',
-            'Comunidades negras',
-            'Comunidades afrocolombianas',
-            'Comunidad Raizal',
-        ],
-        tiposDocumentos: [
-            {
-                text: 'Registro Civil (RC)',
-                value: 'RC'
-            },
-            {
-                text: 'Tarjeta de identidad (TI)',
-                value: 'TI'
-            },
-            {
-                text: 'Cédula de Ciudadanía (CC)',
-                value: 'CC'
-            },
-            {
-                text: 'Cédula Extranjera (CE)',
-                value: 'CE'
-            },
-            {
-                text: 'Permiso Especial de Permanencia (PEP)',
-                value: 'PEP'
-            },
-            {
-                text: 'Número establecido por la Secretaría de Educación (NES)',
-                value: 'NES'
-            }
-        ],
-        typePeople: [
-            'Estudiante',
-            'Docente',
-            'Acudiente',
-            'Administrativo',
-            'Coordinador',
-            'Director',
-            'Rector',
+    data() {
+        return {
+            saving: false,
+            gruposEtnicos: [
+                'Comunidades indígenas',
+                'Comunidades negras',
+                'Comunidades afrocolombianas',
+                'Comunidad Raizal',
+            ],
+            tiposDocumentos: [
+                {
+                    text: 'Registro Civil (RC)',
+                    value: 'RC'
+                },
+                {
+                    text: 'Tarjeta de identidad (TI)',
+                    value: 'TI'
+                },
+                {
+                    text: 'Cédula de Ciudadanía (CC)',
+                    value: 'CC'
+                },
+                {
+                    text: 'Cédula Extranjera (CE)',
+                    value: 'CE'
+                },
+                {
+                    text: 'Permiso Especial de Permanencia (PEP)',
+                    value: 'PEP'
+                },
+                {
+                    text: 'Número establecido por la Secretaría de Educación (NES)',
+                    value: 'NES'
+                }
+            ],
+            typePeople: [
+                'Estudiante',
+                'Docente',
+                'Acudiente',
+                'Administrativo',
+                'Coordinador',
+                'Director',
+                'Rector',
+            ],
+            valid: false,
+            menu1: null,
+            person: this.$inertia.form({
+                "name": "María",
+                "surname": "González",
+                "gender": "Femenino",
+                "identification_type": "Cédula de ciudadanía",
+                "identification_number": "123456789",
+                "birthday_date": "1990-01-01",
+                "ethnic_group": "Afrodescendiente",
+                "email": "maria.gonzalez@example.com",
+                "phone": "1234567890",
+                "blood_type": "O+",
+                "person_type": "Estudiante",
+                "department": "Antioquia",
+                "municipality": "Medellín",
+                "direction": "Calle 10 # 35-45",
 
-        ],
-        valid: false,
-        menu1: null,
-        person: {
-            /*name: "Geiler Elias",
-            surname: "Radillo Sarmiento",
-            gender: "Masculino",
-            identification_type: "CC",
-            identification_number: "1118855965",
-            birthday_date: "1995-05-15",
-            ethnic_group: "Comunidades afrocolombianas",
-            email: "geilerelias@gmail.com",
-            phone: "3106947004",
-            person_type: "Administrativo",
-            department: "La Guajira",
-            municipality: "Riohacha-1",
-            direction: "vereda de puertocolombia",
-            establishment_id: 1,
-            headquarter_id: 1,
-            profile_photo_path: "",*/
-
-            name: '',
-            surname: '',
-            gender: '',
-            identification_type: '',
-            identification_number: '',
-            birthday_date: '',
-            ethnic_group: '',
-            email: '',
-            phone: '',
-            blood_type: '',
-            person_type: '',
-            department: '',
-            municipality: '',
-            direction: '',
-            relationship: '',
-            attended_by: '',
-            establishment_id: '',
-            headquarter_id: '',
-            profile_photo_path: '',
-        },
-        defaultPerson: {
-            name: '',
-            surname: '',
-            gender: '',
-            identification_type: '',
-            identification_number: '',
-            birthday_date: '',
-            ethnic_group: '',
-            email: '',
-            phone: '',
-            blood_type: '',
-            person_type: '',
-            department: '',
-            municipality: '',
-            direction: '',
-            relationship: '',
-            attended_by: '',
-            establishment_id: '',
-            headquarter_id: '',
-            profile_photo_path: '',
-        },
-        rules: {
-            required: value => !!value || 'Campo requerido.',
-            max: value => value.length <= 20 || 'Máximo 20 caracteres',
-            min: value => value.length >= 10 || 'Mínimo 10 caracteres',
-
-            email: value => {
-                const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                return pattern.test(value) || 'Dirección de correo invalida.'
+                /* name: '',
+                 surname: '',
+                 gender: '',
+                 identification_type: '',
+                 identification_number: '',
+                 birthday_date: '',
+                 ethnic_group: '',
+                 email: '',
+                 phone: '',
+                 blood_type: '',
+                 person_type: '',
+                 department: '',
+                 municipality: '',
+                 direction: '',*/
+                establishment_id: '',
+                headquarter_id: '',
+                profile_photo_path: '',
+            }),
+            defaultPerson: this.$inertia.form({
+                name: '',
+                surname: '',
+                gender: '',
+                identification_type: '',
+                identification_number: '',
+                birthday_date: '',
+                ethnic_group: '',
+                email: '',
+                phone: '',
+                blood_type: '',
+                person_type: '',
+                department: '',
+                municipality: '',
+                direction: '',
+                establishment_id: '',
+                headquarter_id: '',
+                profile_photo_path: '',
+            }),
+            attendant_student: {
+                relationship: '',
+                other_relationship: '',
+                attendant_id: '',
+                student_id: '',
             },
+            rules: {
+                required: value => !!value || 'Campo requerido.',
+                max: value => value.length <= 20 || 'Máximo 20 caracteres',
+                min: value => value.length >= 10 || 'Mínimo 10 caracteres',
 
-            phone: value => {
-                const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-                return pattern.test(value) || 'Numero telefónico invalido.'
+                email: value => {
+                    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    return pattern.test(value) || 'Dirección de correo invalida.'
+                },
+
+                phone: value => {
+                    const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+                    return pattern.test(value) || 'Numero telefónico invalido.'
+                },
+
+                text: (value, text) => {
+                    const pattern = /[a-zA-Z ]{2,254}/;
+                    return pattern.test(value) || `Entrada incorrecta para el campo ${text}.`
+                },
+
+                number: value => {
+                    const pattern = /^\d+$/;
+                    return pattern.test(value) || 'Solo caracteres numéricos.'
+                }
             },
-
-            text: (value, text) => {
-                const pattern = /[a-zA-Z ]{2,254}/;
-                return pattern.test(value) || `Entrada incorrecta para el campo ${text}.`
+            management: [
+                {title: 'Editar', icon: 'mdi-playlist-edit', route: 'home'},
+                {title: 'Eliminar', icon: 'mdi-playlist-remove', route: 'home'},
+                {title: 'Crear', icon: 'mdi-playlist-plus', route: 'home'},
+                {title: 'Salir', icon: 'mdi-close', route: 'home'},
+            ],
+            customStrings: {
+                upload: "<p> Su dispositivo no admite la carga de archivos. </p>", // HTML allowed
+                drag: "Arrastre una imagen o <br> haga clic aquí para seleccionar", // HTML allowed
+                tap: "Toque aquí para seleccionar una foto <br> de su galería", // HTML allowed
+                change: "Cambiar", // Text only
+                remove: "Eliminar", // Text only
+                select: "Selecciona una foto", // Text only
+                selected: '<p>Photo successfully selected!</p>', // HTML allowed
+                fileType: "Este tipo de archivo no es compatible.",
+                fileSize: 'The file size exceeds the limit', // Text only
+                aspect: 'Landscape/Portrait',// Text only
             },
-
-            number: value => {
-                const pattern = /^\d+$/;
-                return pattern.test(value) || 'Solo caracteres numéricos.'
-            }
-        },
-        management: [
-            {title: 'Editar', icon: 'mdi-playlist-edit', route: 'person.create.student'},
-            {title: 'Eliminar', icon: 'mdi-playlist-remove', route: 'person.index.student'},
-            {title: 'Crear', icon: 'mdi-playlist-plus', route: 'person.create.student'},
-            {title: 'Salir', icon: 'mdi-close', route: 'person.create.student'},
-        ],
-        customStrings: {
-            upload: "<p> Su dispositivo no admite la carga de archivos. </p>", // HTML allowed
-            drag: "Arrastre una imagen o <br> haga clic aquí para seleccionar", // HTML allowed
-            tap: "Toque aquí para seleccionar una foto <br> de su galería", // HTML allowed
-            change: "Cambiar", // Text only
-            remove: "Eliminar", // Text only
-            select: "Selecciona una foto", // Text only
-            selected: '<p>Photo successfully selected!</p>', // HTML allowed
-            fileType: "Este tipo de archivo no es compatible.",
-            fileSize: 'The file size exceeds the limit', // Text only
-            aspect: 'Landscape/Portrait',// Text only
-        },
-        departments: [],
-        municipality: [],
-        establishments: [],
-        headquarters: [],
-        step: 1,
-        habeasData: false,
-        dialog: false,
-        blood_types: [
-            "A+",
-            "B+",
-            "O+",
-            "AB+",
-            "A-",
-            "B-",
-            "O-",
-            "AB-"
-        ],
-        relations: [
-            "Madre",
-            "Padre",
-            "Hermano",
-            "Hermana",
-            "Tio",
-            "Tia",
-            "Esposa",
-            "Esposo",
-
-        ],
-        people: null,
-        isLoading: false,
-        search: null,
-    }),
+            departments: [],
+            municipality: [],
+            establishments: [],
+            headquarters: [],
+            step: 1,
+            habeasData: false,
+            dialog: false,
+            blood_types: [
+                "A+",
+                "B+",
+                "O+",
+                "AB+",
+                "A-",
+                "B-",
+                "O-",
+                "AB-"
+            ],
+            relations: [
+                "Madre",
+                "Padre",
+                'Abuelo',
+                'Abuela',
+                "Hermano",
+                "Hermana",
+                "Tio",
+                "Tia",
+                "Esposa",
+                "Esposo",
+                'Otro'
+            ],
+            people: null,
+            isLoading: false,
+            search: null,
+        }
+    },
     created() {
         for (const item in colombiaJson) {
             this.departments.push(colombiaJson[item].departamento);
@@ -892,7 +916,7 @@ export default {
 
         validate() {
             if (!this.$refs.form.validate()) {
-                return;
+
             }
         },
 
@@ -910,7 +934,7 @@ export default {
             this.$refs.form.resetValidation()
         },
 
-        save: function (data) {
+        save: async function (data) {
             this.saving = true;
             if (!this.validate() && !this.valid) {
                 this.$swal.fire(
@@ -920,91 +944,121 @@ export default {
                 )
                 this.saving = false;
             } else {
-                let form = new FormData()
-                for (const key in data) {
-                    form.set(key, data[key])
+                const response = await this.registerPerson(data);
+
+                if (this.person.person_type === 'Estudiante') {
+                    this.registerAttendantForStudents(response);
                 }
-                this.$inertia.post('/dashboard/person/add', form, {
-                    onSuccess: (response) => {
-                        let res = response.data;
-                        console.log(response)
-                        let text = "";
-                        if (Object.keys(this.$page.errors).length > 0) {
-                            console.log('errors => ', this.$page.errors)
-                            for (var clave in this.$page.errors) {
-                                text += clave + ": " + this.$page.errors[clave] + "\n ";
-                            }
-                            this.$swal({
-                                icon: 'error',
-                                title: 'Ups...',
-                                text: text
-                            })
-
-                        } else {
-                            this.$swal({
-                                icon: 'success',
-                                title: '¡Buen trabajo!',
-                                text: this.$page.flash.message
-                            }).then(result => {
-                                this.saving = false;
-                                if (result.isConfirmed) {
-                                    this.headquarters = this.defaultHeadquarters;
-                                    this.reset();
-                                    this.resetValidation();
-                                    //this.$inertia.get(this.route('person.index'));
-                                }
-                            });
-
-                        }
-                    },
-                    onError: error => {
-                        //console.log(error);
-                        this.saving = false;
-
-                        const array = error.response.data.errors;
-                        let text = "";
-                        for (var clave in array) {
-                            text += clave + ": " + array[clave] + "\n ";
-                        }
-                        this.$swal.fire("Error!", text, "error");
-                        console.log(text);
-                        this.reset();
-                        this.resetValidation();
-                    },
-                    onFinish: visit => {
-                        this.saving = false;
-                        this.reset();
-                        this.resetValidation();
-                        if (this.establishment_id > -1) {
-                            this.person.establishment_id = this.establishment_id
-                            this.$nextTick(() => {
-                                this.getAllHeadquarters()
-                                this.person.headquarter_id = this.headquarter_id
-                            })
-                        }
-                    },
-                });
             }
 
-        }
-        ,
+        },
 
-        update: function (data) {
-            data._method = 'PUT';
+        registerPerson(data) {
             let form = new FormData()
             for (const key in data) {
                 form.set(key, data[key])
             }
-            this.$inertia.post(this.route('person.update', data.id), form, {
-                onSuccess: response => {
 
+            this.$inertia.post('/dashboard/person/add', form, {
+                onSuccess: (response) => {
                     let res = response.data;
                     console.log(response)
                     let text = "";
-                    if (Object.keys(this.$page.errors).length > 0) {
-                        console.log('errors => ', this.$page.errors)
-                        for (var clave in this.$page.errors) {
-                            text += clave + ": " + this.$page.errors[clave] + "\n ";
+
+                    this.$swal({
+                        icon: 'success',
+                        title: '¡Buen trabajo!',
+                        text: response.props.flash.message
+                    }).then(result => {
+                        this.saving = false;
+                        if (result.isConfirmed) {
+                            this.headquarters = this.defaultHeadquarters;
+                            this.reset();
+                            this.resetValidation();
+                            //this.$inertia.get(this.route('person.index'));
+                        }
+                    });
+                    return response;
+
+                },
+                onError: error => {
+                    //console.log(error);
+                    this.saving = false;
+                    console.log(error)
+                    const array = error.message;
+                    let text = "";
+                    for (var clave in array) {
+                        text += clave + ": " + array[clave] + "\n ";
+                    }
+                    this.$swal.fire("Error!", text, "error");
+                    console.log(text);
+                    return null;
+                },
+                onFinish: visit => {
+                    this.saving = false;
+
+                    if (this.establishment_id > -1) {
+                        this.person.establishment_id = this.establishment_id
+                        this.$nextTick(() => {
+                            this.getAllHeadquarters()
+                            this.person.headquarter_id = this.headquarter_id
+                        })
+                    }
+                },
+            });
+            return null;
+        },
+
+        registerAttendantForStudents: function (response) {
+            const personId = response.props.person_id;
+            let data = this.attendant_student;
+            data.student_id = personId;
+            this.$inertia.post('/dashboard/person/add/attendant', data, {
+                onSuccess: (response) => {
+                    console.log(response)
+                    this.$swal({
+                        icon: 'success',
+                        title: '¡Buen trabajo!',
+                        text: response.props.flash.message
+                    }).then(result => {
+                        this.saving = false;
+                        if (result.isConfirmed) {
+                            this.headquarters = this.defaultHeadquarters;
+                            this.reset();
+                            this.resetValidation();
+                            //this.$inertia.get(this.route('person.index'));
+                        }
+                    });
+                },
+                onFinish: visit => {
+                    this.saving = false;
+
+                    if (this.establishment_id > -1) {
+                        this.person.establishment_id = this.establishment_id
+                        this.$nextTick(() => {
+                            this.getAllHeadquarters()
+                            this.person.headquarter_id = this.headquarter_id
+                        })
+                    }
+                },
+            });
+        },
+
+        update: function (data) {
+            data._method = 'PUT';
+            let formData = new FormData()
+            for (const key in data) {
+                formData.set(key, data[key])
+            }
+
+            form.post(`/dashboard/person/update/${data.id}`, formData, {
+                onSuccess: response => {
+                    console.log(response)
+                    let text = "";
+                    if (Object.keys(response.props.errors).length > 0) {
+                        console.log('errors => ', response.props.errors)
+                        for (var clave in this.response.props.errors) {
+                            text += clave + ": " + this.response.props.errors[clave] + "\n ";
                         }
                         this.$swal({
                             icon: 'error',
@@ -1016,7 +1070,7 @@ export default {
                         this.$swal({
                             icon: 'success',
                             title: '¡Buen trabajo!',
-                            text: this.$page.flash.message
+                            text: response.props.flash.message
                         }).then(result => {
                             this.saving = false;
                             if (result.isConfirmed) {
@@ -1026,16 +1080,21 @@ export default {
                                 this.$inertia.get(this.route('person.index'));
                             }
                         });
+
+                        this.reset();
+                        this.closeModal();
+                        this.editMode = false;
                     }
                 },
                 onError: errors => {
-                    this.reset();
-                    this.closeModal();
-                },
-                onFinish: visit => {
-                    this.reset();
-                    this.closeModal();
-                    this.editMode = false;
+                    console.log(errors)
+                    let errorsMessage = Object.values(errors).join('<br>')
+
+                    this.$swal({
+                        icon: 'error',
+                        title: 'Ups...',
+                        html: errorsMessage
+                    })
                 },
             })
         }
@@ -1055,7 +1114,7 @@ export default {
             try {
                 return colombiaJson.filter(
                     function (colombiaJson) {
-                        return colombiaJson.departamento == department;
+                        return colombiaJson.departamento === department;
                     }
                 )[0].ciudades;
 

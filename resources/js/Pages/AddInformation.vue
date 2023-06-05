@@ -43,7 +43,7 @@
                 </p>
 
                 <v-row>
-                    <v-col cols="12" md="4" class="mx-auto">
+                    <v-col class="mx-auto" cols="12" md="4">
                         <v-card rounded="lg">
                             <v-card-subtitle>
                                 Selecciona el establecimiento educativo y la sede a la que pertenece e ingresa la
@@ -54,34 +54,34 @@
                                     <v-autocomplete
                                         v-model="establishments_id"
                                         :items="establishments"
+                                        :rules="[rules.required]"
                                         item-text="name"
                                         item-value="id"
                                         label="Establecimiento al que pertenece"
-                                        @change="getHeadquarters"
-                                        :rules="[rules.required]"
-                                        outlined>
+                                        outlined
+                                        @change="getHeadquarters">
                                     </v-autocomplete>
                                 </v-col>
                                 <v-col class="col-12">
                                     <v-autocomplete
-                                        :disabled="establishments_id===null"
                                         v-model="headquarters_id"
+                                        :disabled="establishments_id===null"
                                         :items="headquarters"
+                                        :rules="[rules.required]"
                                         item-text="name"
                                         item-value="id"
                                         label="Sede a la que pertenece"
-                                        @change="getPeople"
-                                        :rules="[rules.required]"
-                                        outlined>
+                                        outlined
+                                        @change="getPeople">
                                     </v-autocomplete>
                                 </v-col>
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn
                                     :disabled="headquarters_id===null"
-                                    @click="create()"
                                     block
-                                    class="success">
+                                    class="success"
+                                    @click="create()">
                                     <v-icon class="notranslate mr-2">
                                         mdi-plus
                                     </v-icon>
@@ -90,19 +90,21 @@
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col v-if="people.length>0" transition="slide-x-reverse-transition">
+                    <v-col v-if="Object.keys(people).length >0" transition="slide-x-reverse-transition">
                         <v-card
                             min-height="70vh"
                             rounded="lg"
                         >
                             <v-card-text>
-                                <v-list three-line>
-                                    <template v-for="(person, n) in people">
 
+                                <v-list three-line v-for="(type, n) in people">
+                                    <template v-for="person in type">
                                         <v-list-item :key="person.id">
                                             <v-list-item-avatar>
-                                                <img class="rounded-circle" cover
-                                                     :src="person.profile_photo_path==='' ||person.profile_photo_path===null?`https://ui-avatars.com/api/?name=${person.name+person.surname}&color=7F9CF5&background=EBF4FF`:'/storage/'+person.profile_photo_path"></img>
+                                                <img
+                                                    :src="person.profile_photo_path==='' ||person.profile_photo_path===null?`https://ui-avatars.com/api/?name=${person.name+person.surname}&color=7F9CF5&background=EBF4FF`:'/storage/'+person.profile_photo_path"
+                                                    class="rounded-circle"
+                                                    :alt="person.name">
                                             </v-list-item-avatar>
 
                                             <v-list-item-content>
@@ -136,8 +138,9 @@
                     </v-col>
                 </v-row>
             </v-container>
-            <create-person v-if="isOpen" :close="closeModal" :open="isOpen" :edit="editMode" :value="form"
-                           :headquarter_id="headquarters_id" :establishment_id="establishments_id"></create-person>
+            <create-person v-if="isOpen" :close="closeModal" :edit="editMode" :establishment_id="establishments_id"
+                           :headquarter_id="headquarters_id"
+                           :open="isOpen" :value="form"></create-person>
 
         </v-main>
 
@@ -243,7 +246,7 @@ export default {
         },
         getPeople() {
             axios
-                .get(`/dashboard/person/${this.headquarters_id}/all`)
+                .get(`/dashboard/person/all/${this.establishments_id}/${this.headquarters_id}`)
                 .then((response) => {
                     console.log(response.data)
                     this.people = response.data
