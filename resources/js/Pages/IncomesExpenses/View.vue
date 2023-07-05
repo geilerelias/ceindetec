@@ -1,8 +1,12 @@
 <template>
     <app-layout>
-        <bread-crumbs :items="links" name="Ingresos y egresos"></bread-crumbs>
+        <bread-crumbs
+            :items="links"
+            class="no-print"
+            name="Ingresos y egresos"
+        ></bread-crumbs>
         <v-container>
-            <v-card class="ma-1" style="width: 100%">
+            <v-card class="ma-1 no-print" style="width: 100%">
                 <v-card-text class="">
                     <v-row class="no-gutters">
                         <div
@@ -21,7 +25,31 @@
                                 </v-icon>
                                 Agregar
                             </v-btn>
+
+                            <v-btn
+                                class="button-shadow primary--text ml-2"
+                                outlined
+                                @click="printContent"
+                            >
+                                <v-icon left>mdi-printer</v-icon>
+                                Imprimir
+                            </v-btn>
+
+                            <!--                            <v-btn
+                                                            class="button-shadow primary&#45;&#45;text ml-2"
+                                                            outlined
+                                                            @click="exportToExcel"
+                                                        >
+                                                            <v-icon
+                                                                aria-hidden="true"
+                                                                class="notranslate mr-2"
+                                                            >
+                                                                mdi-file-export
+                                                            </v-icon>
+                                                            Exportar a Excel
+                                                        </v-btn>-->
                         </div>
+
                         <v-spacer></v-spacer>
 
                         <div
@@ -41,8 +69,8 @@
                     </v-row>
                 </v-card-text>
             </v-card>
-            <v-card class="mx-1 my-3" style="width: 100%">
-                <v-card class="rounded-b-0">
+            <v-card class="mx-1 my-3 pa-0 ma-0" style="width: 100%">
+                <v-card class="rounded-b-0 no-print">
                     <v-tabs
                         v-model="tab"
                         background-color="primary"
@@ -59,16 +87,27 @@
                     </v-tabs>
                 </v-card>
 
-                <v-tabs-items v-model="tab">
+                <v-tabs-items v-model="tab" class="ma-0 pa-0">
                     <v-tab-item
                         v-for="(incomeExpense, index) in incomesExpenses"
                         :key="index"
+                        class="ma-0 pa-0"
                     >
-                        <v-card>
+                        <v-card
+                            id="print-content"
+                            ref="card"
+                            class="print-card ma-0 pa-0"
+                        >
+                            <v-card-title>
+                                <h1 class="title">
+                                    Informe de Ingresos y Egresos
+                                </h1>
+                            </v-card-title>
                             <v-card-text>
                                 <v-card class="mx-1 my-6" style="width: 100%">
                                     <v-col cols="12">
                                         <v-data-table
+                                            ref="dataTable"
                                             :headers="headers"
                                             :items="incomeExpense.data"
                                             item-key="id"
@@ -84,13 +123,13 @@
                                                     --
                                                 </span>
                                                 <inertia-link
+                                                    v-else
                                                     :href="
                                                         route(
                                                             'ticket.show',
                                                             item.ticket_id
                                                         )
                                                     "
-                                                    v-else
                                                     v-html="item.ticket_id"
                                                 >
                                                 </inertia-link>
@@ -153,30 +192,43 @@
                                             <template
                                                 v-slot:item.file_path="{ item }"
                                             >
-                                                <v-icon
+                                                <div
                                                     v-if="item.file_path"
-                                                    @click="
-                                                        openDialog(
-                                                            item.file_path
-                                                        )
-                                                    "
+                                                    class="avatar-container"
                                                 >
-                                                    mdi-file-eye-outline
-                                                </v-icon>
-                                                <v-icon
-                                                    v-if="item.file_path"
-                                                    @click="
-                                                        downloadFile(
-                                                            item.file_path
-                                                        )
-                                                    "
-                                                >
-                                                    mdi-file-download-outline
-                                                </v-icon>
+                                                    <img
+                                                        :src="`/storage/${item.file_path}`"
+                                                        alt="Archivo"
+                                                        height="300"
+                                                    />
+                                                    <div
+                                                        class="button-container no-print"
+                                                    >
+                                                        <v-icon
+                                                            @click="
+                                                                openDialog(
+                                                                    item.file_path
+                                                                )
+                                                            "
+                                                            >mdi-file-eye-outline
+                                                        </v-icon>
+                                                        <v-icon
+                                                            @click="
+                                                                downloadFile(
+                                                                    item.file_path
+                                                                )
+                                                            "
+                                                            >mdi-file-download-outline
+                                                        </v-icon>
+                                                    </div>
+                                                </div>
                                                 <span v-else>- -</span>
                                             </template>
 
-                                            <template #item.action="{ item }">
+                                            <template
+                                                #item.action="{ item }"
+                                                class="no-print"
+                                            >
                                                 <v-btn
                                                     color="primary"
                                                     icon
@@ -252,7 +304,6 @@
                                             }}
                                         </p>
                                     </v-col>
-
                                     <v-col>
                                         <v-card>
                                             <apexchart
@@ -307,16 +358,19 @@
 </template>
 
 <script>
-import SimpleLayout from "@/Layouts/SimpleLayout.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import BreadCrumbs from "@/Components/BreadCrumbs.vue";
 import VueApexCharts from "vue-apexcharts";
+
+import * as XLSX from "xlsx";
+import { utils } from "xlsx";
+
+const { getSheetName, json_to_sheet } = utils;
 
 export default {
     components: {
         BreadCrumbs,
         AppLayout,
-        SimpleLayout,
         apexchart: VueApexCharts,
     },
     props: {
@@ -670,6 +724,131 @@ export default {
                     console.error(error);
                 });
         },
+        exportToExcel() {
+            const workbook = XLSX.utils.book_new();
+            const sheetData = [];
+
+            // Obtén los datos de la tabla
+            const tableData = Array.from(this.getTableData());
+
+            // Crea un encabezado para el archivo Excel
+            const headers = [
+                "ID",
+                "Línea",
+                "Descripción",
+                "Monto",
+                "Tipo",
+                "Fecha",
+            ];
+
+            // Agrega el encabezado a la hoja de cálculo
+            sheetData.push(headers);
+
+            // Agrega los datos de la tabla a la hoja de cálculo
+            tableData.forEach((row) => {
+                const rowData = [
+                    row.id,
+                    row.line,
+                    row.description,
+                    row.amount,
+                    row.type,
+                    row.date,
+                ];
+                sheetData.push(rowData);
+            });
+
+            // Crea la hoja de cálculo
+            const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+
+            // Agrega la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Tabla");
+
+            // Genera el archivo Excel
+            const excelBuffer = XLSX.write(workbook, {
+                bookType: "xlsx",
+                type: "array",
+            });
+
+            // Descarga el archivo Excel
+            this.downloadExcel(excelBuffer, "tabla.xlsx");
+        },
+
+        getTableData() {
+            // Lógica para obtener los datos de la tabla de Vuetify en formato JSON
+            return this.incomesExpenses;
+        },
+
+        downloadExcel(buffer, filename) {
+            const data = new Blob([buffer], {
+                type: "application/octet-stream",
+            });
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(data);
+            link.download = filename;
+            link.click();
+        },
+
+        printContent() {
+            window.print();
+        },
     },
 };
 </script>
+
+<style>
+.avatar-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-container {
+    margin-left: 8px;
+}
+
+.title {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #999;
+    padding-bottom: 10px;
+}
+</style>
+
+<style>
+@media print {
+    @page {
+        size: oficio; /* Tamaño de papel "oficio" en pulgadas */
+        orientation: landscape; /* Modo paisaje */
+    }
+
+    body .no-print,
+    body .no-print-header,
+    body .no-print-drawer,
+    body .no-print-footer,
+    body .no-print *,
+    body .no-print-header *,
+    body .no-print-drawer *,
+    body .no-print-footer * {
+        display: none;
+        visibility: hidden;
+    }
+
+    .print-card {
+        width: 100%;
+    }
+
+    #print-content.print-card {
+        width: 100% !important;
+    }
+
+    .container {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+</style>

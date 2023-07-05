@@ -51,18 +51,17 @@
                     >
                         <template v-slot:item.priority="{ item }">
                             <!-- Renderiza el valor de prioridad como un ícono -->
-                            <v-chip
-                                :color="getPriorityColor(item.priority)"
-                                dark
-                                >{{ item.priority }}
-                            </v-chip>
-                            <v-icon :color="getPriorityColor(item.priority)"
-                                >{{ getPriorityIcon(item.priority) }}
-                            </v-icon>
+                            <div class="d-flex">
+                                <v-chip
+                                    :color="getPriorityColor(item.priority)"
+                                    dark
+                                    >{{ item.priority }}
+                                </v-chip>
+                            </div>
                         </template>
+
                         <template v-slot:item.user_id="{ item }">
-                            <!-- Renderiza el valor de estado como un chip -->
-                            {{ getUserById(item.user_id) }}
+                            {{ users[item.user_id] }}
                         </template>
 
                         <template v-slot:item.category_id="{ item }">
@@ -72,8 +71,9 @@
 
                         <template v-slot:item.status="{ item }">
                             <!-- Renderiza el valor de estado como un chip -->
-                            <v-chip :color="getStatusColor(item.status)" dark
-                                >{{ item.status }}
+
+                            <v-chip :color="getStatusColor(item.status)" dark>
+                                {{ getStatusName(item.status) }}
                             </v-chip>
                         </template>
 
@@ -81,14 +81,28 @@
                             <!-- Renderiza el valor de estado como un chip -->
                             <div v-html="item.message"></div>
                         </template>
+
                         <template v-slot:item.actions="{ item }">
                             <!-- Renderiza acciones para el ticket, por ejemplo, botones para editar o eliminar -->
-                            <v-btn small text @click="editTicket(item)"
-                                >Editar
-                            </v-btn>
-                            <v-btn small text @click="deleteTicket(item)"
-                                >Eliminar
-                            </v-btn>
+                            <div class="d-flex">
+                                <v-btn
+                                    icon
+                                    @click="
+                                        $inertia.visit(
+                                            route('ticket.edit', item.id)
+                                        )
+                                    "
+                                >
+                                    <v-icon> mdi-pencil</v-icon>
+                                </v-btn>
+
+                                <v-btn icon @click="deleteTicket(item)">
+                                    <v-icon>mdi-delete</v-icon>
+                                </v-btn>
+                                <v-btn icon @click="viewTicket(item)">
+                                    <v-icon>mdi-eye</v-icon>
+                                </v-btn>
+                            </div>
                         </template>
                     </v-data-table>
                 </v-card-text>
@@ -112,7 +126,10 @@ export default {
     data: () => ({
         headers: [
             { text: "Título", value: "title" },
-            { text: "Usuario", value: "user_id" },
+            {
+                text: "Usuario",
+                value: "user_id",
+            },
             { text: "Categoría", value: "category_id" },
             { text: "Prioridad", value: "priority" },
             { text: "Mensaje", value: "message" },
@@ -142,6 +159,7 @@ export default {
             },
         ],
         categories: [],
+        users: [],
     }),
     mounted() {
         axios
@@ -156,6 +174,7 @@ export default {
                 // Puedes realizar acciones adicionales aquí si es necesario
                 return error; // Retornar el error de la respuesta
             });
+        this.fetchTickets();
     },
     methods: {
         // Método para obtener el color del ícono de prioridad según el valor de prioridad del ticket
@@ -190,10 +209,22 @@ export default {
         getStatusColor(status) {
             // Implementa tu lógica para asignar colores basados en el estado
             switch (status) {
-                case "Active":
+                case "Open":
                     return "green"; // Color verde para estado "abierto"
-                case "cerrado":
+                case "Closed":
                     return "red"; // Color rojo para estado "cerrado"
+                default:
+                    return "grey"; // Color gris para otros casos
+            }
+        },
+        // Método para obtener el nombre según el valor de estado del ticket
+        getStatusName(status) {
+            // Implementa tu lógica para asignar colores basados en el estado
+            switch (status) {
+                case "Open":
+                    return "Abierto"; // Color verde para estado "abierto"
+                case "Closed":
+                    return "Cerrado"; // Color rojo para estado "cerrado"
                 default:
                     return "grey"; // Color gris para otros casos
             }
@@ -204,7 +235,57 @@ export default {
         },
         // Método para eliminar un ticket
         deleteTicket(ticket) {
-            // Implementa la lógica para eliminar un ticket
+            ticket._method = "DELETE";
+            this.$swal
+                .fire({
+                    title: "¿Estás seguro?",
+                    text: "Esta acción no se puede deshacer",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.post(
+                            route("ticket.destroy", ticket.id),
+                            ticket,
+                            {
+                                onSuccess: (page) => {
+                                    this.$swal({
+                                        icon: `${
+                                            page.props.errors.message
+                                                ? "error"
+                                                : "success"
+                                        }`,
+                                        title: `${
+                                            page.props.errors.message
+                                                ? "Ups..."
+                                                : "¡Buen trabajo!"
+                                        }`,
+                                        text: `${
+                                            page.props.errors.message
+                                                ? page.props.errors.message
+                                                : page.props.flash.message
+                                        }`,
+                                    });
+                                },
+                                onError: (errors) => {
+                                    this.$swal(
+                                        "¡Ay...!",
+                                        "Disculpe, ocurrió un error.",
+                                        "warning"
+                                    );
+                                },
+                                onFinish: (visit) => {
+                                    this.loadingDeleteItem = false;
+                                },
+                            }
+                        );
+                    }
+                });
         },
         getItems() {
             // Realizar una solicitud a la ruta de Laravel para obtener los elementos paginados
@@ -217,7 +298,10 @@ export default {
                 },
             });
         },
-
+        async getUserNameFromId(userId) {
+            // Realizamos una solicitud HTTP a tu API de Laravel para obtener el nombre del usuario
+            this.userName = await axios.get(`/user/by/${userId}`);
+        },
         onPageChange(page) {
             // Manejar el cambio de página
             this.currentPage = page;
@@ -231,16 +315,27 @@ export default {
                 return category.name; // Retorna la categoría encontrada
             } catch (e) {}
         },
-        getUserById(id) {
-            axios
-                .get("/user/by/" + id) // Ruta que apunta a tu función getUserNameById en Laravel
-                .then((response) => {
-                    console.log(response.data);
-                    return response.data.name;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+        async fetchTickets() {
+            try {
+                for (const ticket of this.tickets) {
+                    const userName = await this.getUserNameById(ticket.user_id);
+                    this.$set(this.users, ticket.user_id, userName);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async getUserNameById(userId) {
+            try {
+                const response = await axios.get("/user/by/" + userId);
+                return response.data;
+            } catch (error) {
+                console.error(error);
+                return "No definido";
+            }
+        },
+        viewTicket(item) {
+            this.$inertia.visit(`/dashboard/ticket/${item.id}`);
         },
     },
 };

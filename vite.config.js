@@ -1,18 +1,15 @@
-import {defineConfig} from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue2';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue2";
 
 export default defineConfig({
     resolve: {
         alias: {
-            '@': '/resources/js',
-        }
+            "@": "/resources/js",
+        },
     },
     plugins: [
-        laravel([
-            'resources/css/app.css',
-            'resources/js/app.js',
-        ]),
+        laravel(["resources/css/app.css", "resources/js/app.js"]),
         vue({
             template: {
                 transformAssetUrls: {
@@ -22,4 +19,14 @@ export default defineConfig({
             },
         }),
     ],
+    css: {
+        postcss: {
+            plugins: [],
+        },
+        preprocessorOptions: {
+            scss: {
+                additionalData: '@import "sweetalert2/dist/sweetalert2.css";',
+            },
+        },
+    },
 });

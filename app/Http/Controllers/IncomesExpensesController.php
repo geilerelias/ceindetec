@@ -32,8 +32,8 @@ class IncomesExpensesController extends Controller
             'date' => 'required|date',
             'file_path' => 'nullable|file',
             'ticket_id' => 'nullable',
-            'headquarter_id' => 'required',
-            'establishment_id' => 'required'
+            'headquarter_id' => 'nullable',
+            'establishment_id' => 'nullable'
         ]);
 
         $incomeExpense = new IncomeExpense($validatedData);
@@ -76,23 +76,26 @@ class IncomesExpensesController extends Controller
         $incomeExpense = IncomeExpense::findOrFail($id);
 
         $validatedData = $request->validate([
-            'line' => 'required',
-            'description' => 'required',
+            'line' => 'required|max:255',
+            'description' => 'required|max:255',
             'amount' => 'required|numeric',
-            'type' => 'required',
+            'type' => 'required|in:income,expense',
             'date' => 'required|date',
-            'headquarter_id' => 'required',
-            'establishment_id' => 'required'
+            'ticket_id' => 'nullable',
+            'headquarter_id' => 'nullable',
+            'establishment_id' => 'nullable'
         ]);
+
+        if ($request->hasFile('file_path')) {
+            $file = $request->file('file_path');
+            // Generate a file name with extension
+            $fileName = 'file-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('income-expenses', $fileName);
+            $incomeExpense->file_path = $path;
+        }
 
         $incomeExpense->update($validatedData);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = Storage::putFile('public/income-expenses', $file);
-            $incomeExpense->file_path = Storage::url($path);
-            $incomeExpense->save();
-        }
 
         return redirect()->back()->with([
             'message' => 'movimiento actualizado con éxito',
@@ -125,7 +128,7 @@ class IncomesExpensesController extends Controller
      }*/
 
 
-    public function showIncomeExpensesFrom($line)
+    /*public function showIncomeExpensesFrom($line)
     {
         $query = IncomeExpense::query();
 
@@ -151,6 +154,50 @@ class IncomesExpensesController extends Controller
             ->sortBy('data.0.date', SORT_REGULAR, true);
 
         //return $incomesExpenses;
+        return Inertia::render('IncomesExpenses/View', ['incomesExpenses' => $incomesExpenses]);
+    }*/
+
+    public function showIncomeExpensesFrom($line)
+    {
+        $query = IncomeExpense::query();
+
+        if ($line) {
+            $query->where('line', $line);
+        }
+
+        $incomesExpenses = $query->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m');
+            })
+            ->map(function ($item) {
+                $groupedData = collect([
+                    'incomes' => $item->where('type', 'income')->sum('amount'),
+                    'expenses' => $item->where('type', 'expense')->sum('amount'),
+                    'data' => $item
+                ]);
+
+                $groupedData['balance'] = $groupedData['incomes'] - $groupedData['expenses'];
+
+                return $groupedData;
+            })
+            ->sortBy('data.0.date', SORT_REGULAR, true);
+
+        // Obtener todos los ingresos y gastos sin agrupar
+        $allIncomesExpenses = $incomesExpenses->flatMap(function ($group) {
+            return $group['data'];
+        });
+
+        $all = collect([
+            'incomes' => $allIncomesExpenses->where('type', 'income')->sum('amount'),
+            'expenses' => $allIncomesExpenses->where('type', 'expense')->sum('amount'),
+            'data' => $allIncomesExpenses,
+        ]);
+
+        $all['balance'] = $all['incomes'] - $all['expenses'];
+
+        // Agregar el array "all" al array "incomesExpenses"
+        $incomesExpenses['all'] = $all;
+
         return Inertia::render('IncomesExpenses/View', ['incomesExpenses' => $incomesExpenses]);
     }
 

@@ -246,12 +246,12 @@ export default defineComponent({
     },
     created() {
         axios.get(`/dashboard/establishment/all`).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             this.establishments = response.data;
         });
 
         axios.get(`/dashboard/headquarters/all`).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             this.headquarters = response.data;
         });
         axios.get(`/dashboard/ticket-category/all`).then((response) => {

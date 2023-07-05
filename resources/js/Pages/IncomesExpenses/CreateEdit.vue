@@ -1,6 +1,9 @@
 <template>
     <app-layout>
-        <bread-crumbs :items="links" name="Crear Movimiento"></bread-crumbs>
+        <bread-crumbs
+            :items="links"
+            :name="`${isEdit !== false ? 'Editar ' : 'Crear'} Movimiento`"
+        ></bread-crumbs>
 
         <v-container>
             <v-row>
@@ -362,7 +365,6 @@ export default {
         formatAmount() {
             this.form.amount = numeral(this.form.amount).format("$0,0");
         },
-
         submitForm() {
             if (this.isEdit) this.edit();
             else this.save();
@@ -422,18 +424,18 @@ export default {
                     .replace(/peso/gi, "");
 
                 this.form._method = "PUT";
+                console.log("hasta aqui");
                 this.$inertia.post(
-                    route("incomes-expenses.update", this.form.id),
+                    `/incomes-expenses/${this.form.id}`,
                     this.form,
                     {
+                        forceFormData: true,
                         onSuccess: (page) => {
                             this.$swal(
                                 "Buen trabajo!",
                                 page.props.flash.message,
                                 "success"
                             );
-                            this.reset();
-                            this.closeModal();
                         },
                         onError: (errors) => {
                             this.form = this.form.setError(errors);
