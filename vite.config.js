@@ -23,10 +23,5 @@ export default defineConfig({
         postcss: {
             plugins: [],
         },
-        preprocessorOptions: {
-            scss: {
-                additionalData: '@import "sweetalert2/dist/sweetalert2.css";',
-            },
-        },
     },
 });

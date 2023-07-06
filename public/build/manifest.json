@@ -23,13 +23,13 @@
     "file": "assets/logofinal.485f147e.png",
     "src": "resources/images/logofinal.png"
   },
-  "resources/images/infantes_guajiros_lazy.jpg": {
-    "file": "assets/infantes_guajiros_lazy.4b0edcc9.jpg",
-    "src": "resources/images/infantes_guajiros_lazy.jpg"
-  },
   "resources/images/logo-ceindetec-circle.png": {
     "file": "assets/logo-ceindetec-circle.494a5138.png",
     "src": "resources/images/logo-ceindetec-circle.png"
+  },
+  "resources/images/infantes_guajiros_lazy.jpg": {
+    "file": "assets/infantes_guajiros_lazy.4b0edcc9.jpg",
+    "src": "resources/images/infantes_guajiros_lazy.jpg"
   },
   "resources/images/errorcurva.png": {
     "file": "assets/errorcurva.1564b98a.png",
@@ -51,13 +51,13 @@
     "file": "assets/alcaldia.e6f0f71b.jpg",
     "src": "resources/images/alcaldia.jpg"
   },
-  "resources/images/ninos-wayuu-lazy.jpg": {
-    "file": "assets/ninos-wayuu-lazy.070b1564.jpg",
-    "src": "resources/images/ninos-wayuu-lazy.jpg"
-  },
   "resources/images/ninos-wayuu.jpg": {
     "file": "assets/ninos-wayuu.732823d3.jpg",
     "src": "resources/images/ninos-wayuu.jpg"
+  },
+  "resources/images/ninos-wayuu-lazy.jpg": {
+    "file": "assets/ninos-wayuu-lazy.070b1564.jpg",
+    "src": "resources/images/ninos-wayuu-lazy.jpg"
   },
   "resources/js/app.js": {
     "file": "assets/app.77aa44cf.js",
@@ -398,7 +398,7 @@
       "__plugin-vue2_normalizer.358ffe07.js"
     ],
     "css": [
-      "assets/PageLayout.f594f53f.css"
+      "assets/PageLayout.5c3b464e.css"
     ]
   },
   "resources/js/Pages/AddInformation.vue": {
@@ -1701,9 +1701,6 @@
       "_logo-ceindetec.0997e866.js",
       "_Logo.5a18e3f9.js",
       "_SettingsDropdown.da80baee.js"
-    ],
-    "css": [
-      "assets/Index.c773adcb.css"
     ]
   },
   "resources/js/Pages/IncomesExpenses/View.vue": {
@@ -2015,25 +2012,141 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/js/Pages/Auth/Register.css": {
+    "file": "assets/Register.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/Register.css"
+  },
+  "resources/js/Pages/BeforeDuringAfter/Building.css": {
+    "file": "assets/Building.ac04a96e.css",
+    "src": "resources/js/Pages/BeforeDuringAfter/Building.css"
+  },
+  "resources/js/Pages/Auth/FaceIdentification.css": {
+    "file": "assets/FaceIdentification.d8075894.css",
+    "src": "resources/js/Pages/Auth/FaceIdentification.css"
+  },
+  "LoadingComponent.css": {
+    "file": "assets/LoadingComponent.19a70203.css",
+    "src": "LoadingComponent.css"
+  },
   "Logo.css": {
     "file": "assets/Logo.e3b0c442.css",
     "src": "Logo.css"
   },
-  "PageLayout.css": {
-    "file": "assets/PageLayout.f594f53f.css",
-    "src": "PageLayout.css"
+  "resources/js/Pages/CodeQr/Show.css": {
+    "file": "assets/Show.be066e45.css",
+    "src": "resources/js/Pages/CodeQr/Show.css"
   },
-  "resources/js/Pages/IncomesExpenses/Index.css": {
-    "file": "assets/Index.c773adcb.css",
-    "src": "resources/js/Pages/IncomesExpenses/Index.css"
+  "SettingsDropdown.css": {
+    "file": "assets/SettingsDropdown.e3b0c442.css",
+    "src": "SettingsDropdown.css"
   },
-  "resources/js/Pages/Auth/VerifyEmail.css": {
-    "file": "assets/VerifyEmail.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/VerifyEmail.css"
+  "resources/js/Pages/FaceApi/FaceRecognitionComparingFromFile.css": {
+    "file": "assets/FaceRecognitionComparingFromFile.3d4324e7.css",
+    "src": "resources/js/Pages/FaceApi/FaceRecognitionComparingFromFile.css"
+  },
+  "resources/js/Pages/Benefited/Follow.css": {
+    "file": "assets/Follow.54d02b14.css",
+    "src": "resources/js/Pages/Benefited/Follow.css"
+  },
+  "PreviewImage.css": {
+    "file": "assets/PreviewImage.0362df0a.css",
+    "src": "PreviewImage.css"
+  },
+  "resources/js/Pages/Dashboard/Person/Show.css": {
+    "file": "assets/Show.e3b0c442.css",
+    "src": "resources/js/Pages/Dashboard/Person/Show.css"
+  },
+  "resources/js/Pages/Dashboard/Ticket/ShowTicket.css": {
+    "file": "assets/ShowTicket.52f47160.css",
+    "src": "resources/js/Pages/Dashboard/Ticket/ShowTicket.css"
+  },
+  "AppLayout.css": {
+    "file": "assets/AppLayout.aacc1de0.css",
+    "src": "AppLayout.css"
+  },
+  "resources/js/Pages/Dashboard/Person/Create.css": {
+    "file": "assets/Create.3881e8ea.css",
+    "src": "resources/js/Pages/Dashboard/Person/Create.css"
+  },
+  "resources/js/Pages/CodeQr/SearchShow.css": {
+    "file": "assets/SearchShow.a8824a42.css",
+    "src": "resources/js/Pages/CodeQr/SearchShow.css"
+  },
+  "resources/js/Pages/Dashboard/Person/CreateEdit.css": {
+    "file": "assets/CreateEdit.3881e8ea.css",
+    "src": "resources/js/Pages/Dashboard/Person/CreateEdit.css"
+  },
+  "BreadCrumbs.css": {
+    "file": "assets/BreadCrumbs.e3b0c442.css",
+    "src": "BreadCrumbs.css"
+  },
+  "resources/js/Pages/Dashboard/Dashboard.css": {
+    "file": "assets/Dashboard.45983384.css",
+    "src": "resources/js/Pages/Dashboard/Dashboard.css"
+  },
+  "resources/js/Pages/CodeQr/SearchEdit.css": {
+    "file": "assets/SearchEdit.ad9ce037.css",
+    "src": "resources/js/Pages/CodeQr/SearchEdit.css"
+  },
+  "resources/js/Pages/AboutUs.css": {
+    "file": "assets/AboutUs.c49bf720.css",
+    "src": "resources/js/Pages/AboutUs.css"
+  },
+  "resources/js/Pages/Error/Error.css": {
+    "file": "assets/Error.a461f76b.css",
+    "src": "resources/js/Pages/Error/Error.css"
+  },
+  "resources/js/Pages/AddInformation.css": {
+    "file": "assets/AddInformation.e3b0c442.css",
+    "src": "resources/js/Pages/AddInformation.css"
   },
   "resources/js/Pages/Dashboard/Headquarters/Index.css": {
     "file": "assets/Index.e3b0c442.css",
     "src": "resources/js/Pages/Dashboard/Headquarters/Index.css"
+  },
+  "resources/js/Pages/Dashboard/Notices/AddNotice.css": {
+    "file": "assets/AddNotice.3735e6a4.css",
+    "src": "resources/js/Pages/Dashboard/Notices/AddNotice.css"
+  },
+  "resources/js/Pages/Benefited/DailyFollow.css": {
+    "file": "assets/DailyFollow.aaf518c6.css",
+    "src": "resources/js/Pages/Benefited/DailyFollow.css"
+  },
+  "resources/js/Pages/Package.css": {
+    "file": "assets/Package.b020efc7.css",
+    "src": "resources/js/Pages/Package.css"
+  },
+  "PictureInput.css": {
+    "file": "assets/PictureInput.e336a72f.css",
+    "src": "PictureInput.css"
+  },
+  "resources/js/Pages/Dashboard/Area/CreateUpdate.css": {
+    "file": "assets/CreateUpdate.e3b0c442.css",
+    "src": "resources/js/Pages/Dashboard/Area/CreateUpdate.css"
+  },
+  "resources/js/Pages/CodeQr/Edit.css": {
+    "file": "assets/Edit.e3b0c442.css",
+    "src": "resources/js/Pages/CodeQr/Edit.css"
+  },
+  "SimpleLayout.css": {
+    "file": "assets/SimpleLayout.90e18c70.css",
+    "src": "SimpleLayout.css"
+  },
+  "PageLayout.css": {
+    "file": "assets/PageLayout.5c3b464e.css",
+    "src": "PageLayout.css"
+  },
+  "resources/js/Pages/Dashboard/Notices/EditNotice.css": {
+    "file": "assets/EditNotice.3735e6a4.css",
+    "src": "resources/js/Pages/Dashboard/Notices/EditNotice.css"
+  },
+  "resources/js/Pages/Example.css": {
+    "file": "assets/Example.e3b0c442.css",
+    "src": "resources/js/Pages/Example.css"
+  },
+  "resources/js/Pages/FaceApi/FaceRecognitionFromFile.css": {
+    "file": "assets/FaceRecognitionFromFile.47f87589.css",
+    "src": "resources/js/Pages/FaceApi/FaceRecognitionFromFile.css"
   },
   "resources/js/Pages/FaceApi/FaceRecognitionFromWebcam.css": {
     "file": "assets/FaceRecognitionFromWebcam.97d4dab5.css",
@@ -2043,113 +2156,9 @@
     "file": "assets/Home.989293b7.css",
     "src": "resources/js/Pages/Home.css"
   },
-  "SimpleLayout.css": {
-    "file": "assets/SimpleLayout.90e18c70.css",
-    "src": "SimpleLayout.css"
-  },
-  "resources/js/Pages/Gers.css": {
-    "file": "assets/Gers.e3b0c442.css",
-    "src": "resources/js/Pages/Gers.css"
-  },
-  "resources/js/Pages/AddInformation.css": {
-    "file": "assets/AddInformation.e3b0c442.css",
-    "src": "resources/js/Pages/AddInformation.css"
-  },
-  "resources/js/Pages/CodeQr/SearchEdit.css": {
-    "file": "assets/SearchEdit.ad9ce037.css",
-    "src": "resources/js/Pages/CodeQr/SearchEdit.css"
-  },
-  "resources/js/Pages/CodeQr/SearchShow.css": {
-    "file": "assets/SearchShow.a8824a42.css",
-    "src": "resources/js/Pages/CodeQr/SearchShow.css"
-  },
-  "LoadingComponent.css": {
-    "file": "assets/LoadingComponent.19a70203.css",
-    "src": "LoadingComponent.css"
-  },
-  "resources/js/Pages/Benefited/DailyFollow.css": {
-    "file": "assets/DailyFollow.aaf518c6.css",
-    "src": "resources/js/Pages/Benefited/DailyFollow.css"
-  },
-  "resources/js/Pages/Dashboard/Person/CreateEdit.css": {
-    "file": "assets/CreateEdit.3881e8ea.css",
-    "src": "resources/js/Pages/Dashboard/Person/CreateEdit.css"
-  },
-  "resources/js/Pages/Dashboard/Notices/EditNotice.css": {
-    "file": "assets/EditNotice.3735e6a4.css",
-    "src": "resources/js/Pages/Dashboard/Notices/EditNotice.css"
-  },
-  "BreadCrumbs.css": {
-    "file": "assets/BreadCrumbs.e3b0c442.css",
-    "src": "BreadCrumbs.css"
-  },
-  "resources/js/Pages/CodeQr/Edit.css": {
-    "file": "assets/Edit.e3b0c442.css",
-    "src": "resources/js/Pages/CodeQr/Edit.css"
-  },
-  "resources/js/Pages/Example.css": {
-    "file": "assets/Example.e3b0c442.css",
-    "src": "resources/js/Pages/Example.css"
-  },
-  "resources/js/Pages/CodeQr/Show.css": {
-    "file": "assets/Show.be066e45.css",
-    "src": "resources/js/Pages/CodeQr/Show.css"
-  },
   "resources/js/Pages/BeforeDuringAfter/Adequacy.css": {
     "file": "assets/Adequacy.d97018b7.css",
     "src": "resources/js/Pages/BeforeDuringAfter/Adequacy.css"
-  },
-  "resources/js/Pages/Dashboard/Dashboard.css": {
-    "file": "assets/Dashboard.45983384.css",
-    "src": "resources/js/Pages/Dashboard/Dashboard.css"
-  },
-  "resources/js/Pages/Benefited/Follow.css": {
-    "file": "assets/Follow.54d02b14.css",
-    "src": "resources/js/Pages/Benefited/Follow.css"
-  },
-  "resources/js/Pages/Auth/TwoFactorChallenge.css": {
-    "file": "assets/TwoFactorChallenge.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/TwoFactorChallenge.css"
-  },
-  "resources/js/Pages/Auth/Register.css": {
-    "file": "assets/Register.e3b0c442.css",
-    "src": "resources/js/Pages/Auth/Register.css"
-  },
-  "resources/js/Pages/Error/Error.css": {
-    "file": "assets/Error.a461f76b.css",
-    "src": "resources/js/Pages/Error/Error.css"
-  },
-  "resources/js/Pages/Dashboard/Establishment/Show.css": {
-    "file": "assets/Show.e3b0c442.css",
-    "src": "resources/js/Pages/Dashboard/Establishment/Show.css"
-  },
-  "resources/js/Pages/Dashboard/Person/Create.css": {
-    "file": "assets/Create.3881e8ea.css",
-    "src": "resources/js/Pages/Dashboard/Person/Create.css"
-  },
-  "resources/js/Pages/BeforeDuringAfter/Building.css": {
-    "file": "assets/Building.ac04a96e.css",
-    "src": "resources/js/Pages/BeforeDuringAfter/Building.css"
-  },
-  "resources/js/Pages/AboutUs.css": {
-    "file": "assets/AboutUs.c49bf720.css",
-    "src": "resources/js/Pages/AboutUs.css"
-  },
-  "resources/js/Pages/Dashboard/Area/CreateUpdate.css": {
-    "file": "assets/CreateUpdate.e3b0c442.css",
-    "src": "resources/js/Pages/Dashboard/Area/CreateUpdate.css"
-  },
-  "Footer.css": {
-    "file": "assets/Footer.03b148ea.css",
-    "src": "Footer.css"
-  },
-  "PreviewImage.css": {
-    "file": "assets/PreviewImage.0362df0a.css",
-    "src": "PreviewImage.css"
-  },
-  "SpinnerComponent.css": {
-    "file": "assets/SpinnerComponent.f23de6b6.css",
-    "src": "SpinnerComponent.css"
   },
   "AuthLayout.css": {
     "file": "assets/AuthLayout.e3b0c442.css",
@@ -2159,49 +2168,33 @@
     "file": "assets/Index.2df72644.css",
     "src": "resources/js/Pages/BeforeDuringAfter/Index.css"
   },
-  "resources/js/Pages/Dashboard/Ticket/ShowTicket.css": {
-    "file": "assets/ShowTicket.52f47160.css",
-    "src": "resources/js/Pages/Dashboard/Ticket/ShowTicket.css"
+  "resources/js/Pages/Auth/VerifyEmail.css": {
+    "file": "assets/VerifyEmail.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/VerifyEmail.css"
   },
-  "resources/js/Pages/Dashboard/Notices/AddNotice.css": {
-    "file": "assets/AddNotice.3735e6a4.css",
-    "src": "resources/js/Pages/Dashboard/Notices/AddNotice.css"
+  "resources/js/Pages/Gers.css": {
+    "file": "assets/Gers.e3b0c442.css",
+    "src": "resources/js/Pages/Gers.css"
   },
-  "resources/js/Pages/FaceApi/FaceRecognitionComparingFromFile.css": {
-    "file": "assets/FaceRecognitionComparingFromFile.3d4324e7.css",
-    "src": "resources/js/Pages/FaceApi/FaceRecognitionComparingFromFile.css"
+  "Footer.css": {
+    "file": "assets/Footer.03b148ea.css",
+    "src": "Footer.css"
   },
-  "PictureInput.css": {
-    "file": "assets/PictureInput.e336a72f.css",
-    "src": "PictureInput.css"
+  "resources/js/Pages/Auth/TwoFactorChallenge.css": {
+    "file": "assets/TwoFactorChallenge.e3b0c442.css",
+    "src": "resources/js/Pages/Auth/TwoFactorChallenge.css"
   },
-  "SettingsDropdown.css": {
-    "file": "assets/SettingsDropdown.e3b0c442.css",
-    "src": "SettingsDropdown.css"
-  },
-  "resources/js/Pages/FaceApi/FaceRecognitionFromFile.css": {
-    "file": "assets/FaceRecognitionFromFile.47f87589.css",
-    "src": "resources/js/Pages/FaceApi/FaceRecognitionFromFile.css"
-  },
-  "AppLayout.css": {
-    "file": "assets/AppLayout.aacc1de0.css",
-    "src": "AppLayout.css"
-  },
-  "resources/js/Pages/Auth/FaceIdentification.css": {
-    "file": "assets/FaceIdentification.d8075894.css",
-    "src": "resources/js/Pages/Auth/FaceIdentification.css"
+  "resources/js/Pages/CodeQr/Print.css": {
+    "file": "assets/Print.b4b55eb8.css",
+    "src": "resources/js/Pages/CodeQr/Print.css"
   },
   "resources/js/Pages/CodeQr/Index.css": {
     "file": "assets/Index.1134c2ba.css",
     "src": "resources/js/Pages/CodeQr/Index.css"
   },
-  "resources/js/Pages/Package.css": {
-    "file": "assets/Package.b020efc7.css",
-    "src": "resources/js/Pages/Package.css"
-  },
-  "resources/js/Pages/CodeQr/Print.css": {
-    "file": "assets/Print.b4b55eb8.css",
-    "src": "resources/js/Pages/CodeQr/Print.css"
+  "SpinnerComponent.css": {
+    "file": "assets/SpinnerComponent.f23de6b6.css",
+    "src": "SpinnerComponent.css"
   },
   "resources/js/Pages/IncomesExpenses/View.css": {
     "file": "assets/View.11fca3b9.css",
